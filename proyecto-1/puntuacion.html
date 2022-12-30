@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./img/favicongame.png" id="favicon">
+  <link rel="stylesheet" href="./css/puntuacion.css"/>
+  <title>Memoria visual Project</title>
+</head>
+
+<body>
+  <header class="header-container">
+    <h1>Juego de memoria visual</h1>
+    <nav class="navbar">
+        <ul>
+            <li id="start"><a href="/" >Inicio</a></li>
+            <li id="score"><a href="puntuacion.html">Puntuación</a></li>
+            <li id="alta"><a>Date de alta</a></li>
+        </ul>
+    </nav>
+  </header>
+  <main>
+    <header>
+      <h2>HIGH SCORES</h2>
+    </header>   
+    <main>
+      <table class="intentos">
+        <tr>
+          <th>Jugador</th>
+          <th>Intentos</th>
+          <th>Tiempo</th>
+        </tr>
+      </table>
+    </main>  
+    <div class="overlay" id="overlay">
+      <div class="popup" id="popup">
+        <a href="#" class="btn-close-popup" id="btn-close-popup"><i class="fa-solid fa-x"></i></a>
+        <h3>INGRESA TU NOMBRE DE USUARIO</h3>
+        <h4>y juega al juego de memoria visual:</h4>
+        <form id="formulario">
+          <div class="container-inputs">
+            <input type="text" placeholder="jugador" name="user" id="user">
+          </div>
+          <input type="button" value="Aceptar" id="submit" class="btn-submit">
+        </form>
+      </div>
+    </div>  
+  <script type="module" src="./js/puntuacion.js"></script>    
+  <script type="module" src="./js/main.js"></script> 
+</body>
+
+</html>
