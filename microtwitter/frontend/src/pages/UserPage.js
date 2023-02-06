@@ -13,10 +13,10 @@ export const UserPage = () => {
 
   return (
     <section>
-      <h1>User {user.email}</h1>
+      <h1>Usuario {user.email}</h1>
       <section class="user-data">
-        <p>User id: {user.id}</p>
-        <p>Registered on {new Date(user.created_at).toLocaleString()}</p>
+        <p>Id de usuario: {user.id}</p>
+        <p>Registrado el {new Date(user.created_at).toLocaleString()}</p>
       </section>
       <UserTweets id={user.id} />
     </section>

@@ -16,7 +16,7 @@ export const HomePage = () => {
   return (
     <section>
       {user ? <NewTweet addTweet={addTweet} /> : null}
-      <h1>Latest tweets</h1>
+      <h1>Últimos tweets</h1>
       <TweetList tweets={tweets} removeTweet={removeTweet} />
     </section>
   );

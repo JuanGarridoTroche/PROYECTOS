@@ -28,14 +28,14 @@ export const NewTweet = ({ addTweet }) => {
   };
   return (
     <>
-      <h1>Add new Tweet</h1>
+      <h1>Añadir nuevo Tweet</h1>
       <form className="new-tweet" onSubmit={handleForm}>
         <fieldset>
-          <label htmlFor="text">Text</label>
+          <label htmlFor="text">Texto</label>
           <input type="text" name="text" id="text" required />
         </fieldset>
         <fieldset>
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">Imagen</label>
           <input
             type="file"
             name="image"
@@ -53,9 +53,9 @@ export const NewTweet = ({ addTweet }) => {
             </figure>
           ) : null}
         </fieldset>
-        <button>Send tweet</button>
+        <button>Enviar tweet</button>
         {error ? <p>{error}</p> : null}
-        {loading ? <p>posting tweet...</p> : null}
+        {loading ? <p>publicando tweet...</p> : null}
       </form>
     </>
   );

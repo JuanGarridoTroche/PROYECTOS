@@ -26,7 +26,7 @@ export const RegisterPage = () => {
   };
   return (
     <section>
-      <h1>Register</h1>
+      <h1>Registro</h1>
       <form onSubmit={handleForm}>
         <fieldset>
           <label htmlFor="email">Email</label>
@@ -40,7 +40,7 @@ export const RegisterPage = () => {
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="pass1">Password</label>
+          <label htmlFor="pass1">Contraseña</label>
           <input
             type="password"
             id="pass1"
@@ -51,7 +51,7 @@ export const RegisterPage = () => {
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="pass2">Repeat password</label>
+          <label htmlFor="pass2">Repetir contraseña</label>
           <input
             type="password"
             id="pass2"
@@ -61,7 +61,7 @@ export const RegisterPage = () => {
             onChange={(e) => setPass2(e.target.value)}
           />
         </fieldset>
-        <button>Register</button>
+        <button>Registrar</button>
         {error ? <p>{error}</p> : null}
       </form>
     </section>

@@ -1,3 +1,3 @@
 export const Footer = () => {
-  return <footer>© 2022 HACK A BOSS</footer>;
+  return <footer>© 2022 GRD Dev</footer>;
 };

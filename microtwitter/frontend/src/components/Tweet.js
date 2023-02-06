@@ -44,7 +44,7 @@ export const Tweet = ({ tweet, removeTweet }) => {
               if (window.confirm("Are you sure?")) deleteTweet(tweet.id);
             }}
           >
-            Delete tweet
+            Eliminar tweet
           </button>
           {error ? <p>{error}</p> : null}
         </section>

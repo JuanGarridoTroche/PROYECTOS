@@ -12,6 +12,6 @@ export const TweetList = ({ tweets, removeTweet }) => {
       })}
     </ul>
   ) : (
-    <p>There are no tweets...</p>
+    <p>No hay tweets...</p>
   );
 };

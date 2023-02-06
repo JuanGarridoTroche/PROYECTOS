@@ -5,7 +5,7 @@ import { TweetList } from "./TweetList";
 export const UserTweets = ({ id }) => {
   const { tweets, loading, error, removeTweet } = useTweets(id);
 
-  if (loading) return <p>Loading tweets...</p>;
+  if (loading) return <p>Cargando tweets...</p>;
   if (error) return <ErrorMessage message={error} />;
 
   return <TweetList tweets={tweets} removeTweet={removeTweet} />;
