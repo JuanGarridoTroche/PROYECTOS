@@ -49,12 +49,15 @@ const getTweetsByUserId = async (id) => {
   try {
     connection = await getConnection();
 
-    const [result] = await connection.query(
+    let [result] = await connection.query(
       `
           SELECT tweets.*, users.email FROM tweets LEFT JOIN users on tweets.user_id = users.id WHERE tweets.user_id = ?
     `,
       [id]
     );
+      if (result.length < 1) {
+        result = `No existen tweets del usuario con id ${id}`;
+      }
 
     return result;
   } finally {
