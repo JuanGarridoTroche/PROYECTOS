@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header>
       <h1>
-        <Link to={"/"}>Mini Twitter</Link>
+        <Link to={"/"}>Micro Twitter</Link>
       </h1>
       <nav>
         <Auth />
