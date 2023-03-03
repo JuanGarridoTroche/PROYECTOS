@@ -1,0 +1,90 @@
+.container-about{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(255, 255, 255, .9);  
+  border: 1px solid rgba(255, 255, 255, .3);
+}
+
+
+.image-about {
+  height: auto;
+  width: 100%;
+  border: 1px solid var(--color-logo);
+}
+
+.container-text-about {  
+  text-align: justify;
+  padding: 7px 7px 30px 7px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.email-about {
+  font-size: 1.1rem;
+  color: var(--color-logo);
+}
+
+.name-about {
+  font-size: 2rem;
+}
+
+.job-about {
+  font-size: 1.7rem;
+  margin-top: 15px;
+  padding-bottom: 30px;
+}
+
+.text-about {
+  font-size: 1.5rem;
+  text-align: justify;
+  padding: 0 7px;
+}
+
+.social-media {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-media a{
+  padding: 0 10px;
+  margin: 0 10px;
+}
+
+
+
+@media(min-width: 800px) {
+  .container-about{
+    width: 70vw;
+    margin: 10px 250px 50px;    
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .3);
+  }
+
+  .image-about {
+    height: 100%;
+    width: auto;
+    border-radius: 10px 0 0 10px;
+    border: none;
+  }
+
+  .container-text-about {  
+    text-align: center;
+    padding: 15px 20px 0px 20px;
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    line-height: 2rem;
+  }
+
+  .social-media {
+    margin-top: 10px;
+  }
+
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "name":"Juan",
+    "lastname": "Garrido Troche",
+    "population": "A Coruña",
+    "province":"A Coruña",
+    "country": "España",
+    "job":"Software developer",
+    "testimonial":"Esta aplicación salió a raiz del proyecto de fin de bootcamp en Hackaboss poniendo el foco sobre una aplicación tipo reddit donde podemos registrarnos y loguearnos para poder crear, editar y eliminar noticias, votar sobre aquellas otras no creadas por nuestro usuario y realizar filtros por categorías, valoraciones y fecha de creación de manera ascendente o descendente. Hemos realizado de manera conjunta la parte de HTML, CSS, Node.JS, la creación de la base de datos en MySQL en la parte de backend y por último hemos utilizado React para crear la parte de frontend. Espero que os guste y que os ayude a ver aquellas cualidades que hemos adquirido en el bootcamp de Hack a Boss.",
+    "image":"juan",
+    "email":"j.garridotroche@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jgarridotroche/", 
+    "twitter": "https://twitter.com/grddev"
+  },
+  {
+    "id": "2",
+    "name":"Ana",
+    "lastname": "Arévano",
+    "population": "A Coruña",
+    "province":"A Coruña",
+    "country": "España",
+    "job":"Software developer",
+    "testimonial":"Esta aplicación salió a raiz del proyecto de fin de bootcamp en Hackaboss poniendo el foco sobre una aplicación tipo reddit donde podemos registrarnos y loguearnos para poder crear, editar y eliminar noticias, votar sobre aquellas otras no creadas por nuestro usuario y realizar filtros por categorías, valoraciones y fecha de creación de manera ascendente o descendente. Hemos realizado de manera conjunta la parte de HTML, CSS, Node.JS, la creación de la base de datos en MySQL en la parte de backend y por último hemos utilizado React para crear la parte de frontend. Espero que os guste y que os ayude a ver aquellas cualidades que hemos adquirido en el bootcamp de Hack a Boss.",
+    "image":"ana",
+    "email":"ana.arevano@hotmail.com",
+    "linkedin": "https://www.linkedin.com/in/ana-ar%C3%A9vano-vaquero-892557b7", 
+    "twitter": "https://twitter.com/arevanoana"
+  },
+  {
+    "id": "3",
+    "name":"Muchika",
+    "lastname": "Chettakul",
+    "population": "Oleiros",
+    "province":"A Coruña",
+    "country": "España",
+    "job":"Software developer",
+    "testimonial":"Esta aplicación salió a raiz del proyecto de fin de bootcamp en Hackaboss poniendo el foco sobre una aplicación tipo reddit donde podemos registrarnos y loguearnos para poder crear, editar y eliminar noticias, votar sobre aquellas otras no creadas por nuestro usuario y realizar filtros por categorías, valoraciones y fecha de creación de manera ascendente o descendente. Hemos realizado de manera conjunta la parte de HTML, CSS, Node.JS, la creación de la base de datos en MySQL en la parte de backend y por último hemos utilizado React para crear la parte de frontend. Espero que os guste y que os ayude a ver aquellas cualidades que hemos adquirido en el bootcamp de Hack a Boss.",
+    "image":"niky",
+    "email":"muchika.chettakul@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/muchika-chettakul-18840537", 
+    "twitter": "https://twitter.com/muchika_niky"
+  }
+]

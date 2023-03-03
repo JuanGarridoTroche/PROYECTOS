@@ -1,0 +1,65 @@
+.user-post {
+  background-color: white;
+  height: 50px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* margin: 1rem; */
+  border: 1px solid rgb(150, 150, 150);
+  gap: .5rem;
+  width: 98%;
+  margin: 1rem auto;
+}
+
+
+/* Imagen del avatar */
+.user-post > a > img.avatar-user {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin: 0 20px 10px 20px;
+  flex-grow: 1;
+}
+
+
+.user-post > .insert-news {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  gap: 1rem;
+  flex-grow: 4;
+}
+
+.user-post > .insert-news .image-upload {
+  flex-grow: 1;
+  padding-right: 1rem;
+}
+
+
+.user-post > .insert-news > input:first-child {
+  background-color: rgb(245, 245, 245);
+  padding: 10px;
+  width: 100%;
+  border: 1px solid rgb(150, 150, 150);
+  border-radius: 4px;
+}
+
+.user-post > .insert-news > input:first-child:hover {
+  background-color: white;
+}
+
+.user-post > .insert-news > input:last-child {
+  width: 300px;
+  padding: 8px;
+  display: none;  
+}
+
+.user-post > .insert-news img {
+  cursor: pointer; 
+}
+
+.user-post > .insert-news img:hover {
+  background-color: rgb(245, 245, 245);
+}

@@ -1,0 +1,61 @@
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container > button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container > button.arrow-previous {
+  position: absolute;
+  left:5px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(255, 255, 255, .9);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.container > button.arrow-next {
+  position: absolute;
+  right:5px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(255, 255, 255, .9);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+
+
+.slide {
+  max-width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+@media(min-width: 700px) {
+  .container > button.arrow-previous {
+    left: 10px;
+    padding: 10px;
+  }
+  
+  .container > button.arrow-next {
+    right: 10px;
+    padding: 10px;
+  }
+ 
+
+  .container > button:hover {
+    box-shadow: 1px 10px 10px rgb(100, 100, 100);
+  }
+}

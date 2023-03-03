@@ -1,0 +1,336 @@
+/*? RESPONSIVE: Móvil */
+
+/* ##################################### */
+/* ##  Menú cabecera: header - Start  ## */
+/* ##################################### */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  margin: 0;
+  padding: 5px;
+  z-index: 20;
+}
+
+
+/* ################################################# */
+/* ##  Menú cabecera, Brand: Logo + Name - Start  ## */
+/* ################################################# */
+header>.brand {
+  display: flex;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+header>.brand>h2 {
+  display: none;
+}
+
+header>.brand>a>img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* ############################################### */
+/* ##  Menú cabecera, Brand: Logo + Name - End  ## */
+/* ############################################### */
+
+
+/* ####################################### */
+/* ##  Menú cabecera: Búsqueda - Start  ## */
+/* ####################################### */
+header>.search-form {
+  display: flex;
+  flex-grow: 5;
+}
+
+header>.search-form>input {
+  padding: 10px;
+  border-radius: 40px;
+  border: 1px solid rgb(235, 235, 235);
+  background-color: rgb(248, 248, 248);
+  flex-grow: 9;
+}
+
+header>.search-form>button {
+  flex-grow: 1;
+}
+
+header>.search-form>input:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+/* ##################################### */
+/* ##  Menú cabecera: Búsqueda - End  ## */
+/* ##################################### */
+
+
+/* ############################################################## */
+/* ##  Menú cabecera: Registro/usuario y Login/Logout - Start  ## */
+/* ############################################################## */
+header>nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 2;
+  gap: 1rem;
+}
+
+header>nav>ul.logged-user {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transform: translateX(-100%);
+  transition: .9s ease all;
+}
+
+header>nav>ul.logged-user.open {
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(255, 255, 255, .97);
+  /* height: -webkit-fill-available; */
+  min-height: 100vh;
+}
+
+header>nav>ul.logged-user.open .subtitle {
+  border-bottom: 1px solid rgb(10, 10, 10);
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: antiquewhite;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.categories > h2 {
+  display: none;
+}
+
+header>nav>ul.logged-user.open li>img {
+  display: none;
+}
+
+header>nav>ul.logged-user.open li>a,
+header>nav>ul.logged-user.open li>button {
+  background-color: white;
+  color: rgb(10, 10, 10);
+  border: none;
+  font-size: 1.6rem;
+  padding: 0 10px;
+  text-transform: capitalize;
+}
+
+header>nav>ul.logged-user li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0 0 10px;
+}
+
+/* header>nav>ul.logged-user li> .avatar {
+  display: none;
+} */
+
+header>nav>ul.logged-user>li>a {
+  padding: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  background-color: var(--color-logo);
+  border-radius: 20px;
+  margin: 0 .5rem 0 1rem;
+}
+
+header>nav>ul.logged-user > li > a.username {
+  font-weight: bold;
+}
+header>nav>ul.logged-user.open>li>button {
+  margin: 0 10px;
+}
+
+/* ############################################################ */
+/* ##  Menú cabecera: Registro/usuario y Login/Logout - End  ## */
+/* ############################################################ */
+
+
+/* ####################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - Start  ## */
+/* ####################################################### */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.nav-toggle span {
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  transform-origin: 5px 0;
+  transition: all .2s linear;
+}
+
+.nav-toggle.open>span {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+.nav-toggle.open>span:nth-child(2) {
+  display: none;
+}
+
+.nav-toggle.open>span:nth-child(3) {
+  transform: rotate(-45deg) translate(-5px, 1px);
+}
+
+/* ##################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - End  ## */
+/* ##################################################### */
+
+
+
+
+
+/*! DESKTOP CSS */
+
+@media(min-width: 600px) {
+
+  /* ##################################### */
+  /* ##  Menú cabecera: header - Start  ## */
+  /* ##################################### */
+  header {
+    padding: 12px;
+  }
+
+  /* ##################################### */
+  /* ##   Menú cabecera: header - End   ## */
+  /* ##################################### */
+
+  /* ################################################# */
+  /* ##  Menú cabecera, Brand: Logo + Name - Start  ## */
+  /* ################################################# */
+  
+  header>.brand>h2 {
+    display: unset;
+  }
+
+  /* ################################################# */
+  /* ##   Menú cabecera, Brand: Logo + Name - End   ## */
+  /* ################################################# */
+
+  
+  /* ############################################################## */
+  /* ##  Menú cabecera: Registro/usuario y Login/Logout - Start  ## */
+  /* ############################################################## */
+  header>nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 2;
+    gap: 1rem;
+  }
+
+  header>nav>ul.logged-user {
+    position: unset;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    transform: translateX(0);
+  }
+  header>nav>ul.logged-user.open {
+    position: unset;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    transform: translateX(0);
+    min-height: unset;
+  }
+
+  header>nav>ul.logged-user.open li>img {
+    display: unset;
+  }
+
+  header>nav>ul.logged-user.open > li>a {
+    padding: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: none;
+    background-color: var(--color-logo);
+    border-radius: 20px;
+    margin: 0 .5rem 0 1rem;
+  }
+
+  header>nav>ul li>button, header>nav>ul.logged-user.open li>button {
+    display: unset;
+    background-color: var(--color-logo);
+    border: none;
+    border-radius: 25px;
+    padding: .5rem;
+    margin: .5rem;
+    width: 70px;
+    cursor: pointer;
+    color: rgb(245, 245, 245);
+    font-size: 1.1rem;
+  }
+
+
+  header>nav>ul.logged-user li>.avatar {
+    display: unset;
+    width: 35px;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  header>nav>ul.logged-user li a:hover {
+    opacity: .7;
+  }
+
+  header>nav>ul.logged-user li>button:hover {
+    opacity: .7;
+  }
+
+  .logged-user > .subtitle {
+    display: none;
+  }
+
+  .logged-user > .menu {
+    display: none;
+  }
+
+  /* ############################################################## */
+  /* ##   Menú cabecera: Registro/usuario y Login/Logout - End   ## */
+  /* ############################################################## */
+
+
+  /* ####################################################### */
+  /* ##  Menú Cabecera: hamburguesa (nav-toggle) - Start  ## */
+  /* ####################################################### */
+  .nav-toggle {
+    display: none;
+  }
+
+  /* ##################################################### */
+  /* ##  Menú Cabecera: hamburguesa (nav-toggle) - End  ## */
+  /* ##################################################### */
+
+}
