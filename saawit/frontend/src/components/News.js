@@ -62,23 +62,41 @@ export const News = ({ news, control, setControl }) => {
   return (
     <>
       <figure>
+      {voted.value ? <img
+          src="/arrow-up-voted.svg"
+          alt="arrow up"
+          className="arrow arrow-up"
+          onClick={() => {
+            addVote(news.id, true);
+          }}
+        /> : 
         <img
           src="/arrow-up.svg"
           alt="arrow up"
-          className={voted.value ? "arrow arrow-up" : "arrow arrow-no-vote-up"}
+          className="arrow arrow-no-vote-up"
           onClick={() => {
             addVote(news.id, true);
           }}
         />
+        }
         <p className="votes">{news.feedback}</p>
+        {voted.value === 0 ? <img
+          src="/arrow-down-voted.svg"
+          alt="arrow down"
+          className="arrow  arrow-down"
+          onClick={() => {
+            addVote(news.id, false);
+          }}
+        /> : 
         <img
           src="/arrow-down.svg"
           alt="arrow down"
-          className={voted.value === 0 ? "arrow  arrow-down" : "arrow arrow-no-vote-down"}
+          className="arrow arrow-no-vote-down"
           onClick={() => {
             addVote(news.id, false);
           }}
         />
+        }
       </figure>
       <section key={news.id} className="single-news-container">        
         {error ? <Modal setShowModal="true">{error}</Modal> : null}
@@ -98,12 +116,13 @@ export const News = ({ news, control, setControl }) => {
             alt="delete news"
             className="delete-news"
             onClick={() => {
-              if (
+               if (
                 window.confirm(
                   "¿Estás seguro que quieres eliminar esta noticia?"
                 )
               )
                 deleteNews(news.id);
+              
             }}
           />
         ) : null}

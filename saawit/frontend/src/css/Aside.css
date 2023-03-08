@@ -8,7 +8,7 @@ main>.categories {
   main>.categories {
     position: fixed;
     left: 0;
-    top: 65px;
+    top: 75px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -18,10 +18,11 @@ main>.categories {
     height: 100vh;
   }
 
-  main>.categories>h2 {
+  main>.categories>h2.title-categories {
     padding: 1rem 0 1rem .4rem;
     text-transform: uppercase;
     font-size: 1.7rem;
+    color: black;
   }
   
   main>.categories> ul > li {
