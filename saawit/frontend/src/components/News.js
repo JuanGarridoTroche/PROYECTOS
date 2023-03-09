@@ -102,7 +102,7 @@ export const News = ({ news, control, setControl }) => {
         {error ? <Modal setShowModal="true">{error}</Modal> : null}
         <p className="publish-news">
           {news.category} · Publicado por 
-          <Link to={`/users/profile/${news.idUser}`}> {news.username}</Link> el
+          <Link to={`/users/profile/${news.idUser}`}> {news.username}</Link> el 
           {new Date(news.createdAt).toLocaleString()}
         </p>
         <p className="title">{news.title}</p>
