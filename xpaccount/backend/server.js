@@ -1,0 +1,58 @@
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+
+const {PORT} = process.env;
+const app = express();
+//Monitorizamos en tiempo real cualquier petición que hacemos al servidor a través de nuestro terminal
+app.use(morgan('dev'));
+
+// Deserializa el body con formato JSON
+app.use(express.json());
+
+
+// Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
+// Middleware que permite conectar el backend (éste) con el frontend (React)
+app.use(cors());
+
+
+/*
+ * ###########################
+ * ## Middleware de /users  ##
+ * ###########################
+ */
+
+
+app.use("/", (req, res)=> {
+  res.send('Hola mundo!');
+})
+
+
+/*
+ * ##########################################
+ * ## Middleware de Error y 404 NOT FOUND  ##
+ * ##########################################
+ */
+
+// Middleware de Error:
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  res.status(err.statusCode || 500).send({
+    status: "error",
+    message: err.message,
+  });
+});
+
+// Middleware 404 NOT FOUND
+app.use((req, res) => {
+  res.status(404).send({
+    status: "Error",
+    message: "Ruta no encontrada 😿",
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
+});
