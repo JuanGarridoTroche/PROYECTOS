@@ -3,19 +3,17 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 
-const {PORT} = process.env;
+const { PORT } = process.env;
 const app = express();
 //Monitorizamos en tiempo real cualquier petición que hacemos al servidor a través de nuestro terminal
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // Deserializa el body con formato JSON
 app.use(express.json());
 
-
 // Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
 // Middleware que permite conectar el backend (éste) con el frontend (React)
 app.use(cors());
-
 
 /*
  * ###########################
@@ -23,11 +21,9 @@ app.use(cors());
  * ###########################
  */
 
-
-app.use("/", (req, res)=> {
-  res.send('Hola mundo!');
-})
-
+const {loginUser} = require("./controllers/users");
+//Login de usuario
+app.use("/user", loginUser);
 
 /*
  * ##########################################
