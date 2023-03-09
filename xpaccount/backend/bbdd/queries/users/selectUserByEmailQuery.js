@@ -10,11 +10,7 @@ const selectUserByEmailQuery = async (email) => {
       `
     SELECT id, username, password, birthday, firstName, lastName, dni, active FROM users WHERE email = ?`,
       [email]
-    );
-
-    if (users.length < 1) {
-      throw generateError("Email y/o contraseña inválidos", 404);
-    }
+    );   
 
     return users[0];
   } finally {

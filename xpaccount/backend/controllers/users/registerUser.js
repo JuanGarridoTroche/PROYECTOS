@@ -1,16 +1,19 @@
 const { generateError } = require("../../helpers");
 const selectUserByEmailQuery = require("../../bbdd/queries/users/selectUserByEmailQuery");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const joi = require("@hapi/joi");
+const insertUserQuery = require("../../bbdd/queries/users/insertUserQuery");
 
 const registerUser = async (req, res, next) => {
   try {
-    const { username, email, password, birthday, firstName, lastName, dni } = req.body;
+    const { username, email, password, birthday, firstName, lastName, dni } =
+      req.body;
 
     // Comprobamos que los datos de username, email y password existen
-    if(!username || !email || !password) {
-      throw generateError('Los campos de nombre de usuario, email y contraseña son obligatorios', 400);
+    if (!username || !email || !password) {
+      throw generateError(
+        "Los campos de nombre de usuario, email y contraseña son obligatorios",
+        400
+      );
     }
 
     // Validamos el correo electrónico
@@ -26,42 +29,55 @@ const registerUser = async (req, res, next) => {
       throw generateError(validation.error.message);
     }
 
-    // Comprobamos que no existe ese usuario en nuestra BBDD registrado.
-    const user = await selectUserByEmailQuery(email);   
-    
+    // Comprobamos que no existe ese email en nuestra BBDD registrado.
+    const user = await selectUserByEmailQuery(email);
+
     // Si existe el correo, generamos un error
-    if (user.email) {
-      throw generateError("El correo electrónico ya está registrado, por favor, elige otro correo", 403);
-    }
-    
-    //Comprobar que han introducido email y contraseña
-    if (!email || !password) {
-      throw generateError("Faltan campos", 400);
-    }
-  
-    //Comprobamos que la contraseña es válida
-    const validPassword = await bcrypt.compare(password, user.password);
-
-    if (!validPassword) {
-      throw generateError("Email y/o contraseña inválidos", 401);
+    if (user) {
+      throw generateError(
+        "El correo electrónico ya está registrado, por favor, elige otro correo",
+        403
+      );
     }
 
-    // Creamos el objeto con los datos que queremos guardar dentro del token
-    const tokenIfo = {
-      id: user.id,
-      active:user.active,
-      email: user.email,
-    };
+    //Validamos el nombre de usuario
+    const schemaUserName = joi
+      .string()
+      .min(4)
+      .max(100)
+      .required()
+      .error(
+        new Error(
+          "Introduzca un nombre de usuario válido de al menos 4 caracteres",
+          400
+        )
+      );
+    const validationUserName = schemaUserName.validate(username);
 
-    // Creamos el token
-    const token = jwt.sign(tokenIfo, process.env.SECRET);
+    if (validationUserName.error || validationUserName === null) {
+      throw generateError(validationUserName.error.message);
+    }
+
+    //Validamos la contraseña
+    const schemaPwd = joi
+      .string()
+      .min(8)
+      .max(100)
+      .required()
+      .error(new Error("La contraseña debe tener al menos 8 caracteres", 403));
+    const validationPwd = schemaPwd.validate(password);
+
+    if (validationPwd.error || validationPwd === null) {
+      throw generateError(validationPwd.error.message);
+    }
+
+    // Comprobamos que no existen en BBDD username y email y si es así, creamos el uaurio
+    await insertUserQuery(username, email, password, birthday, firstName, lastName, dni);
+
 
     res.send({
       status: "ok",
-      message: "Login realizado con éxito",
-      data: {
-        token,
-      },
+      message: "Usuario creado con éxito",      
     });
   } catch (err) {
     next(err);

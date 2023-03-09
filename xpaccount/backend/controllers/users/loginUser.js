@@ -23,6 +23,10 @@ const loginUser = async (req, res, next) => {
 
     // Comprobamos que existe ese usuario en nuestra BBDD registrado.
     const user = await selectUserByEmailQuery(email);
+
+    if (!user) {
+      throw generateError("Email y/o contraseña inválidos", 404);
+    }
     
 
     //Comprobamos que el usuario está activo

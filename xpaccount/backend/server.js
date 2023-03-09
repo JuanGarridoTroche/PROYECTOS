@@ -21,12 +21,13 @@ app.use(cors());
  * ###########################
  */
 
-const {loginUser} = require("./controllers/users");
+const {loginUser, registerUser} = require("./controllers/users");
+
 //Login de usuario
 app.post("/user/login", loginUser);
 
 // Registro de usuario
-app.post("/user/register")
+app.post("/user/register", registerUser)
 
 /*
  * ##########################################
