@@ -1,4 +1,4 @@
-const getConnection = require("../../getConnection");
+const getConnection = require("../getConnection");
 
 const Query = async (email) => {
   let connection;

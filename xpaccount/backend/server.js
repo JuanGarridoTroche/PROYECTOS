@@ -32,6 +32,23 @@ app.post("/user/register", registerUser)
 // Validar un usuario.
 app.put("/user/register/validate/:registrationCode", validateUser);
 
+
+
+
+/*
+ * ###############################
+ * ##  Middleware de /accounts  ##
+ * ###############################
+ */
+
+const {createAccount} = require("./controllers/accounts");
+const isAuth = require("./middlewares/isAuth");
+// Crear una cuenta nueva
+app.post("/account", isAuth, createAccount)
+
+
+
+
 /*
  * ##########################################
  * ## Middleware de Error y 404 NOT FOUND  ##
