@@ -22,6 +22,7 @@ const transport = nodemailer.createTransport({
  * ###############
  */
 
+// Los valores recibidos se tienen que llamar to, subjet y text para que sendinblue los capture
 const sendMail = async (to, subject, text) => {
   const mailOptions = {
       from: SIB_SMTP_USER,

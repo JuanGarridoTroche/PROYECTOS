@@ -29,6 +29,9 @@ app.post("/user/login", loginUser);
 // Registro de usuario
 app.post("/user/register", registerUser)
 
+// Validar un usuario.
+// app.put("/users/register/validate/:registrationCode", validateUser);
+
 /*
  * ##########################################
  * ## Middleware de Error y 404 NOT FOUND  ##

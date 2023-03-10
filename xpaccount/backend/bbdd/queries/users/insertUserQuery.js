@@ -2,7 +2,7 @@ const {generateError} = require("../../../helpers");
 const getConnection = require("../../getConnection");
 const bcrypt = require('bcrypt');
 
-const insertUserQuery = async (username, email, password, birthday, firstName, lastName, dni) => {
+const insertUserQuery = async (username, email, password, birthday, firstName, lastName, dni, registrationCode) => {
   let connection;
 
   try {
@@ -38,9 +38,9 @@ const insertUserQuery = async (username, email, password, birthday, firstName, l
     const hashPass = await bcrypt.hash(password, 10);
 
     await connection.query(
-      `INSERT INTO users (username, email, password, birthday, firstName, lastName, dni, active, createdAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)`,
-      [username, email, hashPass, new Date(birthday), firstName, lastName, dni.toUpperCase(), false, new Date()]
+      `INSERT INTO users (username, email, password, birthday, firstName, lastName, dni, registrationCode, active, createdAt)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)`,
+      [username, email, hashPass, new Date(birthday), firstName, lastName, dni.toUpperCase(),registrationCode, false, new Date()]
     );
   } finally {
     // Cerramos la conexión a BBDD

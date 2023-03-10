@@ -1,7 +1,8 @@
-const { generateError } = require("../../helpers");
+const { generateError,sendMail } = require("../../helpers");
 const selectUserByEmailQuery = require("../../bbdd/queries/users/selectUserByEmailQuery");
 const joi = require("@hapi/joi");
 const insertUserQuery = require("../../bbdd/queries/users/insertUserQuery");
+const { v4: uuid } = require("uuid");
 
 const registerUser = async (req, res, next) => {
   try {
@@ -72,6 +73,7 @@ const registerUser = async (req, res, next) => {
     }
 
     //Validamos el dni de usuario
+    if(dni) {
     const schemaDni = joi
       .string()
       .length(9)
@@ -126,6 +128,12 @@ const registerUser = async (req, res, next) => {
     };
     validateDni();
 
+  }
+    
+    // Generamos un código de registro.
+    const registrationCode = uuid();
+    
+    
     // Comprobamos que no existen en BBDD username y email y si es así, creamos el usuario
     await insertUserQuery(
       username,
@@ -134,15 +142,28 @@ const registerUser = async (req, res, next) => {
       birthday,
       firstName,
       lastName,
-      dni
-    );
-
-    // Enviamos un correo para que active la cuenta
+      dni,
+      registrationCode,
+      );
       
+    // Enviamos un correo para que active la cuenta
+    // Creamos el asunto del email de verificación.
+      const subject = "Activa tu usuario en Expenses account";
+
+    // Creamos el contenido que queremos que tenga el email de verificación.
+    const emailContent = `
+    ¡Bienvenid@ ${username}!
+
+    Por favor, Activa tu usuario a través del siguiente enlace: 
+    <a href="${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/users/register/validate/${registrationCode}">Verificar</a>
+    `;
+
+    // Enviamos un email de verificación al usuario.
+    await sendMail(email, subject, emailContent);
 
     res.send({
       status: "ok",
-      message: "Usuario creado con éxito",
+      message: "Usuario creado con éxito. Para activar su cuenta siga las instrucciones del correo que le llegará en breve a su cuenta.",
     });
   } catch (err) {
     next(err);
