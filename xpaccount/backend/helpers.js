@@ -35,7 +35,6 @@ const sendMail = async (to, subject, text) => {
 };
 
 
-
 /* *
  * ######################
  * ##  Generate Error  ##
@@ -47,6 +46,9 @@ const generateError = (msg, status) => {
   err.statusCode = status;
   return err;
 };
+
+
+
 
 module.exports = {
   generateError,
