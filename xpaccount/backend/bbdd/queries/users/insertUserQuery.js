@@ -40,7 +40,7 @@ const insertUserQuery = async (username, email, password, birthday, firstName, l
     await connection.query(
       `INSERT INTO users (username, email, password, birthday, firstName, lastName, dni, active, createdAt)
     VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)`,
-      [username, email, hashPass, new Date(birthday), firstName, lastName, dni, false, new Date()]
+      [username, email, hashPass, new Date(birthday), firstName, lastName, dni.toUpperCase(), false, new Date()]
     );
   } finally {
     // Cerramos la conexión a BBDD

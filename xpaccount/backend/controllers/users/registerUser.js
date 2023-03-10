@@ -17,16 +17,16 @@ const registerUser = async (req, res, next) => {
     }
 
     // Validamos el correo electrónico
-    // Para ello vamos a utilizar la dependecia de validadción de datos joi
-    const schema = joi
+    // Para ello vamos a utilizar la dependecia de validación de datos joi
+    const schemaEmail = joi
       .string()
       .email()
       .required()
       .error(new Error("Introduzca una cuenta de correo válida", 400));
-    const validation = schema.validate(email);
+    const validationEmail = schemaEmail.validate(email);
 
-    if (validation.error || validation === null) {
-      throw generateError(validation.error.message);
+    if (validationEmail.error || validationEmail === null) {
+      throw generateError(validationEmail.error.message);
     }
 
     // Comprobamos que no existe ese email en nuestra BBDD registrado.
@@ -43,12 +43,12 @@ const registerUser = async (req, res, next) => {
     //Validamos el nombre de usuario
     const schemaUserName = joi
       .string()
-      .min(4)
+      .min(3)
       .max(100)
       .required()
       .error(
         new Error(
-          "Introduzca un nombre de usuario válido de al menos 4 caracteres",
+          "Introduzca un nombre de usuario válido de al menos 3 caracteres",
           400
         )
       );
@@ -71,13 +71,75 @@ const registerUser = async (req, res, next) => {
       throw generateError(validationPwd.error.message);
     }
 
-    // Comprobamos que no existen en BBDD username y email y si es así, creamos el uaurio
-    await insertUserQuery(username, email, password, birthday, firstName, lastName, dni);
+    //Validamos el dni de usuario
+    const schemaDni = joi
+      .string()
+      .length(9)
+      .uppercase()
+      .error(new Error("Introduzca un DNI válido", 400));
+    const validationDni = schemaDni.validate(dni);
 
+    if (validationDni.error || validationDni === null) {
+      throw generateError(validationDni.error.message);
+    }
+
+    const validateDni = () => {
+      const validLetters = [
+        "T",
+        "R",
+        "W",
+        "A",
+        "G",
+        "M",
+        "Y",
+        "F",
+        "P",
+        "D",
+        "X",
+        "B",
+        "N",
+        "J",
+        "Z",
+        "S",
+        "Q",
+        "V",
+        "H",
+        "L",
+        "C",
+        "K",
+        "E",
+      ];
+      const checkNumbers = dni.slice(0, -1);
+      const checkLetter = dni.toUpperCase().slice(8, 9);
+
+      // Comprobamos que los 8 primeros caracteres son números y que el éultimo es una letra del array validLetters
+      if (isNaN(checkNumbers) || !validLetters.find((e) => e === checkLetter)) {
+        throw generateError("Introduzca un DNI válido", 400);
+      }
+      const validDni = [checkNumbers, checkLetter];
+
+      //Calcular la letra del DNI y validarlo:
+      validDni.push(validDni[0] % 23);
+      if (validDni[1] !== validLetters[validDni[2]]) {
+        throw generateError("Introduzca un DNI válido, letra inventada", 400);
+      }
+    };
+    validateDni();
+
+    // Comprobamos que no existen en BBDD username y email y si es así, creamos el usuario
+    await insertUserQuery(
+      username,
+      email,
+      password,
+      birthday,
+      firstName,
+      lastName,
+      dni
+    );
 
     res.send({
       status: "ok",
-      message: "Usuario creado con éxito",      
+      message: "Usuario creado con éxito",
     });
   } catch (err) {
     next(err);
