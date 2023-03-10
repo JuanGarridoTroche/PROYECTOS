@@ -21,7 +21,7 @@ app.use(cors());
  * ###########################
  */
 
-const {loginUser, registerUser} = require("./controllers/users");
+const {loginUser, registerUser, validateUser} = require("./controllers/users");
 
 //Login de usuario
 app.post("/user/login", loginUser);
@@ -30,7 +30,7 @@ app.post("/user/login", loginUser);
 app.post("/user/register", registerUser)
 
 // Validar un usuario.
-// app.put("/users/register/validate/:registrationCode", validateUser);
+app.put("/user/register/validate/:registrationCode", validateUser);
 
 /*
  * ##########################################

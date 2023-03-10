@@ -7,7 +7,7 @@ const { v4: uuid } = require("uuid");
 const registerUser = async (req, res, next) => {
   try {
     const { username, email, password, birthday, firstName, lastName, dni } =
-      req.body;
+      req.body;      
 
     // Comprobamos que los datos de username, email y password existen
     if (!username || !email || !password) {
@@ -126,7 +126,8 @@ const registerUser = async (req, res, next) => {
         throw generateError("Introduzca un DNI válido, letra inventada", 400);
       }
     };
-    validateDni();
+    
+    dni ? validateDni() : dni = null;
 
   }
     
@@ -155,7 +156,7 @@ const registerUser = async (req, res, next) => {
     ¡Bienvenid@ ${username}!
 
     Por favor, Activa tu usuario a través del siguiente enlace: 
-    <a href="${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/users/register/validate/${registrationCode}">Verificar</a>
+    <a href="${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/user/register/validate/${registrationCode}">Verificar</a>
     `;
 
     // Enviamos un email de verificación al usuario.

@@ -5,9 +5,13 @@ const bcrypt = require('bcrypt');
 const insertUserQuery = async (username, email, password, birthday, firstName, lastName, dni, registrationCode) => {
   let connection;
 
+
+  
   try {
     // Conexión a BBDD
     connection = await getConnection();
+
+    const formattedBirthday = birthday.split("/", 3).reverse().join("/"); 
 
     //Intentamos obtener un username con el que nos ha dado el usuario
     const [users] = await connection.query(
@@ -39,8 +43,8 @@ const insertUserQuery = async (username, email, password, birthday, firstName, l
 
     await connection.query(
       `INSERT INTO users (username, email, password, birthday, firstName, lastName, dni, registrationCode, active, createdAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)`,
-      [username, email, hashPass, new Date(birthday), firstName, lastName, dni.toUpperCase(),registrationCode, false, new Date()]
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)`,
+      [username, email, hashPass, new Date(formattedBirthday), firstName, lastName, dni.toUpperCase(), registrationCode, new Date()]
     );
   } finally {
     // Cerramos la conexión a BBDD

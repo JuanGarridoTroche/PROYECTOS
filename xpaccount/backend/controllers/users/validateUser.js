@@ -1,18 +1,20 @@
-const { generateError } = require("../../helpers");
+const updateUserRegistrationCodeQuery = require("../../bbdd/queries/users/updateUserRegistrationCodeQuery");
 
-const loginUser = async (req, res, next) => {
+
+const validateUser = async (req, res, next) => {
   try {
+    const {registrationCode} = req.params;
     
+    // Activamos el usuario
+    await updateUserRegistrationCodeQuery(registrationCode);
+
     res.send({
       status: "ok",
-      message: "Login realizado con éxito",
-      data: {
-        tokenXpAccount,
-      },
+      message: "Usuario activado con éxito",
     });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = loginUser;
+module.exports = validateUser;
