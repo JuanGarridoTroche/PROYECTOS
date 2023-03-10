@@ -47,20 +47,20 @@ const loginUser = async (req, res, next) => {
     }
 
     // Creamos el objeto con los datos que queremos guardar dentro del token
-    const tokenIfo = {
+    const tokenInfo = {
       id: user.id,
       active:user.active,
       email: user.email,
     };
 
     // Creamos el token
-    const token = jwt.sign(tokenIfo, process.env.SECRET);
+    const tokenXpAccount = jwt.sign(tokenInfo, process.env.SECRET);
 
     res.send({
       status: "ok",
       message: "Login realizado con éxito",
       data: {
-        token,
+        tokenXpAccount,
       },
     });
   } catch (err) {

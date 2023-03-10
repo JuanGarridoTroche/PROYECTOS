@@ -137,6 +137,9 @@ const registerUser = async (req, res, next) => {
       dni
     );
 
+    // Enviamos un correo para que active la cuenta
+      
+
     res.send({
       status: "ok",
       message: "Usuario creado con éxito",
