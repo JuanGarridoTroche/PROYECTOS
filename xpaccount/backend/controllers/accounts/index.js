@@ -1,4 +1,4 @@
-const createAccount = require("./createAccount.orig");
+const createAccount = require("./createAccount");
 
 
 module.exports = {createAccount}
