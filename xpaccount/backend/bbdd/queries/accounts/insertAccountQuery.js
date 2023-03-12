@@ -1,6 +1,6 @@
 const getConnection = require("../getConnection");
 
-const insertAccountQuery = async ({
+const insertAccountQuery = async (
   idUser,
   alias,
   bankname,
@@ -9,14 +9,14 @@ const insertAccountQuery = async ({
   officeCode,
   digitControl,
   number,
-}) => {
+) => {
   let connection;
 
   try {
     connection = await getConnection();
 
     // Insertamos la cuanta bancaria
-    const [account] = await connection.query(
+    const [newAccount] = await connection.query(
       `
     INSERT INTO accounts (idUser, alias, bankname, ibanCode, entityCode, officeCode, digitControl, number, createdAt)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -32,7 +32,7 @@ const insertAccountQuery = async ({
         new Date(),
       ]
     );
-      console.log(account, account[0]);
+      console.log(account);
     return account[0];
   } finally {
     if (connection) connection.release();

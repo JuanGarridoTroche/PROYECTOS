@@ -1,11 +1,10 @@
 const insertAccountQuery = require("../../bbdd/queries/accounts/insertAccountQuery");
 const { generateError } = require("../../helpers");
 
-const createAccount = async(req, res, next) => {
+const createAccount = async (req, res, next) => {
   try {
     const {alias, bankname, ibanCode, entityCode, officeCode, digitControl, number} = req.body;
     const {idUser} = req.user;
-
     if (
       ibanCode.length !== 4 ||
       entityCode.length !== 4 ||
@@ -15,16 +14,12 @@ const createAccount = async(req, res, next) => {
     ) {
       throw generateError("El número de cuenta no es correcto", 401);
     }
-
-    // const accountNumber = [ibanCode, entityCode, officeCode, digitControl, number].join("");
-    // console.log(accountNumber);
-
-    // const body = await insertAccountQuery({idUser, alias, bankname, ibanCode, entityCode, officeCode, digitControl, number})
-    
-
+    const accountNumber = [ibanCode, entityCode, officeCode, digitControl, number].join("");
+    console.log(accountNumber);
+    const body = await insertAccountQuery(idUser, alias, bankname, ibanCode, entityCode, officeCode, digitControl, number)
   } catch (err) {
     next(err);
   }
-}
+};
 
-module.exports =createAccount;
+module.exports = createAccount;
