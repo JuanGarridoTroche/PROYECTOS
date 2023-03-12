@@ -41,8 +41,9 @@ app.put("/user/register/validate/:registrationCode", validateUser);
  * ###############################
  */
 
-const {createAccount} = require("./controllers/accounts");
+
 const isAuth = require("./middlewares/isAuth");
+const createAccount = require("./controllers/accounts");
 // Crear una cuenta nueva
 app.post("/account", isAuth, createAccount)
 

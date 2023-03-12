@@ -30,7 +30,8 @@ const isAuth = async (req, res, next) => {
         }
         
         // Creamos la propiedad "user" con los datos del token (es un objeto) dentro del objeto "req".
-        req.user = tokenInfo;        
+        req.user = tokenInfo;   
+        console.log(req.user);     
 
         // Pasamos el control a la siguiente función.
         next();
