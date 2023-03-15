@@ -6,7 +6,7 @@ const createAccount = async (req, res, next) => {
   try {
     const {alias, bankName, ibanCode, entityCode, officeCode, digitControl, number} = req.body;
     const {id: idUser} = req.user;
-    console.log(idUser);
+
     if (
       ibanCode.length !== 4 ||
       entityCode.length !== 4 ||
@@ -16,24 +16,21 @@ const createAccount = async (req, res, next) => {
     ) {
       throw generateError("El número de cuenta no es correcto", 401);
     }
-    const accountNumber = [ibanCode, entityCode, officeCode, digitControl, number].join("");
-    console.log("Número de cuenta nuevo: ", accountNumber);
+    const numberAccount = [ibanCode, entityCode, officeCode, digitControl, number].join("");
+    console.log("Número de cuenta nuevo: ", numberAccount);
     // Comprobamos que la cuenta no está creada
     const checkAccount = await selectAccountsByIdUserQuery(idUser);
     console.log("resultado del SELECT: ", checkAccount);
-    if(checkAccount > 0) {
-      checkAccount.map(checking => {
-        const {ibanCode, entityCode, officeCode, digitControl, number} = checking;
-        const validatingAccount = [ibanCode, entityCode, officeCode, digitControl, number].join("");
-        console.log("cuenta que vamos a validar: ", validatingAccount);
-        if(validatingAccount === accountNumber){
-          throw generateError('Esta cuenta ya está creada. Introduce una nueva cuenta',403);
-        }
-        
+    if(checkAccount) {
+      checkAccount.map(checking => { 
+        console.log(checking.numberAccount);       
+        if(checking.numberAccount === numberAccount){
+          throw generateError('Esta cuenta ya está creada. Introduce otra cuenta',403);
+        }        
       })
     }
 
-    const body = await insertAccountQuery({idUser, alias, bankName, ibanCode, entityCode, officeCode, digitControl, number})
+    const body = await insertAccountQuery({idUser, alias, bankName, numberAccount})
 
     res.send({
       status: "Ok",

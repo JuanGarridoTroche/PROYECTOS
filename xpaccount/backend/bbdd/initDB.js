@@ -48,11 +48,7 @@ const initDB = async () => {
         FOREIGN KEY (idUser) REFERENCES users(id),			
         alias VARCHAR(50),
         bankName VARCHAR(100),
-        ibanCode VARCHAR(4) NOT NULL,				
-        entityCode VARCHAR(4) NOT NULL,
-        officeCode VARCHAR(4),
-        digitControl VARCHAR(2),
-        number VARCHAR(10),
+        numberAccount VARCHAR(24),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
       )

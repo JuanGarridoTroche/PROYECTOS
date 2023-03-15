@@ -7,11 +7,10 @@ const selectAccountsByIdUserQuery = async (idUser) => {
     connection = await getConnection();
     const [idUserAccounts] = await connection.query(
       `
-    SELECT id, idUser, alias, bankName, ibanCode, entityCode, officeCode, digitControl, number FROM accounts WHERE idUser = ?`,
+    SELECT id, idUser, alias, bankName, numberAccount FROM accounts WHERE idUser = ?`,
       [idUser]
     );    
-    console.log(idUserAccounts);
-    return idUserAccounts[0];
+    return idUserAccounts;
   } finally {
     if (connection) connection.release();
   }

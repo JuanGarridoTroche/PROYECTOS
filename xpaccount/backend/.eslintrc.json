@@ -10,6 +10,6 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "no-unused-vars": [{ "ignoreRestSiblings": true }]
+    "no-unused-vars": [{ "ignoreRestSiblings": 1 }]
   }
 }
