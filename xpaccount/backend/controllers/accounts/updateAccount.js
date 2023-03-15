@@ -24,7 +24,7 @@ const editAccount = async (req, res, next) => {
     }
 
     // Editamos los valores alias y/o bankName de la cuenta
-    const updatingAccount = await updateAccountQuery({
+    await updateAccountQuery({
       idAccount,
       alias,
       bankName,

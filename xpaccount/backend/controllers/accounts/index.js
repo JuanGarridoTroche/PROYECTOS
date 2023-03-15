@@ -1,5 +1,6 @@
 const createAccount = require("./createAccount");
-const editAccount = require("./editAccount")
+const editAccount = require("./updateAccount")
+const deleteAccount = require("./deleteAccount")
 
 
-module.exports = {createAccount, editAccount}
+module.exports = {createAccount, editAccount, deleteAccount}
