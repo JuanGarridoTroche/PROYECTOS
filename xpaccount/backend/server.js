@@ -53,6 +53,36 @@ app.put("/account/:idAccount", isAuth, editAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
+
+/*
+ * ##############################
+ * ##  Middleware de /entries  ##
+ * ##############################
+ */
+
+
+// Crear un asiento nuevo
+
+//Actualizar un asiento
+
+// Eliminar un asiento
+
+
+
+/*
+ * ############################
+ * ##  Middleware de /types  ##
+ * ############################
+ */
+
+// Crear un tipo de asiento
+
+// Actualizar un tipo de asiento
+
+// Eliminar un tipo de asiento
+
+
+
 /*
  * ##########################################
  * ## Middleware de Error y 404 NOT FOUND  ##
