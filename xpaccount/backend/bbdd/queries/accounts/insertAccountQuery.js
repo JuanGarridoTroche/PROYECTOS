@@ -1,16 +1,15 @@
 const getConnection = require("../../getConnection");
 
-const insertAccountQuery = async({idUser, alias, bankName, numberAccount}) => {
-  console.log(idUser);
+const insertAccountQuery = async({idUser, alias, bankName, accountNumber}) => {  
   let connection;
   try {
     connection = await getConnection();
 
-    const [newAccount] = await connection.query(
+    await connection.query(
       `
-      INSERT INTO accounts (idUser, alias, bankName, numberAccount, createdAt)
+      INSERT INTO accounts (idUser, alias, bankName, accountNumber, createdAt)
       VALUES (?, ?, ?, ?, ?)`,
-      [idUser, alias, bankName, numberAccount, new Date()]
+      [idUser, alias, bankName, accountNumber, new Date()]
     )
     
   } finally {

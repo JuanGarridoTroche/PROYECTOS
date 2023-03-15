@@ -16,21 +16,20 @@ const createAccount = async (req, res, next) => {
     ) {
       throw generateError("El número de cuenta no es correcto", 401);
     }
-    const numberAccount = [ibanCode, entityCode, officeCode, digitControl, number].join("");
-    console.log("Número de cuenta nuevo: ", numberAccount);
+    const accountNumber = [ibanCode, entityCode, officeCode, digitControl, number].join("");
+    
     // Comprobamos que la cuenta no está creada
     const checkAccount = await selectAccountsByIdUserQuery(idUser);
-    console.log("resultado del SELECT: ", checkAccount);
+
     if(checkAccount) {
-      checkAccount.map(checking => { 
-        console.log(checking.numberAccount);       
-        if(checking.numberAccount === numberAccount){
+      checkAccount.map(checking => {       
+        if(checking.accountNumber === accountNumber){
           throw generateError('Esta cuenta ya está creada. Introduce otra cuenta',403);
         }        
       })
     }
 
-    const body = await insertAccountQuery({idUser, alias, bankName, numberAccount})
+    const body = await insertAccountQuery({idUser, alias, bankName, accountNumber})
 
     res.send({
       status: "Ok",

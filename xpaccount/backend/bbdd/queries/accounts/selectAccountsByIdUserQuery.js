@@ -7,7 +7,7 @@ const selectAccountsByIdUserQuery = async (idUser) => {
     connection = await getConnection();
     const [idUserAccounts] = await connection.query(
       `
-    SELECT id, idUser, alias, bankName, numberAccount FROM accounts WHERE idUser = ?`,
+    SELECT id, idUser, alias, bankName, accountNumber FROM accounts WHERE idUser = ?`,
       [idUser]
     );    
     return idUserAccounts;
