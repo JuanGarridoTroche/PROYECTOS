@@ -6,10 +6,9 @@ const updateAccountQuery = async({idAccount, alias, bankName}) => {
     connection = await getConnection();
 
     await connection.query(
-      `
-      UPDATE accounts (alias, bankName, modifiedAt)
-      VALUES (?, ?, ?, ?, ?)`,
-      [idUser, alias, bankName, accountNumber, new Date()]
+      `      
+      UPDATE accounts SET alias = ?, bankName = ?, modifiedAt = ? WHERE id = ?`,
+      [alias, bankName, new Date(), idAccount]
     )
     
   } finally {
