@@ -2,7 +2,7 @@ const { generateError } = require("../../helpers");
 const updateAccountQuery = require("../../bbdd/queries/accounts/updateAccountQuery");
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");
 
-const editAccount = async (req, res, next) => {
+const updateAccount = async (req, res, next) => {
   try {
     const { idAccount } = req.params;
     let { alias, bankName } = req.body;
@@ -39,4 +39,4 @@ const editAccount = async (req, res, next) => {
   }
 };
 
-module.exports = editAccount;
+module.exports = updateAccount;

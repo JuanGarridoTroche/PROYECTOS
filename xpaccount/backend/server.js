@@ -43,12 +43,12 @@ app.put("/user/register/validate/:registrationCode", validateUser);
  */
 
 const isAuth = require("./middlewares/isAuth");
-const { createAccount, editAccount, deleteAccount } = require("./controllers/accounts");
+const { createAccount, updateAccount, deleteAccount } = require("./controllers/accounts");
 // Crear una cuenta nueva
 app.post("/account", isAuth, createAccount);
 
 // Editar alias o nombre del banco
-app.put("/account/:idAccount", isAuth, editAccount);
+app.put("/account/:idAccount", isAuth, updateAccount);
 
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
@@ -63,7 +63,7 @@ app.delete("/account/:idAccount", isAuth, deleteAccount);
 
 // Crear un asiento nuevo
 
-//Actualizar un asiento
+// Actualizar un asiento
 
 // Eliminar un asiento
 
