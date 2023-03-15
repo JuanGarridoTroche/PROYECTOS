@@ -21,19 +21,20 @@ app.use(cors());
  * ###########################
  */
 
-const {loginUser, registerUser, validateUser} = require("./controllers/users");
+const {
+  loginUser,
+  registerUser,
+  validateUser,
+} = require("./controllers/users");
 
 //Login de usuario
 app.post("/user/login", loginUser);
 
 // Registro de usuario
-app.post("/user/register", registerUser)
+app.post("/user/register", registerUser);
 
 // Validar un usuario.
 app.put("/user/register/validate/:registrationCode", validateUser);
-
-
-
 
 /*
  * ###############################
@@ -41,14 +42,13 @@ app.put("/user/register/validate/:registrationCode", validateUser);
  * ###############################
  */
 
-
 const isAuth = require("./middlewares/isAuth");
-const {createAccount} = require("./controllers/accounts");
+const { createAccount, editAccount } = require("./controllers/accounts");
 // Crear una cuenta nueva
-app.post("/account", isAuth, createAccount)
+app.post("/account", isAuth, createAccount);
 
-
-
+// Editar alias o nombre del banco
+app.put("/account/:idAccount", isAuth, editAccount);
 
 /*
  * ##########################################
