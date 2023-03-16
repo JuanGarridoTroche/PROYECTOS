@@ -55,13 +55,14 @@ app.delete("/account/:idAccount", isAuth, deleteAccount);
 
 
 /*
- * ##############################
- * ##  Middleware de /entries  ##
- * ##############################
- */
-
+* ##############################
+* ##  Middleware de /entries  ##
+* ##############################
+*/
+const { createEntry } = require("./controllers/entries");
 
 // Crear un asiento nuevo
+app.post("/account/:idAccount/entry", isAuth, createEntry);
 
 // Actualizar un asiento
 
