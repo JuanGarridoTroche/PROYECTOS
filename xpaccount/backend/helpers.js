@@ -56,7 +56,9 @@ const generateError = (msg, status) => {
  */
 const xlsx = require("xlsx");
 const ExcelSantanderToJSON = () => {
-  const excel = xlsx.readFile
+  const excel = xlsx.readFile(`${process.env.DIR_UPLOADS}/export2023316.xlsx`);
+  const sheetName = excel.SheetNames;
+  
 }
 
 
