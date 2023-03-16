@@ -2,7 +2,7 @@ const { generateError } = require("../../helpers");
 
 const createEntry = async (req, res, next) => {
   try {
-    
+    // 
     
     res.send({
       status: "ok",

@@ -49,8 +49,21 @@ const generateError = (msg, status) => {
 
 
 
+/* *
+ * ############################################
+ * ##  Convert Excel Santander Bank to JSON  ##
+ * ############################################
+ */
+const xlsx = require("xlsx");
+const ExcelSantanderToJSON = () => {
+  const excel = xlsx.readFile
+}
+
+
+
 
 module.exports = {
   generateError,
   sendMail,
+  ExcelSantanderToJSON,
 }
