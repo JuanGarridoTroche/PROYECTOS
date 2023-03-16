@@ -1,16 +1,16 @@
 const { generateError } = require("../../helpers");
 
-const createEntry = async (req, res, next) => {
+const deleteEntry = async (req, res, next) => {
   try {
     
     
     res.send({
       status: "ok",
-      message: "Asiento realizado con éxito",
+      message: "Asiento eliminado",
     });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = createEntry;
+module.exports = deleteEntry;

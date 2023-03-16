@@ -43,7 +43,11 @@ app.put("/user/register/validate/:registrationCode", validateUser);
  */
 
 const isAuth = require("./middlewares/isAuth");
-const { createAccount, updateAccount, deleteAccount } = require("./controllers/accounts");
+const {
+  createAccount,
+  updateAccount,
+  deleteAccount,
+} = require("./controllers/accounts");
 // Crear una cuenta nueva
 app.post("/account", isAuth, createAccount);
 
@@ -53,22 +57,25 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
-
 /*
-* ##############################
-* ##  Middleware de /entries  ##
-* ##############################
-*/
-const { createEntry } = require("./controllers/entries");
+ * ##############################
+ * ##  Middleware de /entries  ##
+ * ##############################
+ */
+const {
+  createEntry,
+  updateEntry,
+  deleteEntry,
+} = require("./controllers/entries");
 
 // Crear un asiento nuevo
 app.post("/account/:idAccount/entry", isAuth, createEntry);
 
 // Actualizar un asiento
+app.put("/account/:idAccount/entry", isAuth, updateEntry);
 
 // Eliminar un asiento
-
-
+app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
 
 /*
  * ############################
@@ -81,8 +88,6 @@ app.post("/account/:idAccount/entry", isAuth, createEntry);
 // Actualizar un tipo de asiento
 
 // Eliminar un tipo de asiento
-
-
 
 /*
  * ##########################################
