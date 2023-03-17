@@ -84,14 +84,16 @@ app.delete("/category/:idCategory", isAuth, deleteCategory)
  * ###################################
  */
 
+const {createSubcategory, updateSubcategory, deleteSubcategory} = require("./controllers/subcategories")
+
 // Crear una subcategoría
-app.post("/category/:idCategory/sub", isAuth);
+app.post("/category/:idCategory/sub", isAuth, createSubcategory);
 
 // Actualizar una subcategoría
-app.put("/category/:idCategory/sub/:idSub", isAuth);
+app.put("/category/:idCategory/sub/:idSub", isAuth, updateSubcategory);
 
 // Eliminar una subcategoría
-app.delete("/category/:idCategory/sub/:idSub", isAuth);
+app.delete("/category/:idCategory/sub/:idSub", isAuth, deleteSubcategory);
 
 
 

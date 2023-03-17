@@ -1,15 +1,15 @@
 const getConnection = require("../../getConnection");
 
-const insertNewCatQuery = async (idUser, category, comment) => {
+const insertNewCatQuery = async (idCategory, nameSubcat, comment) => {
   let connection;
 
   try {
     connection = await getConnection();
     await connection.query(
       `
-    INSERT INTO categories (idUser, name, comment, createdAt)
+    INSERT INTO subcategories (idCat, name, comment, createdAt)
     VALUES (?, ?, ?, ?)`,
-      [idUser, category.toUpperCase(), comment, new Date()]
+      [idCategory, nameSubcat, comment, new Date()]
     );   
   } finally {
     if (connection) connection.release();
