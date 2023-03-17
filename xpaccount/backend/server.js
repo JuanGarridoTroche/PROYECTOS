@@ -57,6 +57,28 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
+
+/*
+ * #################################
+ * ##  Middleware de /categories  ##
+ * #################################
+ */
+
+const { createCategory, updateCategory, deleteCategory } = require("./controllers/categories");
+
+
+// Crear una categoría de asiento bancario
+app.post("/category", isAuth, createCategory)
+
+// Actualizar una categoría de asiento bancario
+app.put("/category/:idCategory", isAuth, updateCategory)
+
+// Eliminar un tipo de asiento
+app.delete("/category/:idCategory", isAuth, deleteCategory)
+
+
+
+
 /*
  * ##############################
  * ##  Middleware de /entries  ##
@@ -76,24 +98,6 @@ app.put("/account/:idAccount/entry", isAuth, updateEntry);
 
 // Eliminar un asiento
 app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
-
-/*
- * #################################
- * ##  Middleware de /categories  ##
- * #################################
- */
-
-const { createCategory, updateCategory, deleteCategory } = require("./controllers/categories");
-
-
-// Crear una categoría de asiento bancario
-app.post("/category", isAuth, createCategory)
-
-// Actualizar una categoría de asiento bancario
-app.put("/category/:idCategory", isAuth, updateCategory)
-
-// Eliminar un tipo de asiento
-app.delete("/category/:idCategory", isAuth, deleteCategory)
 
 /*
  * ##########################################
