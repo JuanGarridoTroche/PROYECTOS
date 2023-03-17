@@ -78,6 +78,23 @@ app.delete("/category/:idCategory", isAuth, deleteCategory)
 
 
 
+/*
+ * ###################################
+ * ##  Middleware de subcategories  ##
+ * ###################################
+ */
+
+// Crear una subcategoría
+app.post("/category/:idCategory/sub", isAuth);
+
+// Actualizar una subcategoría
+app.put("/category/:idCategory/sub/:idSub", isAuth);
+
+// Eliminar una subcategoría
+app.delete("/category/:idCategory/sub/:idSub", isAuth);
+
+
+
 
 /*
  * ##############################
