@@ -83,7 +83,7 @@ app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
  * #################################
  */
 
-const { createCategory, updateCategory } = require("./controllers/categories");
+const { createCategory, updateCategory, deleteCategory } = require("./controllers/categories");
 
 
 // Crear una categoría de asiento bancario
@@ -93,6 +93,7 @@ app.post("/category", isAuth, createCategory)
 app.put("/category/:idCategory", isAuth, updateCategory)
 
 // Eliminar un tipo de asiento
+app.delete("/category/:idCategory", isAuth, deleteCategory)
 
 /*
  * ##########################################

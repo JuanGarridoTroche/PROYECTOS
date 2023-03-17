@@ -19,14 +19,11 @@ const updateCategory = async (req, res, next) => {
 
     // Si hay algún dato que no se desee modificar (vienen en blanco), cogemos los datos que ya existen
     if (!category) {
-      console.log("Entra!");
       category = checkingCat.name;
     }
     if (!comment) {
       comment = checkingCat.comment;
     }
-
-    console.log(idCategory, category, comment);
 
     // Editamos los valores alias y/o bankName de la cuenta
     await updateCategoryQuery({
