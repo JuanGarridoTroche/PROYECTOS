@@ -79,7 +79,7 @@ const initDB = async () => {
         idUser INT UNSIGNED NOT NULL,
         FOREIGN KEY (idUser) REFERENCES users(id),	
         name VARCHAR(100) NOT NULL,
-        subcategory VARCHAR(100) NOT NULL,
+        subcategory VARCHAR(100),
         comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP

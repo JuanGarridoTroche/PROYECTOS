@@ -1,10 +1,20 @@
-const { generateError, excelSantanderToJSON } = require("../../helpers");
+const { generateError } = require("../../helpers");
+const joi = require("@hapi/joi");
+const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoriesByIdUserQuery");
 
-const createEntry = async (req, res, next) => {
-  try {
-    const excelFile = 'export2023316.xlsx'
-    const body = excelSantanderToJSON(excelFile);
-    
+
+const createEntry = async (req, res, next) => { 
+  const {id: idUser} = req.user.id; 
+  try {    
+    // Comprobar que todos los campos obligatorios tienen datos
+    if(!category || !subcategory || !amount) {
+      throw generateError("No están todos los campos obligatorios cubiertos. Por favor, revise el asiento bancario que quiere crear", 404);
+    }
+
+    // Validación de los datos entregados
+    // Categoría:
+    const validatingCat = await selectCategoriesByIdUserQuery(idUser);
+    console.log(validatingCat);
     res.send({
       status: "ok",
       message: "Asiento realizado con éxito",

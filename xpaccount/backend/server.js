@@ -78,12 +78,15 @@ app.put("/account/:idAccount/entry", isAuth, updateEntry);
 app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
 
 /*
- * ############################
- * ##  Middleware de /types  ##
- * ############################
+ * #################################
+ * ##  Middleware de /categories  ##
+ * #################################
  */
+const createCategory = require("./controllers/categories/createCategory");
 
-// Crear un tipo de asiento
+
+// Crear una categoría
+app.post("/category", isAuth, createCategory)
 
 // Actualizar un tipo de asiento
 
