@@ -15,6 +15,7 @@ const initDB = async () => {
 
     console.log("Borrando tablas...");
 
+    await connection.query("DROP TABLE IF EXISTS subcategories");
     await connection.query("DROP TABLE IF EXISTS categories");
     await connection.query("DROP TABLE IF EXISTS entries");
     await connection.query("DROP TABLE IF EXISTS accounts");
@@ -79,7 +80,6 @@ const initDB = async () => {
         idUser INT UNSIGNED NOT NULL,
         FOREIGN KEY (idUser) REFERENCES users(id),	
         name VARCHAR(100) NOT NULL,
-        subcategory VARCHAR(100),
         comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
@@ -87,6 +87,20 @@ const initDB = async () => {
     `);
 
     console.log("tabla categories...");
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS subcategories (
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        idCat INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idCat) REFERENCES categories(id),	
+        name VARCHAR(100) NOT NULL,
+        comment VARCHAR(200),
+        createdAt TIMESTAMP NOT NULL,
+        modifiedAt TIMESTAMP
+      )
+    `);
+
+    console.log("tabla subcategories...");
     console.log("¡Tablas creadas!");
 
     // Encriptamos la contraseña del admin.

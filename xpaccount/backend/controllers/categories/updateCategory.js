@@ -4,6 +4,7 @@ const updateCategory = async (req, res, next) => {
   try {
     
     
+    
     res.send({
       status: "ok",
       message: "Categoría actualizada 🔵",

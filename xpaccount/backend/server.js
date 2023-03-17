@@ -82,13 +82,15 @@ app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
  * ##  Middleware de /categories  ##
  * #################################
  */
-const createCategory = require("./controllers/categories/createCategory");
+
+const { createCategory, updateCategory } = require("./controllers/categories");
 
 
-// Crear una categoría
+// Crear una categoría de asiento bancario
 app.post("/category", isAuth, createCategory)
 
-// Actualizar un tipo de asiento
+// Actualizar una categoría de asiento bancario
+app.put("/category/:idCategory", isAuth, updateCategory)
 
 // Eliminar un tipo de asiento
 
