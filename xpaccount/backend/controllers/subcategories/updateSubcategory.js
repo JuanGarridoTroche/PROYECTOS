@@ -1,12 +1,13 @@
 const { generateError } = require("../../helpers");
 
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
-const updateCategoryQuery = require("../../bbdd/queries/categories/updateCategoryQuery");
+const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
+const updateSubcategoryQuery = require("../../bbdd/queries/subcategories/updateSubcategoryQuery");
 
-const updateCategory = async (req, res, next) => {
+const updateSubcategory = async (req, res, next) => {
   try {
-    let {category, comment} = req.body;
-    const {idCategory} = req.params;
+    let {nameSubcat, comment} = req.body;
+    const {idCategory, idSub} = req.params;
     const idUser = req.user.id;
 
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
@@ -17,18 +18,27 @@ const updateCategory = async (req, res, next) => {
       throw generateError("Esta categoría no existe", 404);
     }
 
+    // Comprobamos que la subcategoría existe y pertence al usuario logueado
+    const checkingSubcat = await selectSubcatByIdCatAndNameSubcatQuery(idCategory, idSub);
+
+    if(!checkingSubcat) {
+      throw generateError("La subcategoría no existe", 404)
+    }
+
+    
     // Si hay algún dato que no se desee modificar (vienen en blanco), cogemos los datos que ya existen
-    if (!category) {
-      category = checkingCat.name;
+    if (!nameSubcat) {
+      nameSubcat = checkingSubcat.name;
     }
     if (!comment) {
-      comment = checkingCat.comment;
+      comment = checkingSubcat.comment;
     }
 
     // Editamos los valores alias y/o bankName de la cuenta
-    await updateCategoryQuery({
+    await updateSubcategoryQuery({
       idCategory,
-      category,
+      idSub,
+      nameSubcat,
       comment,
     });
     
@@ -42,4 +52,4 @@ const updateCategory = async (req, res, next) => {
   }
 };
 
-module.exports = updateCategory;
+module.exports = updateSubcategory;
