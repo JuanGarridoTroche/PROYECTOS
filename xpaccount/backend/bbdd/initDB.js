@@ -62,8 +62,10 @@ const initDB = async () => {
         idAccount INT UNSIGNED NOT NULL,
         FOREIGN KEY (idAccount) REFERENCES accounts(id),	
         name VARCHAR(100) NOT NULL,
+        type VARCHAR(100) NOT NULL,
         amount DECIMAL(9,2) NOT NULL,
         concept VARCHAR(100),
+        comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
       )
