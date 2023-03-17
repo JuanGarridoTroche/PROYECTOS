@@ -15,7 +15,7 @@ const initDB = async () => {
 
     console.log("Borrando tablas...");
 
-    await connection.query("DROP TABLE IF EXISTS types");
+    await connection.query("DROP TABLE IF EXISTS categories");
     await connection.query("DROP TABLE IF EXISTS entries");
     await connection.query("DROP TABLE IF EXISTS accounts");
     await connection.query("DROP TABLE IF EXISTS users");
@@ -61,10 +61,10 @@ const initDB = async () => {
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         idAccount INT UNSIGNED NOT NULL,
         FOREIGN KEY (idAccount) REFERENCES accounts(id),	
-        name VARCHAR(100) NOT NULL,
-        type VARCHAR(100) NOT NULL,
+        category VARCHAR(100) NOT NULL,
+        subcategory VARCHAR(100) NOT NULL,
         amount DECIMAL(9,2) NOT NULL,
-        concept VARCHAR(100),
+        concept VARCHAR(200),
         comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
@@ -74,18 +74,19 @@ const initDB = async () => {
     console.log("tabla entries...");
 
     await connection.query(`
-      CREATE TABLE IF NOT EXISTS types (
+      CREATE TABLE IF NOT EXISTS categories (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idEntry INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idEntry) REFERENCES entries(id),	
+        idUser INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idUser) REFERENCES users(id),	
         name VARCHAR(100) NOT NULL,
+        subcategory VARCHAR(100) NOT NULL,
         comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
       )
     `);
 
-    console.log("tabla types...");
+    console.log("tabla categories...");
     console.log("¡Tablas creadas!");
 
     // Encriptamos la contraseña del admin.
