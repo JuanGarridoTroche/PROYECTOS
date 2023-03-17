@@ -7,9 +7,9 @@ const insertNewCatQuery = async (idUser, category) => {
     connection = await getConnection();
     await connection.query(
       `
-    INSERT INTO categories (idUser, UPPER(name), createdAt)
+    INSERT INTO categories (idUser, name, createdAt)
     VALUES (?, ?, ?)`,
-      [idUser, category, new Date()]
+      [idUser, category.toUpperCase(), new Date()]
     );   
   } finally {
     if (connection) connection.release();
