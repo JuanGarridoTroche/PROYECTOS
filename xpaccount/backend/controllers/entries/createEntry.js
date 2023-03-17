@@ -1,8 +1,9 @@
-const { generateError } = require("../../helpers");
+const { generateError, excelSantanderToJSON } = require("../../helpers");
 
 const createEntry = async (req, res, next) => {
   try {
-    // 
+    const excelFile = 'export2023316.xlsx'
+    const body = excelSantanderToJSON(excelFile);
     
     res.send({
       status: "ok",

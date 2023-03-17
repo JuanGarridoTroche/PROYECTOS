@@ -55,10 +55,17 @@ const generateError = (msg, status) => {
  * ############################################
  */
 const xlsx = require("xlsx");
-const ExcelSantanderToJSON = () => {
-  const excel = xlsx.readFile(`${process.env.DIR_UPLOADS}/export2023316.xlsx`);
+const excelSantanderToJSON = (excelFile) => {
+  const excel = xlsx.readFile(`/${process.env.DIR_UPLOADS}/${excelFile}`);
+
+  // Guardamos los nombres de las hojas de las que se compone nuestro excel en un array
   const sheetName = excel.SheetNames;
-  
+
+  let data = xlsx.utils.sheet_to_json(excel.Sheets[movimientos[0]], {
+    cellDates: true
+  })
+
+  console.log(data);
 }
 
 
@@ -67,5 +74,5 @@ const ExcelSantanderToJSON = () => {
 module.exports = {
   generateError,
   sendMail,
-  ExcelSantanderToJSON,
+  excelSantanderToJSON,
 }
