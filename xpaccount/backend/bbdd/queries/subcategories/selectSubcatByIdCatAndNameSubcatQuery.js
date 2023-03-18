@@ -7,7 +7,7 @@ const selectSubcatByIdCatAndNameSubcatQuery = async (idCategory, nameSubcat) => 
     connection = await getConnection();
     const [subcategories] = await connection.query(
       `
-    SELECT id, idCat, name, comment, createdAt FROM subcategories WHERE idCat = ? AND name = ?`,
+    SELECT id, idCat, name, comment, createdAt, modifiedAt FROM subcategories WHERE idCat = ? AND name = ?`,
       [idCategory, nameSubcat]
     );   
 
