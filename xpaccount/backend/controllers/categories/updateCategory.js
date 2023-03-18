@@ -35,7 +35,7 @@ const updateCategory = async (req, res, next) => {
     
     res.send({
       status: "ok",
-      message: "Categoría actualizada 🔵",
+      message: "Categoría actualizada 🔵", 
     });
   } catch (err) {
     next(err);

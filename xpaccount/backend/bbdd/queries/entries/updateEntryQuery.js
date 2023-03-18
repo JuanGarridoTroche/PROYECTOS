@@ -3,8 +3,6 @@ const getConnection = require("../../getConnection");
 const updateEntryQuery = async ({idAccount, category, subcategory, amount, concept, comment, idEntry}) => {
   let connection;
 
-  console.log(idAccount, category, subcategory, amount, concept, comment, idEntry);
-
   try {
     connection = await getConnection();
     await connection.query(

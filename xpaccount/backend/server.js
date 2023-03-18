@@ -115,7 +115,7 @@ app.post("/account/:idAccount/entry", isAuth, createEntry);
 app.put("/account/:idAccount/entry/:idEntry", isAuth, updateEntry);
 
 // Eliminar un asiento
-app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
+app.delete("/account/:idAccount/entry/:idEntry", isAuth, deleteEntry);
 
 /*
  * ##########################################

@@ -99,7 +99,7 @@ const updateEntry = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      message: "Asiento actualizado",
+      message: "Asiento actualizado 🔵",
     });
   } catch (err) {
     next(err);

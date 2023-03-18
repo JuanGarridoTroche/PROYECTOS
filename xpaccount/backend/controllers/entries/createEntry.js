@@ -56,7 +56,7 @@ const createEntry = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      message: "Asiento realizado con éxito",
+      message: "Asiento realizado con éxito 🟢",
     });
   } catch (err) {
     next(err);
