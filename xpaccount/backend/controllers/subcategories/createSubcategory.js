@@ -1,7 +1,7 @@
 const { generateError } = require("../../helpers");
 const joi = require("@hapi/joi");
 const insertNewCatQuery = require("../../bbdd/queries/categories/insertNewCatQuery");
-const selectSubcategoriesByIdUserQuery = require("../../bbdd/queries/subcategories/selectSubcategoriesByIdUserQuery");
+const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
 
 
 const createSubcategory = async (req, res, next) => {
@@ -35,7 +35,7 @@ const createSubcategory = async (req, res, next) => {
     }
       
     // Comprobamos que no esté registrado como categoría en la base de datos
-    const checkingNameSubcat = await selectSubcategoriesByIdUserQuery(idCategory, nameSubcat);
+    const checkingNameSubcat = await selectSubcatByIdCatAndNameSubcatQuery(idCategory, nameSubcat);
     
     if(checkingNameSubcat) {
       throw generateError("La categoría ya existe", 403);
@@ -46,7 +46,7 @@ const createSubcategory = async (req, res, next) => {
     
     res.send({
       status: "ok",
-      message: "Categoría creada 🟢",
+      message: "Subcategoría creada 🟢",
     });
   } catch (err) {
     next(err);

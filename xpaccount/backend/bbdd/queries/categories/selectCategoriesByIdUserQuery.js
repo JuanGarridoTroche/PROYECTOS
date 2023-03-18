@@ -5,15 +5,14 @@ const selectCategoriesByIdUserQuery = async (idUser, category) => {
 
   try {
     connection = await getConnection();
-    const [categories] = await connection.query(
+        
+    const [cat] = await connection.query(
       `
-    SELECT id, idUser, name, comment, createdAt FROM categories WHERE idUser = ? AND name = ?`,
-      [idUser, category]
-    );  
-    
-    console.log("Categoría seleccionada: ", categories[0]);
+    SELECT id, idUser, name, comment, createdAt, modifiedAt FROM categories WHERE idUser = ? AND name = ?`,
+      [idUser, category.toUpperCase()]
+    );   
 
-    return categories[0];
+    return cat[0];
   } finally {
     if (connection) connection.release();
   }

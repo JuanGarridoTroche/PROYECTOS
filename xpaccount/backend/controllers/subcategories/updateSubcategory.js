@@ -1,13 +1,13 @@
 const { generateError } = require("../../helpers");
 
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
-const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
+const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const updateSubcategoryQuery = require("../../bbdd/queries/subcategories/updateSubcategoryQuery");
 
 const updateSubcategory = async (req, res, next) => {
   try {
-    let {nameSubcat, comment} = req.body;
-    const {idCategory, idSub} = req.params;
+    let { nameSubcat, comment } = req.body;
+    const { idCategory, idSub } = req.params;
     const idUser = req.user.id;
 
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
@@ -19,13 +19,15 @@ const updateSubcategory = async (req, res, next) => {
     }
 
     // Comprobamos que la subcategoría existe y pertence al usuario logueado
-    const checkingSubcat = await selectSubcatByIdCatAndNameSubcatQuery(idCategory, idSub);
+    const checkingSubcat = await selectSubcatByIdCatAndIdSubQuery(
+      idCategory,
+      idSub
+    );
 
-    if(!checkingSubcat) {
-      throw generateError("La subcategoría no existe", 404)
+    if (!checkingSubcat) {
+      throw generateError("La subcategoría no existe", 404);
     }
 
-    
     // Si hay algún dato que no se desee modificar (vienen en blanco), cogemos los datos que ya existen
     if (!nameSubcat) {
       nameSubcat = checkingSubcat.name;
@@ -41,8 +43,7 @@ const updateSubcategory = async (req, res, next) => {
       nameSubcat,
       comment,
     });
-    
-    
+
     res.send({
       status: "ok",
       message: "Categoría actualizada 🔵",

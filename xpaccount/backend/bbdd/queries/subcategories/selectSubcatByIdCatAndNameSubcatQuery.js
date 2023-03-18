@@ -1,17 +1,17 @@
 const getConnection = require("../../getConnection");
 
-const selectSubcatByIdCatAndNameSubcatQuery = async (idCategory, idsub) => {
+const selectSubcatByIdCatAndNameSubcatQuery = async (idCategory, nameSubcat) => {
   let connection;
 
   try {
     connection = await getConnection();
-    const [subcategory] = await connection.query(
+    const [subcategories] = await connection.query(
       `
-    SELECT id, idCat, name, comment, createdAt FROM subcategories WHERE idCat = ? AND id = ?`,
-      [idCategory, idsub]
-    ); 
+    SELECT id, idCat, name, comment, createdAt FROM subcategories WHERE idCat = ? AND name = ?`,
+      [idCategory, nameSubcat]
+    );   
 
-    return subcategory[0];
+    return subcategories[0];
   } finally {
     if (connection) connection.release();
   }

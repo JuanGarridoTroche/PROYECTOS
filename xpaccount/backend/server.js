@@ -97,7 +97,6 @@ app.delete("/category/:idCategory/sub/:idSub", isAuth, deleteSubcategory);
 
 
 
-
 /*
  * ##############################
  * ##  Middleware de /entries  ##
