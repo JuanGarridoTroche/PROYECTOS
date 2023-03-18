@@ -112,7 +112,7 @@ const {
 app.post("/account/:idAccount/entry", isAuth, createEntry);
 
 // Actualizar un asiento
-app.put("/account/:idAccount/entry", isAuth, updateEntry);
+app.put("/account/:idAccount/entry/:idEntry", isAuth, updateEntry);
 
 // Eliminar un asiento
 app.delete("/account/:idAccount/entry", isAuth, deleteEntry);
