@@ -1,24 +1,20 @@
 
-main {
+main {  
+  min-height: 100vh;
+}
+
+main > section.bg {
   background-image: url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: left bottom;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 @media(min-width: 700px) {
   main {
-    background-image: url("/bg.jpg");
-    background-repeat: no-repeat;
-    background-size: 50%;
-    min-height: 100vh;
+    background-size: auto;  
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }

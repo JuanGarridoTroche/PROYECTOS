@@ -8,6 +8,7 @@ export const Main =()=> {
 
   return (
     <main>
+      <section className="bg">Hola</section>
       {!page ? <Home /> : null}
     </main>
       )

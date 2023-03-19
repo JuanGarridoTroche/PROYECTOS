@@ -35,7 +35,7 @@ header {
 .nav-toggle span {
   width: 30px;
   height: 4px;
-  background-color: black;
+  background-color: #22927c;
   margin-bottom: 5px;
   border-radius: 2px;
   transform-origin: 5px 0;
@@ -62,6 +62,15 @@ header {
 
 /* Modo escritorio */
 @media(min-width: 700px) {
+  header {
+    border-bottom: 1px solid #22927c;
+    background-color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  }
   
 
   .brand-container > h3 {

@@ -2,7 +2,7 @@
 :root {
   --font-title: 'Expletus Sans', cursive;
   --font-text: 'Noto Sans Mono', monospace;
-  --color-brand: #02B290;
+  --color-brand: #22927c;
   font-weight: 500;
 }
 
@@ -13,12 +13,14 @@
 }
 
 html {
-  font-size: 62.5%;  
+  font-size: 62.5%;
+  min-height: 100vh; 
 }
 
 body {
   font-size: 1.6rem;
   font-family: var(--font-title);  
+  overflow-x: hidden;
 }
 
 

@@ -2,7 +2,8 @@
 h1 {
   color: #918391;
   text-shadow: 2px 7px 10px grey;
-  font-size: 4rem;
+  font-size: 3.5rem;
+  padding: 0 5px;
   padding-bottom: 30px;
 }
 

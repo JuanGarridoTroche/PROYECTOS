@@ -10,3 +10,15 @@ footer {
 .brand-container > h3 > span {
   color: var(--color-brand);
 }
+
+@media(min-width: 700px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    width: 100%;
+
+  }
+    
+}
