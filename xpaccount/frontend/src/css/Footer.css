@@ -1,0 +1,12 @@
+
+footer {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-container > h3 > span {
+  color: var(--color-brand);
+}

@@ -1,0 +1,89 @@
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;    
+}
+
+.brand-container > img {
+  padding: 10px;
+}
+
+.brand-container > h3 {
+  display: none;
+}
+
+.menu-container {
+  display: none;
+}
+
+/* ####################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - Start  ## */
+/* ####################################################### */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.nav-toggle span {
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  transform-origin: 5px 0;
+  transition: all .2s linear;
+}
+
+.nav-toggle.open>span {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+.nav-toggle.open>span:nth-child(2) {
+  display: none;
+}
+
+.nav-toggle.open>span:nth-child(3) {
+  transform: rotate(-45deg) translate(-5px, 1px);
+}
+
+/* ##################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - End  ## */
+/* ##################################################### */
+
+
+
+/* Modo escritorio */
+@media(min-width: 700px) {
+  
+
+  .brand-container > h3 {
+    display: unset;
+  }
+
+
+
+    .menu-container {
+      display: unset;
+    }
+
+    .menu-container > ul {
+      display: flex;      
+      list-style-type: none;
+    }
+
+    .menu-container > ul > li {
+      padding: 0 8px;
+    }
+
+    .hamburger-container {
+      display: none;
+    }
+}
