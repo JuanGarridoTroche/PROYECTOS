@@ -16,14 +16,16 @@ h1 {
 
 button.start {
   border: none;
-  background-color: #8f708f;
-  color: white;
+  color: #a586a5;
   font-weight: 700;
   letter-spacing: .5rem;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 20px;
   font-family: var(--font-text);
-  z-index: 15;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(165, 134, 165, .9);  
+  border: 1px solid rgba(255, 255, 255, .3);
 }
 
 
@@ -39,22 +41,16 @@ h1 {
   padding-bottom: 30px;
 }
 
-button.start {
-  border: none;
-  color: #a586a5;
-  font-weight: 700;
-  letter-spacing: .5rem;
-  padding: 15px;
-  border-radius: 20px;
-  font-family: var(--font-text);
+button.start {  
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 3px 13px 1px rgba(165, 134, 165, .9);  
-  border: 1px solid rgba(255, 255, 255, .3);
 }
 
 button.start:hover {
   overflow: hidden;  
+  /* transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out; */
+  transition: all 1s ease-in-out;
   transform: scale(1.3);
 }
 
