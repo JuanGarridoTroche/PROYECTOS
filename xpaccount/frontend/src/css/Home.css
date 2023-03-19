@@ -1,10 +1,17 @@
 
+.section-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 h1 {
   color: #918391;
   text-shadow: 2px 7px 10px grey;
   font-size: 3.5rem;
-  padding: 0 5px;
-  padding-bottom: 30px;
+  padding: 30px 5px;
+  z-index: 15;
 }
 
 button.start {
@@ -16,11 +23,15 @@ button.start {
   padding: 15px;
   border-radius: 15px;
   font-family: var(--font-text);
-  
+  z-index: 15;
 }
 
-@media(min-width: 700px) {
-    
+
+
+
+
+
+@media(min-width: 700px) {    
 h1 {
   color: #a586a5;
   text-shadow: 2px 7px 10px grey;

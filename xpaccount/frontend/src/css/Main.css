@@ -1,21 +1,31 @@
 
-main {  
-  min-height: 100vh;
-}
-
-main > section.bg {
+main {
   background-image: url("/bg.jpg");
   background-repeat: no-repeat;
-  background-size: auto;
-  background-position: left bottom;
+  background-size: contain;
+  background-position: left top;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 @media(min-width: 700px) {
   main {
-    background-size: auto;  
+    background-position: left top;
+    background-size: contain;    
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+}
+
+@media(min-width: 1100px) {
+  main {
+    background-size: 50%;  
+    background-position: left bottom;
+  }
+    
 }
