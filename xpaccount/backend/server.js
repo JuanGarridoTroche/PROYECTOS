@@ -39,7 +39,7 @@ app.post("/user/register", registerUser);
 app.put("/user/register/validate/:registrationCode", validateUser);
 
 // Ver el perfil de usuario logged
-app.post("/user/loggedProfile", isAuth, readLoggedProfile);
+app.get("/user/loggedProfile", isAuth, readLoggedProfile);
 
 /*
  * ###############################

@@ -3,6 +3,7 @@ const { generateError } = require("../../helpers");
 
 const readLoggedProfile = async (req, res, next) => {
   try {
+    console.log(req.user.id);
     if(req.user?.id){
       throw generateError("El usuario no existe", 400)
     }

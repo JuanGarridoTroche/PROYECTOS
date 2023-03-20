@@ -1,4 +1,3 @@
-const { generateError } = require("../../../helpers");
 const getConnection = require("../../getConnection");
 
 const selectUserByEmailQuery = async (email) => {
@@ -6,13 +5,13 @@ const selectUserByEmailQuery = async (email) => {
 
   try {
     connection = await getConnection();
-    const [users] = await connection.query(
+    const [user] = await connection.query(
       `
     SELECT id, username, password, birthday, firstName, lastName, dni, active FROM users WHERE email = ?`,
       [email]
     );   
-
-    return users[0];
+      
+    return user[0];
   } finally {
     if (connection) connection.release();
   }

@@ -1,20 +1,24 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUserService } from "../services";
+import {AuthContext} from "../context/AuthContext";
 
 import("../css/Login.css");
 export const Login = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const {login} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const data = await loginUserService({email, pwd});
-      
+      const data = await loginUserService({email, pwd});      
+      login(data.token);
+      navigate("/");
       
     } catch (error) {
       setError(error.message);
@@ -38,7 +42,8 @@ export const Login = () => {
             type="text"
             name="userLogin"
             id="userLogin"
-            placeholder="micuenta@midominio.com"
+            placeholder="micuenta@midominio.com" 
+            autoComplete="username"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -48,7 +53,8 @@ export const Login = () => {
             type="password"
             name="pwd"
             id="pwd"
-            placeholder="Introduce tu contraseña"
+            placeholder="Introduce tu contraseña" 
+            autoComplete="current-password"
             onChange={(e) => {
               setPwd(e.target.value);
             }}
