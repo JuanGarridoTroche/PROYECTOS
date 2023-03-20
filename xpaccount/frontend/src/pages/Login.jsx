@@ -7,7 +7,7 @@ import("../css/Login.css");
 export const Login = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [password, setPassword] = useState("");
   const {login} = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export const Login = () => {
     setError("");
 
     try {
-      const data = await loginUserService({email, pwd});      
+      const data = await loginUserService({email, password});      
       login(data.token);
       navigate("/");
       
@@ -56,7 +56,7 @@ export const Login = () => {
             placeholder="Introduce tu contraseña" 
             autoComplete="current-password"
             onChange={(e) => {
-              setPwd(e.target.value);
+              setPassword(e.target.value);
             }}
           />
           <button>Login</button>

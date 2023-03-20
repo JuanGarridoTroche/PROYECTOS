@@ -1,5 +1,5 @@
 // Servicio de login de usuario
-export const loginUserService = async ({ email, pwd }) => {
+export const loginUserService = async ({ email, password }) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/user/login`,
     {
@@ -7,7 +7,7 @@ export const loginUserService = async ({ email, pwd }) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ email, password: pwd }),
+      body: JSON.stringify({ email, password }),
     }
   );
   
@@ -34,5 +34,6 @@ export const getLoggedUserDataService = async ({ token }) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
+  
   return json.data;
 };
