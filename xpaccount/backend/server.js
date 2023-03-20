@@ -36,6 +36,9 @@ app.post("/user/register", registerUser);
 // Validar un usuario.
 app.put("/user/register/validate/:registrationCode", validateUser);
 
+// Ver el perfil de usuario logged
+// app.get("/user", isAuth)
+
 /*
  * ###############################
  * ##  Middleware de /accounts  ##
