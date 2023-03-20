@@ -1,0 +1,24 @@
+section.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+h2.not-found-text {
+  color: rgb(219, 6, 6);
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 20px ;
+}
+
+img.img-not-found {
+  box-shadow: 2px 3px 13px black;
+}
+
+@media(min-width: 700px) {
+  h2.not-found-text {
+    font-size: 3.5rem;
+    padding: unset;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+  }
+}

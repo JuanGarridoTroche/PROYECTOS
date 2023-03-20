@@ -10,8 +10,16 @@ h1 {
   color: #918391;
   text-shadow: 2px 7px 10px grey;
   font-size: 3.5rem;
-  padding: 30px 5px;
+  padding: 30px 5px 5px 5px;
   z-index: 15;
+}
+
+p {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  padding-bottom: 30px;
+  width: 70%;
+  text-align: center;
 }
 
 button.start {

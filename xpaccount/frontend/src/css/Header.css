@@ -28,7 +28,7 @@ header {
   top: 60px;
   left: 0;
   background-color: var(--color-bg);
-  color: var(--color-font);
+  color: var(--color-text);
   padding: 10px 0 10px 10px;
   font-weight: 600;
   display: flex;
