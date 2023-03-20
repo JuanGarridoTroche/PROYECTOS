@@ -1,0 +1,99 @@
+.login-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--color-brand);
+  padding: 30px 0;
+  text-align: center;
+}
+
+.login-summary > p {
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+.summary::marker {
+  content: "➡️";
+}
+
+/* details[open] summary::marker {
+  content: "⬇️"
+} */
+
+section.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section.login-content > .error {
+  color: red;
+}
+
+.login-content > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50vw;
+}
+
+.login-content > form input {
+  padding: 14px;
+  border: 1px  solid rgb(155, 155, 155);
+  border-radius: 4px;
+  margin: 5px;
+  width: 100%;
+  max-width: 220px;
+}
+
+.login-content > form > button {
+  border: none;
+  background-color: var(--color-brand);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  max-width: 220px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.dont-forget {
+  font-size: 1.1rem;
+}
+
+.dont-forget > p.link {
+  padding: 15px;
+  background-color: transparent;
+  color: black;  
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(255, 255, 255, .9);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  width: 100%;
+
+}
+
+.dont-forget > p.link > button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-logo);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dont-forget > p.link > a {
+  text-decoration: none;
+  color: var(--color-brand);
+  font-weight: 800;  
+}
+
+@media(min-width: 700px) {
+  .login-content > form > button:hover {
+    opacity: .7;
+  }
+}
