@@ -11,7 +11,7 @@ header {
   align-items: center;    
 }
 
-.brand-container > img {
+.brand-container > a > img {
   padding: 10px;
 }
 

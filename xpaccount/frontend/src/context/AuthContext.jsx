@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getLoggedUserDataService } from "../services";
 
 export const AuthContext = createContext();
 
@@ -11,12 +12,19 @@ export const AuthProvidercomponent = ({ children }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        
+        const data = await getLoggedUserDataService({token});
+        setLogged(data);
       } catch (error) {
         logout();
       }
     };
-  }, []);
+    if(token) getUserData();
+  }, [token]);
+
+  const login = ()=> {
+    localStorage.setItem("token", token);
+    setToken(token);
+  }
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -25,7 +33,7 @@ export const AuthProvidercomponent = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{token, logged, setLogged, logout}}>
+    <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
       {children}
     </AuthContext.Provider>
   )

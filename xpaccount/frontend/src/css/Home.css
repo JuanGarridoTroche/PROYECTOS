@@ -22,7 +22,8 @@ p {
   text-align: center;
 }
 
-button.start {
+a.start {
+  text-decoration: none;
   border: none;
   color: #a586a5;
   font-weight: 700;
@@ -49,11 +50,11 @@ h1 {
   padding-bottom: 30px;
 }
 
-button.start {  
+a.start {  
   background: rgba(255, 255, 255, 0.2);
 }
 
-button.start:hover {
+a.start:hover {
   overflow: hidden;  
   /* transition-property: transform;
   transition-duration: 1s;

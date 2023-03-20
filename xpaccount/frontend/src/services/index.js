@@ -24,5 +24,17 @@ export const loginUserService = async({email, pwd}) => {
 
 // Servicio que nos facilita los datos del usuario logueado a partir de su token
 export const getLoggedUserDataService = async({token}) => {
-  const response = await fetch(`${precess.env.REACT_APP_BCK_HOST}:${process.env.REACT_APP_BCK_PORT}`)
+  const response = await fetch(`${precess.env.REACT_APP_BCK_HOST}:${process.env.REACT_APP_BCK_PORT}/user/loggedProfile`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },    
+    }
+  );
+  const json = response.json();
+  if(!response.ok){
+    throw new Error(json.message)
+  }
+  return json.data;
 }

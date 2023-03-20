@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import("../css/Header.css");
 export const Header = () => {
@@ -6,7 +7,7 @@ export const Header = () => {
   return (
     <header>
       <section className="brand-container">
-        <img src="/wallet.svg" alt="xp account logo" />
+        <Link to="/"><img src="/wallet.svg" alt="xp account logo" /></Link> 
         <h3>
           <span>xp</span>account
         </h3>

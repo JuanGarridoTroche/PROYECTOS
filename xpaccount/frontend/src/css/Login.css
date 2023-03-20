@@ -92,6 +92,12 @@ section.login-content > .error {
   font-weight: 800;  
 }
 
+.error-message {
+  color: red;
+  font-size: 1.8rem;
+  font-family: var(--font-text);
+}
+
 @media(min-width: 700px) {
   .login-content > form > button:hover {
     opacity: .7;

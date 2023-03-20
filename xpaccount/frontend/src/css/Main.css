@@ -1,5 +1,6 @@
 
 main {
+  background-color: var(--color-bg);
   background-image: url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: contain;

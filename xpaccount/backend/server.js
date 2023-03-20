@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const isAuth = require("./middlewares/isAuth");
 
 const { PORT } = process.env;
 const app = express();
@@ -25,6 +26,7 @@ const {
   loginUser,
   registerUser,
   validateUser,
+  readLoggedProfile,
 } = require("./controllers/users");
 
 //Login de usuario
@@ -37,7 +39,7 @@ app.post("/user/register", registerUser);
 app.put("/user/register/validate/:registrationCode", validateUser);
 
 // Ver el perfil de usuario logged
-// app.get("/user", isAuth)
+app.post("/user/loggedProfile", isAuth, readLoggedProfile);
 
 /*
  * ###############################
@@ -45,7 +47,6 @@ app.put("/user/register/validate/:registrationCode", validateUser);
  * ###############################
  */
 
-const isAuth = require("./middlewares/isAuth");
 const {
   createAccount,
   updateAccount,
@@ -60,26 +61,26 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
-
 /*
  * #################################
  * ##  Middleware de /categories  ##
  * #################################
  */
 
-const { createCategory, updateCategory, deleteCategory } = require("./controllers/categories");
-
+const {
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} = require("./controllers/categories");
 
 // Crear una categoría de asiento bancario
-app.post("/category", isAuth, createCategory)
+app.post("/category", isAuth, createCategory);
 
 // Actualizar una categoría de asiento bancario
-app.put("/category/:idCategory", isAuth, updateCategory)
+app.put("/category/:idCategory", isAuth, updateCategory);
 
 // Eliminar un tipo de asiento
-app.delete("/category/:idCategory", isAuth, deleteCategory)
-
-
+app.delete("/category/:idCategory", isAuth, deleteCategory);
 
 /*
  * ###################################
@@ -87,7 +88,11 @@ app.delete("/category/:idCategory", isAuth, deleteCategory)
  * ###################################
  */
 
-const {createSubcategory, updateSubcategory, deleteSubcategory} = require("./controllers/subcategories")
+const {
+  createSubcategory,
+  updateSubcategory,
+  deleteSubcategory,
+} = require("./controllers/subcategories");
 
 // Crear una subcategoría
 app.post("/category/:idCategory/sub", isAuth, createSubcategory);
@@ -97,8 +102,6 @@ app.put("/category/:idCategory/sub/:idSub", isAuth, updateSubcategory);
 
 // Eliminar una subcategoría
 app.delete("/category/:idCategory/sub/:idSub", isAuth, deleteSubcategory);
-
-
 
 /*
  * ##############################

@@ -6,10 +6,9 @@ export const Home = ()=> {
     <section className="section-main-container">
       <h1>Controla tus ahorros</h1>   
       <p>a través de una aplicación cómoda y sencilla que te hará disfrutar</p>  
-      <button className="start" onClick={()=> {
-        <Navigate to="/login"/>
-        // loggedUser ? <Link to="/accounts"/> : <Link to="/login"/>
-      }}>COMENZAR</button>
+      <Link to="/login" className="start">Comenzar</Link>
+        {/* loggedUser ? <Link to="/accounts"/> : <Link to="/login"/> */}
+      
     </section>
   )
 }
