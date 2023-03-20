@@ -11,14 +11,16 @@ export const Header = () => {
           <span>xp</span>account
         </h3>
       </section>
-      <section className="menu-container">
+      <section className={`menu-container nav-items ${isOpen && "open"}`} onClick={() => {
+        setIsOpen(!isOpen);        
+      }}>
         <ul>
           <li>Inicio</li>
           <li>Contacto</li>
           <li>Sobre nosotros</li>
         </ul>
       </section>
-      <section className={`nav-toggle ${isOpen && "open"}`} onClick={() => {
+      <section className={`hamburger-container nav-toggle ${isOpen && "open"}`} onClick={() => {
         setIsOpen(!isOpen);        
       }}>
         <span></span>

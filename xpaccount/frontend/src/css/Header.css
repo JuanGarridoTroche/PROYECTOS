@@ -23,9 +23,32 @@ header {
   display: none;
 }
 
+.nav-items {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background-color: var(--color-bg);
+  color: var(--color-font);
+  padding: 10px 0 10px 10px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: -webkit-fill-available;
+  transform: translateX(-100%);
+  transition: .9s ease all;
+  z-index: 100;
+}
+
+.nav-items.open {
+  transform: translateX(0);
+}
+
 /* ####################################################### */
 /* ##  Menú Cabecera: hamburguesa (nav-toggle) - Start  ## */
 /* ####################################################### */
+
+
 .nav-toggle {
   display: flex;
   flex-direction: column;
@@ -53,6 +76,8 @@ header {
 .nav-toggle.open>span:nth-child(3) {
   transform: rotate(-45deg) translate(-5px, 1px);
 }
+
+
 
 /* ##################################################### */
 /* ##  Menú Cabecera: hamburguesa (nav-toggle) - End  ## */
@@ -94,5 +119,19 @@ header {
 
     .hamburger-container {
       display: none;
+    }
+
+    .nav-items {
+      position: unset;
+      flex-direction: row;
+      padding: unset;   
+      transform: translateX(0);
+      background-color: white;
+      color: black;
+    }
+
+    .menu-container > ul {
+      display: flex;
+      justify-content: flex-end;
     }
 }
