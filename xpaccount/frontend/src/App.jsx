@@ -1,9 +1,10 @@
 import ("./css/Main.css")
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-// import {Accounts, Footer, Header, Home, Login, Main, Register } from "./pages"
+// import {Accounts, CreateAccount, Footer, Header, Login, NotFound, Register } from "./pages"
 import { Home } from "./components/Home";
 import { Accounts } from "./pages/Accounts";
+import { CreateAccount } from "./pages/createAccount";
 import { Footer } from "./pages/Footer";
 import { Header } from "./pages/Header";
 import { Login } from "./pages/Login";
@@ -27,7 +28,10 @@ function App() {
         <Route path="/login" element={<Login/>} />
         {/* Regsitro de usuario */}
         <Route path="/register" element={<Register />} />
+        {/* Mostrar las cuentas de un usuario registrado */}
         <Route path="/accounts" element={<Accounts/>}/>
+        {/* Crear una cuenta nueva */}
+        <Route path="/accounts/create" element={<CreateAccount/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </main>

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 import("../css/Header.css");
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {logged, token, logout} = useContext(AuthContext);  
   return (
     <header>
       <section className="brand-container">
@@ -16,9 +18,11 @@ export const Header = () => {
         setIsOpen(!isOpen);        
       }}>
         <ul>
-          <li>Inicio</li>
+          <li>{token ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>
           <li>Contacto</li>
-          <li>Sobre nosotros</li>
+          <li>{token ? <Link to="/" onClick={()=> {
+            logout();
+          }}>salir</Link> : <Link to="/user/register">regístrate</Link> }</li>
         </ul>
       </section>
       <section className={`hamburger-container nav-toggle ${isOpen && "open"}`} onClick={() => {
