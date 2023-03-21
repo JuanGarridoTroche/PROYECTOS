@@ -1,0 +1,47 @@
+
+.accounts-container {
+  width: 100%;
+  min-height: 100%;
+  padding: 10px;
+  position: fixed;
+  top: 70px;
+  left: 0;
+
+}
+
+.accounts-container > .accounts-content > .accounts-summary > summary > span {
+color: var(--color-brand);
+font-weight: 600;
+}
+
+.accounts-summary > a {
+  text-decoration: none;
+}
+
+.account-content {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px 0 0 20px;
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 1px 3px 13px var(--color-text);
+  color: black;
+}
+
+.account-content > div.data > p {
+  letter-spacing: .1rem;
+}
+
+
+.account-content > .money {
+  text-align: end;
+  padding: 10px 20px 0 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: black;
+}
+
+
+
+
