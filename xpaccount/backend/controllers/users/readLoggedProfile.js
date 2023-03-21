@@ -3,14 +3,13 @@ const { generateError } = require("../../helpers");
 
 const readLoggedProfile = async (req, res, next) => {
   try {
-    console.log(req.user.id);
-    if(req.user?.id){      
+    if(!req.user?.id){      
       throw generateError(`El usuario ${req.user.id} no existe`, 400)
     }
 
     // Seleccionamos los datos del usuario logueado
     const user = await selectUserByIdQuery(req.user.id);
-    const {username, email, birthday, firstName, lastName, dni, active, createdAt, modifiedAt,} = user;
+    const {username, email, birthday, firstName, lastName, dni, active, createdAt, modifiedAt} = user;
     
     res.send({
       status: "ok",
@@ -21,7 +20,8 @@ const readLoggedProfile = async (req, res, next) => {
         birthday,
         firstName,
         lastName,
-        dni,active,
+        dni,
+        active,
         createdAt,
         modifiedAt,
       },

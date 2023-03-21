@@ -16,9 +16,9 @@ export const Login = () => {
     setError("");
 
     try {
-      const data = await loginUserService({email, password});        
-      login("tokenXpAccount: ", data.tokenXpAccount);
-      navigate("/");
+      const data = await loginUserService({email, password});             
+      login(data.token);
+      navigate("/accounts");
       
     } catch (error) {
       setError(error.message);

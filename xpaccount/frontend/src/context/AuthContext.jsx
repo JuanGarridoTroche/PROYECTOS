@@ -5,37 +5,35 @@ export const AuthContext = createContext();
 
 // Esta lógica de contexto nos permite envolver children (<App/>). Este contexto es una forma de mandar datos, funciones y valores entre componentes sin tener que pasar por todo el árbol de componentes.
 export const AuthProvidercomponent = ({ children }) => {
-  const [tokenXpAccount, setTokenXpAccount] = useState(localStorage.getItem("tokenXpAccount"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [logged, setLogged] = useState(null);
 
   // Se ejecuta cuando carga el token y sacamos todos los datos del usuario que tiene dentro el token (id y role)
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const data = await getLoggedUserDataService({tokenXpAccount});
+        const data = await getLoggedUserDataService({token});
         setLogged(data);
       } catch (error) {
         logout();
       }
     };
-    if(tokenXpAccount) getUserData();
-  }, [tokenXpAccount]);
+    if(token) getUserData();
+  }, [token]);
 
-  const login = (tokenXpAccount)=> {
-    console.log("token(login): ", tokenXpAccount);
-    localStorage.setItem("tokenXpAccount", tokenXpAccount);
-    setTokenXpAccount(tokenXpAccount);
-    onsole.log("token(login): ", tokenXpAccount);
+  const login = (token)=> {
+    localStorage.setItem("token", token);
+    setToken(token);
   }
 
   const logout = () => {
-    localStorage.removeItem("tokenXpAccount");
-    setTokenXpAccount(null);
+    localStorage.removeItem("token");
+    setToken(null);
     setLogged(null);
   };
 
   return (
-    <AuthContext.Provider value={{tokenXpAccount, logged, setLogged, login, logout}}>
+    <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
       {children}
     </AuthContext.Provider>
   )

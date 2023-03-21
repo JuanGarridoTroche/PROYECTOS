@@ -10,24 +10,23 @@ const loginUser = async (req, res, next) => {
 
     // Validamos el correo electrónico
     // Para ello vamos a utilizar la dependecia de validadción de datos joi
-    const schema = joi
+    const schemaEmail = joi
       .string()
       .email()
       .required()
       .error(new Error("Introduzca una cuenta de correo válida", 400));
-    const validation = schema.validate(email);
+    const validationEmail = schemaEmail.validate(email);
 
-    if (validation.error || validation === null) {
-      throw generateError(validation.error.message);
+    if (validationEmail.error || validationEmail === null) {
+      throw generateError(validationEmail.error.message);
     }
 
     // Comprobamos que existe ese usuario en nuestra BBDD registrado.
-    const user = await selectUserByEmailQuery(email);
+    const user = await selectUserByEmailQuery(email);    
 
     if (user.length < 1) {
       throw generateError("Email y/o contraseña inválidos", 404);
-    }
-    
+    }    
 
     //Comprobamos que el usuario está activo
     if (!user.active) {
@@ -52,18 +51,15 @@ const loginUser = async (req, res, next) => {
       active:user.active,
       email: user.email,
     };
-
-    console.log("tokenInfo: ", tokenInfo);
-
+    
     // Creamos el token
-    const tokenXpAccount = jwt.sign(tokenInfo, process.env.SECRET);
-
-    console.log("tokenXpAccount: ", tokenXpAccount);
+    const token = jwt.sign(tokenInfo, process.env.SECRET);
+    
     res.send({
       status: "ok",
       message: "Login realizado con éxito",
       data: {
-        tokenXpAccount,
+        token,
       },
     });
   } catch (err) {
