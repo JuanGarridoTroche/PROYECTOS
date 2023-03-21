@@ -16,8 +16,8 @@ export const Login = () => {
     setError("");
 
     try {
-      const data = await loginUserService({email, password});      
-      login(data.token);
+      const data = await loginUserService({email, password});        
+      login("tokenXpAccount: ", data.tokenXpAccount);
       navigate("/");
       
     } catch (error) {
@@ -30,8 +30,8 @@ export const Login = () => {
       <details className="login-summary">
         <summary>Login</summary>
         <p>
-          Accede a la aplicación con tu cuenta de correo como usuario y
-          contraseña para acceder a todos los servicios de la web
+          Entra en nuestra aplicación con tu cuenta de correo como usuario y
+          contraseña para acceder a todos los servicios y utilidades de la web
         </p>
       </details>
       <section className="login-content">

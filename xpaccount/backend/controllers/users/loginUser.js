@@ -53,9 +53,12 @@ const loginUser = async (req, res, next) => {
       email: user.email,
     };
 
+    console.log("tokenInfo: ", tokenInfo);
+
     // Creamos el token
     const tokenXpAccount = jwt.sign(tokenInfo, process.env.SECRET);
 
+    console.log("tokenXpAccount: ", tokenXpAccount);
     res.send({
       status: "ok",
       message: "Login realizado con éxito",
