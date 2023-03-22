@@ -5,7 +5,7 @@ const { generateError } = require("../../helpers");
 const createAccount = async (req, res, next) => {
   try {
     const {alias, bankName, ibanCode, entityCode, officeCode, digitControl, number} = req.body;
-    const {id: idUser} = req.user;
+    const idUser = req.user.id;
 
     if (
       ibanCode.length !== 4 ||

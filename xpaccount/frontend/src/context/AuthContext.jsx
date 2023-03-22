@@ -14,6 +14,7 @@ export const AuthProvidercomponent = ({ children }) => {
     const getUserData = async () => {
       try {
         const data = await getLoggedUserDataService({token});
+        console.log(data);
         setLogged(data);
       } catch (error) {
         logout();
@@ -33,7 +34,7 @@ export const AuthProvidercomponent = ({ children }) => {
     setLogged(null);
   };
 
-  console.log(logged);
+  // console.log(logged);
 
   return (
     <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>

@@ -1,20 +1,47 @@
-import { useState } from "react";
+import("../css/Accounts.css");
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { getAccountsUserService } from "../services";
 
-import ("../css/Accounts.css");
-export const Accounts =()=> {
+export const Accounts = () => {
+  const [myAccounts, setMyAccounts] = useState([]);
+  const { token } = useContext(AuthContext);
 
-  const [account, setAccount] =useState(0);
+  useEffect(() => {
+    const getAccountsData = async () => {
+      try {
+        const getAccounts = await getAccountsUserService({ token });
+        setMyAccounts(getAccounts);
+      } catch (error) {
+        setMyAccounts(["Aún no existen cuentas creadas"]);
+      }
+    };
+    if (token) getAccountsData();
+  }, [token]);
 
-  return(
+  return (
     <section className="accounts-container">
       <a className="create-account" href="/accounts/create">
-        <img src="/plus.svg"/> 
+        <img src="/plus.svg" />
         <p>Crear cuenta</p>
       </a>
       <section className="accounts-content">
         <details className="accounts-summary" open>
-          <summary><span>Mis</span>cuentas</summary>
-          <a href="/account/1">
+          <summary>
+            <span>Mis</span>cuentas [6847,89 €]
+          </summary>
+          {myAccounts.map((account) => {
+            return <a href={`/user/accounts/${account.id}`}>
+              <section className="account-content">
+                <div className="data">
+                  <h3>{account.alias}</h3>
+                  <p>{account.accountNumber}</p>
+                </div>
+                <p className="money"></p>
+              </section>
+            </a>;
+          })}
+          {/* <a href="/account/1">
             <section className="account-content">
               <div className="data">
                 <h3>Cuenta de casa</h3>
@@ -22,9 +49,9 @@ export const Accounts =()=> {
               </div>
               <p className="money">3500€</p>
             </section>
-          </a>
+          </a> */}
         </details>
       </section>
     </section>
-  )
-}
+  );
+};

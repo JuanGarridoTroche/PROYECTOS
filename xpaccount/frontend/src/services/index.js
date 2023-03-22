@@ -37,3 +37,23 @@ export const getLoggedUserDataService = async ({ token }) => {
   console.log(json.data);
   return json.data;
 };
+
+
+export const getAccountsUserService = async({token}) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/accounts`,
+    {
+      headers: {
+        Authorization: token,
+      }
+    }
+  )
+
+  const json = response.json();
+  
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+  console.log(json.data);
+  return json.data;
+}

@@ -3,11 +3,10 @@ import { AuthContext } from "../context/AuthContext";
 import { News } from "./News";
 import { NewsContainer } from "./NewsContainer";
 
-
 export const NewsList = ({ news, setNews, control, setControl }) => {
   const [order, setOrder] = useState("createdAt");
   const [direction, setDirection] = useState("ASC");
-  const { loggeduser} = useContext(AuthContext);  
+  const { loggeduser } = useContext(AuthContext);
 
   const filterNews = (e) => {
     e.stopPropagation();
@@ -27,17 +26,18 @@ export const NewsList = ({ news, setNews, control, setControl }) => {
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
     }
-    
+
     setNews([...filteredNews]);
   };
-
 
   // Filtro de las noticias mejor valoradas del día de hoy
   const filterNewsBestVote = (e) => {
     const todayNews = news.filter((e) => {
       const day = new Date().toLocaleString().slice(0, 10);
-      let mySQLFormattedDate = new Date(e.createdAt).toLocaleString().slice(0, 10); 
-      return (mySQLFormattedDate) === day;
+      let mySQLFormattedDate = new Date(e.createdAt)
+        .toLocaleString()
+        .slice(0, 10);
+      return mySQLFormattedDate === day;
     });
     todayNews.sort((a, b) => b.totalVotes - a.totalVotes);
 
@@ -78,9 +78,9 @@ export const NewsList = ({ news, setNews, control, setControl }) => {
           <option value="ASC">Ascendente</option>
           <option value="DESC">Descendente</option>
         </select>
-      <button onClick={filterNews} className="filter">
-        Filtrar
-      </button>
+        <button onClick={filterNews} className="filter">
+          Filtrar
+        </button>
       </div>
       <button
         id="up"
@@ -95,11 +95,15 @@ export const NewsList = ({ news, setNews, control, setControl }) => {
         Volver arriba
       </button>
       {news ? (
-        <ul className="news-list filter">                    
+        <ul className="news-list filter">
           {news.map((singleNews) => {
             return (
               <li key={singleNews.id} className="single-news">
-                <News news={singleNews} control={control} setControl={setControl} />
+                <News
+                  news={singleNews}
+                  control={control}
+                  setControl={setControl}
+                />
               </li>
             );
           })}

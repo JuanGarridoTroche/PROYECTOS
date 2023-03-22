@@ -6,7 +6,7 @@ import("../css/Header.css");
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {logged, token, logout} = useContext(AuthContext);  
-  console.log(logged);
+  // console.log(logged);
   return (
     <header>
       <section className="brand-container">
