@@ -1,5 +1,4 @@
 import ("./css/Main.css")
-import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 // import {Accounts, CreateAccount, Footer, Header, Login, NotFound, Register } from "./pages"
 import { Home } from "./components/Home";
@@ -14,10 +13,7 @@ import { Register } from "./pages/Register";
 import ("./css/style.css")
 
 function App() {
-
-  useEffect(()=> {
-
-  }, [])
+ 
   return (
   <>
     <Header />
@@ -32,6 +28,7 @@ function App() {
         <Route path="/accounts" element={<Accounts/>}/>
         {/* Crear una cuenta nueva */}
         <Route path="/accounts/create" element={<CreateAccount/>}/>
+        {/* Página no encontrada */}
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </main>

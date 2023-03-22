@@ -17,7 +17,7 @@ export const Header = () => {
       </section>
       <section className={`menu-container nav-items ${isOpen && "open"}`} onClick={() => {
         setIsOpen(!isOpen);        
-      }}>
+        }}>
         <h3>Usuario</h3>
         <ul>
           <li>{token ? <Link to="/updateuserProfile">{logged}</Link> : null}</li>

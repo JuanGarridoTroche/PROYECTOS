@@ -4,27 +4,26 @@ import { AuthContext } from "../context/AuthContext";
 import { getAccountsUserService } from "../services";
 
 export const Accounts = () => {
-  const [myAccounts, setMyAccounts] = useState([]);
-  const { token } = useContext(AuthContext);
+  // const [myAccounts, setMyAccounts] = useState([]);
+  // const { token } = useContext(AuthContext);
 
-  useEffect(() => {
-    const getAccountsData = async () => {      
-      try {
-        const getAccounts = await getAccountsUserService({ token });
-        if (getAccounts) {
-          console.log(getAccounts);          
-          setMyAccounts(getAccounts);
-        }
+  // useEffect(() => {
+  //   const getAccountsData = async () => {      
+  //     try {
+  //       const getAccounts = await getAccountsUserService({ token });
+  //       if (getAccounts) {         
+  //         setMyAccounts(getAccounts);
+  //       }
 
-        myAccounts.map((account) => {
-          console.log(account.alias);
-        })
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-    getAccountsData();
-  }, [token]);
+  //       getAccounts.map((account) => {
+  //         console.log(account.alias);
+  //       })
+  //     } catch (error) {
+  //       alert(error.message);
+  //     }
+  //   };
+  //   getAccountsData();
+  // }, [token]);
 
   return (
     <section className="accounts-container">
@@ -37,7 +36,7 @@ export const Accounts = () => {
           <summary>
             <span>Mis</span>cuentas [6847,89 €]
           </summary>
-          {myAccounts.map((account) => {
+          {/* {myAccounts.map((account) => {
             return (
               <a href={`/user/accounts/${account.id}`} key={account.id}>
                 <section className="account-content">
@@ -49,7 +48,7 @@ export const Accounts = () => {
                 </section>
               </a>
             );
-          })}
+          })} */}
           {/* <a href="/account/1">
             <section className="account-content">
               <div className="data">
