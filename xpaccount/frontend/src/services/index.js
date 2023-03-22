@@ -30,11 +30,11 @@ export const getLoggedUserDataService = async ({ token }) => {
       },
     }
   );
-  const json = response.json();
+  const json = await response.json();
   if (!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  
   return json.data;
 };
 
@@ -49,11 +49,11 @@ export const getAccountsUserService = async({token}) => {
     }
   )
 
-  const json = response.json();
+  const json = await response.json();
   
   if(!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  
   return json.data;
 }

@@ -13,8 +13,7 @@ export const AuthProvidercomponent = ({ children }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const data = await getLoggedUserDataService({token});
-        console.log(data);
+        const data = await getLoggedUserDataService({token});        
         setLogged(data);
       } catch (error) {
         logout();
@@ -33,9 +32,7 @@ export const AuthProvidercomponent = ({ children }) => {
     setToken(null);
     setLogged(null);
   };
-
-  // console.log(logged);
-
+ 
   return (
     <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
       {children}

@@ -8,15 +8,22 @@ export const Accounts = () => {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const getAccountsData = async () => {
+    const getAccountsData = async () => {      
       try {
         const getAccounts = await getAccountsUserService({ token });
-        setMyAccounts(getAccounts);
+        if (getAccounts) {
+          console.log(getAccounts);          
+          setMyAccounts(getAccounts);
+        }
+
+        myAccounts.map((account) => {
+          console.log(account.alias);
+        })
       } catch (error) {
-        setMyAccounts(["Aún no existen cuentas creadas"]);
+        alert(error.message);
       }
     };
-    if (token) getAccountsData();
+    getAccountsData();
   }, [token]);
 
   return (
@@ -31,15 +38,17 @@ export const Accounts = () => {
             <span>Mis</span>cuentas [6847,89 €]
           </summary>
           {myAccounts.map((account) => {
-            return <a href={`/user/accounts/${account.id}`}>
-              <section className="account-content">
-                <div className="data">
-                  <h3>{account.alias}</h3>
-                  <p>{account.accountNumber}</p>
-                </div>
-                <p className="money"></p>
-              </section>
-            </a>;
+            return (
+              <a href={`/user/accounts/${account.id}`} key={account.id}>
+                <section className="account-content">
+                  <div className="data">
+                    <h3>{account.alias}</h3>
+                    <p>{account.accountNumber}</p>
+                  </div>
+                  <p className="money">3500 Eur</p>
+                </section>
+              </a>
+            );
           })}
           {/* <a href="/account/1">
             <section className="account-content">

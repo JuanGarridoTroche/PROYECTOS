@@ -17,8 +17,7 @@ export const News = ({ news, control, setControl }) => {
     if(element.idNews === news.id) {
       voted = element;
     }
-  });  
-
+  }); 
 }
 
 

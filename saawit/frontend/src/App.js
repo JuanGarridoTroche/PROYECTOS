@@ -20,7 +20,7 @@ import { RecoverPassword } from "./pages/RecoverPassword";
 
 function App() {
   const [news, setNews] = useState();
-  const [control, setControl] = useState(false);
+  const [control, setControl] = useState(false);  
 
   useEffect(() => {
     const loadNewsBySearch = async () => {
