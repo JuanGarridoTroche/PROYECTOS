@@ -13,7 +13,8 @@ export const AuthProvidercomponent = ({ children }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const data = await getLoggedUserDataService({token});        
+        const data = await getLoggedUserDataService(token); 
+        console.log(data);       
         setLogged(data);
       } catch (error) {
         logout();
@@ -21,17 +22,20 @@ export const AuthProvidercomponent = ({ children }) => {
     };
     if(token) getUserData();
   }, [token]);
-
+  
   const login = (token)=> {
     localStorage.setItem("tokenxp", token);
     setToken(token);
   }
-
+  
   const logout = () => {
     localStorage.removeItem("tokenxp");
     setToken(null);
     setLogged(null);
   };
+  
+  console.log(token);
+  console.log(logged);
  
   return (
     <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
