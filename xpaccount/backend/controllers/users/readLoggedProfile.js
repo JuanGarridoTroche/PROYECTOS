@@ -13,7 +13,7 @@ const readLoggedProfile = async (req, res, next) => {
     
     res.send({
       status: "ok",
-      message: "Perfil del usuario legueado",
+      message: "Perfil del usuario logueado",
       data: {
         username,
         email,

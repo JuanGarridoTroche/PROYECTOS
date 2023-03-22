@@ -6,6 +6,7 @@ import("../css/Header.css");
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {logged, token, logout} = useContext(AuthContext);  
+  console.log(logged);
   return (
     <header>
       <section className="brand-container">
@@ -17,9 +18,10 @@ export const Header = () => {
       <section className={`menu-container nav-items ${isOpen && "open"}`} onClick={() => {
         setIsOpen(!isOpen);        
       }}>
+        <h3>Usuario</h3>
         <ul>
-          <li>{token ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>
-          <li>Contacto</li>
+          <li>{token ? <Link to="/updateuserProfile">{logged}</Link> : null}</li>
+          <li>{token ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>          
           <li>{token ? <Link to="/" onClick={()=> {
             logout();
           }}>salir</Link> : <Link to="/user/register">regístrate</Link> }</li>

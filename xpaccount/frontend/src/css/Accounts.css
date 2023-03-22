@@ -6,55 +6,73 @@
   position: fixed;
   top: 70px;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
 }
 
-.accounts-container > .add-account {
+/** CREAR CUENTA - Start **/
+.accounts-container > .create-account {
   display: flex;
   align-items: center;
   background-color: white;
   width: 50%;
   margin-bottom: 20px;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
-.accounts-container > .add-account > img {
+.accounts-container > .create-account > img {
   width: 20px;
   height: 20px;
+  margin: 5px;
 }
 
-.accounts-container > .add-account > p {
-  display: inline-block;
+.accounts-container > .create-account > p {
   text-align: left;
-  padding-left: 5px;
+  padding: 5px;
+  color: black;
+  font-weight: 600;
+}
+/** CREAR CUENTA - End **/
+
+
+/** MIS CUENTAS - Start **/
+section.accounts-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .accounts-container > .accounts-content > .accounts-summary > summary > span {
 color: var(--color-brand);
 font-weight: 600;
+font-family: var(--font-title);
 }
 
 .accounts-summary > a {
   text-decoration: none;
 }
 
-.account-content {
+section.account-content {
   display: flex;
   justify-content: space-between;
   background-color: white;
   padding: 10px 0 0 20px;
-  width: 50%;
+  width: 95vw;
   border-radius: 5px;
   box-shadow: 1px 3px 13px var(--color-text);
   color: black;
   margin-top: 7px;
 }
 
-.account-content > div.data > p {
-  letter-spacing: .1rem;
+section.account-content > .accounts-summary {
+  width: 100%;
 }
 
-
-.account-content > .money {
+section.account-content > .money {
   text-align: end;
   padding: 10px 20px 0 0;
   font-size: 1.8rem;
@@ -62,6 +80,42 @@ font-weight: 600;
   color: black;
 }
 
+section.account-content > .data > p {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding: 5px 0 10px 0;
+}
+
+/** MIS CUENTAS - End **/
 
 
+@media(min-width: 700px) {
+  .accounts-container > .create-account {
+    width: 200px;
+  }
 
+  section.account-content {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px 0 0 20px;
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 1px 3px 13px var(--color-text);
+    color: black;
+    margin-top: 7px;
+  }
+
+  section.account-content > .money {
+    text-align: end;
+    padding: 10px 10px 0 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: black;
+  }
+
+  section.account-content > div.data > p {
+    letter-spacing: .1rem;
+  }
+
+}

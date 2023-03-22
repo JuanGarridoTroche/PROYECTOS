@@ -7,7 +7,7 @@ export const Accounts =()=> {
 
   return(
     <section className="accounts-container">
-      <a className="add-account" href="/accounts/create">
+      <a className="create-account" href="/accounts/create">
         <img src="/plus.svg"/> 
         <p>Crear cuenta</p>
       </a>

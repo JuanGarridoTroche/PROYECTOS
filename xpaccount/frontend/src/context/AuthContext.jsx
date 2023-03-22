@@ -33,6 +33,8 @@ export const AuthProvidercomponent = ({ children }) => {
     setLogged(null);
   };
 
+  console.log(logged);
+
   return (
     <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
       {children}
