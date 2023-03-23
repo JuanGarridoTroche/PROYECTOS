@@ -21,7 +21,7 @@ export const loginUserService = async ({ email, password }) => {
 
 // Servicio que nos facilita los datos del usuario logueado a partir de su token
 export const getLoggedUserDataService = async (token) => {
-  console.log(token);
+  
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/loggedProfile`,
     {
@@ -34,13 +34,13 @@ export const getLoggedUserDataService = async (token) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  
   return json.data;
 };
 
 
 export const getAccountsUserService = async(token) => {
-  console.log(token);
+
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/accounts`,
     {

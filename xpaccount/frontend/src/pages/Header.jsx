@@ -20,7 +20,7 @@ export const Header = () => {
         }}>
         <h3>Usuario</h3>
         <ul>
-          <li>{token && logged?.username ? <Link to="/updateuserProfile">{logged.username}</Link> : null}</li>
+          <li>{token && logged?.username ? <Link to="/updateUserProfile">{logged.username}</Link> : null}</li>
           <li>{token && logged ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>          
           <li>{token && logged ? <Link to="/" onClick={()=> {
             logout();

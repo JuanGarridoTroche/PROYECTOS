@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export const Home = () => {
-  const { logged } = useContext(AuthContext);
-  console.log(logged);
+  const { logged } = useContext(AuthContext);  
 
   return (
     <section className="section-main-container">
