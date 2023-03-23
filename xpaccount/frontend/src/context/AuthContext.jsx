@@ -13,7 +13,7 @@ export const AuthProvidercomponent = ({ children }) => {
   useEffect(() => {    
     const getUserData = async () => {
       try {
-        const data = await getLoggedUserDataService({token});                
+        const data = await getLoggedUserDataService(token);                
         setLogged(data);
       } catch (error) {
         logout();
@@ -23,12 +23,12 @@ export const AuthProvidercomponent = ({ children }) => {
   }, [token]);
   
   const login = (token)=> {
-    localStorage.setItem("token", token);
+    localStorage.setItem("tokenxp", token);
     setToken(token);
   }
   
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("tokenxp");
     setToken(null);
     setLogged(null);
   }; 

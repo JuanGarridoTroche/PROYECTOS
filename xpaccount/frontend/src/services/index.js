@@ -1,4 +1,4 @@
-// Servicio de login de usuario
+// Servicio de login de usuario. Devuelve un objeto con {token: ''}
 export const loginUserService = async ({ email, password }) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/login`,
@@ -15,14 +15,12 @@ export const loginUserService = async ({ email, password }) => {
 
   if (!response.ok) {
     throw new Error(json.message);
-  } 
-  console.log(json.data);
+  }   
   return json.data;
 };
 
 // Servicio que nos facilita los datos del usuario logueado a partir de su token
-export const getLoggedUserDataService = async ({token}) => {
-  console.log('Hola');
+export const getLoggedUserDataService = async (token) => {
   console.log(token);
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/loggedProfile`,
@@ -41,7 +39,8 @@ export const getLoggedUserDataService = async ({token}) => {
 };
 
 
-export const getAccountsUserService = async({token}) => {
+export const getAccountsUserService = async(token) => {
+  console.log(token);
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/accounts`,
     {
