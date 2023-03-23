@@ -37,7 +37,7 @@ export const Accounts = () => {
           <summary>
             <span>Mis</span>cuentas [6847,89 €]
           </summary>
-          {/* {myAccounts.map((account) => {
+          {myAccounts.map((account) => {
             return (
               <a href={`/user/accounts/${account.id}`} key={account.id}>
                 <section className="account-content">
@@ -49,16 +49,7 @@ export const Accounts = () => {
                 </section>
               </a>
             );
-          })} */}
-          {/* <a href="/account/1">
-            <section className="account-content">
-              <div className="data">
-                <h3>Cuenta de casa</h3>
-                <p>ES2100512345230123456789</p>
-              </div>
-              <p className="money">3500€</p>
-            </section>
-          </a> */}
+          })}
         </details>
       </section>
     </section>

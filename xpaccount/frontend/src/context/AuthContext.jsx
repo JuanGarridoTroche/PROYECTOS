@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 // Esta lógica de contexto nos permite envolver children (<App/>). Este contexto es una forma de mandar datos, funciones y valores entre componentes sin tener que pasar por todo el árbol de componentes.
 export const AuthProvidercomponent = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("tokenxp"));
   const [logged, setLogged] = useState(null);
   
 
