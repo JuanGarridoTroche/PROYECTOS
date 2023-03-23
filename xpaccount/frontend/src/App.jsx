@@ -1,4 +1,6 @@
 import ("./css/Main.css")
+import ("./css/style.css")
+
 import { Routes, Route } from "react-router-dom";
 // import {Accounts, CreateAccount, Footer, Header, Login, NotFound, Register } from "./pages"
 import { Home } from "./components/Home";
@@ -10,7 +12,6 @@ import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { Register } from "./pages/Register";
 
-import ("./css/style.css")
 
 function App() {
  

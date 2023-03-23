@@ -54,7 +54,7 @@ const loginUser = async (req, res, next) => {
     
     // Creamos el token
     const token = jwt.sign(tokenInfo, process.env.SECRET);
-    
+
     res.send({
       status: "ok",
       message: "Login realizado con éxito",
