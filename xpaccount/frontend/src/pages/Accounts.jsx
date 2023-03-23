@@ -17,7 +17,6 @@ export const Accounts = () => {
         }
 
         getAccounts.map((account) => {
-          console.log(account.alias);
         })
       } catch (error) {
         alert(error.message);

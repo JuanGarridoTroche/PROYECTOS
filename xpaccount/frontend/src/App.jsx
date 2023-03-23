@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 // import {Accounts, CreateAccount, Footer, Header, Login, NotFound, Register } from "./pages"
 import { Home } from "./components/Home";
 import { Accounts } from "./pages/Accounts";
-import { CreateAccount } from "./pages/createAccount";
+import { CreateAccount } from "./pages/CreateAccount";
 import { Footer } from "./pages/Footer";
 import { Header } from "./pages/Header";
 import { Login } from "./pages/Login";
