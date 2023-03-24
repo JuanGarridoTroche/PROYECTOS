@@ -1,0 +1,35 @@
+.loginForm label,
+.loginForm button {
+  display: block;
+}
+
+.loginForm label {
+  margin-bottom: 0.5rem;
+}
+
+.loginForm input {
+  margin-bottom: 2rem;
+  padding: 0.5rem 0.75rem;
+  width: 500px;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(136, 136, 136);
+  font-size: 1.1rem;
+}
+
+.loginForm input:focus {
+  outline: 1px solid black;
+}
+
+.loginForm button {
+  padding: 1rem 4rem;
+  background-color: white;
+  border: 1px solid rgb(136, 136, 136);
+  font-size: 1.1rem;
+  margin: 2rem auto;
+  border-radius: 0.25rem;
+}
+
+.loginForm button:hover {
+  background-color: black;
+  color: white;
+}

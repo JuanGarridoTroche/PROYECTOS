@@ -1,5 +1,6 @@
 import("../css/CreateAccount.css");
-import { useContext, useState, useSyncExternalStore } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "../components/Modal";
 import { AuthContext } from "../context/AuthContext";
 import { createAccountService } from "../services";
@@ -15,6 +16,7 @@ export const CreateAccount = () => {
   const [digitControl, setDigitControl] = useState("");
   const [number, setNumber] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export const CreateAccount = () => {
       await createAccountService({ data, token });
       setShowModal(true);
       e.target.reset();
-
+      navigate("/accounts")
       
     } catch (error) {
       setError(error.message);

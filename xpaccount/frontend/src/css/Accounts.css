@@ -73,7 +73,7 @@ section.account-content > .accounts-summary {
 }
 
 section.account-content > .data {
-  flex-basis: 80%;
+  flex-basis: 70%;
 }
 
 section.account-content > .money {
@@ -82,7 +82,7 @@ section.account-content > .money {
   font-size: 1.8rem;
   font-weight: 800;
   color: black;
-  flex-basis: 20%;
+  flex-basis: 30%;
 }
 
 section.account-content > .data > p {

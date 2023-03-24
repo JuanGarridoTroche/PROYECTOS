@@ -41,10 +41,10 @@ const sendMail = async (to, subject, text) => {
  * ######################
  */
 
-const generateError = (msg, status) => {
-  const err = new Error(msg);
-  err.statusCode = status;
-  return err;
+const generateError = (message, status) => {
+  const error = new Error(message);
+  error.statusCode = status;
+  return error;
 };
 
 

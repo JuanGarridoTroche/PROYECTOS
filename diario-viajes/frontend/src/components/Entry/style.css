@@ -1,0 +1,52 @@
+.entry {
+  border: 1px solid rgb(136, 136, 136);
+  padding: 1rem;
+  width: 700px;
+  background-color: white;
+}
+
+.entry:hover {
+  border: 1px solid black;
+}
+
+.entry h3::first-letter,
+.entry p::first-letter {
+  text-transform: capitalize;
+}
+
+.entry h3 {
+  margin-bottom: 0.25rem;
+}
+
+.entry h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: normal;
+  color: rgb(39, 39, 39);
+}
+
+.entry h4,
+.entry > p {
+  margin-bottom: 1rem;
+}
+
+.entry > footer {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.entryVotes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.entryDateAuthor {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.entryDateAuthor span {
+  font-weight: bold;
+}

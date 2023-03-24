@@ -9,9 +9,9 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {login} = useContext(AuthContext);
   
   const handleSubmit = async(e) => {
-    const {login} = useContext(AuthContext);
     e.preventDefault();
     setError("");
 

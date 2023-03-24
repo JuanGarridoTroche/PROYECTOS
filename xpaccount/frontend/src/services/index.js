@@ -113,3 +113,23 @@ export const registerUserService = async (data) => {
   console.log(json.data);
   return json.data;
 };
+
+export const validateUserService = async (registrationCode) => {
+  
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/user/register/validate/${registrationCode}`,
+    {
+      method: "PUT",
+    }
+  );
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error("Error en la validación de un nuevo usuario: ", json.message)
+  }
+
+  return json.data;
+};

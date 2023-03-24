@@ -19,17 +19,24 @@ function App() {
     <Header />
     <main>      
       <Routes>
+        {/* Inicio */}
         <Route path="/" element={<Home/>}/>
+
         {/* Login de usuario */}
         <Route path="/login" element={<Login/>} />
+
         {/* Regsitro de usuario */}
         <Route path="/register" element={<Register />} />
+
         {/* Validar una nueva cuenta de usuario  */}
         <Route path="/register/validate/:registrationCode" element={<ValidateUSer/>}/>
+
         {/* Mostrar las cuentas de un usuario registrado */}
         <Route path="/accounts" element={<Accounts/>}/>
+
         {/* Crear una cuenta nueva */}
         <Route path="/accounts/create" element={<CreateAccount/>}/>
+        
         {/* Página no encontrada */}
         <Route path="*" element={<NotFound/>}/>
       </Routes>

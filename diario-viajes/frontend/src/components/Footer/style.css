@@ -1,0 +1,7 @@
+#root > footer {
+  text-align: center;
+  padding: 1rem 4rem;
+  font-style: italic;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 20%);
+  background-color: white;
+}

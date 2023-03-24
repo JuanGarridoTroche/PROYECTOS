@@ -1,23 +1,28 @@
 
 import("../css/Accounts.css");
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { getAccountsUserService } from "../services";
 
 export const Accounts = () => {
   const [myAccounts, setMyAccounts] = useState([]);
   const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getAccountsData = async () => {      
       try {
+        if(!token) {
+          navigate("/")
+        };
         const getAccounts = await getAccountsUserService(token);
         if (getAccounts) {         
           setMyAccounts(getAccounts);
         }
 
-        getAccounts.map((account) => {
-        })
+        // getAccounts.map((account) => {
+        // })
       } catch (error) {
         alert(error.message);
       }
