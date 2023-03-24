@@ -58,3 +58,20 @@ export const getAccountsUserService = async(token) => {
   
   return json.data;
 }
+
+export const createAccountService = async({token, alias, bankName, ibanCode, entityCode, officeCode, digitControl, number})=> {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account`,
+      {
+        headers: {
+          Authorization: token,
+        }
+    }
+    )
+    const json = await response.json();
+    if(!response.ok) {
+      throw new Error(json.message)
+    }
+
+    return json.data;
+}

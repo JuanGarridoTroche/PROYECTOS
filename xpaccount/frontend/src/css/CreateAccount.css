@@ -1,8 +1,76 @@
 section.create-account-container {
+  width: 90vw;
+  height: 80vh;
+  background-color: white;
+  border-radius: 4px;
+  text-align: left;
+  padding: 0 20px;
+  font-family: var(--font-ibm);
+  font-weight: 300;
+  color: #1C1C1C;
+  margin-top: 10px;
+  box-shadow: 1px 3px 13px black;
+}
+
+section.create-account-container > .error {
+  color: red;
+  font-style: italic;
+  font-weight: 600;
+}
+
+section.create-account-container > create-account-form {
+  height: 90vh;
+}
+
+section.create-account-container > form.create-account-form > fieldset {
+  border: none;  
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  
-  
+  padding-bottom: 15px;
 }
+
+section.create-account-container > form.create-account-form >fieldset > label.summary-field {
+  font-size: 1.2rem;
+  color: grey;
+  padding-top: 0;
+}
+
+section.create-account-container > form.create-account-form input {  
+  padding: 10px;
+  border: 1px  solid rgb(155, 155, 155);
+  border-radius: 4px;  
+  width: 100%;
+  max-width: 220px;
+}
+
+.create-account-container > .create-account-form .account > input {
+  font-size: 1.1rem;
+}
+
+.create-account-container > .create-account-form .account > .iban-code {  
+  max-width: 48px;
+}
+.create-account-container > .create-account-form .account > .entity-code {
+  max-width: 48px
+}
+
+.create-account-container > .create-account-form .account > .office-code {
+  max-width: 48px;
+}
+
+.create-account-container > .create-account-form .account > .digit-control {
+  max-width: 35px;
+}
+
+.create-account-container > .create-account-form .account > .account-number {
+  max-width: 90px;
+}
+
+.create-account-container > .create-account-form  button {
+  background-color: var(--color-brand);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
