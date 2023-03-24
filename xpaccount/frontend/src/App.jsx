@@ -2,7 +2,6 @@ import ("./css/Main.css")
 import ("./css/style.css")
 
 import { Routes, Route } from "react-router-dom";
-// import {Accounts, CreateAccount, Footer, Header, Login, NotFound, Register } from "./pages"
 import { Home } from "./components/Home";
 import { Accounts } from "./pages/Accounts";
 import { CreateAccount } from "./pages/CreateAccount";
@@ -11,7 +10,7 @@ import { Header } from "./pages/Header";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { Register } from "./pages/Register";
-
+import { ValidateUSer } from "./pages/ValidateUser";
 
 function App() {
  
@@ -25,6 +24,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         {/* Regsitro de usuario */}
         <Route path="/register" element={<Register />} />
+        {/* Validar una nueva cuenta de usuario  */}
+        <Route path="/register/validate/:registrationCode" element={<ValidateUSer/>}/>
         {/* Mostrar las cuentas de un usuario registrado */}
         <Route path="/accounts" element={<Accounts/>}/>
         {/* Crear una cuenta nueva */}

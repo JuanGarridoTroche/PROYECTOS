@@ -1,0 +1,73 @@
+.register-container {
+  width: 90vw;
+  height: 50%;
+  background-color: white;
+  border-radius: 4px;
+  text-align: left;
+  padding: 0 20px;
+  font-family: var(--font-ibm);
+  font-weight: 300;
+  color: #1C1C1C;
+  margin-top: 10px;
+  box-shadow: 1px 3px 13px black;
+  margin-bottom: 70px;
+}
+
+
+.register-container > h2 {
+  padding: 30px 0;
+}
+
+.register-container > .error {
+  color: red;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.register-container > .register-form fieldset {
+  border: none;  
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+
+.register-container > .register-form fieldset  .summary-field {
+  font-size: 1.2rem;
+  color: grey;
+  padding-top: 0;
+}
+
+.register-container > .register-form input {  
+  padding: 10px;
+  border: 1px  solid rgb(155, 155, 155);
+  border-radius: 4px;  
+  width: 100%;
+  max-width: 240px;
+}
+
+
+
+.register-container > .register-form > button {
+  background-color: var(--color-brand);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+@media(min-width: 700px) {
+  .register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 70px;
+    width: 98%;
+  }
+
+  .register-container > .register-form > .data {
+    display: flex;
+    gap: 3rem;
+  }
+}

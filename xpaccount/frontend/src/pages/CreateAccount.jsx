@@ -38,7 +38,7 @@ export const CreateAccount = () => {
       <form className="create-account-form" onSubmit={handleSubmit}>
         <fieldset>
           <h3>Alias</h3>
-          <label htmlFor="alias" className="summary-field">
+          <label htmlFor="alias" className="alias">
             Escribe un nombre (alias) para tu nueva cuenta
           </label>
           <input

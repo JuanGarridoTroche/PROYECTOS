@@ -156,7 +156,7 @@ const registerUser = async (req, res, next) => {
     ¡Bienvenid@ ${username}!
 
     Por favor, Activa tu usuario a través del siguiente enlace: 
-    <a href="${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/user/register/validate/${registrationCode}">Verificar</a>
+    <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/register/validate/${registrationCode}">Verificar</a>
     `;
 
     // Enviamos un email de verificación al usuario.

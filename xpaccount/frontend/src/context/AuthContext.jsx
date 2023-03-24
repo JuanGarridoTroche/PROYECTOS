@@ -14,7 +14,7 @@ export const AuthProvidercomponent = ({ children }) => {
     const getUserData = async () => {
       try {
         const data = await getLoggedUserDataService(token);                
-        setLogged(data);
+        setLogged(data);        
       } catch (error) {
         logout();
       }

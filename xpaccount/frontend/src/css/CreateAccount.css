@@ -22,10 +22,6 @@ section.create-account-container > .error {
   font-weight: 600;
 }
 
-section.create-account-container > create-account-form {
-  height: 90vh;
-}
-
 section.create-account-container > form.create-account-form > fieldset {
   border: none;  
   display: flex;

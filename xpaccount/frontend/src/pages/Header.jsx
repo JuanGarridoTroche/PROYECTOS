@@ -24,7 +24,7 @@ export const Header = () => {
           <li>{token && logged ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>          
           <li>{token && logged ? <Link to="/" onClick={()=> {
             logout();
-          }}>salir</Link> : <Link to="/user/register">regístrate</Link> }</li>
+          }}>salir</Link> : <Link to="/register">regístrate</Link> }</li>
         </ul>
       </section>
       <section className={`hamburger-container nav-toggle ${isOpen && "open"}`} onClick={() => {

@@ -8,10 +8,10 @@ export const Login = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login} = useContext(AuthContext);
   const navigate = useNavigate();
-
+  
   const handleSubmit = async(e) => {
+    const {login} = useContext(AuthContext);
     e.preventDefault();
     setError("");
 
