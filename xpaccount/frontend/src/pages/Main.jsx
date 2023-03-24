@@ -10,6 +10,7 @@ export const Main =()=> {
 
   return (
     <>
+      
       {!page ? <Home /> : null}
     </>
       )

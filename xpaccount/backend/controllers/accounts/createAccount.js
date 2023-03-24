@@ -7,6 +7,9 @@ const createAccount = async (req, res, next) => {
     const {alias, bankName, ibanCode, entityCode, officeCode, digitControl, number} = req.body;
     const idUser = req.user.id;
 
+    console.log("Datos del body: ", alias, bankName, ibanCode, entityCode, officeCode, digitControl, number);
+    console.log("idUser: ", idUser);
+
     if (
       ibanCode.length !== 4 ||
       entityCode.length !== 4 ||
