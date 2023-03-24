@@ -12,6 +12,10 @@ section.create-account-container {
   box-shadow: 1px 3px 13px black;
 }
 
+section.create-account-container > h2 {
+  padding: 30px 0;
+}
+
 section.create-account-container > .error {
   color: red;
   font-style: italic;

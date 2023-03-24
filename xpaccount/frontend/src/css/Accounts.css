@@ -72,18 +72,24 @@ section.account-content > .accounts-summary {
   width: 100%;
 }
 
+section.account-content > .data {
+  flex-basis: 80%;
+}
+
 section.account-content > .money {
   text-align: end;
   padding: 10px 20px 0 0;
   font-size: 1.8rem;
   font-weight: 800;
   color: black;
+  flex-basis: 20%;
 }
 
 section.account-content > .data > p {
   padding-top: 10px;
   padding-bottom: 5px;
   padding: 5px 0 10px 0;
+  text-align: left;
 }
 
 /** MIS CUENTAS - End **/

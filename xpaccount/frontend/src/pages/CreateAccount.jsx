@@ -1,5 +1,6 @@
 import("../css/CreateAccount.css");
-import { useContext, useState } from "react";
+import { useContext, useState, useSyncExternalStore } from "react";
+import { Modal } from "../components/Modal";
 import { AuthContext } from "../context/AuthContext";
 import { createAccountService } from "../services";
 
@@ -13,6 +14,7 @@ export const CreateAccount = () => {
   const [officeCode, setOfficeCode] =useState("");
   const [digitControl, setDigitControl] = useState("");
   const [number, setNumber] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +22,9 @@ export const CreateAccount = () => {
     try {
       const data = {alias, bankName, ibanCode, entityCode, officeCode, digitControl, number};
       await createAccountService({ data, token });
+      setShowModal(true);
       e.target.reset();
-      
+
       
     } catch (error) {
       setError(error.message);
@@ -30,7 +33,7 @@ export const CreateAccount = () => {
 
   return (
     <section className="create-account-container">
-      <h2>Crear una cuenta nueva</h2>
+      <h2><span>Crear una cuenta</span></h2>
       {error ? <label className="error">{error}</label> : null}
       <form className="create-account-form" onSubmit={handleSubmit}>
         <fieldset>
@@ -129,6 +132,11 @@ export const CreateAccount = () => {
         </fieldset>
         <button>Crear cuenta</button>
       </form>
+      {showModal && (
+        <Modal setShowModal={setShowModal}>
+          Cuenta creada!
+        </Modal>
+      )}
     </section>
   );
 };
