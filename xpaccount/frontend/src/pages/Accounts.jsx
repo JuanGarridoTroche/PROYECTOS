@@ -43,7 +43,7 @@ export const Accounts = () => {
           </summary>
           {myAccounts.map((account) => {
             return (
-              <a href={`/user/accounts/${account.id}`} key={account.id}>
+              <a href={`/account/${account.id}`} key={account.id}>
                 <section className="account-content">
                   <div className="data">
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>

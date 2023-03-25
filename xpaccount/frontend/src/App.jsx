@@ -9,6 +9,7 @@ import { Footer } from "./pages/Footer";
 import { Header } from "./pages/Header";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
+import { ReadEntries } from "./pages/ReadEntries";
 import { Register } from "./pages/Register";
 import { UserProfile } from "./pages/UserProfile";
 import { ValidateUSer } from "./pages/ValidateUser";
@@ -42,7 +43,7 @@ function App() {
         <Route path="/accounts/create" element={<CreateAccount/>}/>
 
         {/* Acceder a los asientos bancarios de una cuenta */}
-        {/* <Route path="/user/account/2" element={}/> */}
+        <Route path="/account/:idAccount" element={<ReadEntries/>}/>
         
         {/* Página no encontrada */}
         <Route path="*" element={<NotFound/>}/>

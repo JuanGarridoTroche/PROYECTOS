@@ -1,3 +1,4 @@
+import "../css/ValidateUser.css";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Modal } from "../components/Modal";
@@ -29,7 +30,6 @@ export const ValidateUSer = () => {
       {showModal && (
         <Modal setShowModal={setShowModal}>
           Cuenta activa!
-          {validate.error}
         </Modal>
       )}
     </section>

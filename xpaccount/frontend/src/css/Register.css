@@ -61,9 +61,9 @@
   .register-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 70px;
-    width: 98%;
+    max-width: 800px;
   }
 
   .register-container > .register-form > .data {
