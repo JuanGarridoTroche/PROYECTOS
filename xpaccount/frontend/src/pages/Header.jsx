@@ -7,6 +7,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {logged, token, logout} = useContext(AuthContext);  
   // console.log(logged);
+  
   return (
     <header>
       <section className="brand-container">
@@ -20,11 +21,28 @@ export const Header = () => {
         }}>
         <h3>Usuario</h3>
         <ul>
-          <li>{token && logged?.username ? <Link to="/updateUserProfile">{logged.username}</Link> : null}</li>
+          {token && logged?.username ?
+          (
+            <>
+              <li><Link to="/user/profile">{logged.username}</Link></li>
+              <li><Link to="/accounts"><span>mis</span>cuentas</Link></li> 
+              <li><Link to="/" onClick={()=> {
+                logout();
+              }}>salir</Link></li>
+            </>
+          ): (
+            <>
+              <li><Link to="/login">login</Link></li>
+              <li><Link to="/register">regístrate</Link></li>
+            </>
+          )
+
+          }
+          {/* <li>{token && logged?.username ? <Link to="/user/profile">{logged.username}</Link> : null}</li>
           <li>{token && logged ? <Link to="/accounts"><span>mis</span>cuentas</Link> : <Link to="/login">login</Link> }</li>          
           <li>{token && logged ? <Link to="/" onClick={()=> {
             logout();
-          }}>salir</Link> : <Link to="/register">regístrate</Link> }</li>
+          }}>salir</Link> : <Link to="/register">regístrate</Link> }</li> */}
         </ul>
       </section>
       <section className={`hamburger-container nav-toggle ${isOpen && "open"}`} onClick={() => {

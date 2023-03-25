@@ -7,7 +7,7 @@ const selectUserByIdQuery = async (id) => {
     connection = await getConnection();
     const [users] = await connection.query(
       `
-    SELECT id, username, email, password, birthday, firstName, lastName, dni, active, createdAt, modifiedAt FROM users WHERE id = ?`,
+    SELECT id, username, email, birthday, firstName, lastName, dni, active, createdAt, modifiedAt FROM users WHERE id = ?`,
       [id]
     );    
     

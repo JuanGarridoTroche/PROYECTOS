@@ -1,0 +1,11 @@
+
+.user-profile-container, .user-profile-form, .onlyread-data, .update-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+

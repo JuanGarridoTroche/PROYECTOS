@@ -8,23 +8,13 @@ const readLoggedProfile = async (req, res, next) => {
     }
 
     // Seleccionamos los datos del usuario logueado
-    const user = await selectUserByIdQuery(req.user.id);
-    const {username, email, birthday, firstName, lastName, dni, active, createdAt, modifiedAt} = user;
+    const data = await selectUserByIdQuery(req.user.id);
+    // const {username, email, birthday, firstName, lastName, dni, active, createdAt, modifiedAt} = user;
     
     res.send({
       status: "ok",
       message: "Perfil del usuario logueado",
-      data: {
-        username,
-        email,
-        birthday,
-        firstName,
-        lastName,
-        dni,
-        active,
-        createdAt,
-        modifiedAt,
-      },
+      data,      
     });
   } catch (err) {
     next(err);

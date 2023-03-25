@@ -10,6 +10,7 @@ import { Header } from "./pages/Header";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { Register } from "./pages/Register";
+import { UserProfile } from "./pages/UserProfile";
 import { ValidateUSer } from "./pages/ValidateUser";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
 
         {/* Validar una nueva cuenta de usuario  */}
         <Route path="/register/validate/:registrationCode" element={<ValidateUSer/>}/>
+
+        {/* Actualizar perfil de usuario */}
+        <Route path="/user/profile" element={<UserProfile/>}/>
 
         {/* Mostrar las cuentas de un usuario registrado */}
         <Route path="/accounts" element={<Accounts/>}/>

@@ -10,16 +10,15 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 30px;
 }
 
 @media(min-width: 700px) {
   main {
     background-position: left top;
-    background-size: contain;    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-size: contain; 
+    position: relative;
+    top: 60px;
   }
 }
 
