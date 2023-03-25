@@ -28,6 +28,7 @@ const {
   validateUser,
   readLoggedProfile,
   getUserAccounts,
+  updateUserProfile,
 } = require("./controllers/users");
 
 //Login de usuario
@@ -41,6 +42,9 @@ app.put("/user/register/validate/:registrationCode", validateUser);
 
 // Ver el perfil de usuario logged
 app.get("/user/loggedProfile", isAuth, readLoggedProfile);
+
+// Editar el perfil de usuario
+app.put("/user/updateProfile", isAuth, updateUserProfile);
 
 // Consultar las cuentas pertenecientes a un usuario
 app.get("/user/accounts", isAuth, getUserAccounts)

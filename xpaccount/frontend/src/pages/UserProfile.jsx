@@ -11,7 +11,8 @@ export const UserProfile = () => {
   const [lastName, setLastName] = useState(logged?.lastName);
   const [dni, setDni] = useState(logged?.dni);
 
-  const handleSubmit = ()=>{
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
     const data = {username, email, birthday, firstName, lastName, dni};
     console.log(data);
   }

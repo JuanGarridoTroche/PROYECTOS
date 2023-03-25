@@ -123,7 +123,7 @@ const registerUser = async (req, res, next) => {
       //Calcular la letra del DNI y validarlo:
       validDni.push(validDni[0] % 23);
       if (validDni[1] !== validLetters[validDni[2]]) {
-        throw generateError("Introduzca un DNI válido, letra inventada", 400);
+        throw generateError("Introduzca un DNI válido", 400);
       }
     };
     
