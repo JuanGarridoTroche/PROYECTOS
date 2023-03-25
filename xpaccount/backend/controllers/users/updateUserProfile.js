@@ -81,6 +81,18 @@ const updateUserProfile = async (req, res, next) => {
       dni ? validateDni() : dni = null;
   
     }
+
+    
+    // El formato de fecha tiene que ser tipo UNIX: se define como la cantidad de segundos transcurridos desde la medianoche UTC del 1 de enero de 1970, sin contar segundos intercalares.
+    if(birthday) {
+      const schemaBirthday = joi.date();
+      const validationBirthday = schemaBirthday.validate(new Date(birthday.split("/",3).reverse().join("/")).getTime())
+      if(validationBirthday.error) {
+        throw generateError("La fecha introducida no es una fecha válida. Debe ser dd/mm/aaaa", 403)
+      }
+    }
+
+
     let birth = new Date();
 
     if(!birthday){
