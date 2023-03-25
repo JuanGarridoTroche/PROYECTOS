@@ -45,6 +45,8 @@ export const getLoggedUserDataService = async (token) => {
   return json.data;
 };
 
+
+// Obtenemos todas las cuentas creadas por el usuario logueado
 export const getAccountsUserService = async (token) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -69,6 +71,8 @@ export const getAccountsUserService = async (token) => {
   return json.data;
 };
 
+
+// Crear una cuenta
 export const createAccountService = async ({ token, data }) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -91,6 +95,8 @@ export const createAccountService = async ({ token, data }) => {
   return json.data;
 };
 
+
+// Crear un nuevo usuario
 export const registerUserService = async (data) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -114,6 +120,8 @@ export const registerUserService = async (data) => {
   return json.data;
 };
 
+
+// Validar el usuario creado con el código de registro llegado al correo y activándolo 
 export const validateUserService = async (registrationCode) => {
   
   const response = await fetch(
@@ -133,3 +141,28 @@ export const validateUserService = async (registrationCode) => {
 
   return json.data;
 };
+
+
+// Actualizar el perfil de usuario
+export const updateUserProfileService = async({token, data})=> {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/updateProfile`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error("Error al actualizar el perfil de usuario: ", json.message);
+  }
+
+  return json.data;
+}
+    
