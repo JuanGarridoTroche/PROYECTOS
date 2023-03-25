@@ -11,7 +11,6 @@ const updateUserProfile = async (req, res, next) => {
 
     // Obtenemos los datos originales de la BBDD
     const originalData = await selectUserByIdQuery(idUser);
-    console.log(originalData);
 
     if(!originalData) {
       throw generateError("El usuario no existe", 404);

@@ -59,6 +59,7 @@ const {
   createAccount,
   updateAccount,
   deleteAccount,
+  readAccountEntries,
 } = require("./controllers/accounts");
 // Crear una cuenta nueva
 app.post("/account", isAuth, createAccount);
@@ -68,6 +69,9 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
+
+// Mostrar todos los asientos de una cuenta
+app.get("/account/:idAccount", isAuth, readAccountEntries)
 
 
 /*

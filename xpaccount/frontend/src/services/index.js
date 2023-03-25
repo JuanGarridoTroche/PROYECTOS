@@ -13,10 +13,10 @@ export const loginUserService = async ({ email, password }) => {
     }
   );
 
-  const json = await response.json();
+  const json = await response.json(); 
 
   if (!response.ok) {
-    throw new Error("Error al hacer login: ", json.message);
+    throw new Error(json.message);
   }
   return json.data;
 };
@@ -36,15 +36,11 @@ export const getLoggedUserDataService = async (token) => {
 
   const json = await response.json();
   if (!response.ok) {
-    throw new Error(
-      "Error al conseguir los datos del usuario loggueado: ",
-      json.message
-    );
+    throw new Error(json.message);
   }
 
   return json.data;
 };
-
 
 // Obtenemos todas las cuentas creadas por el usuario logueado
 export const getAccountsUserService = async (token) => {
@@ -62,15 +58,11 @@ export const getAccountsUserService = async (token) => {
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(
-      "Error al conseguir las cuentas del usuario: ",
-      json.message
-    );
+    throw new Error(json.message);
   }
 
   return json.data;
 };
-
 
 // Crear una cuenta
 export const createAccountService = async ({ token, data }) => {
@@ -89,12 +81,11 @@ export const createAccountService = async ({ token, data }) => {
   );
   const json = await response.json();
   if (!response.ok) {
-    throw new Error("Error al crear una cuenta: ", json.message);
+    throw new Error(json.message);
   }
 
   return json.data;
 };
-
 
 // Crear un nuevo usuario
 export const registerUserService = async (data) => {
@@ -113,17 +104,15 @@ export const registerUserService = async (data) => {
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error("Error de registro de usuario: ", json.message);
+    throw new Error(json.message);
   }
 
   console.log(json.data);
   return json.data;
 };
 
-
-// Validar el usuario creado con el código de registro llegado al correo y activándolo 
+// Validar el usuario creado con el código de registro llegado al correo y activándolo
 export const validateUserService = async (registrationCode) => {
-  
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -135,18 +124,19 @@ export const validateUserService = async (registrationCode) => {
 
   const json = await response.json();
 
-  if(!response.ok) {
-    throw new Error("Error en la validación de un nuevo usuario: ", json.message)
+  if (!response.ok) {
+    throw new Error(json.message);
   }
 
   return json.data;
 };
 
-
 // Actualizar el perfil de usuario
-export const updateUserProfileService = async({token, data})=> {
+export const updateUserProfileService = async ({ token, data }) => {
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/user/updateProfile`,
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/user/updateProfile`,
     {
       method: "PUT",
       headers: {
@@ -155,14 +145,13 @@ export const updateUserProfileService = async({token, data})=> {
       },
       body: JSON.stringify(data),
     }
-  )
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
-    throw new Error("Error al actualizar el perfil de usuario: ", json.message);
+  if (!response.ok) {
+    throw new Error(json.message);
   }
 
   return json.data;
-}
-    
+};

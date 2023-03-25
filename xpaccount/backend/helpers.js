@@ -42,9 +42,9 @@ const sendMail = async (to, subject, text) => {
  */
 
 const generateError = (message, status) => {
-  const error = new Error(message);
-  error.statusCode = status;
-  return error;
+  const err = new Error(message);
+  err.statusCode = status;
+  return err;
 };
 
 

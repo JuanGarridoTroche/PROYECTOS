@@ -18,13 +18,13 @@ const loginUser = async (req, res, next) => {
     const validationEmail = schemaEmail.validate(email);
 
     if (validationEmail.error || validationEmail === null) {
-      throw generateError(validationEmail.error.message);
+      throw generateError(validationEmail.error.message, 400);
     }
 
     // Comprobamos que existe ese usuario en nuestra BBDD registrado.
     const user = await selectUserByEmailQuery(email);   
 
-    if (user.length < 1) {
+    if (!user) {
       throw generateError("Email y/o contraseña inválidos", 404);
     }    
 

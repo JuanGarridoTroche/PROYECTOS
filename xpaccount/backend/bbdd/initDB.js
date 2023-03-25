@@ -77,8 +77,8 @@ const initDB = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS categories (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idUser INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idUser) REFERENCES users(id),	
+        idAccount INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idAccount) REFERENCES accounts(id),	
         name VARCHAR(100) NOT NULL,
         comment VARCHAR(200),
         createdAt TIMESTAMP NOT NULL,
@@ -110,7 +110,7 @@ const initDB = async () => {
     await connection.query(
       `
                 INSERT INTO users (username, email, password, active, createdAt)
-                VALUES ('admin', 'juan@darthvader.es', ?, true, ?)
+                VALUES ('admin', 'admin@admin.com', ?, true, ?)
             `,
       [adminPass, new Date()]
     );
