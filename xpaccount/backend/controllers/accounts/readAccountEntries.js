@@ -3,12 +3,15 @@ const selectEntriesByIdAccountQuery = require("../../bbdd/queries/accounts/selec
 const readAccountEntries = async (req, res, next) => {
   try {
     const {idAccount} = req.params;
+    console.log("idAccount: ", idAccount);
+
+    // Seleccionamos todos los asientos bancarios de la cuenta con idAccount
     const entries = await selectEntriesByIdAccountQuery(idAccount);
 
 
     res.send({
-      status: "Ok",
-      message: `Asientos bancarios de la cuenta ${idAccount}`,
+      status: "ok",
+      message: `Asientos bancarios de la cuenta con id ${idAccount}`,
       data: entries,
     })
     

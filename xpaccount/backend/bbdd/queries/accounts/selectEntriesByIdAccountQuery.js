@@ -7,10 +7,10 @@ const selectEntriesByIdAccountQuery = async (idAccount) => {
     connection = await getConnection();
     const [entries] = await connection.query(
       `
-    SELECT id, idAccount, category, subcategory, amount, concept, comment, createdAt, modifiedAt FROM entries WHERE idAccount = ?`,
+    SELECT id, idAccount, dateEntry, category, subcategory, amount, concept, comment, createdAt, modifiedAt FROM entries WHERE idAccount = ?`,
     [idAccount]
     );
-    console.log(entries);
+    
     return entries;
   } finally {
     if (connection) connection.release();

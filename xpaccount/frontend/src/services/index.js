@@ -13,7 +13,7 @@ export const loginUserService = async ({ email, password }) => {
     }
   );
 
-  const json = await response.json(); 
+  const json = await response.json();
 
   if (!response.ok) {
     throw new Error(json.message);
@@ -156,25 +156,27 @@ export const updateUserProfileService = async ({ token, data }) => {
   return json.data;
 };
 
-
 // Leer los asientos bancarios de una cuenta
-export const readEntriesByAccountService = async({idAccount}) => {
+export const readEntriesByAccountService = async ({idAccount, token}) => {
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}`,
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}`,
     {
       method: "GET",
       headers: {
         Authorization: token,
       },
     }
-  )
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
-    throw new Error(json.message)
-  }
-  console.log(json.data);
+  if (!response.ok) {
+    throw new Error(json.message);
+  }  
 
   return json.data;
-}
+};
+
+

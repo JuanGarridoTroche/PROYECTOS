@@ -78,6 +78,7 @@ const initDB = async () => {
       CREATE TABLE IF NOT EXISTS categories (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         idAccount INT UNSIGNED NOT NULL,
+        dateEntry TIMESTAMP NOT NULL,
         FOREIGN KEY (idAccount) REFERENCES accounts(id),	
         name VARCHAR(100) NOT NULL,
         comment VARCHAR(200),
