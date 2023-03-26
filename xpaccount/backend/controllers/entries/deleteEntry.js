@@ -14,7 +14,7 @@ const deleteEntry = async (req, res, next) => {
 
     if(!myEntry) {throw generateError("El asiento bancario seleccionado no existe", 404)}
 
-    if(myEntry.idAccount !== idAccount) {
+    if(myEntry.idAccount !== parseInt(idAccount)) {
       throw generateError("La cuenta no es correcta. Por favor, revisa los datos", 404)
     }
 

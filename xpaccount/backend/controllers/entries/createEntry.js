@@ -35,7 +35,7 @@ const createEntry = async (req, res, next) => {
     if(!validatingSubcat) {throw generateError("La subcategoría no existe", 404)}
 
     // Validamos el importe. Máximo 9 dígitos (incluidos los 2 decimales de precisión)
-    const schemaAmount = joi.number().max(9);
+    const schemaAmount = joi.number().less(999999999).precision(2).required();
     const validationAmount = schemaAmount.validate(amount);
     if(validationAmount.error || validationAmount === null) {
       throw generateError("el importe no es una cantidad válida", 403)

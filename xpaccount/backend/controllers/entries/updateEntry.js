@@ -20,6 +20,10 @@ const updateEntry = async (req, res, next) => {
       throw generateError("La cuenta no existe", 404);
     }
 
+    if(!category || !subcategory || !amount) {
+      throw generateError("La categoría, subcategoría o cantidad no pueden quedar vacíos", 403)
+    }
+
     // Son 2 valores que coexisten. Tienen que existir ambos a la hora de actualizar el dato
     if (category && subcategory) {
       const validatingCat = await selectCategoriesByIdUserQuery(
@@ -41,7 +45,7 @@ const updateEntry = async (req, res, next) => {
 
     if (amount) {
       // Validamos el importe. Máximo 9 dígitos (incluidos los 2 decimales de precisión)
-      const schemaAmount = joi.number().max(9).precision(2);
+      const schemaAmount = joi.number().less(999999999).precision(2).required();
       const validationAmount = schemaAmount.validate(amount);
       if (validationAmount.error || validationAmount === null) {
         throw generateError("el importe no es una cantidad válida", 403);
