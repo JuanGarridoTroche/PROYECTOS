@@ -1,0 +1,39 @@
+.entries-table {
+  background-color: white;
+  padding: 0 0px 20px 0px;
+  border-radius: 5px;
+  width: 98vw;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.concept, .comment {
+  display: none;
+}
+
+.table-header {
+  background-color: var(--color-brand);
+  color: white;
+  font-size: 1rem;
+}
+
+.tr-entries:nth-child(even) {
+  background-color: var(--color-bg);
+}
+
+.tr-entries:nth-child(odd) {
+  background-color: white;
+}
+
+.tr-new-entry > td > input {
+  width: 100%;
+  padding: 5px;
+}
+
+@media(min-width: 700px) {
+  .entries-table {
+    font-size: 1.4rem;
+  }
+}

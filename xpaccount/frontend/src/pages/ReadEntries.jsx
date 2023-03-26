@@ -1,3 +1,4 @@
+import ("../css/ReadEntries.css")
 import { useContext, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -18,8 +19,7 @@ export const ReadEntries = () => {
           token,
         });
         setEntries(readingEntries);
-
-        const readingCatsAndSubcats = 
+        
       } catch (err) {
         setError(err.message);
       }
@@ -35,34 +35,35 @@ export const ReadEntries = () => {
       <h2>Asientos bancarios de la cuenta</h2>
       {error ? <p>{error}</p> : null}
       {entries.length > 0 ? (
-        <table key="123456789">
-          <tr>
+        <table className="entries-table">
+          <tr className="table-header">
             <th>FECHA</th>
             <th>CATEGORÍA</th>
             <th>SUBCATEGORÍA</th>
             <th>IMPORTE</th>
             <th>CUENTA</th>
             <th>TOTAL</th>
-            <th>CONCEPTO</th>
-            <th>COMENTARIO</th>
+            <th className="concept">CONCEPTO</th>
+            <th className="comment">COMENTARIO</th>
           </tr>
 
           {entries.map((entry) => {
             return (
               <>
-                <tr key={entry.id}>
+                <tr key={entry.id} className="tr-entries">
                   <td>{entry.dateEntry}</td>
                   <td>{entry.category}</td>
                   <td>{entry.subcategory}</td>
                   <td>{entry.amount}</td>
-                  <td>{/* {setTotal(total+entry.amount)} */}</td>
-                  <td>{entry.concept}</td>
-                  <td>{entry.comment}</td>
+                  <td>{entry.idAccount}</td>
+                  <td></td>
+                  <td className="concept">{entry.concept}</td>
+                  <td className="comment">{entry.comment}</td>
                 </tr>
               </>
             );
           })}
-          <tr>
+          <tr className="tr-new-entry">
             <td>
               <input type="date" onChange={(e) => {e.target.value}} />
             </td>
