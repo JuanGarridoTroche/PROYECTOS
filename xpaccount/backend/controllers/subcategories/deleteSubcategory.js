@@ -30,7 +30,7 @@ const deleteCategory = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      message: "Categoría eliminada 🔴",
+      message: `Subcategoría '${checkingSubcat.name}' eliminada 🔴`,
     });
   } catch (err) {
     next(err);

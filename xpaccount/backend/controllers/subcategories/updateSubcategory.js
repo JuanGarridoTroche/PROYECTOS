@@ -46,7 +46,7 @@ const updateSubcategory = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      message: "Categoría actualizada 🔵",
+      message: `Subcategoría actualizada a '${nameSubcat}' 🔵`,
     });
   } catch (err) {
     next(err);

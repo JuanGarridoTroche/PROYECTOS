@@ -20,8 +20,7 @@ const deleteCategory = async (req, res, next) => {
 
     // Si la variable no contiene ningún resultado => no existe 
     if(!checkingCat) {throw generateError("La categoría no existe", 404)}
-
-    // 
+    
 
     //Eliminamos la categoría
     await deleteCategoryByIdQuery(idCategory, idAccount);
@@ -29,7 +28,7 @@ const deleteCategory = async (req, res, next) => {
     
     res.send({
       status: "ok",
-      message: "Categoría eliminada 🔴",
+      message: `Categoría ${checkingCat.name} y subcategorías eliminadas 🔴`,
     });
   } catch (err) {
     next(err);

@@ -36,7 +36,7 @@ const createCategory = async (req, res, next) => {
       
     // Comprobamos que no esté registrado como categoría en la base de datos
     const checkingCat = await selectCategoriesByIdAccountQuery(idAccount, category);
-    console.log(checkingCat);
+    console.log("Comprobando categoría: ", checkingCat);
     
     if(checkingCat) {
       throw generateError("La categoría ya existe", 403);

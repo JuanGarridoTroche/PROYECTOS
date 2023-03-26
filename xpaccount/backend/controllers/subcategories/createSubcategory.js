@@ -1,7 +1,8 @@
 const { generateError } = require("../../helpers");
 const joi = require("@hapi/joi");
-const insertNewCatQuery = require("../../bbdd/queries/categories/insertNewCatQuery");
+const insertNewSubcatQuery = require("../../bbdd/queries/subcategories/insertNewSubcatQuery");
 const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
+const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
 
 
 const createSubcategory = async (req, res, next) => {
@@ -33,6 +34,10 @@ const createSubcategory = async (req, res, next) => {
         throw generateError("El comentario no puede exceder de 192 caracteres.")
       }
     }
+
+
+    // Comprobamos que la categoría pertenece al usuario logueado
+    const checkingCat = await selectCategoryByIdQuery(idCategory)
       
     // Comprobamos que no esté registrado como categoría en la base de datos
     const checkingNameSubcat = await selectSubcatByIdCatAndNameSubcatQuery(idCategory, nameSubcat);
@@ -41,8 +46,10 @@ const createSubcategory = async (req, res, next) => {
       throw generateError("La categoría ya existe", 403);
     }
 
+
+
     // Procedemos a insertar la categoría
-    await insertNewCatQuery(idCategory, nameSubcat, comment);
+    await insertNewSubcatQuery(idCategory, nameSubcat, comment);
     
     res.send({
       status: "ok",

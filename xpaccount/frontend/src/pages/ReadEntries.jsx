@@ -7,7 +7,7 @@ export const ReadEntries = ()=> {
   useEffect(()=>{
     const loadEntriesByAccount = async () => {
       try {
-        const entries = await   
+        // const entries = await   
       } catch (error) {
         
       }

@@ -8,7 +8,7 @@ const updateSubcategoryQuery = async({ idSub, nameSubcat, comment}) => {
     await connection.query(
       `      
       UPDATE subcategories SET name = ?, comment = ?, modifiedAt = ? WHERE id = ?`,
-      [nameSubcat, comment, new Date(), idSub]
+      [nameSubcat.toUpperCase(), comment, new Date(), idSub]
     )
     
   } finally {
