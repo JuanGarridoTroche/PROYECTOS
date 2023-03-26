@@ -9,7 +9,7 @@ const readAccountEntries = async (req, res, next) => {
     res.send({
       status: "Ok",
       message: `Asientos bancarios de la cuenta ${idAccount}`,
-      body: entries,
+      data: entries,
     })
     
   } catch (err) {

@@ -14,6 +14,7 @@ const updateEntry = async (req, res, next) => {
     // Comprobamos que los datos que entran son correctos
     // Seleccionamos el asiento bancario
     const myEntry = await selectEntryByIdQuery(idEntry);
+
     // Comprobar que la cuenta pertenece al usuario logueado
     const validatingAccount = await selectAccountByIdAccountQuery(idAccount);
     if (!validatingAccount || validatingAccount.idUser !== idUser) {

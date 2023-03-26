@@ -43,7 +43,7 @@ function App() {
         <Route path="/accounts/create" element={<CreateAccount/>}/>
 
         {/* Acceder a los asientos bancarios de una cuenta */}
-        {/* <Route path="/account/:idAccount" element={<ReadEntries/>}/> */}
+        <Route path="/account/:idAccount" element={<ReadEntries/>}/>
         
         {/* Página no encontrada */}
         <Route path="*" element={<NotFound/>}/>

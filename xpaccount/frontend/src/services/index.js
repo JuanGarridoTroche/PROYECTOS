@@ -162,6 +162,7 @@ export const readEntriesByAccountService = async({idAccount}) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}`,
     {
+      method: "GET",
       headers: {
         Authorization: token,
       },
@@ -173,6 +174,7 @@ export const readEntriesByAccountService = async({idAccount}) => {
   if(!response.ok) {
     throw new Error(json.message)
   }
+  console.log(json.data);
 
   return json.data;
 }
