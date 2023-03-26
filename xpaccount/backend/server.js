@@ -40,7 +40,7 @@ app.post("/user/register", registerUser);
 // Validar un usuario.
 app.put("/user/register/validate/:registrationCode", validateUser);
 
-// Ver el perfil de usuario logged
+// Consultar los datos del perfil del usuario logged
 app.get("/user/loggedProfile", isAuth, readLoggedProfile);
 
 // Editar el perfil de usuario
@@ -93,7 +93,7 @@ app.post("/account/:idAccount/category", isAuth, createCategory);
 app.put("/account/:idAccount/category/:idCategory", isAuth, updateCategory);
 
 // Eliminar un tipo de asiento
-app.delete("/category/:idCategory", isAuth, deleteCategory);
+app.delete("/account/:idAccount/category/:idCategory", isAuth, deleteCategory);
 
 /*
  * ###################################
