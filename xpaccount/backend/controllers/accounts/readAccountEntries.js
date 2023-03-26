@@ -8,7 +8,6 @@ const readAccountEntries = async (req, res, next) => {
     // Seleccionamos todos los asientos bancarios de la cuenta con idAccount
     const entries = await selectEntriesByIdAccountQuery(idAccount);
 
-
     res.send({
       status: "ok",
       message: `Asientos bancarios de la cuenta con id ${idAccount}`,

@@ -41,7 +41,7 @@ export const ReadEntries = () => {
             <th>CATEGORÍA</th>
             <th>SUBCATEGORÍA</th>
             <th>IMPORTE</th>
-            <th>CUENTA</th>
+            <th className="account">CUENTA</th>
             <th>TOTAL</th>
             <th className="concept">CONCEPTO</th>
             <th className="comment">COMENTARIO</th>
@@ -55,8 +55,8 @@ export const ReadEntries = () => {
                   <td>{entry.category}</td>
                   <td>{entry.subcategory}</td>
                   <td>{entry.amount}</td>
-                  <td>{entry.idAccount}</td>
-                  <td></td>
+                  <td className="account">{entry.idAccount}</td>
+                  <td>{total - entry.amount}</td>
                   <td className="concept">{entry.concept}</td>
                   <td className="comment">{entry.comment}</td>
                 </tr>
