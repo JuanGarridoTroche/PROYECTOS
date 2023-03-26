@@ -1,16 +1,15 @@
 const { generateError } = require("../../helpers");
 
-const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
 const updateCategoryQuery = require("../../bbdd/queries/categories/updateCategoryQuery");
+const selectCategoriesByIdAccountQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
 
 const updateCategory = async (req, res, next) => {
   try {
     let {category, comment} = req.body;
-    const {idCategory} = req.params;
-    const idUser = req.user.id;
+    const {idAccount, idCategory} = req.params;
 
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
-    const checkingCat = await selectCategoryByIdQuery(idUser, idCategory);
+    const checkingCat = await selectCategoriesByIdAccountQuery(idAccount, idCategory);
 
     // Si enviamos un id incorrecto O el id del usuario que creó la cuenta es distinto al que está logueado
     if (!checkingCat) {

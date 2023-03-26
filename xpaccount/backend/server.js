@@ -70,7 +70,7 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
-// Mostrar todos los asientos de una cuenta
+// Leer todos los asientos bancarios de una cuenta
 app.get("/account/:idAccount", isAuth, readAccountEntries)
 
 
@@ -87,10 +87,10 @@ const {
 } = require("./controllers/categories");
 
 // Crear una categoría de asiento bancario
-app.post("/category", isAuth, createCategory);
+app.post("/account/:idAccount/category", isAuth, createCategory);
 
 // Actualizar una categoría de asiento bancario
-app.put("/category/:idCategory", isAuth, updateCategory);
+app.put("/account/:idAccount/category/:idCategory", isAuth, updateCategory);
 
 // Eliminar un tipo de asiento
 app.delete("/category/:idCategory", isAuth, deleteCategory);

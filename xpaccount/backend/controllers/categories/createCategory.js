@@ -1,12 +1,12 @@
 const { generateError } = require("../../helpers");
-const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoriesByIdUserQuery");
 const joi = require("@hapi/joi");
 const insertNewCatQuery = require("../../bbdd/queries/categories/insertNewCatQuery");
+const selectCategoriesByIdAccountQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
 
 
 const createCategory = async (req, res, next) => {
   const {category, comment} = req.body;
-  const idUser = req.user.id;
+  const {idAccount} = req.params;
 
   try {
 
@@ -35,18 +35,19 @@ const createCategory = async (req, res, next) => {
     }
       
     // Comprobamos que no esté registrado como categoría en la base de datos
-    const checkingCat = await selectCategoriesByIdUserQuery(idUser, category);
+    const checkingCat = await selectCategoriesByIdAccountQuery(idAccount, category);
+    console.log(checkingCat);
     
     if(checkingCat) {
       throw generateError("La categoría ya existe", 403);
     }
 
     // Procedemos a insertar la categoría
-    await insertNewCatQuery(idUser, category, comment);
+    await insertNewCatQuery(idAccount, category, comment);
     
     res.send({
       status: "ok",
-      message: "Categoría creada 🟢",
+      message: `La categoría '${category}' ha sido creada con éxito 🟢`,
     });
   } catch (err) {
     next(err);

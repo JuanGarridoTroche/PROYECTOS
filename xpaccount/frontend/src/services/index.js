@@ -155,3 +155,24 @@ export const updateUserProfileService = async ({ token, data }) => {
 
   return json.data;
 };
+
+
+// Leer los asientos bancarios de una cuenta
+export const readEntriesByAccountService = async({idAccount}) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  )
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+
+  return json.data;
+}

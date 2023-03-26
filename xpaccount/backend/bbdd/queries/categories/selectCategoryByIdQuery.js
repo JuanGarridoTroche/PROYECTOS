@@ -1,14 +1,14 @@
 const getConnection = require("../../getConnection");
 
-const selectCategoryByIdQuery = async (idUser, idCategory) => {
+const selectCategoryByIdQuery = async (idAccount, idCategory) => {
   let connection;
 
   try {
     connection = await getConnection();
     const [category] = await connection.query(
       `
-    SELECT id, idUser, name, comment, createdAt FROM categories WHERE idUser = ? AND id = ?`,
-      [idUser, idCategory]
+    SELECT id, idAccount, name, comment, createdAt, modifiedAt FROM categories WHERE idAccount = ? AND id = ?`,
+      [idAccount, idCategory]
     );   
 
     return category[0];
