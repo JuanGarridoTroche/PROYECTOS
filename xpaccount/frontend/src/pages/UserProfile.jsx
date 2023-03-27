@@ -15,6 +15,8 @@ export const UserProfile = () => {
   const [dni, setDni] = useState("");
   const [showModal, setShowModal] = useState(false); 
   
+
+  // Carga los datos susceptibles de actualizar en cada refresco
   useEffect(()=>{
     const getLoggedUserData = async() => {
 
