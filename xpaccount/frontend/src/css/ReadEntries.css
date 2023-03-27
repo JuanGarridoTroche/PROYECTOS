@@ -1,5 +1,4 @@
-.entries-table {
-  background-color: white;
+.entries-table {  
   padding: 0 0px 20px 0px;
   border-radius: 5px;
   width: 98vw;
@@ -7,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid grey;
 }
 
 /* .concept, .comment, .account {

@@ -59,7 +59,7 @@ const {
   createAccount,
   updateAccount,
   deleteAccount,
-  readAccountEntries,
+  readAccount,
 } = require("./controllers/accounts");
 // Crear una cuenta nueva
 app.post("/account", isAuth, createAccount);
@@ -70,8 +70,8 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 // Eliminar una cuenta
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
-// Leer todos los asientos bancarios de una cuenta
-app.get("/account/:idAccount", isAuth, readAccountEntries)
+// Leer los datos de una cuenta
+app.get("/account/:idAccount", isAuth, readAccount)
 
 
 /*
@@ -125,7 +125,11 @@ const {
   createEntry,
   updateEntry,
   deleteEntry,
+  readAccountEntries,
 } = require("./controllers/entries");
+
+// Leer todos los asientos bancarios de una cuenta
+app.get("/account/:idAccount/entries", isAuth, readAccountEntries);
 
 // Crear un asiento nuevo
 app.post("/account/:idAccount/entry", isAuth, createEntry);

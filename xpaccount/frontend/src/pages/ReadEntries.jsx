@@ -9,16 +9,23 @@ export const ReadEntries = () => {
   const { token } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState("");
-  const [total, setTotal] = useState(0);
+  let total =0;
 
   useEffect(() => {
     const loadEntriesByAccount = async () => {
+      
       try {
+        
+        // Leer los datos de la cuenta
+        const readingAccount=0;
+
+        // Leer todas los asientos de la cuenta idAccount
         const readingEntries = await readEntriesByAccountService({
           idAccount,
           token,
         });
         setEntries(readingEntries);
+
         
       } catch (err) {
         setError(err.message);
@@ -41,22 +48,21 @@ export const ReadEntries = () => {
             <th>CATEGORÍA</th>
             <th>SUBCATEGORÍA</th>
             <th>IMPORTE</th>
-            <th className="account">CUENTA</th>
             <th>TOTAL</th>
             <th className="concept">CONCEPTO</th>
             <th className="comment">COMENTARIO</th>
           </tr>
 
-          {entries.map((entry) => {
+          {
+            entries.map((entry, index) => {            
             return (
               <>
                 <tr key={entry.id} className="tr-entries">
                   <td>{entry.dateEntry}</td>
                   <td>{entry.category}</td>
                   <td>{entry.subcategory}</td>
-                  <td>{entry.amount}</td>
-                  <td className="account">{entry.idAccount}</td>
-                  <td>{total - entry.amount}</td>
+                  <td>{entry.amount} EUR</td>                  
+                  <td>{index === 0 ? `${total = parseFloat(entry.amount)} EUR` : `${total = total + parseFloat(entry.amount)} EUR`}</td>
                   <td className="concept">{entry.concept}</td>
                   <td className="comment">{entry.comment}</td>
                 </tr>
@@ -69,9 +75,6 @@ export const ReadEntries = () => {
             </td>
             <td>
               <select onLoad={(e) => {}}/>
-            </td>
-            <td>
-              <input type="text" />
             </td>
             <td>
               <input type="text" />

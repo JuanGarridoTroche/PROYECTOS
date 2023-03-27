@@ -34,7 +34,7 @@ const createAccount = async (req, res, next) => {
     const body = await insertAccountQuery({idUser, alias, bankName, accountNumber})
 
     res.send({
-      status: "Ok",
+      status: "ok",
       message: "Cuenta creada con éxito",
       body,
     })
