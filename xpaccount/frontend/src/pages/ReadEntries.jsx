@@ -1,6 +1,7 @@
 import("../css/ReadEntries.css");
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Select from "react-select";
 import { AuthContext } from "../context/AuthContext";
 import {
   readEntriesByAccountService,
@@ -15,6 +16,9 @@ export const ReadEntries = () => {
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
   const navigate = useNavigate();
+  const [options, setOptions] = useState("");
+  const [cats, setCats] = useState("");
+  const [subcat, setSubcat] = useState("");
   let total = 0;
 
   useEffect(() => {
@@ -50,6 +54,21 @@ export const ReadEntries = () => {
       loadEntriesByAccount();
     }
   }, [token]);
+
+  useEffect(()=> {
+    const readCats =[{value: "Juan"}, {value: "Pedro"}, {value: "Alberto"}, {value: "Supercalifargilístico"}];
+    setOptions(readCats);
+  }, [])
+
+  const handleAddEntry = async()=> {    
+    setError("");
+    try {
+      alert("Añadir una entrada")
+      
+    } catch (err) {
+      setError(err.message)
+    }
+  }
 
   return (
     <>
@@ -100,7 +119,7 @@ export const ReadEntries = () => {
 
             {entries.map((entry, index) => {
               return (
-                <tbody key={entry.id} className="tr-entries">
+                <tbody key={entry.id} className="tbody-entries">
                   <tr>
                     <td>{entry.dateEntry}</td>
                     <td>{entry.category}</td>
@@ -114,12 +133,13 @@ export const ReadEntries = () => {
                     </td>
                     <td className="concept">{entry.concept}</td>
                     <td className="comment">{entry.comment}</td>
+                    <button>Editar</button>
                   </tr>
                 </tbody>
               );
             })}
-            <tbody>
-              <tr className="tr-new-entry">
+            <tbody className="tbody-new-entry">
+              <tr>
                 <td>
                   <input
                     type="date"
@@ -129,7 +149,7 @@ export const ReadEntries = () => {
                   />
                 </td>
                 <td>
-                  <select onLoad={(e) => {}} />
+                  <Select options={cats} />
                 </td>
                 <td>
                   <input type="text" />
@@ -146,6 +166,7 @@ export const ReadEntries = () => {
                 <td>
                   <input type="text" />
                 </td>
+              <button onClick={()=> {handleAddEntry()}}>Añadir</button>
               </tr>
             </tbody>
           </table>

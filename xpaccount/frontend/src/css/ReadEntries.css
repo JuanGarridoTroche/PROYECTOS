@@ -49,32 +49,32 @@
   padding: 5px 0;  
 }
 
-.tr-entries > tr > td {
+.tbody-entries > tr > td {
   padding: 2px 5px;
   text-align: center;
 }
 
-.tr-entries > tr > .numbers {
+.tbody-entries > tr > .numbers {
   text-align: right;
 }
 
-.tr-entries > tr > .concept {
+.tbody-entries > tr > .concept {
   text-align: left;
 }
 
-.tr-entries > tr > .comment {
+.tbody-entries > tr > .comment {
   text-align: left;
 }
 
-.tr-entries:nth-child(even) {
+.tbody-entries:nth-child(even) {
   background-color: var(--color-bg);
 }
 
-.tr-entries:nth-child(odd) {
+.tbody-entries:nth-child(odd) {
   background-color: white;
 }
 
-.tr-new-entry > td > input {
+.tbody-new-entry > tr > td > input {
   width: 100%;
   padding: 5px;
 }
@@ -91,6 +91,22 @@
 
   .error > p {
     font-size: 1.6rem;
+  }
+
+  .tbody-entries > tr > button {
+    border: none;
+    color: black;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .tbody-new-entry > tr > button {
+    border: none;
+    padding: 3px;
+  }
+
+  div input {
+    color: black;
   }
 
 }
