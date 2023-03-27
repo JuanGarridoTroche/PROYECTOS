@@ -59,8 +59,11 @@ export const ReadEntries = () => {
             navigate("/accounts");
           }}>Volver</button>
           </div>
+        <section className="error">
+        {error ? <p>{error}</p> : null}  
+        </section>  
         <section className="account-content">
-                  <div className="data">
+                  <div className="data" key={myAccount.id}>
                     <h3>{myAccount.alias} (<span>{myAccount.bankName}</span>)</h3>
                     <p>{myAccount.accountNumber}</p>
                   </div>
@@ -71,9 +74,8 @@ export const ReadEntries = () => {
                   <p className="money">{suma} Eur</p>
                   }
                 </section>
-      </section>
-      <section className="account-entries-container">
-        {error ? <p>{error}</p> : null}
+      </section>      
+      <section className="account-entries-container">        
         {entries.length > 0 ? (
           <table className="entries-table">
             <tr className="table-header">

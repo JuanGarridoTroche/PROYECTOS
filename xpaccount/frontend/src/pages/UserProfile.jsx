@@ -7,12 +7,21 @@ import { updateUserProfileService } from "../services";
 export const UserProfile = () => {
   const { logged, token } = useContext(AuthContext);
   const [error, setError] = useState("");  
-  const {username, email} = logged;  
+  const username = logged?.username || "";  
+  const email = logged?.email || "";
   const [birthday, setBirthday] = useState(logged?.birthday);
   const [firstName, setFirstName] = useState(logged?.firstName);
   const [lastName, setLastName] = useState(logged?.lastName);
   const [dni, setDni] = useState(logged?.dni);
   const [showModal, setShowModal] = useState(false); 
+  
+  useEffect(()=>{
+    setBirthday(logged?.birthday);
+    setFirstName(logged?.firstName);
+    setLastName(logged?.lastName);
+    setDni(logged?.dni);
+
+  }, [showModal])
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
@@ -23,8 +32,8 @@ export const UserProfile = () => {
       await updateUserProfileService({token, data});
       setShowModal(true);
       
-    } catch (error) {
-      
+    } catch (err) {
+      setError(err.message)
     }
 
 
