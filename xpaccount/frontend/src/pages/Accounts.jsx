@@ -21,8 +21,6 @@ export const Accounts = () => {
           setMyAccounts(getAccounts);
         }
 
-        // getAccounts.map((account) => {
-        // })
       } catch (error) {
         alert(error.message);
       }

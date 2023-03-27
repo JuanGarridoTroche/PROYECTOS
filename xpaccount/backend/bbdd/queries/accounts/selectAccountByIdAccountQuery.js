@@ -2,7 +2,6 @@ const getConnection = require("../../getConnection");
 
 const selectAccountByIdAccountQuery = async (idAccount) => {  
   let connection;  
-
   try {
     connection = await getConnection();
     const [account] = await connection.query(

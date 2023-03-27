@@ -2,11 +2,12 @@ const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selec
 const { generateError } = require("../../helpers");
 
 const readAccount = async (req, res, next) => {
-  const { idAccount } = req.params;
+  const { idAccount } = req.params; 
 
   try {
     const myAccount = await selectAccountByIdAccountQuery(idAccount);
-    if (myAccount.length < 1) {
+
+    if (!myAccount) {
       throw generateError("La cuenta no existe", 404);
     }
 
