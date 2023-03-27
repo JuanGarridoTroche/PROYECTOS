@@ -2,26 +2,36 @@ import("../css/UserProfile.css");
 import { useContext, useEffect, useState } from "react";
 import { Modal } from "../components/Modal";
 import { AuthContext } from "../context/AuthContext";
-import { updateUserProfileService } from "../services";
+import { getLoggedUserDataService, updateUserProfileService } from "../services";
 
 export const UserProfile = () => {
   const { logged, token } = useContext(AuthContext);
   const [error, setError] = useState("");  
   const username = logged?.username || "";  
   const email = logged?.email || "";
-  const [birthday, setBirthday] = useState(logged?.birthday);
-  const [firstName, setFirstName] = useState(logged?.firstName);
-  const [lastName, setLastName] = useState(logged?.lastName);
-  const [dni, setDni] = useState(logged?.dni);
+  const [birthday, setBirthday] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dni, setDni] = useState("");
   const [showModal, setShowModal] = useState(false); 
   
   useEffect(()=>{
-    setBirthday(logged?.birthday);
-    setFirstName(logged?.firstName);
-    setLastName(logged?.lastName);
-    setDni(logged?.dni);
+    const getLoggedUserData = async() => {
 
-  }, [showModal])
+      try {
+        const loggedUser = await getLoggedUserDataService(token);   
+        setBirthday(loggedUser.birthday); 
+        setFirstName(loggedUser.firstName);
+        setLastName(loggedUser.lastName);
+        setDni(loggedUser.dni)    
+
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+    if(token) {getLoggedUserData()}
+
+  }, [])
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
@@ -58,7 +68,7 @@ export const UserProfile = () => {
             id="birthday"
             value={birthday}
             onChange={(e)=>{
-              setBirthday(e.target.value)
+              setBirthday(e.target.value);
             }}
           />
           <label htmlFor="firstName">Nombre</label>

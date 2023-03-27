@@ -42,7 +42,7 @@ export const getLoggedUserDataService = async (token) => {
   return json.data;
 };
 
-// Obtenemos todas las cuentas creadas por el usuario logueado
+// Obtenemos todas las cuentas bancarias creadas por el usuario logueado
 export const getAccountsUserService = async (token) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
