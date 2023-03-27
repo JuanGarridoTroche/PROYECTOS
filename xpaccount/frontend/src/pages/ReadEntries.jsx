@@ -22,6 +22,7 @@ export const ReadEntries = () => {
       try {
         let tot = 0;
         setError("");
+
         // Leer los datos de la cuenta
         const readingAccount = await readingAccountService({
           idAccount,
@@ -54,87 +55,99 @@ export const ReadEntries = () => {
     <>
       <section className="my-account container">
         <div className="title-content">
-          <h2>Cuenta <span>{myAccount.alias}</span></h2>
-          <button onClick={()=> {
-            navigate("/accounts");
-          }}>Volver</button>
-          </div>
-        <section className="error">
-        {error ? <p>{error}</p> : null}  
-        </section>  
+          <h2>
+            Cuenta <span>{myAccount.alias}</span>
+          </h2>
+          <button
+            onClick={() => {
+              navigate("/accounts");
+            }}
+          >
+            Volver
+          </button>
+        </div>
+        <section className="error">{error ? <p>{error}</p> : null}</section>
         <section className="account-content">
-                  <div className="data" key={myAccount.id}>
-                    <h3>{myAccount.alias} (<span>{myAccount.bankName}</span>)</h3>
-                    <p>{myAccount.accountNumber}</p>
-                  </div>
-                  {
-                    suma < 0 ?
-                  <p className="money" style={{color:"red"}}>{suma} Eur</p>
-                  :
-                  <p className="money">{suma} Eur</p>
-                  }
-                </section>
-      </section>      
-      <section className="account-entries-container">        
+          <div className="data" key={myAccount.id}>
+            <h3>
+              {myAccount.alias} (<span>{myAccount.bankName}</span>)
+            </h3>
+            <p>{myAccount.accountNumber}</p>
+          </div>
+          {suma < 0 ? (
+            <p className="money" style={{ color: "red" }}>
+              {suma.toFixed(2)} Eur
+            </p>
+          ) : (
+            <p className="money">{suma.toFixed(2)} Eur</p>
+          )}
+        </section>
+      </section>
+      <section className="account-entries-container">
         {entries.length > 0 ? (
           <table className="entries-table">
-            <tr className="table-header">
-              <th>FECHA</th>
-              <th>CATEGORÍA</th>
-              <th>SUBCATEGORÍA</th>
-              <th>IMPORTE</th>
-              <th>TOTAL</th>
-              <th className="concept">CONCEPTO</th>
-              <th className="comment">COMENTARIO</th>
-            </tr>
+            <thead className="table-header">
+              <tr>
+                <th>FECHA</th>
+                <th>CATEGORÍA</th>
+                <th>SUBCATEGORÍA</th>
+                <th>IMPORTE</th>
+                <th>TOTAL</th>
+                <th className="concept">CONCEPTO</th>
+                <th className="comment">COMENTARIO</th>
+              </tr>
+            </thead>
 
             {entries.map((entry, index) => {
               return (
-                <>
-                  <tr key={entry.id} className="tr-entries">
+                <tbody key={entry.id} className="tr-entries">
+                  <tr>
                     <td>{entry.dateEntry}</td>
                     <td>{entry.category}</td>
                     <td>{entry.subcategory}</td>
-                    <td>{entry.amount} EUR</td>
-                    <td>
+                    <td className="numbers">{parseFloat(entry.amount).toFixed(2)} EUR</td>
+                    <td className="numbers">
                       {index === 0
                         ? `${(total = parseFloat(entry.amount))} EUR`
-                        : `${(total = total + parseFloat(entry.amount))} EUR`}
+                        : `${(total =
+                            total + parseFloat(entry.amount))} EUR`}
                     </td>
                     <td className="concept">{entry.concept}</td>
                     <td className="comment">{entry.comment}</td>
                   </tr>
-                </>
+                </tbody>
               );
             })}
-            <tr className="tr-new-entry">
-              <td>
-                <input
-                  type="date"
-                  onChange={(e) => {
-                    e.target.value;
-                  }}
-                />
-              </td>
-              <td>
-                <select onLoad={(e) => {}} />
-              </td>
-              <td>
-                <input type="text" />
-              </td>
-              <td>
-                <input type="text" />
-              </td>
-              <td>
-                <input type="text" />
-              </td>
-              <td>
-                <input type="text" />
-              </td>
-              <td>
-                <input type="text" />
-              </td>
-            </tr>
+            <tbody>
+              <tr className="tr-new-entry">
+                <td>
+                  <input
+                    type="date"
+                    onChange={(e) => {
+                      e.target.value;
+                    }}
+                  />
+                </td>
+                <td>
+                  <select onLoad={(e) => {}} />
+                </td>
+                <td>
+                  <input type="text" />
+                </td>
+                <td>
+                  <input type="text"/>
+                </td>
+                <td>
+                  <input type="text" disabled/>
+                </td>
+                <td>
+                  <input type="text" />
+                </td>
+                <td>
+                  <input type="text" />
+                </td>
+              </tr>
+            </tbody>
           </table>
         ) : (
           <h3>No hay asientos bancarios</h3>

@@ -15,10 +15,11 @@ export const AuthProvidercomponent = ({ children }) => {
       try {
         const data = await getLoggedUserDataService(token);                
         setLogged(data);        
-      } catch (error) {
+      } catch (err) {
         logout();
       }
     };
+
     if(token) getUserData();
   }, [token]);
   

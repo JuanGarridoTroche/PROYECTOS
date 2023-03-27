@@ -28,8 +28,9 @@ const createEntry = async (req, res, next) => {
     // Validación de los datos entregados
 
     // Fecha del asiento bancario
+    let dateEntryValue = dateEntry.split("/", 3).reverse().join("/");
     const schemaDateEntry = joi.date().required();
-    const validationDateEntry = schemaDateEntry.validate(dateEntry);
+    const validationDateEntry = schemaDateEntry.validate(dateEntryValue);
 
     if(validationDateEntry.error) {
       throw generateError("La fecha no es válida. Introdúzcala con el siguiente formato: dd/mm/aaaa", 403)
@@ -52,11 +53,20 @@ const createEntry = async (req, res, next) => {
 
     // Validamos el texto de concept y comment
     const schemaString = joi.string().max(195)
-    const validationConcept = schemaString.validate(concept);
-    const validationComment = schemaString.validate(comment);
+    if (concept) {
+      const validationConcept = schemaString.validate(concept);
+      
+      if(validationConcept.error) {
+        throw generateError("El concepto o comentario no pueden exceder de los 195 caracteres", 403)
+      }
+    }
+    
+    if(comment) {
+      const validationComment = schemaString.validate(comment);
 
-    if(validationConcept.error || validationComment.error) {
-      throw generateError("El concepto o comentario no pueden exceder de los 195 caracteres", 403)
+      if(validationComment.error) {
+        throw generateError("El concepto o comentario no pueden exceder de los 195 caracteres", 403)
+      }
     }
 
     // Insertamos los datos

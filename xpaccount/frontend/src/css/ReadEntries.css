@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-collapse: collapse;
 }
 
 /* .concept, .comment, .account {
@@ -44,12 +45,25 @@
   font-size: 1rem; 
 }
 
-.table-header > th {
+.table-header > tr > th {
   padding: 5px 0;  
 }
 
-.tr-entries > td {
-  padding: 0 5px;
+.tr-entries > tr > td {
+  padding: 2px 5px;
+  text-align: center;
+}
+
+.tr-entries > tr > .numbers {
+  text-align: right;
+}
+
+.tr-entries > tr > .concept {
+  text-align: left;
+}
+
+.tr-entries > tr > .comment {
+  text-align: left;
 }
 
 .tr-entries:nth-child(even) {
