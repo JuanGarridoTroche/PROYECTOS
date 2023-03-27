@@ -7,7 +7,7 @@ const selectEntriesByIdAccountQuery = async (idAccount) => {
     connection = await getConnection();
     const [entries] = await connection.query(
       `
-    SELECT id, idAccount, dateEntry, category, subcategory, amount, concept, comment, createdAt, modifiedAt FROM entries WHERE idAccount = ?`,
+    SELECT id, idAccount, DATE_FORMAT(dateEntry, "%d/%m/%Y") AS dateEntry, category, subcategory, amount, concept, comment, createdAt, modifiedAt FROM entries WHERE idAccount = ? ORDER BY entries.dateEntry ASC`,
     [idAccount]
     );
     

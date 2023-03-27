@@ -1,6 +1,6 @@
 import("../css/ReadEntries.css");
 import { useContext, useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
   readEntriesByAccountService,
@@ -14,6 +14,7 @@ export const ReadEntries = () => {
   const [error, setError] = useState("");
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
+  const navigate = useNavigate();
   let total = 0;
 
   useEffect(() => {
@@ -52,9 +53,24 @@ export const ReadEntries = () => {
   return (
     <>
       <section className="my-account container">
-        <h2>
-          Cuenta <span>{myAccount.alias}</span> {suma}
-        </h2>
+        <div className="title-content">
+          <h2>Cuenta <span>{myAccount.alias}</span></h2>
+          <button onClick={()=> {
+            navigate("/accounts");
+          }}>Volver</button>
+          </div>
+        <section className="account-content">
+                  <div className="data">
+                    <h3>{myAccount.alias} (<span>{myAccount.bankName}</span>)</h3>
+                    <p>{myAccount.accountNumber}</p>
+                  </div>
+                  {
+                    suma < 0 ?
+                  <p className="money" style={{color:"red"}}>{suma} Eur</p>
+                  :
+                  <p className="money">{suma} Eur</p>
+                  }
+                </section>
       </section>
       <section className="account-entries-container">
         {error ? <p>{error}</p> : null}

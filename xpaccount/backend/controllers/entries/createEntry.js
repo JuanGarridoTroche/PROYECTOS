@@ -9,7 +9,7 @@ const createEntry = async (req, res, next) => {
   const idUser = req.user.id;
   const {idAccount} = req.params;
 
-  const { category, subcategory, amount, concept, comment } = req.body;
+  const { dateEntry, category, subcategory, amount, concept, comment } = req.body;
   try {
     // Comprobar que la cuenta pertenece al usuario logueado
     const validatingAccount = await selectAccountByIdAccountQuery(idAccount)
@@ -26,6 +26,15 @@ const createEntry = async (req, res, next) => {
     }
 
     // Validación de los datos entregados
+
+    // Fecha del asiento bancario
+    const schemaDateEntry = joi.date().required();
+    const validationDateEntry = schemaDateEntry.validate(dateEntry);
+
+    if(validationDateEntry.error) {
+      throw generateError("La fecha no es válida. Introdúzcala con el siguiente formato: dd/mm/aaaa", 403)
+    }
+
     // Categoría:
     const validatingCat = await selectCategoriesByIdUserQuery(idUser, category);
     if(!validatingCat) {throw generateError("La categoría no existe", 404)}
