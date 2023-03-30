@@ -157,7 +157,7 @@ export const updateUserProfileService = async ({ token, data }) => {
 };
 
 // Leer los asientos bancarios de una cuenta
-export const readEntriesByAccountService = async ({idAccount, token}) => {
+export const readEntriesByAccountService = async ({ idAccount, token }) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -174,35 +174,49 @@ export const readEntriesByAccountService = async ({idAccount, token}) => {
 
   if (!response.ok) {
     throw new Error(json.message);
-  }  
+  }
 
   return json.data;
 };
 
 // Leer los datos de una cuenta
-export const readingAccountService = async ({idAccount, token}) => {  
-
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}`,
-  {
-    method: "GET",
-    headers: {
-      Authorization: token,
-    },
-  }
-  )
+export const readingAccountService = async ({ idAccount, token }) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
   const json = await response.json();
 
-  if(!response.ok){
+  if (!response.ok) {
     throw new Error(json.message);
   }
- 
+
   return json.data;
+};
 
-}
+export const loadCategories = async (token, idAccount) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}: ${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/categories`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  const json = await response.json();
 
-
-export const loadCategories = async (token, idUser)=> {
-  const responde = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}: ${import.meta.env.VITE_BACKEND_PORT}`)
-}
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  console.log(json.data);
+  return json.data;
+};

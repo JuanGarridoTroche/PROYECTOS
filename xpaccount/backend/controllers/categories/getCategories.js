@@ -1,10 +1,10 @@
-const { generateError } = require("../../helpers");
 const selectCategoriesByIdAccountQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
 
 
 const getCategories = async (req, res, next) => {
   
   const {idAccount} = req.params;
+  console.log(idAccount);
 
   try {
 

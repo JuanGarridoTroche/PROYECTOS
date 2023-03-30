@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
+  loadCategories,
   readEntriesByAccountService,
   readingAccountService,
 } from "../services";
@@ -21,6 +22,8 @@ export const ReadEntries = () => {
   
   let total = 0;
 
+
+  // Cargar asientos bancarios de la cuenta contoken e idAccount
   useEffect(() => {
     const loadEntriesByAccount = async () => {
       try {
@@ -55,20 +58,26 @@ export const ReadEntries = () => {
     }
   }, [token]);
 
+
+  // Cargar todas las categorías con token e idAccount
   useEffect(() => {
-    const loadCategories = async () => {
+    const loadMyCategories = async () => {
       try {
         setError("");
-        console.log(logged.id);
+        // Conseguir todas las categorías de la cuenta con idAccount
+        const myCategories = await loadCategories(token, idAccount);
+        console.log(myCategories);
       } catch (err) {
         setError(err.message);
       }
     };
     if (token) {
-      loadCategories();
+      loadMyCategories();
     }
   }, []);
 
+
+  // Maneja añadir un asiento bancario
   const handleAddEntry = async () => {
     setError("");
     try {
