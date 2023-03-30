@@ -7,7 +7,7 @@ const selectCategoriesByIdAccountQuery = async (idAccount) => {
     connection = await getConnection();
     const [categories] = await connection.query(
       `
-    SELECT id, idAccount, name, comment, createdAt, modifiedAt FROM categories WHERE idAccount = ?`,
+    SELECT id, idAccount, name, comment, createdAt, modifiedAt FROM categories WHERE idAccount = ? ORDER BY name ASC`,
       [idAccount]
     );   
 

@@ -109,7 +109,11 @@ const {
   createSubcategory,
   updateSubcategory,
   deleteSubcategory,
+  getSubcategories,
 } = require("./controllers/subcategories");
+
+// Conseguir todas las subcategorías de una categoría
+app.get("/category/:idCategory/subs", isAuth, getSubcategories)
 
 // Crear una subcategoría
 app.post("/category/:idCategory/sub", isAuth, createSubcategory);

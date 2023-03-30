@@ -74,6 +74,15 @@ export const ReadEntries = () => {
     }
   }, []);
 
+  const handleSubcategories = async(selectedCat) => {
+    setError("");
+    try {
+      
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
 
   // Maneja añadir un asiento bancario
   const handleAddEntry = async () => {
@@ -149,7 +158,7 @@ export const ReadEntries = () => {
                     </td>
                     <td className="concept">{entry.concept}</td>
                     <td className="comment">{entry.comment}</td>
-                    <button>Editar</button>
+                    <td><button>Editar</button></td>
                   </tr>
                 </tbody>
               );
@@ -166,7 +175,8 @@ export const ReadEntries = () => {
                 </td>
                 <td>
                   <select name="categories" onClick={(e)=>{
-                    selectedCat = category.name;
+                    selectedCat = e.target.value;
+                    handleSubcategories(selectedCat);
                   }}>
                     {categories.map((category=> {
                       return (
@@ -190,13 +200,13 @@ export const ReadEntries = () => {
                 <td>
                   <input type="text" />
                 </td>
-                <button
+                <td><button
                   onClick={() => {
                     handleAddEntry();
                   }}
                 >
                   Añadir
-                </button>
+                </button></td>
               </tr>
             </tbody>
           </table>
