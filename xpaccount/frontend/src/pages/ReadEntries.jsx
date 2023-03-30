@@ -1,7 +1,6 @@
 import("../css/ReadEntries.css");
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Select from "react-select";
 import { AuthContext } from "../context/AuthContext";
 import {
   readEntriesByAccountService,
@@ -19,6 +18,7 @@ export const ReadEntries = () => {
   const [options, setOptions] = useState("");
   const [cats, setCats] = useState("");
   const [subcat, setSubcat] = useState("");
+  
   let total = 0;
 
   useEffect(() => {
@@ -55,20 +55,28 @@ export const ReadEntries = () => {
     }
   }, [token]);
 
-  useEffect(()=> {
-    const readCats =[{value: "Juan"}, {value: "Pedro"}, {value: "Alberto"}, {value: "Supercalifargilístico"}];
-    setOptions(readCats);
-  }, [])
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        setError("");
 
-  const handleAddEntry = async()=> {    
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    if (token) {
+      loadCategories();
+    }
+  }, []);
+
+  const handleAddEntry = async () => {
     setError("");
     try {
-      alert("Añadir una entrada")
-      
+      alert("Añadir una entrada");
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-  }
+  };
 
   return (
     <>
@@ -124,12 +132,13 @@ export const ReadEntries = () => {
                     <td>{entry.dateEntry}</td>
                     <td>{entry.category}</td>
                     <td>{entry.subcategory}</td>
-                    <td className="numbers">{parseFloat(entry.amount).toFixed(2)} EUR</td>
+                    <td className="numbers">
+                      {parseFloat(entry.amount).toFixed(2)} EUR
+                    </td>
                     <td className="numbers">
                       {index === 0
                         ? `${(total = parseFloat(entry.amount))} EUR`
-                        : `${(total =
-                            total + parseFloat(entry.amount))} EUR`}
+                        : `${(total = total + parseFloat(entry.amount))} EUR`}
                     </td>
                     <td className="concept">{entry.concept}</td>
                     <td className="comment">{entry.comment}</td>
@@ -149,16 +158,7 @@ export const ReadEntries = () => {
                   />
                 </td>
                 <td>
-                  <Select options={cats} />
-                </td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <input type="text"/>
-                </td>
-                <td>
-                  <input type="text" disabled/>
+                  <select name="categories">{}</select>
                 </td>
                 <td>
                   <input type="text" />
@@ -166,7 +166,22 @@ export const ReadEntries = () => {
                 <td>
                   <input type="text" />
                 </td>
-              <button onClick={()=> {handleAddEntry()}}>Añadir</button>
+                <td>
+                  <input type="text" disabled />
+                </td>
+                <td>
+                  <input type="text" />
+                </td>
+                <td>
+                  <input type="text" />
+                </td>
+                <button
+                  onClick={() => {
+                    handleAddEntry();
+                  }}
+                >
+                  Añadir
+                </button>
               </tr>
             </tbody>
           </table>

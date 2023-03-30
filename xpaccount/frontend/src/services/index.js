@@ -200,3 +200,8 @@ export const readingAccountService = async ({idAccount, token}) => {
   return json.data;
 
 }
+
+
+export const loadCategories = (token)=> {
+
+}
