@@ -16,14 +16,12 @@ export const ReadEntries = () => {
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
   const navigate = useNavigate();
-  const [options, setOptions] = useState("");
-  const [cats, setCats] = useState("");
-  const [subcat, setSubcat] = useState("");
+  const [categories, setCategories] = useState("Elige una categoría...");
+  let selectedCat = "";
   
   let total = 0;
 
-
-  // Cargar asientos bancarios de la cuenta contoken e idAccount
+  // Cargar asientos bancarios de la cuenta con token e idAccount
   useEffect(() => {
     const loadEntriesByAccount = async () => {
       try {
@@ -66,7 +64,7 @@ export const ReadEntries = () => {
         setError("");
         // Conseguir todas las categorías de la cuenta con idAccount
         const myCategories = await loadCategories(token, idAccount);
-        console.log(myCategories);
+        setCategories(myCategories);
       } catch (err) {
         setError(err.message);
       }
@@ -167,10 +165,18 @@ export const ReadEntries = () => {
                   />
                 </td>
                 <td>
-                  <select name="categories">{}</select>
+                  <select name="categories" onClick={(e)=>{
+                    selectedCat = category.name;
+                  }}>
+                    {categories.map((category=> {
+                      return (
+                        <option key={category.id}>{category.name}</option>
+                      )
+                    }))}
+                  </select>
                 </td>
                 <td>
-                  <input type="text" />
+                  <select name="subcategories"></select>
                 </td>
                 <td>
                   <input type="text" />
