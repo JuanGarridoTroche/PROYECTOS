@@ -1,4 +1,4 @@
-const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
+const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
 const deleteSubcategoryByIdQuery = require("../../bbdd/queries/subcategories/deleteSubcategoryByIdQuery");
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const { generateError } = require("../../helpers");

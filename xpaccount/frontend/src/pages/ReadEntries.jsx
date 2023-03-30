@@ -9,7 +9,7 @@ import {
 
 export const ReadEntries = () => {
   const { idAccount } = useParams();
-  const { token } = useContext(AuthContext);
+  const { token, logged } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState("");
   const [myAccount, setMyAccount] = useState({});
@@ -59,7 +59,7 @@ export const ReadEntries = () => {
     const loadCategories = async () => {
       try {
         setError("");
-
+        console.log(logged.id);
       } catch (err) {
         setError(err.message);
       }

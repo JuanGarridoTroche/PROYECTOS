@@ -84,7 +84,11 @@ const {
   createCategory,
   updateCategory,
   deleteCategory,
+  getCategories,
 } = require("./controllers/categories");
+
+// Leer las categorías de una cuenta
+app.get("/account/:idAccount/categories", isAuth, getCategories);
 
 // Crear una categoría de asiento bancario
 app.post("/account/:idAccount/category", isAuth, createCategory);

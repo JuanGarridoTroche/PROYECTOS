@@ -1,7 +1,7 @@
 const { generateError } = require("../../helpers");
 const joi = require("@hapi/joi");
 const insertNewCatQuery = require("../../bbdd/queries/categories/insertNewCatQuery");
-const selectCategoriesByIdAccountQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
+const selectCategoryByIdAccountAndNameQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndNameQuery");
 
 
 const createCategory = async (req, res, next) => {
@@ -35,7 +35,7 @@ const createCategory = async (req, res, next) => {
     }
       
     // Comprobamos que no esté registrado como categoría en la base de datos
-    const checkingCat = await selectCategoriesByIdAccountQuery(idAccount, category);
+    const checkingCat = await selectCategoryByIdAccountAndNameQuery(idAccount, category);
     console.log("Comprobando categoría: ", checkingCat);
     
     if(checkingCat) {

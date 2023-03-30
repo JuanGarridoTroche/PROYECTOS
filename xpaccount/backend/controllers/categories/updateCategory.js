@@ -1,12 +1,12 @@
 const { generateError } = require("../../helpers");
 
 const updateCategoryQuery = require("../../bbdd/queries/categories/updateCategoryQuery");
-const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
+const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
 
 const updateCategory = async (req, res, next) => {
   try {
-    let {category, comment} = req.body;
-    const {idAccount, idCategory} = req.params;
+    let { category, comment } = req.body;
+    const { idAccount, idCategory } = req.params;
 
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
     const checkingCat = await selectCategoryByIdQuery(idAccount, idCategory);
@@ -30,11 +30,10 @@ const updateCategory = async (req, res, next) => {
       category,
       comment,
     });
-    
-    
+
     res.send({
       status: "ok",
-      message: "Categoría actualizada 🔵", 
+      message: "Categoría actualizada 🔵",
     });
   } catch (err) {
     next(err);

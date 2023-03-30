@@ -1,6 +1,6 @@
 const getConnection = require("../../getConnection");
 
-const selectCategoryByIdQuery = async (idAccount, idCategory) => {
+const selectCategoryByIdAccountAndIdQuery = async (idAccount, idCategory) => {
   let connection;
 
   try {
@@ -17,4 +17,4 @@ const selectCategoryByIdQuery = async (idAccount, idCategory) => {
   }
 };
 
-module.exports = selectCategoryByIdQuery;
+module.exports = selectCategoryByIdAccountAndIdQuery;

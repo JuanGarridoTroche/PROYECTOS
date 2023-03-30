@@ -3,7 +3,7 @@ const joi = require("@hapi/joi");
 const selectEntryByIdQuery = require("../../bbdd/queries/entries/selectEntryByIdQuery");
 const updateEntryQuery = require("../../bbdd/queries/entries/updateEntryQuery");
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");
-const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
+const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndNameQuery");
 const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
 
 const updateEntry = async (req, res, next) => {

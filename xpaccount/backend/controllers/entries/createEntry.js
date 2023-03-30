@@ -1,6 +1,6 @@
 const { generateError } = require("../../helpers");
 const joi = require("@hapi/joi");
-const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoriesByIdAccountQuery");
+const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndNameQuery");
 const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
 const insertEntryQuery = require("../../bbdd/queries/entries/insertEntryQuery");
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");

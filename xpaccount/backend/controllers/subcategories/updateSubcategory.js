@@ -1,6 +1,6 @@
 const { generateError } = require("../../helpers");
 
-const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdQuery");
+const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const updateSubcategoryQuery = require("../../bbdd/queries/subcategories/updateSubcategoryQuery");
 

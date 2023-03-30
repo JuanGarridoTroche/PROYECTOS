@@ -202,6 +202,7 @@ export const readingAccountService = async ({idAccount, token}) => {
 }
 
 
-export const loadCategories = (token)=> {
-
+export const loadCategories = async (token, idUser)=> {
+  const responde = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}: ${import.meta.env.VITE_BACKEND_PORT}`)
 }
