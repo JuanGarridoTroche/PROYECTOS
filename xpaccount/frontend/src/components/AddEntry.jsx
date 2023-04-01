@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { loadCategories } from "../services";
+import { loadCategories, loadSubcategories } from "../services";
 import { AuthContext } from "../context/AuthContext";
 
 export const AddEntry = () => {
@@ -8,6 +8,8 @@ export const AddEntry = () => {
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  let selectedCat = "";
 
 
   // Obtenemos las categorías de la cuenta con idAccount
@@ -27,6 +29,22 @@ export const AddEntry = () => {
     }
   }, []);
 
+  // Manejador que carga las subcategorías de la category seleccionada
+  const handleSubcategories = async(selectedCat)=>{
+    setError("");
+    try {
+      const idCategory = categories.find(element => element.name === selectedCat).id;
+      
+      if(idCategory) {
+        const mySubcategories = await loadSubcategories(token, idCategory);
+        setSubcategories(mySubcategories);
+      }      
+     
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <table>
       <tbody className="tbody-new-entry">
@@ -40,11 +58,11 @@ export const AddEntry = () => {
             />
           </td>
           <td>
-            <select name="categories" onClick={()=>{
-
+            <select name="categories" onClick={(e)=>{
+              handleSubcategories(e.target.value);
             }}>
               <option defaultValue>Elige una opción...</option>
-              {categories && categories.map(category => {
+              {categories && categories.map((category) => {
                 return (
                   <option key={category.id}>{category.name}</option>
                 )
@@ -53,7 +71,11 @@ export const AddEntry = () => {
           </td>
           <td>
             <select name="subcategories">
-              <option defaultValue="default">Elige una opción...</option>
+              <option defaultValue>Elige una opción...</option>
+              {subcategories && subcategories.map((subcategory) => {
+                return(
+                <option key={subcategory.id}>{subcategory.name}</option>
+              )})}
             </select>
           </td>
           <td>
