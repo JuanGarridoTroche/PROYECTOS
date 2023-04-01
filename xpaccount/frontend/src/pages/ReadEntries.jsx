@@ -96,7 +96,7 @@ export const ReadEntries = () => {
   const handleAddEntry = async () => {
     setError("");
     try {
-      alert("Añadir una entrada");
+      // alert("Añadir una entrada");
     } catch (err) {
       setError(err.message);
     }
