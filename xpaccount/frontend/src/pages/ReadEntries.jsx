@@ -20,7 +20,7 @@ export const ReadEntries = () => {
   const [recoverEntries, setRecoverEntries] = useState(false);
 
   let myNewPropEntries = [];
-  let total = 0.0;
+  let total = 0;
 
   // Cargar asientos bancarios de la cuenta con token e idAccount
   useEffect(() => {
@@ -42,7 +42,7 @@ export const ReadEntries = () => {
           token,
         });
 
-        if (readingEntries) {
+        if (readingEntries.length > 0) {
           let balance = 0;
 
           myNewPropEntries = readingEntries.reverse().map((entry, index) => {
@@ -63,10 +63,10 @@ export const ReadEntries = () => {
             };
             return myNewObj;
           });
+          setEntries(myNewPropEntries);
+          setSuma(myNewPropEntries[myNewPropEntries.length - 1].total);
         }
 
-        setEntries(myNewPropEntries);
-        setSuma(myNewPropEntries[myNewPropEntries.length - 1].total);
         
       } catch (err) {
         setError(err.message);
@@ -93,7 +93,6 @@ export const ReadEntries = () => {
             Volver
           </button>
         </div>
-        <section className="error">{error ? <p>{error}</p> : null}</section>
         <section className="account-content">
           <div className="data" key={myAccount.id}>
             <h3>
@@ -107,14 +106,23 @@ export const ReadEntries = () => {
             </p>
           ) : (
             <p className="money">{suma.toFixed(2)} Eur</p>
-          )}
+            )}
         </section>
+        <section className="account-content">
+          <div className="cats-and-subs">
+          <a className="create-category" href={`/account/${idAccount}/categories`}>
+            <img src="/plus.svg" />
+            <p>Categorías</p>
+          </a>
+          </div>          
+        </section>
+        <section className="error">{error ? <p>{error}</p> : null}</section>
       </section>
       <section className="account-entries-container">
         {entries.length > 0 ? (
           <table className="entries-table">
             <TableHead />
-            {entries.reverse().map((entry, index) => {
+            {entries.reverse().map((entry) => {
               return (
                 <tbody key={entry.id} className="tbody-entries">
                   <tr>
@@ -125,8 +133,9 @@ export const ReadEntries = () => {
                       {parseFloat(entry.amount).toFixed(2)} EUR
                     </td>
                     <td className={parseFloat(entry.total) > 0 ? "numbers" : "numbers negative"}>
-                      {parseFloat(entry.total).toFixed(2)} EUR
+                        {parseFloat(entry.total).toFixed(2)} EUR
                     </td>
+                    
                     <td className="concept">{entry.concept}</td>
                     <td className="comment">{entry.comment}</td>
                     <td>

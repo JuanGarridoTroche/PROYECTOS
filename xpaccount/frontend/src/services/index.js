@@ -248,7 +248,7 @@ export const loadSubcategories = async (token, idCategory) => {
 
 // Añadir asiento bancario
 export const AddEntryService = async(token, idAccount, data)=>{
-  console.log(data);
+  
   const response = await fetch(`
   ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry`,
   {
