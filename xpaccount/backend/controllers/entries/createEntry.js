@@ -10,6 +10,7 @@ const createEntry = async (req, res, next) => {
   const {idAccount} = req.params;
 
   const { dateEntry, category, subcategory, amount, concept, comment } = req.body;
+  console.log(dateEntry, category, subcategory, amount, concept, comment);
   try {
     // Comprobar que la cuenta pertenece al usuario logueado
     const validatingAccount = await selectAccountByIdAccountQuery(idAccount)

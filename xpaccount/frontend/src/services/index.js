@@ -244,3 +244,27 @@ export const loadSubcategories = async (token, idCategory) => {
   
   return json.data;
 };
+
+
+// Añadir asiento bancario
+export const AddEntryService = async(token, idAccount, data)=>{
+  console.log(data);
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+
+  console.log(json.data);
+  return json.data;
+}
