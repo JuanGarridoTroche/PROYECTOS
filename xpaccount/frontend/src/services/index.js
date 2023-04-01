@@ -202,6 +202,8 @@ export const readingAccountService = async ({ idAccount, token }) => {
   return json.data;
 };
 
+
+// Traemos todas las categorías de la cuenta indicada
 export const loadCategories = async (token, idAccount) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/categories`,
@@ -221,8 +223,10 @@ export const loadCategories = async (token, idAccount) => {
   return json.data;
 };
 
+
+// Cargamos todas las subcategorías de la categoría indicada
 export const loadSubcategories = async (token, idCategory) => {
-  console.log(idCategory);
+  
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/subs`,
     {
@@ -237,6 +241,6 @@ export const loadSubcategories = async (token, idCategory) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  
   return json.data;
 };

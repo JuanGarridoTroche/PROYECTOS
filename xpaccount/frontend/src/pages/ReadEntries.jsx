@@ -8,6 +8,7 @@ import {
   readEntriesByAccountService,
   readingAccountService,
 } from "../services";
+import { AddEntry } from "../components/AddEntry";
 
 export const ReadEntries = () => {
   const { idAccount } = useParams();
@@ -66,7 +67,7 @@ export const ReadEntries = () => {
   useEffect(() => {
     const loadMyCategories = async () => {
       setError("");
-      try {
+      try {        
         // Conseguir todas las categorías de la cuenta con idAccount
         const myCategories = await loadCategories(token, idAccount);
         setCategories([...myCategories]);
@@ -82,6 +83,9 @@ export const ReadEntries = () => {
   const handleSubcategories = async(selectedCat, idCategory) => {
     setError("");
     try {
+      if(selectedCat ==="Elige una opción...") {
+        return
+      }
       idCategory = categories.find(element => element.name === selectedCat).id;
       
       const mySubcats = await loadSubcategories(token, idCategory);
@@ -226,7 +230,10 @@ export const ReadEntries = () => {
             </tbody>
           </table>
         ) : (
-          <h3>No hay asientos bancarios</h3>
+          <>
+            <h3>No hay asientos bancarios</h3>
+            <AddEntry/>
+          </>
         )}
       </section>
     </>
