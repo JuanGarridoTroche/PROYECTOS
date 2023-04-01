@@ -3,6 +3,10 @@
   border: 1px solid grey;
 }
 
+.account-entries-container > h3 {
+  text-align: center;
+}
+
 .title-content {
   display: flex;
   flex-direction: row;

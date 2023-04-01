@@ -9,7 +9,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { TableHead } from "./TableHead";
 
-export const AddEntry = ({ entries, setEntries }) => {
+export const AddEntry = ({ entries, setEntries, recoverEntries, setRecoverEntries }) => {
   const [error, setError] = useState("");
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
@@ -73,6 +73,7 @@ export const AddEntry = ({ entries, setEntries }) => {
       
       const newEntry = await AddEntryService(token, idAccount, data);
       setEntries(...entries, newEntry)
+      setRecoverEntries(!recoverEntries);
     } catch (err) {
       setError(err.message);
     }
