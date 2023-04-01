@@ -1,3 +1,4 @@
+import ("../css/AddEntry.css");
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -8,7 +9,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { TableHead } from "./TableHead";
 
-export const AddEntry = ({ entries }) => {
+export const AddEntry = ({ entries, setEntries }) => {
   const [error, setError] = useState("");
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
@@ -70,14 +71,15 @@ export const AddEntry = ({ entries }) => {
         comment,
       };
       
-      await AddEntryService(token, idAccount, data);
+      const newEntry = await AddEntryService(token, idAccount, data);
+      setEntries(...entries, newEntry)
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <>
+    <>      
       {entries.length < 1 ? <TableHead /> : null}
       <tbody className="tbody-new-entry">
         <tr>
@@ -152,6 +154,11 @@ export const AddEntry = ({ entries }) => {
           </td>
         </tr>
       </tbody>
+      {error ? <tbody className="tbody-error">
+        <tr className="tr-error">
+        <td colSpan={8} className="td-error">{error}</td>
+        </tr>
+      </tbody> : null}      
     </>
   );
 };

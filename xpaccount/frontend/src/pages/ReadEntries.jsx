@@ -56,7 +56,7 @@ export const ReadEntries = () => {
     if (token) {
       loadEntriesByAccount();
     }
-  }, [token]);
+  }, [token, entries]);
 
   return (
     <>
@@ -89,7 +89,7 @@ export const ReadEntries = () => {
             <p className="money">{suma.toFixed(2)} Eur</p>
           )}
         </section>
-      </section>
+      </section>        
       <section className="account-entries-container">
         {entries.length > 0 ? (
           <table className="entries-table">
@@ -116,13 +116,13 @@ export const ReadEntries = () => {
                 </tbody>
               );
             })}
-            <AddEntry entries={entries}/>
+            <AddEntry entries={entries} setEntries={setEntries}/>
           </table>
         ) : (
           <>
             <h3>No hay asientos bancarios</h3>
             <table>
-              <AddEntry entries={entries}/>
+              <AddEntry entries={entries} setEntries={setEntries}/>
             </table>
           </>
         )}

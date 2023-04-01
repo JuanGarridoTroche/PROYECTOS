@@ -264,7 +264,5 @@ export const AddEntryService = async(token, idAccount, data)=>{
   if(!response.ok) {
     throw new Error(json.message)
   }
-
-  console.log(json.data);
-  return json.data;
+   return json.data;
 }
