@@ -9,7 +9,7 @@ const updateUserProfileQuery = async ({idUser, birth, firstName, lastName, dni})
     const [user] = await connection.query(
       `
     UPDATE users SET birthday = ?, firstName = ?, lastName = ?, dni = ?, modifiedAt = ? WHERE id = ?`,
-      [birthday, firstName, lastName, dni, new Date(), idUser]
+      [birth, firstName, lastName, dni, new Date(), idUser]
     );         
     
   } finally {

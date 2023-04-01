@@ -4,7 +4,7 @@ const updateUserRegistrationCodeQuery = require("../../bbdd/queries/users/update
 const validateUser = async (req, res, next) => {
   try {
     const {registrationCode} = req.params;
-    console.log("Registro de acivación de cuenta nueva: ", registrationCode);
+    // console.log("Registro de activación de cuenta nueva: ", registrationCode);
     
     // Activamos el usuario
     await updateUserRegistrationCodeQuery(registrationCode);

@@ -220,3 +220,23 @@ export const loadCategories = async (token, idAccount) => {
   
   return json.data;
 };
+
+export const loadSubcategories = async (token, idCategory) => {
+  console.log(idCategory);
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/subs`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  console.log(json.data);
+  return json.data;
+};

@@ -37,7 +37,7 @@ const createEntry = async (req, res, next) => {
     }
 
     // Categoría:
-    const validatingCat = await selectCategoriesByIdUserQuery(idUser, category);
+    const validatingCat = await selectCategoriesByIdUserQuery(idAccount, category);
     if(!validatingCat) {throw generateError("La categoría no existe", 404)}
 
     // Validamos la Subcategoría:

@@ -4,8 +4,7 @@ const selectCategoriesByIdAccountQuery = require("../../bbdd/queries/categories/
 const getCategories = async (req, res, next) => {
   
   const {idAccount} = req.params;
-  console.log(idAccount);
-
+ 
   try {
 
     //Seleccionamos las categorías de la cuenta idAccount

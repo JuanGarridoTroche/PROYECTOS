@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
   loadCategories,
+  loadSubcategories,
   readEntriesByAccountService,
   readingAccountService,
 } from "../services";
@@ -16,7 +17,8 @@ export const ReadEntries = () => {
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState("Elige una categoría...");
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
   let selectedCat = "";
   
   let total = 0;
@@ -40,12 +42,15 @@ export const ReadEntries = () => {
           idAccount,
           token,
         });
-        setEntries(readingEntries);
 
-        readingEntries.map((entry) => {
-          tot = tot + parseFloat(entry.amount);
-        });
-        setSuma(tot);
+        if(readingEntries){
+          setEntries(readingEntries);
+          readingEntries.map((entry) => {
+            tot = tot + parseFloat(entry.amount);
+          });
+          setSuma(tot);
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -60,11 +65,11 @@ export const ReadEntries = () => {
   // Cargar todas las categorías con token e idAccount
   useEffect(() => {
     const loadMyCategories = async () => {
+      setError("");
       try {
-        setError("");
         // Conseguir todas las categorías de la cuenta con idAccount
         const myCategories = await loadCategories(token, idAccount);
-        setCategories(myCategories);
+        setCategories([...myCategories]);
       } catch (err) {
         setError(err.message);
       }
@@ -74,10 +79,13 @@ export const ReadEntries = () => {
     }
   }, []);
 
-  const handleSubcategories = async(selectedCat) => {
+  const handleSubcategories = async(selectedCat, idCategory) => {
     setError("");
     try {
+      idCategory = categories.find(element => element.name === selectedCat).id;
       
+      const mySubcats = await loadSubcategories(token, idCategory);
+      setSubcategories(mySubcats);
     } catch (err) {
       setError(err.message);
     }
@@ -174,10 +182,10 @@ export const ReadEntries = () => {
                   />
                 </td>
                 <td>
-                  <select name="categories" onClick={(e)=>{
-                    selectedCat = e.target.value;
-                    handleSubcategories(selectedCat);
-                  }}>
+                  <select name="categories" onClick={(e)=>{                    
+                          handleSubcategories(e.target.value);
+                        }}>
+                    <option defaultValue="default">Elige una opción...</option>
                     {categories.map((category=> {
                       return (
                         <option key={category.id}>{category.name}</option>
@@ -186,7 +194,14 @@ export const ReadEntries = () => {
                   </select>
                 </td>
                 <td>
-                  <select name="subcategories"></select>
+                  <select name="subcategories">
+                  <option defaultValue="default">Elige una opción...</option>
+                  {subcategories.map((subcategory=>{
+                    return (
+                      <option key={subcategory.id}>{subcategory.name}</option>
+                    )
+                  }))}
+                  </select>
                 </td>
                 <td>
                   <input type="text" />

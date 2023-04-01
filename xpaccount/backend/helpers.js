@@ -65,7 +65,6 @@ const excelSantanderToJSON = (excelFile) => {
     cellDates: true
   })
 
-  console.log(data);
 }
 
 

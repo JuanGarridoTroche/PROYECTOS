@@ -81,7 +81,6 @@ const updateUserProfile = async (req, res, next) => {
   
     }
 
-    
     // El formato de fecha tiene que ser tipo UNIX: se define como la cantidad de segundos transcurridos desde la medianoche UTC del 1 de enero de 1970, sin contar segundos intercalares.
     if(birthday) {
       const schemaBirthday = joi.date();
@@ -91,11 +90,10 @@ const updateUserProfile = async (req, res, next) => {
       }
     }
 
-
-    let birth = new Date();
+    let birth;
 
     if(!birthday){
-      birth = originalData.birthday
+      birth = originalData.birthday;      
     } else {
       birth = new Date(birthday.split("/",3).reverse().join("/"));      
     }   

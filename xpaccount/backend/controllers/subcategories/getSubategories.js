@@ -3,8 +3,7 @@ const selectSubcatsByIdCatQuery = require("../../bbdd/queries/subcategories/sele
 const getSubcategories = async (req, res, next) => {
   const { idCategory } = req.params;
 
-  try {
-   
+  try {   
 
     // Comprobamos que la categoría pertenece al usuario logueado
     
