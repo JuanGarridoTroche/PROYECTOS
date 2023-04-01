@@ -67,6 +67,7 @@ export const ReadEntries = () => {
 
         setEntries(myNewPropEntries);
         setSuma(myNewPropEntries[myNewPropEntries.length - 1].total);
+        
       } catch (err) {
         setError(err.message);
       }
@@ -120,10 +121,10 @@ export const ReadEntries = () => {
                     <td>{entry.dateEntry}</td>
                     <td>{entry.category}</td>
                     <td>{entry.subcategory}</td>
-                    <td className="numbers">
+                    <td className={parseFloat(entry.amount) > 0 ? "numbers" : "numbers negative"}>
                       {parseFloat(entry.amount).toFixed(2)} EUR
                     </td>
-                    <td className="numbers">
+                    <td className={parseFloat(entry.total) > 0 ? "numbers" : "numbers negative"}>
                       {parseFloat(entry.total).toFixed(2)} EUR
                     </td>
                     <td className="concept">{entry.concept}</td>

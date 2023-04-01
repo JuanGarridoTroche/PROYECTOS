@@ -62,6 +62,10 @@
   text-align: right;
 }
 
+.tbody-entries > tr > .numbers.negative {
+  color: red;
+}
+
 .tbody-entries > tr > .concept {
   text-align: left;
 }
