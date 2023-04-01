@@ -3,24 +3,20 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
-  loadCategories,
-  loadSubcategories,
   readEntriesByAccountService,
   readingAccountService,
 } from "../services";
 import { AddEntry } from "../components/AddEntry";
+import { TableHead } from "../components/TableHead";
 
 export const ReadEntries = () => {
   const { idAccount } = useParams();
-  const { token, logged } = useContext(AuthContext);
+  const { token} = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState("");
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
-  const [subcategories, setSubcategories] = useState([]);
-  let selectedCat = "";
   
   let total = 0;
 
@@ -62,50 +58,6 @@ export const ReadEntries = () => {
     }
   }, [token]);
 
-
-  // Cargar todas las categorías con token e idAccount
-  useEffect(() => {
-    const loadMyCategories = async () => {
-      setError("");
-      try {        
-        // Conseguir todas las categorías de la cuenta con idAccount
-        const myCategories = await loadCategories(token, idAccount);
-        setCategories([...myCategories]);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    if (token) {
-      loadMyCategories();
-    }
-  }, []);
-
-  const handleSubcategories = async(selectedCat, idCategory) => {
-    setError("");
-    try {
-      if(selectedCat ==="Elige una opción...") {
-        return
-      }
-      idCategory = categories.find(element => element.name === selectedCat).id;
-      
-      const mySubcats = await loadSubcategories(token, idCategory);
-      setSubcategories(mySubcats);
-    } catch (err) {
-      setError(err.message);
-    }
-  }
-
-
-  // Maneja añadir un asiento bancario
-  const handleAddEntry = async () => {
-    setError("");
-    try {
-      // alert("Añadir una entrada");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
   return (
     <>
       <section className="my-account container">
@@ -141,18 +93,7 @@ export const ReadEntries = () => {
       <section className="account-entries-container">
         {entries.length > 0 ? (
           <table className="entries-table">
-            <thead className="table-header">
-              <tr>
-                <th>FECHA</th>
-                <th>CATEGORÍA</th>
-                <th>SUBCATEGORÍA</th>
-                <th>IMPORTE</th>
-                <th>TOTAL</th>
-                <th className="concept">CONCEPTO</th>
-                <th className="comment">COMENTARIO</th>
-              </tr>
-            </thead>
-
+            <TableHead/>
             {entries.map((entry, index) => {
               return (
                 <tbody key={entry.id} className="tbody-entries">
@@ -175,64 +116,14 @@ export const ReadEntries = () => {
                 </tbody>
               );
             })}
-            <tbody className="tbody-new-entry">
-              <tr>
-                <td>
-                  <input
-                    type="date"
-                    onChange={(e) => {
-                      e.target.value;
-                    }}
-                  />
-                </td>
-                <td>
-                  <select name="categories" onClick={(e)=>{                    
-                          handleSubcategories(e.target.value);
-                        }}>
-                    <option defaultValue="default">Elige una opción...</option>
-                    {categories.map((category=> {
-                      return (
-                        <option key={category.id}>{category.name}</option>
-                      )
-                    }))}
-                  </select>
-                </td>
-                <td>
-                  <select name="subcategories">
-                  <option defaultValue="default">Elige una opción...</option>
-                  {subcategories.map((subcategory=>{
-                    return (
-                      <option key={subcategory.id}>{subcategory.name}</option>
-                    )
-                  }))}
-                  </select>
-                </td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <input type="text" disabled />
-                </td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <input type="text" />
-                </td>
-                <td><button
-                  onClick={() => {
-                    handleAddEntry();
-                  }}
-                >
-                  Añadir
-                </button></td>
-              </tr>
-            </tbody>
+            <AddEntry entries={entries}/>
           </table>
         ) : (
           <>
             <h3>No hay asientos bancarios</h3>
-            <AddEntry/>
+            <table>
+              <AddEntry entries={entries}/>
+            </table>
           </>
         )}
       </section>

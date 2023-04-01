@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { loadCategories, loadSubcategories } from "../services";
 import { AuthContext } from "../context/AuthContext";
+import { TableHead } from "./TableHead";
 
-export const AddEntry = () => {
+export const AddEntry = ({entries}) => {
   const [error, setError] = useState("");
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
@@ -45,8 +46,20 @@ export const AddEntry = () => {
     }
   }
 
+
+   // Maneja añadir un asiento bancario
+   const handleAddEntry = async () => {
+    setError("");
+    try {
+      // alert("Añadir una entrada");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
-    <table>
+    <>
+      {entries.length < 1 ? <TableHead/> : null}      
       <tbody className="tbody-new-entry">
         <tr>
           <td>
@@ -95,6 +108,6 @@ export const AddEntry = () => {
           </td>
         </tr>
       </tbody>
-    </table>
+    </>
   );
 };
