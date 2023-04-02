@@ -203,7 +203,7 @@ export const readingAccountService = async ({ idAccount, token }) => {
 };
 
 
-// Traemos todas las categorías de la cuenta indicada
+// Leer todas las categorías de la cuenta indicada
 export const loadCategories = async (token, idAccount) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/categories`,

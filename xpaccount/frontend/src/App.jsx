@@ -14,6 +14,7 @@ import { Register } from "./pages/Register";
 import { UserProfile } from "./pages/UserProfile";
 import { ValidateUSer } from "./pages/ValidateUser";
 import { ReadCategories } from "./pages/ReadCategories";
+import { ReadSubcategories } from "./pages/ReadSubcategories";
 
 function App() {
   return (
@@ -45,11 +46,14 @@ function App() {
           {/* Crear una cuenta nueva */}
           <Route path="/accounts/create" element={<CreateAccount />} />
 
-          {/* Crear una categoría */}
+          {/* Leer las categorías de una cuenta */}
           <Route
             path="/account/:idAccount/categories"
             element={<ReadCategories />}
           />
+
+          {/* Leer las subcategorías de una categoría de la cuenta */}
+          <Route path="/account/:idAccount/category/:idCategory" element={<ReadSubcategories/>}/>
 
           {/* Acceder a los asientos bancarios de una cuenta */}
           <Route path="/account/:idAccount" element={<ReadEntries />} />

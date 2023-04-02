@@ -12,6 +12,34 @@
   padding-bottom: 20px;
 }
 
+.categories-container > .create-category > .create-category-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.categories-container > .create-category > .create-category-form > label {
+  padding-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid grey;
+  width: 100%;
+} 
+
+.categories-container > .create-category > .create-category-form > input {
+  padding: 7px;
+  max-width: 500px;
+}
+
+button {
+  background-color: var(--color-brand);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
 .categories-container > .categories-content > ul {
   list-style: none;  
 }
@@ -31,5 +59,11 @@
 @media(min-width: 700px) {
   .categories-container > h2 {
     font-size: 2.4rem;
+  }
+
+  .categories-container > .categories-content > ul > Li > a:hover {
+    transition: 0.5s ease-in-out;
+    transform: scaleX(1.4);
+    color: red;
   }
 }
