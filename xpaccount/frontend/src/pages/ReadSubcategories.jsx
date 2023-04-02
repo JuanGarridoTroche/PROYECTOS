@@ -3,12 +3,13 @@ import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService } from "../services";
+import { Modal } from "../components/Modal";
 
 export const ReadSubcategories = () => {
   const { idAccount, idCategory } = useParams();
   const { token } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [showDataForm, setShowDataForm] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const [category, setCategory] = useState({});
   const [subcategories, setSubcategories] = useState("");
   const [updateCat, setUpdateCat] =useState("");
@@ -61,10 +62,11 @@ export const ReadSubcategories = () => {
     e.preventDefault();
     setError("");
     try {
-      const data = {name: updateCat, comment: updateCommentCat};
+      const data = {category: updateCat, comment: updateCommentCat};
       
       await updateCategoryService({token, idAccount, idCategory, data});
-      
+      setReload(!reload);
+      setShowModal(true);
     } catch (err) {
       setError(err.message)
     }
@@ -95,7 +97,7 @@ export const ReadSubcategories = () => {
       </section>
       <section className="create-category subcategory">
             <form className="create-category-form" onSubmit={handleCreateSubcategory}>
-              <label htmlFor="newSubcat"> Crear categoría</label>
+              <label htmlFor="newSubcat"> Crear subcategoría</label>
               <fieldset>
                 <input type="text" name="newSubcat" id="newSubcat" placeholder="nombre subcategoría" value={newSubcat} onChange={(e) => {
                   setNewSubcat(e.target.value);
@@ -112,14 +114,21 @@ export const ReadSubcategories = () => {
             subcategories.map((subcategory) => {
               return (
                 <li key={subcategory.id}>
-                  <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`}>
+                  <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`} onClick={()=>{setShowModal(true)}}>
                     {subcategory.name}
                   </Link>
+                  {/* <button type="text" onClick={()=>{setShowModal(true)}}>{subcategory.name}</button> */}
                 </li>
               );
             })}
         </ul>
       </section>
+      {showModal && (
+        <Modal setShowModal={setShowModal}>
+          Categoría actualizada!
+        </Modal>
+      )}
+      
     </section>
   );
 };

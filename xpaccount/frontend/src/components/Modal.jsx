@@ -28,10 +28,10 @@ export const Modal = ({ setShowModal, children }) => {
               navigate("/")
             }}
           >
-            Aceptar
+            Ir a Inicio
           </button>
         </div>
       </div>
-    </section>
+  </section>
   );
 };
