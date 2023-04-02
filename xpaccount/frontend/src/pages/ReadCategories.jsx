@@ -45,8 +45,10 @@ export const ReadCategories = () => {
           <section className="create-category">
             <form className="create-category-form">
               <label htmlFor="newCat"> Crear categoría</label>
-              <input type="text" name="newCat" id="newCat"/>
-              <button>Crear</button>
+              <fieldset>
+                <input type="text" name="newCat" id="newCat"/>
+                <button>Crear</button>
+              </fieldset>
             </form>
 
           </section>
