@@ -21,7 +21,7 @@ export const loginUserService = async ({ email, password }) => {
   return json.data;
 };
 
-// Servicio que nos facilita los datos del usuario logueado a partir de su token
+// Muestra los datos del usuario logueado a partir de su token
 export const getLoggedUserDataService = async (token) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -202,8 +202,27 @@ export const readingAccountService = async ({ idAccount, token }) => {
   return json.data;
 };
 
+// Obtener todos los datos de una categoría
+export const getCategoryDataService = async (token, idAccount, idCategory) => {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category/${idCategory}`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    }
+  })
 
-// Leer todas las categorías de la cuenta indicada
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+  return json.data;
+}
+
+
+// Obtener todas las categorías de la cuenta indicada
 export const loadCategories = async (token, idAccount) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/categories`,
@@ -245,9 +264,32 @@ export const createCategoryService = async(token, idAccount, data)=> {
   return json.data;
 }
 
+// Modificar una categoría
+export const updateCategoryService = async({token, idAccount, idCategory, data})=> {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category/${idCategory}`,
+  {
+    method: "PUT",
+    headers : {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+}
+
+
 
 // Cargamos todas las subcategorías de la categoría indicada
-export const loadSubcategories = async (token, idCategory) => {
+export const loadSubcategoriesService = async (token, idCategory) => {
   
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/subs`,
@@ -290,7 +332,7 @@ export const createSubcategoryService = async(token, idCategory, data)=> {
 }
 
 
-// Añadir asiento bancario
+// Crear asiento bancario
 export const AddEntryService = async(token, idAccount, data)=>{
   
   const response = await fetch(`

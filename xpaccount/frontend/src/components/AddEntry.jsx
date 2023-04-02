@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   AddEntryService,
   loadCategories,
-  loadSubcategories,
+  loadSubcategoriesService,
 } from "../services";
 import { AuthContext } from "../context/AuthContext";
 import { TableHead } from "./TableHead";
@@ -52,7 +52,7 @@ export const AddEntry = ({ entries, setEntries, recoverEntries, setRecoverEntrie
         ).id;
   
         if (idCategory) {
-          const mySubcategories = await loadSubcategories(token, idCategory);
+          const mySubcategories = await loadSubcategoriesService(token, idCategory);
           setSubcategories(mySubcategories);
         }
       }

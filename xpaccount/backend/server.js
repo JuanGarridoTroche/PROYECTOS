@@ -47,7 +47,7 @@ app.get("/user/loggedProfile", isAuth, readLoggedProfile);
 app.put("/user/updateProfile", isAuth, updateUserProfile);
 
 // Consultar las cuentas pertenecientes a un usuario
-app.get("/user/accounts", isAuth, getUserAccounts)
+app.get("/user/accounts", isAuth, getUserAccounts);
 
 /*
  * ###############################
@@ -71,8 +71,7 @@ app.put("/account/:idAccount", isAuth, updateAccount);
 app.delete("/account/:idAccount", isAuth, deleteAccount);
 
 // Leer los datos de una cuenta
-app.get("/account/:idAccount", isAuth, readAccount)
-
+app.get("/account/:idAccount", isAuth, readAccount);
 
 /*
  * #################################
@@ -85,10 +84,14 @@ const {
   updateCategory,
   deleteCategory,
   getCategories,
+  getCategoryData,
 } = require("./controllers/categories");
 
 // Leer las categorías de una cuenta
 app.get("/account/:idAccount/categories", isAuth, getCategories);
+
+// Obtener los datos de una categoría
+app.get("/account/:idAccount/category/:idCategory", isAuth, getCategoryData);
 
 // Crear una categoría de asiento bancario
 app.post("/account/:idAccount/category", isAuth, createCategory);
@@ -113,7 +116,7 @@ const {
 } = require("./controllers/subcategories");
 
 // Conseguir todas las subcategorías de una categoría
-app.get("/category/:idCategory/subs", isAuth, getSubcategories)
+app.get("/category/:idCategory/subs", isAuth, getSubcategories);
 
 // Crear una subcategoría
 app.post("/category/:idCategory/sub", isAuth, createSubcategory);

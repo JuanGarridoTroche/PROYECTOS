@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { createCategoryService, loadCategories, readingAccountService } from "../services";
 
 export const ReadCategories = () => {
-  const { idAccount } = useParams();
+  const { idAccount} = useParams();
   const { token } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [categories, setCategories] = useState("");
@@ -53,28 +53,29 @@ export const ReadCategories = () => {
 
   return (
     <section className="categories-container">
-      <h2>categorías de la cuenta <span>{account.alias}</span></h2>
-      {error ? <label className="error">{error}</label> : null}
+      <h2>Cuenta <span>{account.alias}</span></h2>
       <button
-            onClick={() => {
-              navigate(`/account/${idAccount}`);
-            }}
-          >
-            Volver
-          </button>
-          <section className="create-category">
-            <form className="create-category-form" onSubmit={handleCreateCategory}>
-              <label htmlFor="newCat"> Crear categoría</label>
-              <fieldset>
-                <input type="text" name="newCat" id="newCat" placeholder="nombre" value={newCat} onChange={(e) => {
-                  setNewCat(e.target.value);
-                }}/>
-                <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
-                <button>Crear</button>
-              </fieldset>
-            </form>
+        onClick={() => {
+          navigate(`/account/${idAccount}`);
+        }}
+        >
+        Volver
+      </button>
+      <section className="create-category">
+        <form className="create-category-form" onSubmit={handleCreateCategory}>
+          <label htmlFor="newCat"> Crear categoría</label>
+          <fieldset>
+            <input type="text" name="newCat" id="newCat" placeholder="nombre" value={newCat} onChange={(e) => {
+              setNewCat(e.target.value);
+            }}/>
+            <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
+            <button>Crear</button>
+          </fieldset>
+        </form>
+      </section>
 
-          </section>
+      <h2>categorías de <span>{account.alias}</span></h2>
+      {error ? <label className="error">{error}</label> : null}
       <section className="categories-content">
         <ul>
           {categories &&
