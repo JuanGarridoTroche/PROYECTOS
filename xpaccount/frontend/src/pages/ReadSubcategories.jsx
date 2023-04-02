@@ -2,13 +2,16 @@ import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { loadSubcategories } from "../services";
+import { createSubcategoryService, loadSubcategories } from "../services";
 
 export const ReadSubcategories = () => {
   const { idAccount, idCategory } = useParams();
   const { token } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [subcategories, setSubcategories] = useState("");
+  const [newSubcat, setNewSubcat] = useState("")
+  const [comment, setComment] = useState("");
+  const [reload, setReload] = useState("");
   const navigate = useNavigate();
 
   
@@ -27,18 +30,46 @@ export const ReadSubcategories = () => {
     if (token) {
       loadMySubcategories();
     }
-  }, []);
+  }, [reload]);
+
+  const handleCreateSubcategory = async (e)=> {
+    e.preventDefault();
+    setError("")
+    try {
+      const data = {nameSubcat: newSubcat, comment};
+      await createSubcategoryService(token, idCategory, data); 
+      setNewSubcat("");
+      setComment("");    
+      setReload(!reload);
+    } catch (err) {
+      setError(err.message);
+    }
+
+  }
 
   return (
     <section className="categories-container">
       <h2>Subcategorías de la cuenta</h2>
+      {error ? <label className="error">{error}</label> : null}
       <button
             onClick={() => {
               navigate(`/account/${idAccount}/categories`);
             }}
           >
             Volver
-          </button>
+      </button>
+      <section className="create-category">
+            <form className="create-category-form" onSubmit={handleCreateSubcategory}>
+              <label htmlFor="newSubcat"> Crear categoría</label>
+              <fieldset>
+                <input type="text" name="newSubcat" id="newSubcat" placeholder="nombre subcategoría" value={newSubcat} onChange={(e) => {
+                  setNewSubcat(e.target.value);
+                }}/>
+                <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
+                <button>Crear</button>
+              </fieldset>
+            </form>
+      </section>
       <section className="categories-content">
         <ul>
           {subcategories &&

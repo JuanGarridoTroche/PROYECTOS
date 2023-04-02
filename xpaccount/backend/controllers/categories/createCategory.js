@@ -8,6 +8,8 @@ const createCategory = async (req, res, next) => {
   const {category, comment} = req.body;
   const {idAccount} = req.params;
 
+  console.log("nombre Categoría: ", category);
+
   try {
 
     // Validamos el valor introducido por el usuario de la categoría

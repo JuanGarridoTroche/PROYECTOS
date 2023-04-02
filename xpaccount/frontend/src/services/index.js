@@ -223,6 +223,28 @@ export const loadCategories = async (token, idAccount) => {
   return json.data;
 };
 
+// Crear una nueva categoría
+export const createCategoryService = async(token, idAccount, data)=> {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category`,
+  {
+    method: "POST",
+    headers : {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+}
+
 
 // Cargamos todas las subcategorías de la categoría indicada
 export const loadSubcategories = async (token, idCategory) => {
@@ -244,6 +266,28 @@ export const loadSubcategories = async (token, idCategory) => {
   
   return json.data;
 };
+
+// Crear una nueva subcategoría
+export const createSubcategoryService = async(token, idCategory, data)=> {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/sub`,
+  { 
+    method: "POST",
+    headers : {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+}
 
 
 // Añadir asiento bancario

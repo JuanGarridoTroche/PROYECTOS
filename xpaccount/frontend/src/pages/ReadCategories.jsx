@@ -2,7 +2,7 @@ import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { loadCategories, readingAccountService } from "../services";
+import { createCategoryService, loadCategories, readingAccountService } from "../services";
 
 export const ReadCategories = () => {
   const { idAccount } = useParams();
@@ -10,18 +10,22 @@ export const ReadCategories = () => {
   const [error, setError] = useState("");
   const [categories, setCategories] = useState("");
   const [account, setAccount] = useState({});
+  const [newCat, setNewCat] = useState("");
+  const [comment, setComment] = useState("");
+  const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   
   useEffect(() => {
     const loadMyCategories = async () => {
-      setError("");
+      setError("");   
+
       try {
         // Recuperar los datos de la cuenta
         const myAccount = await readingAccountService({ idAccount, token });
         setAccount(myAccount);
 
         //Conseguir todas las categorías de la cuenta idAccount
-        const myCategories = await loadCategories(token, idAccount);
+        const myCategories = await loadCategories(token, idAccount);        
         setCategories(myCategories);
       } catch (err) {
         setError(err.message);
@@ -30,11 +34,27 @@ export const ReadCategories = () => {
     if (token) {
       loadMyCategories();
     }
-  }, []);
+  }, [reload]);
+
+  const handleCreateCategory = async (e)=> {
+    e.preventDefault();
+    setError("")
+    try {
+      const data = {category: newCat, comment};
+      await createCategoryService(token, idAccount, data); 
+      setNewCat("");
+      setComment("");    
+      setReload(!reload);
+    } catch (err) {
+      setError(err.message);
+    }
+
+  }
 
   return (
     <section className="categories-container">
       <h2>categorías de la cuenta <span>{account.alias}</span></h2>
+      {error ? <label className="error">{error}</label> : null}
       <button
             onClick={() => {
               navigate(`/account/${idAccount}`);
@@ -43,10 +63,13 @@ export const ReadCategories = () => {
             Volver
           </button>
           <section className="create-category">
-            <form className="create-category-form">
+            <form className="create-category-form" onSubmit={handleCreateCategory}>
               <label htmlFor="newCat"> Crear categoría</label>
               <fieldset>
-                <input type="text" name="newCat" id="newCat"/>
+                <input type="text" name="newCat" id="newCat" placeholder="nombre" value={newCat} onChange={(e) => {
+                  setNewCat(e.target.value);
+                }}/>
+                <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
                 <button>Crear</button>
               </fieldset>
             </form>

@@ -45,13 +45,16 @@ export const AddEntry = ({ entries, setEntries, recoverEntries, setRecoverEntrie
   const handleSubcategories = async (selectedCat) => {
     setError("");
     try {
-      const idCategory = categories.find(
-        (element) => element.name === selectedCat
-      ).id;
 
-      if (idCategory) {
-        const mySubcategories = await loadSubcategories(token, idCategory);
-        setSubcategories(mySubcategories);
+      if(selectedCat !== "Elige una opción...") {
+        const idCategory = categories.find(
+          (element) => element.name === selectedCat
+        ).id;
+  
+        if (idCategory) {
+          const mySubcategories = await loadSubcategories(token, idCategory);
+          setSubcategories(mySubcategories);
+        }
       }
     } catch (err) {
       setError(err.message);

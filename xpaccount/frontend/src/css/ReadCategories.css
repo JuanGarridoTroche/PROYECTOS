@@ -5,6 +5,13 @@
   max-width: 50vw;
 }
 
+.categories-container > label.error {
+  color: red;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+}
+
 .categories-container > h2 {
   font-size: 1.2rem;
   text-align: center;
