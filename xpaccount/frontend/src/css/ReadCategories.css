@@ -1,0 +1,35 @@
+.categories-container {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 50vw;
+}
+
+.categories-container > h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
+
+.categories-container > .categories-content > ul {
+  list-style: none;  
+}
+
+.categories-container > .categories-content > ul > Li {
+  background-color: rgb(240, 236, 236);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.categories-container > .categories-content > ul > Li > a {
+  text-decoration: none;
+  color: var(--color-brand);
+}
+
+@media(min-width: 700px) {
+  .categories-container > h2 {
+    font-size: 2.4rem;
+  }
+}

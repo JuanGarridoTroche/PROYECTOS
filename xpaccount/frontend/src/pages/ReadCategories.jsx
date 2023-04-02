@@ -1,5 +1,6 @@
+import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { loadCategories } from "../services";
 
@@ -25,16 +26,23 @@ export const ReadCategories = () => {
     }
   }, []);
 
-
   return (
-    <>
-      <h2>Ver todas las categorías creadas de la cuenta</h2>
-      {categories && categories.map((category) => {
-        return (
-          <p key={category.id}>{category.name}</p>
-        )
-      })
-      }
-    </>
+    <section className="categories-container">
+      <h2>categorías de la cuenta </h2>
+      <section className="categories-content">
+        <ul>
+          {categories &&
+            categories.map((category) => {
+              return (
+                <li key={category.id}>
+                  <Link to={`/account/${idAccount}/category/${category.id}`}>
+                    {category.name}
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </section>
+    </section>
   );
 };
