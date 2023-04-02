@@ -4,12 +4,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService } from "../services";
 import { Modal } from "../components/Modal";
+import { ModalUpdateSubCat } from "../components/ModalUpdateSubCat";
 
 export const ReadSubcategories = () => {
   const { idAccount, idCategory } = useParams();
   const { token } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showModalUpdateSubCat, setShowModalUpdateSubCat] = useState(false);
   const [category, setCategory] = useState({});
   const [subcategories, setSubcategories] = useState("");
   const [updateCat, setUpdateCat] =useState("");
@@ -18,6 +20,7 @@ export const ReadSubcategories = () => {
   const [comment, setComment] = useState("");
   const [reload, setReload] = useState("");
   const navigate = useNavigate();
+  let idSubcat = 0;
 
   
 
@@ -114,10 +117,13 @@ export const ReadSubcategories = () => {
             subcategories.map((subcategory) => {
               return (
                 <li key={subcategory.id}>
-                  <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`} onClick={()=>{setShowModal(true)}}>
+                  {/* <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`} onClick={()=>{setShowModal(true)}}>
                     {subcategory.name}
-                  </Link>
-                  {/* <button type="text" onClick={()=>{setShowModal(true)}}>{subcategory.name}</button> */}
+                  </Link> */}
+                  <button type="text" onClick={()=>{
+                    idSubcat = subcategory.id;
+                    setShowModalUpdateSubCat(true)
+                    }}>{subcategory.name}</button>
                 </li>
               );
             })}
@@ -128,7 +134,11 @@ export const ReadSubcategories = () => {
           Categoría actualizada!
         </Modal>
       )}
-      
+      {showModalUpdateSubCat && (
+        <ModalUpdateSubCat setShowModalUpdateSubCat={setShowModalUpdateSubCat} subcategories={subcategories} idSubcat={idSubcat}/>
+      )
+      }
+
     </section>
   );
 };
