@@ -80,7 +80,7 @@ export const ReadEntries = () => {
 
   return (
     <>
-      <section className="my-account container">
+      <section className="my-account-container">
         <div className="title-content">
           <h2>
             Cuenta <span>{myAccount.alias}</span>
@@ -108,13 +108,11 @@ export const ReadEntries = () => {
             <p className="money">{suma.toFixed(2)} Eur</p>
             )}
         </section>
-        <section className="account-content">
-          <div className="cats-and-subs">
+        <section className="account-content">          
           <a className="create-category" href={`/account/${idAccount}/categories`}>
             <img src="/plus.svg" />
             <p>Categorías</p>
-          </a>
-          </div>          
+          </a>         
         </section>
         <section className="error">{error ? <p>{error}</p> : null}</section>
       </section>
