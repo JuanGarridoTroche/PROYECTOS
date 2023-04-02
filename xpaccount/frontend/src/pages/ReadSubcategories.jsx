@@ -1,23 +1,21 @@
 import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService } from "../services";
 import { Modal } from "../components/Modal";
-import { ModalUpdateSubCat } from "../components/ModalUpdateSubCat";
 
 export const ReadSubcategories = () => {
   const { idAccount, idCategory } = useParams();
   const { token } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [showModalUpdateSubCat, setShowModalUpdateSubCat] = useState(false);
   const [category, setCategory] = useState({});
   const [subcategories, setSubcategories] = useState("");
   const [updateCat, setUpdateCat] =useState("");
   const [updateCommentCat, setUpdateCommentCat] = useState("");
   const [newSubcat, setNewSubcat] = useState("")
-  const [updateNameSubcat, setUpdateNameSubcat] = useState("");
+  const [updateNameSubcat, setUpdateNameSubcat] = useState("");  
   const [comment, setComment] = useState("");
   const [reload, setReload] = useState("");
   const navigate = useNavigate();
@@ -76,14 +74,27 @@ export const ReadSubcategories = () => {
     }
   }
 
-  const handleHTMLTagSubcategory = async()=> {    
+  const handleHTMLTagSubcategory = ()=> {    
     setError("");
     try {
-      setReload(!reload);    
       console.log(idSubcat);
     } catch (err) {
       setError(err.message);
     }    
+  }
+  
+  const handleUpdateSubcategory = async(e)=> {
+    e.preventDefault();
+    setError("");
+
+    try {
+      alert("Actualización realizada")
+      console.log(idSubcat, updateNameSubcat);
+      setIdSubcat(0);
+      setReload(!reload);    
+    } catch (err) {
+      setError(err.message)
+    }
   }
 
   return (
@@ -128,15 +139,14 @@ export const ReadSubcategories = () => {
             subcategories.map((subcategory) => {
               return (                
                 <li key={subcategory.id}>
-                  {/* <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`} onClick={()=>{setShowModal(true)}}>
-                    {subcategory.name}
-                  </Link> */}
                   {subcategory.id !== idSubcat ?
                   <a href="#" id={subcategory.id} onClick={(e) => {
                     setIdSubcat(subcategory.id);
                     handleHTMLTagSubcategory(subcategory.id)}}>{subcategory.name}</a> : 
-                  <form>
-                    <input value={subcategory.name} onChange={(e) => {setUpdateNameSubcat(e.target.value)}}/>
+                  <form onSubmit={handleUpdateSubcategory}>
+                    <input value={subcategory.name} id={subcategory.id} onChange={(e) => {
+                      
+                      setUpdateNameSubcat()}}/>
                     <button>Actualizar</button>
                   </form>
                   }
@@ -150,10 +160,6 @@ export const ReadSubcategories = () => {
           Categoría actualizada!
         </Modal>
       )}
-      {showModalUpdateSubCat && (
-        <ModalUpdateSubCat setShowModalUpdateSubCat={setShowModalUpdateSubCat} subcategories={subcategories} selectedSub={selectedSub}/>
-      )
-      }
 
     </section>
   );
