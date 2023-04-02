@@ -17,10 +17,11 @@ export const ReadSubcategories = () => {
   const [updateCat, setUpdateCat] =useState("");
   const [updateCommentCat, setUpdateCommentCat] = useState("");
   const [newSubcat, setNewSubcat] = useState("")
+  const [updateNameSubcat, setUpdateNameSubcat] = useState("");
   const [comment, setComment] = useState("");
   const [reload, setReload] = useState("");
   const navigate = useNavigate();
-  let idSubcat = 0;
+  const [idSubcat, setIdSubcat] = useState(0);
 
   
 
@@ -75,6 +76,16 @@ export const ReadSubcategories = () => {
     }
   }
 
+  const handleHTMLTagSubcategory = async()=> {    
+    setError("");
+    try {
+      setReload(!reload);    
+      console.log(idSubcat);
+    } catch (err) {
+      setError(err.message);
+    }    
+  }
+
   return (
     <section className="categories-container">
       <h2>Categoría <span>{category.name}</span></h2>
@@ -115,15 +126,20 @@ export const ReadSubcategories = () => {
         <ul>
           {subcategories &&
             subcategories.map((subcategory) => {
-              return (
+              return (                
                 <li key={subcategory.id}>
                   {/* <Link to={`/account/${idAccount}/category/${subcategory.idCat}/subcategory/${subcategory.id}`} onClick={()=>{setShowModal(true)}}>
                     {subcategory.name}
                   </Link> */}
-                  <button type="text" onClick={()=>{
-                    idSubcat = subcategory.id;
-                    setShowModalUpdateSubCat(true)
-                    }}>{subcategory.name}</button>
+                  {subcategory.id !== idSubcat ?
+                  <a href="#" id={subcategory.id} onClick={(e) => {
+                    setIdSubcat(subcategory.id);
+                    handleHTMLTagSubcategory(subcategory.id)}}>{subcategory.name}</a> : 
+                  <form>
+                    <input value={subcategory.name} onChange={(e) => {setUpdateNameSubcat(e.target.value)}}/>
+                    <button>Actualizar</button>
+                  </form>
+                  }
                 </li>
               );
             })}
@@ -135,7 +151,7 @@ export const ReadSubcategories = () => {
         </Modal>
       )}
       {showModalUpdateSubCat && (
-        <ModalUpdateSubCat setShowModalUpdateSubCat={setShowModalUpdateSubCat} subcategories={subcategories} idSubcat={idSubcat}/>
+        <ModalUpdateSubCat setShowModalUpdateSubCat={setShowModalUpdateSubCat} subcategories={subcategories} selectedSub={selectedSub}/>
       )
       }
 

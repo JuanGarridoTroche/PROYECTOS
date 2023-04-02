@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 export const ModalUpdateSubCat = ({
   setShowModalUpdateSubCat,
   subcategories,
-  idSubcat,
+  selectedSub,
 }) => {
   const navigate = useNavigate();
   const {idAccount, idCategory} = useParams();
 
-
+console.log(selectedSub.id);
 
   return (
     <section>
@@ -25,7 +25,7 @@ export const ModalUpdateSubCat = ({
             e.preventDefault();
             e.stopPropagation();
           }}
-        > {idAccount}  {idCategory} {idSubcat}
+        > {idAccount}  {idCategory}
           <button
             onClick={(e) => {
               setShowModalUpdateSubCat(false);
