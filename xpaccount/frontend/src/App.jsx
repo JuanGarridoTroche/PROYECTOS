@@ -15,6 +15,7 @@ import { UserProfile } from "./pages/UserProfile";
 import { ValidateUSer } from "./pages/ValidateUser";
 import { ReadCategories } from "./pages/ReadCategories";
 import { ReadSubcategories } from "./pages/ReadSubcategories";
+import { BarChart } from "./components/BarChart";
 
 function App() {
   return (
@@ -57,6 +58,9 @@ function App() {
 
           {/* Acceder a los asientos bancarios de una cuenta */}
           <Route path="/account/:idAccount" element={<ReadEntries />} />
+
+          {/* Mostrar los gráficos de los asientos bancarios de una cuenta */}
+          <Route path="/account/:idAccount/graphs" element={<BarChart/>} />
 
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />

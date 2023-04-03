@@ -8,6 +8,7 @@ import {
 } from "../services";
 import { AddEntry } from "../components/AddEntry";
 import { TableHead } from "../components/TableHead";
+import {BarChart} from "../components/BarChart";
 
 export const ReadEntries = () => {
   const { idAccount } = useParams();
@@ -122,6 +123,12 @@ export const ReadEntries = () => {
           <a className="create-category" href={`/account/${idAccount}/categories`}>
             <img src="/plus.svg" />
             <p>Categorías</p>
+          </a>         
+        </section>
+        <section className="account-content">          
+          <a className="create-category" href={`/account/${idAccount}/graphs`}>
+            <img src="/plus.svg" />
+            <p>Gráficas</p>
           </a>         
         </section>
         <section className="error">{error ? <p>{error}</p> : null}</section>
