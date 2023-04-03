@@ -1,6 +1,7 @@
 const { generateError } = require("../../helpers");
 
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
+const selectAccountByIdCatQuery = require("../../bbdd/queries/accounts/selectAccountByIdCatQuery")
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const updateSubcategoryQuery = require("../../bbdd/queries/subcategories/updateSubcategoryQuery");
 
@@ -10,8 +11,15 @@ const updateSubcategory = async (req, res, next) => {
     const { idCategory, idSub } = req.params;
     const idUser = req.user.id;
 
+    // Buscar el idAccount de idCategory
+    const checkingAccount = await selectAccountByIdCatQuery(idCategory);
+    
+    if(!checkingAccount) {
+      throw generateError("Esta categoría no existe", 404);
+    }
+
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
-    const checkingCat = await selectCategoryByIdQuery(idUser, idCategory);
+    const checkingCat = await selectCategoryByIdQuery(checkingAccount.idAccount, idCategory);
 
     // Si enviamos un id incorrecto O el id del usuario que creó la cuenta es distinto al que está logueado
     if (!checkingCat) {
