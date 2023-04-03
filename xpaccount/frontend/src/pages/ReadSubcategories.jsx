@@ -2,7 +2,7 @@ import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService } from "../services";
+import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService, updateSubcategoryService } from "../services";
 import { Modal } from "../components/Modal";
 
 export const ReadSubcategories = () => {
@@ -15,10 +15,10 @@ export const ReadSubcategories = () => {
   const [updateCat, setUpdateCat] =useState("");
   const [updateCommentCat, setUpdateCommentCat] = useState("");
   const [newSubcat, setNewSubcat] = useState("")
-  const [updateNameSubcat, setUpdateNameSubcat] = useState("");  
   const [comment, setComment] = useState("");
   const [reload, setReload] = useState("");
   const navigate = useNavigate();
+  const [updateNameSubcat, setUpdateNameSubcat] = useState("");  
   const [idSubcat, setIdSubcat] = useState(0);
 
   
@@ -60,6 +60,7 @@ export const ReadSubcategories = () => {
 
   }
 
+  // Manejador de actualización de la categoría
   const handleUpdateCategory = async(e)=> {
     e.preventDefault();
     setError("");
@@ -74,22 +75,14 @@ export const ReadSubcategories = () => {
     }
   }
 
-  const handleHTMLTagSubcategory = ()=> {    
-    setError("");
-    try {
-      console.log(idSubcat);
-    } catch (err) {
-      setError(err.message);
-    }    
-  }
-  
+  // Manejador de la actualización de la subcategoría
   const handleUpdateSubcategory = async(e)=> {
     e.preventDefault();
     setError("");
 
-    try {
-      alert("Actualización realizada")
-      console.log(idSubcat, updateNameSubcat);
+    try {      
+      const data = {nameSubcat: updateNameSubcat, comment:""};
+      await updateSubcategoryService({token, idCategory, idSubcat, data});
       setIdSubcat(0);
       setReload(!reload);    
     } catch (err) {
@@ -141,12 +134,13 @@ export const ReadSubcategories = () => {
                 <li key={subcategory.id}>
                   {subcategory.id !== idSubcat ?
                   <a href="#" id={subcategory.id} onClick={(e) => {
-                    setIdSubcat(subcategory.id);
-                    handleHTMLTagSubcategory(subcategory.id)}}>{subcategory.name}</a> : 
+                    setIdSubcat(subcategory.id)
+                    setUpdateNameSubcat(subcategory.name)  
+                  }}>{subcategory.name}</a> : 
                   <form onSubmit={handleUpdateSubcategory}>
-                    <input value={subcategory.name} id={subcategory.id} onChange={(e) => {
-                      
-                      setUpdateNameSubcat()}}/>
+                    <input type="text" name="nameSubcat" value={updateNameSubcat} id={subcategory.id} onChange={(e) => {                      
+                      setUpdateNameSubcat(e.target.value)
+                      }}/>
                     <button>Actualizar</button>
                   </form>
                   }

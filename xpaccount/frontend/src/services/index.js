@@ -331,6 +331,28 @@ export const createSubcategoryService = async(token, idCategory, data)=> {
   return json.data;
 }
 
+// Editar/actualizar una nueva subcategoría
+export const updateSubcategoryService = async({token, idCategory, idSubcat, data})=> {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/sub/${idSubcat}`,
+  { 
+    method: "PUT",
+    headers : {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+}
+
 
 // Crear asiento bancario
 export const AddEntryService = async(token, idAccount, data)=>{

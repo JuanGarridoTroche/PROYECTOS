@@ -45,7 +45,7 @@
 
 .categories-container > .create-category > .create-category-form input {
   padding: 7px;
-  max-width: 500px;
+  width: 80vw;
 }
 
 .categories-container > .create-category > .create-category-form > fieldset {
@@ -61,7 +61,7 @@ button {
   background-color: var(--color-brand);
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 5px;
 }
 
@@ -76,9 +76,18 @@ button {
   border-radius: 5px;
 }
 
-.categories-container > .categories-content > ul > Li > a {
+.categories-container > .categories-content > ul > li > form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories-container > .categories-content > ul > li > a {
   text-decoration: none;
   color: var(--color-text);
+}
+
+.categories-container > .categories-content > ul > li > form > input {
+  padding: 7px;
 }
 
 @media(min-width: 700px) {
@@ -106,6 +115,10 @@ button {
 
   .categories-container > .create-category > .create-category-form > fieldset {    
     flex-direction: row;
+  }
+
+  .categories-container > .create-category > .create-category-form input {
+    width: 100%;
   }
 
   .categories-container > button {
