@@ -24,6 +24,11 @@ body {
   font-family: var(--font-title);  
   overflow-x: hidden;
 }
+
+main {
+  padding-bottom: 90px;
+}
+
 span {
   color: var(--color-brand);
 }

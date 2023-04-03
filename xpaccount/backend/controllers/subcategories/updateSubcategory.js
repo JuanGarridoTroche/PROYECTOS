@@ -11,7 +11,7 @@ const updateSubcategory = async (req, res, next) => {
     const { idCategory, idSub } = req.params;
     const idUser = req.user.id;
 
-    // Buscar el idAccount de idCategory
+    // Traer el idAccount de idCategory
     const checkingAccount = await selectAccountByIdCatQuery(idCategory);
     
     if(!checkingAccount) {

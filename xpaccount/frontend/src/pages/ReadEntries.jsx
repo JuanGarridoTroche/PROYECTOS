@@ -78,6 +78,16 @@ export const ReadEntries = () => {
     }
   }, [token, recoverEntries]);
 
+  const handleUpdateEntry = async(e)=> {
+    e.preventDefault();
+    setError("");
+    try {
+      
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
   return (
     <>
       <section className="my-account-container">
@@ -117,7 +127,7 @@ export const ReadEntries = () => {
         <section className="error">{error ? <p>{error}</p> : null}</section>
       </section>
       <section className="account-entries-container">
-        {entries.length > 0 ? (
+        {entries && entries.length > 0 ? (
           <table className="entries-table">
             <TableHead />
             {entries.reverse().map((entry) => {
