@@ -10,8 +10,9 @@ const updateEntry = async (req, res, next) => {
   let { category, subcategory, amount, concept, comment } = req.body;
   const { idAccount, idEntry } = req.params;
   const idUser = req.user.id;
-  console.log(idAccount, idEntry);
-  console.log(category, subcategory, amount, concept, comment);
+
+  // FIXME: Añadir dateEntry a la actualización
+  
   try {
     // Comprobamos que los datos que entran son correctos
     // Seleccionamos el asiento bancario
