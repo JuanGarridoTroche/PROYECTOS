@@ -6,7 +6,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler,
 } from "chart.js";
 import { useContext, useEffect, useState } from "react";
 ChartJS.register(
@@ -16,43 +15,51 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler
 );
-import {Bar} from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 // import faker from 'faker';
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { readEntriesByAccountService, readingAccountService } from "../services";
+import {
+  readEntriesByAccountService,
+  readingAccountService,
+} from "../services";
 
-export const BarChart = ()=> {
-  const {idAccount} =useParams();
-  const {token} = useContext(AuthContext);
+export const BarChart = () => {
+  const { idAccount } = useParams();
+  const { token } = useContext(AuthContext);
   const [myAccount, setMyAccount] = useState([]);
   const [myEntries, setMyEntries] = useState([]);
   const [options, setOptions] = useState({});
   const [error, setError] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   // Cargamos los asientos de la cuenta
-  useEffect(()=> {
-    const loadEntriesByAccount = async ()=> {
+  useEffect(() => {
+    const loadEntriesByAccount = async () => {
       setError("");
-      
+
       try {
         // Leer los datos de la cuenta
-        const readingAccount = await readingAccountService({idAccount, token});
+        const readingAccount = await readingAccountService({
+          idAccount,
+          token,
+        });
         setMyAccount(readingAccount);
 
         // Leer todos los asientos de la cuenta idAccount
-        const readingEntries = await readEntriesByAccountService({idAccount, token})
+        const readingEntries = await readEntriesByAccountService({
+          idAccount,
+          token,
+        });
         setMyEntries(readingEntries);
-        console.log(readingEntries.length);
-        if(readingEntries.length > 0) {
+
+        if (readingEntries.length > 0) {
           const myOptions = {
             plugins: {
               title: {
                 display: true,
-                text: 'Chart.js Bar Chart - Stacked',
+                text: "Chart.js Bar Chart - Stacked",
               },
             },
             responsive: true,
@@ -68,39 +75,77 @@ export const BarChart = ()=> {
 
           setOptions(myOptions);
 
-          const labels = [Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, diciembre];
+          const labels = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+          ];
           const myGraphConfig = {
             labels,
             datasets: [
               {
-                label: 'Dataset 1',
-                data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-                backgroundColor: 'rgb(255, 99, 132)',
+                label: "Alimentación",
+                data: [
+                  100, 234, 567, 234, 121, 777, 234, 456, 710, 900, 205, 565,
+                ],
+                backgroundColor: "rgb(255, 99, 132)",
               },
               {
-                label: 'Dataset 2',
-                data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-                backgroundColor: 'rgb(75, 192, 192)',
+                label: "Recibos",
+                data: [47, 89, 90, 95, 102, 34, 56, 50, 38, 12, 33, 62],
+                backgroundColor: "rgb(75, 192, 192)",
               },
               {
-                label: 'Dataset 3',
-                data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-                backgroundColor: 'rgb(53, 162, 235)',
+                label: "Transferencias",
+                data: [
+                  102, 34, 56, 100, 214, 560, 235, 121, 650, 230, 340, 300,
+                ],
+                backgroundColor: "rgb(53, 162, 235)",
               },
-            ]
-          }
+            ],
+          };
           setData(myGraphConfig);
         }
-        
       } catch (err) {
         setError(err.message);
       }
+    };
+    if (token) {
+      loadEntriesByAccount();
     }
-    if(token) {loadEntriesByAccount()};
-  }, [])
-  console.log(myEntries);
+  }, []);
+  const fromDate = new Date("2023-04-01").getTime();
+  const toDate = new Date("2023-04-30").getTime();
+  myEntries.map((entry) => {
+    // console.log(new Date(entry.dateEntry.split("/", 3).reverse().join("-")).getTime());
+    // console.log(fromDate);
+    if (Date.parse(entry.dateEntry) >= Date.parse("01/03/2023") && Date.parse(entry.dateEntry) <= Date.parse("31/03/2023")) {
+      console.log(entry.dateEntry);
+    }
+  });
+  const abril = myEntries.filter((entry) => {
+    return (
+      new Date(entry.dateEntry.split("/", 3).reverse().join("-")).getTime() >= fromDate && 
+      new Date(entry.dateEntry.split("/", 3).reverse().join("-")).getTime() <= toDate
+    );
+  });
+  console.log(abril);
+  // console.log(myEntries);
   console.log("data: ", data);
   console.log("options: ", options);
-  // return <Bar data={data} options={options}/>
-  return <h2>Gráficos de barra <span>{myAccount.alias}</span></h2>
-}
+  return <Bar data={data} options={options}/>
+  // return (
+  //   <h2>
+  //     Gráficos de barra <span>{myAccount.alias}</span>
+  //   </h2>
+  // );
+};
