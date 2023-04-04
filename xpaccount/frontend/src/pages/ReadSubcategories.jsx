@@ -114,16 +114,16 @@ export const ReadSubcategories = () => {
             </form>
       </section>
       <section className="create-category subcategory">
-            <form className="create-category-form" onSubmit={handleCreateSubcategory}>
-              <label htmlFor="newSubcat"> Crear subcategoría</label>
-              <fieldset>
-                <input type="text" name="newSubcat" id="newSubcat" placeholder="nombre subcategoría" value={newSubcat} onChange={(e) => {
-                  setNewSubcat(e.target.value);
-                }}/>
-                <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
-                <button>Crear</button>
-              </fieldset>
-            </form>
+        <form className="create-category-form" onSubmit={handleCreateSubcategory}>
+          <label htmlFor="newSubcat"> Crear subcategoría</label>
+          <fieldset>
+            <input type="text" name="newSubcat" id="newSubcat" placeholder="nombre subcategoría" value={newSubcat} onChange={(e) => {
+              setNewSubcat(e.target.value);
+            }}/>
+            <input type="text" name="comment" id="comment" placeholder="comentario" value={comment} onChange={(e)=>{setComment(e.target.value)}}/>
+            <button>Crear</button>
+          </fieldset>
+        </form>
       </section>
       <section className="categories-content">
         <h2>Subcategorías de <span>{category.name}</span></h2>

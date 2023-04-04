@@ -1,23 +1,14 @@
 import { useState } from "react";
 
-export const UpdateEntry = ({entry}) => {
+export const UpdateEntry = ({entry, idEntry, setIdEntry}) => {
   const [error, setError] = useState("");
-  // console.log(entry);
 
-  const handleUpdateEntry = async () => {
-    setError("");
-
-    try {
-      alert("Editar asiento bancario");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  
 
   return (
     <button
       onClick={() => {
-        handleUpdateEntry();
+        setIdEntry(entry.id)
       }}
     >
       Editar

@@ -96,11 +96,13 @@ export const ReadEntries = () => {
         {entries && entries.length > 0 ? (
           <table className="entries-table">
             <TableHead />
-            {entries.reverse().map((entry) => {
-              return (
-                <Entries entry={entry} key={entry.id}/>
-              );
-            })}
+            <tbody className="tbody-entries">
+              {entries.reverse().map((entry) => {
+                return (
+                  <Entries entry={entry} recoverEntries={recoverEntries} setRecoverEntries={setRecoverEntries} key={entry.id}/>
+                );
+              })}
+            </tbody>
             <AddEntry
               entries={entries}
               setEntries={setEntries}
