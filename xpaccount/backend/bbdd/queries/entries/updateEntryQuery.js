@@ -5,12 +5,13 @@ const updateEntryQuery = async ({idAccount, category, subcategory, amount, conce
 
   try {
     connection = await getConnection();
-    await connection.query(
+    const [entry] = await connection.query(
       `
       UPDATE entries SET idAccount = ?, category = ?, subcategory= ?, amount = ?, concept = ?, comment = ?, modifiedAt = ? WHERE id = ?`,
       [idAccount, category, subcategory, amount, concept, comment, new Date(), idEntry]
     );   
-
+    console.log(entry[0]);
+      return entry[0];
   } finally {
     if (connection) connection.release();
   }

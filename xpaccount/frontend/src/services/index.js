@@ -181,7 +181,6 @@ export const readEntriesByAccountService = async ({ idAccount, token }) => {
 
 // Leer los datos de una cuenta
 export const readingAccountService = async ({ idAccount, token }) => {
-  
   const response = await fetch(
     `
   ${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -199,34 +198,39 @@ export const readingAccountService = async ({ idAccount, token }) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  
+
   return json.data;
 };
 
 // Obtener todos los datos de una categoría
 export const getCategoryDataService = async (token, idAccount, idCategory) => {
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category/${idCategory}`,
-  {
-    method: "GET",
-    headers: {
-      Authorization: token,
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}/category/${idCategory}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
     }
-  })
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
-    throw new Error(json.message)
+  if (!response.ok) {
+    throw new Error(json.message);
   }
   return json.data;
-}
-
+};
 
 // Obtener todas las categorías de la cuenta indicada
 export const loadCategories = async (token, idAccount) => {
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/categories`,
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}/categories`,
     {
       method: "GET",
       headers: {
@@ -239,61 +243,73 @@ export const loadCategories = async (token, idAccount) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  
+
   return json.data;
 };
 
 // Crear una nueva categoría
-export const createCategoryService = async(token, idAccount, data)=> {
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category`,
-  {
-    method: "POST",
-    headers : {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export const createCategoryService = async (token, idAccount, data) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}/category`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
 
   return json.data;
-}
+};
 
 // Modificar una categoría
-export const updateCategoryService = async({token, idAccount, idCategory, data})=> {
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category/${idCategory}`,
-  {
-    method: "PUT",
-    headers : {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export const updateCategoryService = async ({
+  token,
+  idAccount,
+  idCategory,
+  data,
+}) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}/category/${idCategory}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
 
   return json.data;
-}
-
-
+};
 
 // Cargamos todas las subcategorías de la categoría indicada
 export const loadSubcategoriesService = async (token, idCategory) => {
-  
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/subs`,
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/category/${idCategory}/subs`,
     {
       method: "GET",
       headers: {
@@ -306,72 +322,110 @@ export const loadSubcategoriesService = async (token, idCategory) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  
+
   return json.data;
 };
 
 // Crear una nueva subcategoría
-export const createSubcategoryService = async(token, idCategory, data)=> {
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/sub`,
-  { 
-    method: "POST",
-    headers : {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export const createSubcategoryService = async (token, idCategory, data) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/category/${idCategory}/sub`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
 
   return json.data;
-}
+};
 
 // Editar/actualizar una nueva subcategoría
-export const updateSubcategoryService = async({token, idCategory, idSubcat, data})=> {
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/sub/${idSubcat}`,
-  { 
-    method: "PUT",
-    headers : {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export const updateSubcategoryService = async ({
+  token,
+  idCategory,
+  idSubcat,
+  data,
+}) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/category/${idCategory}/sub/${idSubcat}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const json = await response.json();
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
 
   return json.data;
-}
-
+};
 
 // Crear asiento bancario
-export const AddEntryService = async(token, idAccount, data)=>{
-  
-  const response = await fetch(`
-  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry`,
-  {
-    method: "POST",
-    headers: {
-      Authorization: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export const AddEntryService = async (token, idAccount, data) => {
+  const response = await fetch(
+    `
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/account/${idAccount}/entry`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
   const json = await response.json();
 
-  if(!response.ok) {
-    throw new Error(json.message)
+  if (!response.ok) {
+    throw new Error(json.message);
   }
-   return json.data;
-}
+  return json.data;
+};
+
+// Actualizar un asiento bancario
+export const updateEntryService = async ({token, idAccount, idEntry, data,}) => {
+  
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry/${idEntry}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+ 
+  return (json.data);
+};

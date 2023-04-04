@@ -1,15 +1,36 @@
-import { useEffect, useState } from "react"
-import { UpdateEntry } from "./UpdateEntry"
+import { useContext, useState } from "react"
+import { updateEntryService } from "../services";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
   const [idEntry, setIdEntry] = useState(0);
+  const {token} = useContext(AuthContext);
   const [dateEntry, setDateEntry] = useState(entry.dateEntry)
   const [category, setCategory] = useState(entry.category);
   const [subcategory, setSubcategory] = useState(entry.subcategory);
   const [amount, setAmount] = useState(entry.amount);
   const [concept, setConcept] = useState(entry.concept);
   const [comment, setComment] = useState(entry.comment);
-  // console.log(recoverEntries);
+  const [error, setError] = useState("");
+  const {idAccount} = useParams();
+  const navigate = useNavigate();
+  
+  
+  const handleUpdateEntry = async(e)=> {
+    e.preventDefault();
+    
+    setError("")
+    try {
+      const data = {category, subcategory, amount, concept, comment };      
+      await updateEntryService({token, idAccount, idEntry, data});
+      setRecoverEntries(!recoverEntries);
+      setIdEntry(0);
+      // navigate(`/account/${idAccount}`)
+    } catch (err) {
+      setError(err.message)
+    }
+  }
   
 
   return (
@@ -51,11 +72,7 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className="concept"><input type="text" name="concept" id="concept" value={concept} onChange={(e)=>{setConcept(e.target.value)}} /></td>
         <td className="comment"><input type="text" name="comment" id="comment" value={comment} onChange={(e)=>{setComment(e.target.value)}} /></td>
         <td>
-        <button className="updating" onClick={() => {
-          setIdEntry(0);
-          setRecoverEntries(!recoverEntries)
-          }}
-        >
+        <button className="updating" onClick={handleUpdateEntry}>
           Actualizar
         </button>
         </td>

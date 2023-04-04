@@ -3,13 +3,15 @@ const joi = require("@hapi/joi");
 const selectEntryByIdQuery = require("../../bbdd/queries/entries/selectEntryByIdQuery");
 const updateEntryQuery = require("../../bbdd/queries/entries/updateEntryQuery");
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");
-const selectCategoriesByIdUserQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndNameQuery");
+const selectCategoryByIdAccountAndNameQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndNameQuery");
 const selectSubcatByIdCatAndNameSubcatQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndNameSubcatQuery");
 
 const updateEntry = async (req, res, next) => {
   let { category, subcategory, amount, concept, comment } = req.body;
   const { idAccount, idEntry } = req.params;
   const idUser = req.user.id;
+  console.log(idAccount, idEntry);
+  console.log(category, subcategory, amount, concept, comment);
   try {
     // Comprobamos que los datos que entran son correctos
     // Seleccionamos el asiento bancario
@@ -27,8 +29,8 @@ const updateEntry = async (req, res, next) => {
 
     // Son 2 valores que coexisten. Tienen que existir ambos a la hora de actualizar el dato
     if (category && subcategory) {
-      const validatingCat = await selectCategoriesByIdUserQuery(
-        idUser,
+      const validatingCat = await selectCategoryByIdAccountAndNameQuery(
+        idAccount,
         category
       );
       if (!validatingCat) {
@@ -84,14 +86,9 @@ const updateEntry = async (req, res, next) => {
     }
     if (!amount) {
       amount = myEntry.amount;
-    }
-    if (!concept) {
-      concept = myEntry.concept;
-    }
-    if (!comment) {
-      comment = myEntry.comment;
-    }
+    } 
 
+    
     await updateEntryQuery({
       idAccount,
       category,

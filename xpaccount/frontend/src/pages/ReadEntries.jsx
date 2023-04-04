@@ -8,8 +8,6 @@ import {
 } from "../services";
 import { AddEntry } from "../components/AddEntry";
 import { TableHead } from "../components/TableHead";
-import {BarChart} from "../components/BarChart";
-import { UpdateEntry } from "../components/UpdateEntry";
 import { AccountData } from "../components/AccountData";
 import { Entries } from "../components/Entries";
 
@@ -20,7 +18,6 @@ export const ReadEntries = () => {
   const [error, setError] = useState("");
   const [myAccount, setMyAccount] = useState({});
   const [suma, setSuma] = useState(0);
-  const navigate = useNavigate();
   const [recoverEntries, setRecoverEntries] = useState(false);
 
   let myNewPropEntries = [];
@@ -78,16 +75,7 @@ export const ReadEntries = () => {
       loadEntriesByAccount();
     }
   }, [token, recoverEntries]);
-
-  const handleUpdateEntry = async(e)=> {
-    e.preventDefault();
-    setError("");
-    try {
-      
-    } catch (err) {
-      setError(err.message)
-    }
-  }
+ 
 
   return (
     <>
