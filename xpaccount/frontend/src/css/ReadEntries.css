@@ -88,6 +88,26 @@
   color: red;
 }
 
+.tbody-entries > tr > td.updt-date >input {
+  max-width: 65px;
+  font-size: 1.2rem;
+}
+
+.tbody-entries > tr > td.updt-cat > input{
+  max-width: 65px;
+  font-size: 1.2rem;
+}
+
+.tbody-entries > tr > td.updt-subcat > input{
+  max-width: 65px;
+  font-size: 1.2rem;
+}
+
+.tbody-entries > tr > td.updt-amount > input{
+  max-width: 55px;
+  font-size: 1.2rem;
+}
+
 .tbody-entries > tr > .concept {
   text-align: left;
 }
@@ -123,12 +143,18 @@
     font-size: 1.6rem;
   }
 
-  .tbody-entries > tr > button {
+  .tbody-entries > tr > td > button {
     border: none;
-    color: black;
+    color: white;
     padding: 5px;
     text-align: center;
   }
+
+  .tbody-entries > tr > td > input {
+    width: 100%;
+  }
+
+  
 
   .tbody-new-entry > tr > button {
     border: none;
@@ -137,6 +163,26 @@
 
   div input {
     color: black;
+  }
+
+  .tbody-entries > tr > td.updt-date >input {
+    max-width: 85px;
+    font-size: 1.5rem;
+  }
+  
+  .tbody-entries > tr > td.updt-cat > input{
+    max-width: 135px;
+    font-size: 1.5rem;
+  }
+  
+  .tbody-entries > tr > td.updt-subcat > input{
+    max-width: 135px;
+    font-size: 1.5rem;
+  }
+  
+  .tbody-entries > tr > td.updt-amount > input{
+    max-width: 85px;
+    font-size: 1.5rem;
   }
 
 }
