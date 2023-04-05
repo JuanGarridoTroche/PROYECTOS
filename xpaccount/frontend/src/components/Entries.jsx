@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { updateEntryService } from "../services";
+import { deleteEntryService, updateEntryService } from "../services";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
@@ -25,6 +25,20 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
       await updateEntryService({token, idAccount, idEntry, data});
       setRecoverEntries(!recoverEntries);
       setIdEntry(0);
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  const handleDeleteEntry = async(e)=> {
+    e.preventDefault();
+    setError("")
+    try {
+      window.confirm("¿Estás seguro de que quieres eliminar este asiento bancario?")
+      await deleteEntryService({token, idAccount, idEntry})
+      setRecoverEntries(!recoverEntries)
+      setIdEntry(0)
+      
     } catch (err) {
       setError(err.message)
     }
@@ -71,7 +85,13 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className="comment"><input type="text" name="comment" id="comment" value={comment} onChange={(e)=>{setComment(e.target.value)}} /></td>
         <td>
         <button className="updating" onClick={handleUpdateEntry}>
-          Actualizar
+          A
+        </button>
+        <button className="deleting" onClick={handleDeleteEntry}>
+          E
+        </button>
+        <button className="canceling" onClick={()=> setIdEntry(0)}>
+          {'<<'}
         </button>
         </td>
       </tr>      

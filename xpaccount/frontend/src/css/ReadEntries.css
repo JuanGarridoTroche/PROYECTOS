@@ -168,9 +168,20 @@
   }
 
   .tbody-entries > tr > td > button.updating {
-    background-color: blueviolet;
+    background-color: royalblue;
     font-size: 1.1rem;
   } 
+
+  .tbody-entries > tr > td > button.deleting {
+    background-color: red;
+    font-size: 1.1rem;
+    margin-left: 5px;
+  } 
+  .tbody-entries > tr > td > button.canceling {
+    background-color: var(--color-brand);
+    font-size: 1.1rem;
+    margin-left: 5px;
+  }
 
   div input {
     color: black;

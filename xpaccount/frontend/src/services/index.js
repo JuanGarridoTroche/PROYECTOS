@@ -408,7 +408,7 @@ export const AddEntryService = async (token, idAccount, data) => {
 };
 
 // Actualizar un asiento bancario
-export const updateEntryService = async ({token, idAccount, idEntry, data,}) => {
+export const updateEntryService = async ({token, idAccount, idEntry, data}) => {
   
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry/${idEntry}`,
@@ -419,6 +419,28 @@ export const updateEntryService = async ({token, idAccount, idEntry, data,}) => 
         "Content-type": "application/json",
       },
       body: JSON.stringify(data),
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+ 
+  return (json.data);
+};
+
+
+// Eliminar asiento bancario
+export const deleteEntryService = async ({token, idAccount, idEntry}) => {
+  
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/entry/${idEntry}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
     }
   );
   const json = await response.json();
