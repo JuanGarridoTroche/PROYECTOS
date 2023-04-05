@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { updateEntryService } from "../services";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
@@ -14,7 +14,6 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
   const [comment, setComment] = useState(entry.comment);
   const [error, setError] = useState("");
   const {idAccount} = useParams();
-  const navigate = useNavigate();
   
   
   const handleUpdateEntry = async(e)=> {
@@ -26,7 +25,6 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
       await updateEntryService({token, idAccount, idEntry, data});
       setRecoverEntries(!recoverEntries);
       setIdEntry(0);
-      // navigate(`/account/${idAccount}`)
     } catch (err) {
       setError(err.message)
     }
@@ -37,9 +35,9 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
     <>
       {entry.id !== idEntry ?
       <tr>        
-        <td>{entry.dateEntry}</td>
-        <td>{entry.category}</td>
-        <td>{entry.subcategory}</td>
+        <td className="updt-date">{entry.dateEntry}</td>
+        <td className="updt-cat">{entry.category}</td>
+        <td className="updt-subcat">{entry.subcategory}</td>
         <td className={parseFloat(entry.amount) > 0 ? "numbers" : "numbers negative"}>
           {parseFloat(entry.amount).toFixed(2)} EUR
         </td>
@@ -50,7 +48,7 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className="concept">{entry.concept}</td>
         <td className="comment">{entry.comment}</td>
         <td>
-        <button onClick={() => {
+        <button className="update" onClick={() => {
           setIdEntry(entry.id)
           setRecoverEntries(!recoverEntries)
           }}

@@ -61,10 +61,6 @@
   border-collapse: collapse;
 }
 
-/* .concept, .comment, .account {
-  display: none;
-} */
-
 .table-header {
   background-color: var(--color-brand);
   color: white;
@@ -72,7 +68,7 @@
 }
 
 .table-header > tr > th {
-  padding: 5px 0;  
+  padding: 5px 0;
 }
 
 .tbody-entries > tr > td {
@@ -108,20 +104,30 @@
   font-size: 1.2rem;
 }
 
+.tbody-entries > tr > td > input {
+  text-align: left;
+  padding: 5px;
+  border: 1px solid grey;
+}
+
 .tbody-entries > tr > .concept {
   text-align: left;
+  max-width: 530px;
 }
+
 
 .tbody-entries > tr > .comment {
   text-align: left;
+  max-width: 530px;
 }
 
-.tbody-entries:nth-child(even) {
+.tbody-entries > tr:nth-child(even) {
   background-color: var(--color-bg);
+  opacity: .96;
 }
 
-.tbody-entries:nth-child(odd) {
-  background-color: white;
+.tbody-entries > tr:nth-child(odd) {
+  background-color: rgb(250, 250, 244);
 }
 
 .tbody-new-entry > tr > td > input {
@@ -161,28 +167,33 @@
     padding: 3px;
   }
 
+  .tbody-entries > tr > td > button.updating {
+    background-color: blueviolet;
+    font-size: 1.1rem;
+  } 
+
   div input {
     color: black;
   }
 
-  .tbody-entries > tr > td.updt-date >input {
+  .tbody-entries > tr > td.updt-date > input {
     max-width: 85px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .tbody-entries > tr > td.updt-cat > input{
-    max-width: 135px;
-    font-size: 1.5rem;
+    max-width: 100%;
+    font-size: 1.4rem;
   }
   
   .tbody-entries > tr > td.updt-subcat > input{
-    max-width: 135px;
-    font-size: 1.5rem;
+    max-width: 100%;
+    font-size: 1.4rem;
   }
   
   .tbody-entries > tr > td.updt-amount > input{
-    max-width: 85px;
-    font-size: 1.5rem;
+    max-width: 100%;
+    font-size: 1.4rem;
   }
 
 }

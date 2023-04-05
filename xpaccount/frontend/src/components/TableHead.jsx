@@ -9,7 +9,7 @@ export const TableHead =()=> {
           <th>TOTAL</th>
           <th className="concept">CONCEPTO</th>
           <th className="comment">COMENTARIO</th>
-          <th className="comment">ACCIÓN</th>
+          <th className="action"  >ACCIÓN</th>
         </tr>
       </thead>
   )
