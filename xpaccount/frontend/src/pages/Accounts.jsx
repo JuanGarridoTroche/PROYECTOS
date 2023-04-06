@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { getAccountsUserService } from "../services";
 
-export const Accounts = () => {
+export const Accounts = ({balance}) => {
   const [myAccounts, setMyAccounts] = useState([]);
   const [error, setError] = useState("");
   const { token } = useContext(AuthContext);
@@ -22,6 +22,7 @@ export const Accounts = () => {
         const getAccounts = await getAccountsUserService(token);
         if (getAccounts) {         
           setMyAccounts(getAccounts);
+          console.log(myAccounts);
           handleAccountBalance;
         }
 
@@ -32,16 +33,14 @@ export const Accounts = () => {
     getAccountsData();
   }, [token]);
 
-  const handleAccountBalance = async(e) => {
-    e.preventDefault();
+  const handleAccountBalance = async(idAccount) => {    
     setError("")
     try {
-      console.log("total suma de la cuenta");      
+      console.log("total suma de la cuenta " , idAccount);      
     } catch (err) {
       setError(err.message)
     }
-  }
- 
+  } 
 
   return (
     <section className="accounts-container">
@@ -52,7 +51,7 @@ export const Accounts = () => {
       <section className="accounts-content">
         <details className="accounts-summary" open>
           <summary>
-            <span>Mis</span>cuentas [{} €]
+            <span>Mis</span>cuentas [{balance.length > 0 ? balance.reduce((beforeValue, currentValue) => {return beforeValue + currentValue}) : "0"} €]
           </summary>
           {myAccounts.map((account) => {            
             return (
@@ -62,7 +61,7 @@ export const Accounts = () => {
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>
                     <p>{account.accountNumber}</p>
                   </div>
-                  <p className="money">{suma[account.id]}</p>
+                  <p className="money">{balance[account.id]}</p>
                 </section>
               </Link>
             );

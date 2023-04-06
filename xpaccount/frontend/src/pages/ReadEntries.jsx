@@ -11,7 +11,7 @@ import { TableHead } from "../components/TableHead";
 import { AccountData } from "../components/AccountData";
 import { Entries } from "../components/Entries";
 
-export const ReadEntries = () => {
+export const ReadEntries = ({balance, setBalance}) => {
   const { idAccount } = useParams();
   const { token} = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
@@ -20,7 +20,7 @@ export const ReadEntries = () => {
   const [suma, setSuma] = useState(0);
   const [recoverEntries, setRecoverEntries] = useState(false);
 
-  let myNewPropEntries = [];
+  let myBalanceAccount = [];
 
   // Cargar asientos bancarios de la cuenta con token e idAccount
   useEffect(() => {
@@ -40,30 +40,36 @@ export const ReadEntries = () => {
           idAccount,
           token,
         });
-
+        
         if (readingEntries.length > 0) {
           let balance = 0;
 
-          myNewPropEntries = readingEntries.reverse().map((entry, index) => {
+          //Calcular el saldo de mi cuenta
+          myBalanceAccount = readingEntries.reverse().map((entry, index) => {
             if (index === 0) {
               balance = parseFloat(entry.amount);
             } else {
               balance = balance + parseFloat(entry.amount);
             }
-            const myNewObj = {
+
+            // Creamos un nuevo objeto con todos los datos de mi cuenta + el saldo(balance)
+            const myDataAccountWithBalance = {
               id: entry.id,
               dateEntry: entry.dateEntry,
               category: entry.category,
               subcategory: entry.subcategory,
               amount: entry.amount,
-              total: balance,
+              balance,
               concept: entry.concept,
               comment: entry.comment,
             };
-            return myNewObj;
+            return myDataAccountWithBalance;
           });
-          setEntries(myNewPropEntries);
-          setSuma(myNewPropEntries[myNewPropEntries.length - 1].total);
+          console.log(myDataAccountWithBalance);
+          setEntries(myBalanceAccount);
+          setSuma(myBalanceAccount[myBalanceAccount.length - 1].balance);
+          balance.push(suma);
+          console.log("Valor de los saldos: ", balance);
         }
         
       } catch (err) {

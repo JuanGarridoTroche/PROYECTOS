@@ -16,8 +16,12 @@ import { ValidateUSer } from "./pages/ValidateUser";
 import { ReadCategories } from "./pages/ReadCategories";
 import { ReadSubcategories } from "./pages/ReadSubcategories";
 import { BarChart } from "./components/BarChart";
+import { useState } from "react";
+
 
 function App() {
+  const [balance, setBalance] = useState([]);
+  console.log(balance);
   return (
     <>
       <Header />
@@ -42,7 +46,7 @@ function App() {
           <Route path="/user/profile" element={<UserProfile />} />
 
           {/* Mostrar las cuentas de un usuario registrado */}
-          <Route path="/accounts" element={<Accounts />} />
+          <Route path="/accounts" element={<Accounts balance={balance}/>} />
 
           {/* Crear una cuenta nueva */}
           <Route path="/accounts/create" element={<CreateAccount />} />
@@ -57,7 +61,7 @@ function App() {
           <Route path="/account/:idAccount/category/:idCategory" element={<ReadSubcategories/>}/>
 
           {/* Acceder a los asientos bancarios de una cuenta */}
-          <Route path="/account/:idAccount" element={<ReadEntries/>} />
+          <Route path="/account/:idAccount" element={<ReadEntries balance={balance} setBalance={setBalance}/>} />
 
           {/* Mostrar los gráficos de los asientos bancarios de una cuenta */}
           <Route path="/account/:idAccount/graphs" element={<BarChart/>} />
