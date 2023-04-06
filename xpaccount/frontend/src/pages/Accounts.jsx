@@ -1,14 +1,16 @@
 
 import("../css/Accounts.css");
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { getAccountsUserService } from "../services";
 
 export const Accounts = () => {
   const [myAccounts, setMyAccounts] = useState([]);
+  const [error, setError] = useState("");
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [suma, setSuma] = useState(0);
 
   useEffect(() => {
     const getAccountsData = async () => {      
@@ -27,6 +29,7 @@ export const Accounts = () => {
     };
     getAccountsData();
   }, [token]);
+ 
 
   return (
     <section className="accounts-container">
@@ -37,11 +40,11 @@ export const Accounts = () => {
       <section className="accounts-content">
         <details className="accounts-summary" open>
           <summary>
-            <span>Mis</span>cuentas [6847,89 €]
+            <span>Mis</span>cuentas [{} €]
           </summary>
           {myAccounts.map((account) => {
             return (
-              <a href={`/account/${account.id}`} key={account.id}>
+              <Link to={`/account/${account.id}`} key={account.id}>
                 <section className="account-content">
                   <div className="data">
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>
@@ -49,7 +52,7 @@ export const Accounts = () => {
                   </div>
                   <p className="money">3500 Eur</p>
                 </section>
-              </a>
+              </Link>
             );
           })}
         </details>

@@ -57,7 +57,7 @@ function App() {
           <Route path="/account/:idAccount/category/:idCategory" element={<ReadSubcategories/>}/>
 
           {/* Acceder a los asientos bancarios de una cuenta */}
-          <Route path="/account/:idAccount" element={<ReadEntries />} />
+          <Route path="/account/:idAccount" element={<ReadEntries/>} />
 
           {/* Mostrar los gráficos de los asientos bancarios de una cuenta */}
           <Route path="/account/:idAccount/graphs" element={<BarChart/>} />
