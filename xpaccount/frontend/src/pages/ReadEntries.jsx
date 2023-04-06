@@ -13,7 +13,7 @@ import { Entries } from "../components/Entries";
 
 export const ReadEntries = () => {
   const { idAccount } = useParams();
-  const { token } = useContext(AuthContext);
+  const { token} = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState("");
   const [myAccount, setMyAccount] = useState({});

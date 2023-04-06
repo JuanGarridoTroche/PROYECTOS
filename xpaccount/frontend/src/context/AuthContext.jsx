@@ -8,7 +8,6 @@ export const AuthProvidercomponent = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("tokenxp"));
   const [logged, setLogged] = useState(null);
   
-
   // Se ejecuta cuando carga el token y sacamos todos los datos del usuario que tiene dentro el token (id y role)
   useEffect(() => {    
     const getUserData = async () => {

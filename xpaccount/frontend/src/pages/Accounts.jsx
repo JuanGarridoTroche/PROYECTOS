@@ -10,7 +10,8 @@ export const Accounts = () => {
   const [error, setError] = useState("");
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [suma, setSuma] = useState(0);
+  const [suma, setSuma] = useState(0); 
+  
 
   useEffect(() => {
     const getAccountsData = async () => {      
@@ -21,6 +22,7 @@ export const Accounts = () => {
         const getAccounts = await getAccountsUserService(token);
         if (getAccounts) {         
           setMyAccounts(getAccounts);
+          handleAccountBalance;
         }
 
       } catch (error) {
@@ -29,6 +31,16 @@ export const Accounts = () => {
     };
     getAccountsData();
   }, [token]);
+
+  const handleAccountBalance = async(e) => {
+    e.preventDefault();
+    setError("")
+    try {
+      console.log("total suma de la cuenta");      
+    } catch (err) {
+      setError(err.message)
+    }
+  }
  
 
   return (
@@ -42,7 +54,7 @@ export const Accounts = () => {
           <summary>
             <span>Mis</span>cuentas [{} €]
           </summary>
-          {myAccounts.map((account) => {
+          {myAccounts.map((account) => {            
             return (
               <Link to={`/account/${account.id}`} key={account.id}>
                 <section className="account-content">
@@ -50,7 +62,7 @@ export const Accounts = () => {
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>
                     <p>{account.accountNumber}</p>
                   </div>
-                  <p className="money">3500 Eur</p>
+                  <p className="money">{suma[account.id]}</p>
                 </section>
               </Link>
             );
