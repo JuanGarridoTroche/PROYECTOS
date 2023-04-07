@@ -26,7 +26,7 @@ function App() {
   const {token} = useContext(AuthContext);
   const [myAccounts, setMyAccounts] = useState([]);
   
-  
+  // Carga los datos de todas las cuentas junto con sus asientos bancarios y calcula el saldo de cada cuenta
   useEffect(()=> {
     const myAccountBalance = [];
     const getBalanceData = async () => {   
@@ -49,9 +49,9 @@ function App() {
             const readingEntries = await readEntriesByAccountService({idAccount, token })
             // console.log(readingEntries); 
             const calculatingBalance = readingEntries.reduce((accumulator, current) => accumulator + parseFloat(current.amount), 0)       
-            console.log(calculatingBalance);
+            
             myAccountBalance.push({id: getAccounts[i].id, balance: calculatingBalance})
-            console.log(myAccountBalance);
+            
           }
           setBalance(myAccountBalance);
         }

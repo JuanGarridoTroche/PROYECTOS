@@ -23,9 +23,8 @@ export const Accounts = ({balance}) => {
         const getAccounts = await getAccountsUserService(token);
         if (getAccounts) {         
           setMyAccounts(getAccounts);
-        }
-        
-        console.log(balance[0].balance);
+        }        
+       
         
       } catch (error) {
         alert(error.message);
@@ -35,9 +34,9 @@ export const Accounts = ({balance}) => {
   }, [token]);
   
   useEffect(()=> {
-    if(balance) {
+    if(balance.length > 0) {
       const calculatingBalanceTotal = balance.reduce((acc, curr) => acc + parseFloat(curr.balance), 0)
-      console.log(calculatingBalanceTotal);
+      
       setSuma(calculatingBalanceTotal);
       setAccountBalance(balance)
     }    
@@ -53,9 +52,11 @@ export const Accounts = ({balance}) => {
         <p>Crear cuenta</p>
       </a>
       <section className="accounts-content">
-        <details className="accounts-summary" open>
+        <details className="accounts-summary" open>          
           <summary>
-            <span>Mis</span>cuentas [{suma.toFixed(2)} €]
+            <span>Mis</span>cuentas [{
+            suma < 0 ?
+            <span style={{ color: "red" }}>{suma.toFixed(2)}</span> : suma.toFixed(2)} €]
           </summary>
           {myAccounts.map((account, index) => {            
             return (
@@ -65,7 +66,7 @@ export const Accounts = ({balance}) => {
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>
                     <p>{account.accountNumber}</p>
                   </div>
-                  <p className="money">[{balance[index].balance.toFixed(2)} €] </p>
+                  <p className="money">[{balance.length > 0 ? balance[index].balance < 0 ? <span style={{ color: "red" }}>{balance[index].balance.toFixed(2)}</span> : balance[index].balance.toFixed(2) : 0} €] </p>
                 </section>
               </Link>
             );

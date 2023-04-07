@@ -40,7 +40,7 @@ export const ReadEntries = () => {
           idAccount,
           token,
         });
-        console.log(readingEntries.length);
+        
         if (readingEntries.length > 0) {
           let balance = 0;
 
@@ -65,10 +65,10 @@ export const ReadEntries = () => {
             };
             return myDataAccountWithBalance;
           });
-          console.log(myBalanceAccount);
+          // console.log(myBalanceAccount);
           setEntries(myBalanceAccount);
           setSuma(myBalanceAccount[myBalanceAccount.length - 1].balance);          
-          console.log("Valor de los saldos: ", balance);
+          // console.log("Valor de los saldos: ", balance);
         }
         
       } catch (err) {
