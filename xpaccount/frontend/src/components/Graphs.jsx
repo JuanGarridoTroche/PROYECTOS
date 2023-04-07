@@ -12,9 +12,10 @@ export const Graphs = ()=> {
   const {token} = useContext(AuthContext);
   const [myAccount, setMyAccount] = useState({})
   const [entries, setEntries] = useState([]);
-  const [year, setYear] = useState(null);
+  const [datasets, setDatasets] = useState([]);
+  const [year, setYear] = useState(new Date().getFullYear());
   let myDatasets = [];
-
+  
   useEffect(()=>{
     const loadAccountData = async()=>{
       // Leemos los datos de la cuenta
@@ -39,31 +40,39 @@ export const Graphs = ()=> {
       const entriesByCategories = categories.map((catName) => {
         return readingEntries.filter(item => item.category === catName);
       })
-      console.log(entriesByCategories);
+      // console.log(entriesByCategories);
 
-      // Agrupamos cada categoría por meses
+      // Agrupamos cada categoría por año y meses
+      console.log(year);
+      
+
       
       // Sumamos el amount de cada mes
 
+      
+      const createData = ()=> {
+        return (Math.random()*1300.).toFixed(2);
+      } 
 
       for(let i = 0; i < categories.length ; i++) {
         const myObject =          
           {
             id: i,
             label : categories[i],
+            data: [createData(), createData(), createData(), createData()],
             backgroundColor: backgroundColors[i],
           }
         myDatasets.push(myObject);         
       }
-      console.log("datasets: ", myDatasets);
-
+      // console.log("datasets: ", myDatasets);
+      setDatasets(myDatasets);
       } 
     if(token) {loadAccountData()};
 
-  },[])
+  },[year])
 
 
-  const backgroundColors =  ['#001219', '#005f73', '#0a9396', '#94d2bd', '#e9d8a6', '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226']
+  const backgroundColors =  ['rgb(249, 65, 68)', 'rgb(144, 190, 109)', 'rgb(243, 114, 44)', 'rgb(67, 170, 139)', 'rgb(248, 150, 30)', 'rgb(77, 144, 142)', 'rgb(249, 132, 74)', 'rgb(87, 117, 144)', 'rgb(249, 199, 79)', 'rgb(39, 125, 161)']
 
   const options = {
     plugins: {
@@ -85,37 +94,18 @@ export const Graphs = ()=> {
   const labels = ['Enero', 'Febrero', 'Marzo', 'Abril' ];
   const data = {
     labels,
-    datasets: [
-      {
-        id: 1,
-        label: 'Alimentación',
-        data: [312.5, 423.89, 234.17, 328.45],
-        backgroundColor: backgroundColors[0],
-      },
-      {
-        id: 2,
-        label: 'Transferencias',
-        data: [122.5, 1338.9, 730.74, 928.12],
-        backgroundColor: backgroundColors[1],
-      },
-      {
-        id: 3,
-        label: 'Recibos',
-        data: [212.5, 123.89, 201.11, 728.45],
-        backgroundColor: backgroundColors[2],
-      }
-    ]
+    datasets,
   }
 
 
   return (
     <section className='graphs'>
       <h2>GRÁFICOS DE LA CUENTA {myAccount.alias}</h2>
-      <select name="year" id="year" onClick={(e)=>{e.target.value}}>
-        <option defalutvalue="">2023</option>
-        <option value="">2022</option>
-        <option value="">2021</option>
-        <option value="">2020</option>
+      <select name="year" id="year" onClick={(e)=>{setYear(e.target.value)}}>
+        <option defalutvalue="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
       </select>
 
       <Bar options={options} data={data} />
