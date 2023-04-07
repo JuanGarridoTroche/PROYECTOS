@@ -7,7 +7,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useContext, useEffect, useState } from "react";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -15,9 +14,9 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-);
+  );
+import { useContext, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-// import faker from 'faker';
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
@@ -113,7 +112,7 @@ export const BarChart = () => {
               },
             ],
           };
-          setData(myGraphConfig);
+          setData(myGraphConfig);          
         }
       } catch (err) {
         setError(err.message);
@@ -122,7 +121,9 @@ export const BarChart = () => {
     if (token) {
       loadEntriesByAccount();
     }
-  }, []);
+  }, [token]);
+
+
   const fromDate = new Date("2023-04-01").getTime();
   const toDate = new Date("2023-04-30").getTime();
   myEntries.map((entry) => {
@@ -142,6 +143,9 @@ export const BarChart = () => {
   // console.log(myEntries);
   console.log("data: ", data);
   console.log("options: ", options);
+
+
+
   return <Bar data={data} options={options}/>
   // return (
   //   <h2>

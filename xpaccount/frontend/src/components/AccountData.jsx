@@ -31,10 +31,10 @@ export const AccountData = ({myAccount, suma})=> {
           </div>
           {suma < 0 ? (
             <p className="money" style={{ color: "red" }}>
-              {suma.toFixed(2)} Eur
+              { new Intl.NumberFormat('es-ES').format(suma.toFixed(2))} Eur
             </p>
           ) : (
-            <p className="money">{suma.toFixed(2)} Eur</p>
+            <p className="money">{new Intl.NumberFormat('es-ES').format(suma.toFixed(2))} Eur</p>
             )}
         </section>
         <section className="account-content">          
