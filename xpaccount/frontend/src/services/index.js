@@ -181,6 +181,7 @@ export const readEntriesByAccountService = async ({ idAccount, token }) => {
 
 // Leer los datos de una cuenta
 export const readingAccountService = async ({ idAccount, token }) => {
+
   const response = await fetch(
     `
   ${import.meta.env.VITE_BACKEND_BASE_URL}:${
@@ -197,7 +198,7 @@ export const readingAccountService = async ({ idAccount, token }) => {
 
   if (!response.ok) {
     throw new Error(json.message);
-  }
+  } 
 
   return json.data;
 };

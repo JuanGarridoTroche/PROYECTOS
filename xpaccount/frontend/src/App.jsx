@@ -19,6 +19,7 @@ import { BarChart } from "./components/BarChart";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { getAccountsUserService, readEntriesByAccountService } from "./services";
+import { Graphs } from "./components/Graphs";
 
 
 function App() {
@@ -106,7 +107,7 @@ function App() {
           <Route path="/account/:idAccount" element={<ReadEntries/>} />
 
           {/* Mostrar los gráficos de los asientos bancarios de una cuenta */}
-          <Route path="/account/:idAccount/graphs" element={<BarChart/>} />
+          <Route path="/account/:idAccount/graphs" element={<Graphs/>} />
 
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />
