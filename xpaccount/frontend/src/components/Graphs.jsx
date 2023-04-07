@@ -11,6 +11,7 @@ export const Graphs = ()=> {
   const {token} = useContext(AuthContext);
   const [myAccount, setMyAccount] = useState({})
   const [entries, setEntries] = useState([]);
+  let myDatasets = [];
 
   useEffect(()=>{
     const loadAccountData = async()=>{
@@ -21,31 +22,38 @@ export const Graphs = ()=> {
 
       // Leer todos los asientos de la cuenta idAccount
       const readingEntries = await readEntriesByAccountService({idAccount, token});
-      console.log(readingEntries);
       setEntries(readingEntries)
+
+      // Seleccionamos todas las categorías existentes en nuestros asientos bancarios y creamos un array (categories) con las categorías sin repetir 
       const allCategories = readingEntries.map((category) => {
         return category.category; 
       })
+      // Una vez tenemos todas las cateorías, guardamos las categorías únicvas en un objeto
       const ObjCategories = new Set(allCategories)
+      // Y ahora pasamos el objeto a un array
       const categories = [...ObjCategories];
-      console.log(categories);
+      
+      // Agrupamos todos los asientos bancarios por categoría y por mes y los sumamos
+      
+
       for(let i = 0; i < categories.length ; i++) {
-        
+        const myObject =          
+          {
+            id: i,
+            label : categories[i],
+            backgroundColor: backgroundColors[i],
+          }
+        myDatasets.push(myObject);         
+      }
+      console.log(myDatasets);
+
       } 
-      const myDatasets = [
-        
-        {
-          id: '0',
-          label : categories[i]
-        }
-       ]
-    }
     if(token) {loadAccountData()};
 
   },[])
 
 
-  const colors =  ['#001219', '#005f73', '#0a9396', '#94d2bd', '#e9d8a6', '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226']
+  const backgroundColors =  ['#001219', '#005f73', '#0a9396', '#94d2bd', '#e9d8a6', '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226']
 
   const options = {
     plugins: {
@@ -72,19 +80,19 @@ export const Graphs = ()=> {
         id: 1,
         label: 'Alimentación',
         data: [312.5, 423.89, 234.17, 328.45],
-        backgroundColor: colors[0],
+        backgroundColor: backgroundColors[0],
       },
       {
         id: 2,
         label: 'Transferencias',
         data: [122.5, 1338.9, 730.74, 928.12],
-        backgroundColor: colors[1],
+        backgroundColor: backgroundColors[1],
       },
       {
         id: 3,
         label: 'Recibos',
         data: [212.5, 123.89, 201.11, 728.45],
-        backgroundColor: colors[2],
+        backgroundColor: backgroundColors[2],
       }
     ]
   }
