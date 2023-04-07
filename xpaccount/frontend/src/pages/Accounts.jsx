@@ -11,6 +11,7 @@ export const Accounts = ({balance}) => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [suma, setSuma] = useState(0); 
+  const [accountBalance, setAccountBalance] = useState(balance)
   
 
   useEffect(() => {
@@ -22,25 +23,28 @@ export const Accounts = ({balance}) => {
         const getAccounts = await getAccountsUserService(token);
         if (getAccounts) {         
           setMyAccounts(getAccounts);
-          console.log(myAccounts);
-          handleAccountBalance;
         }
-
+        
+        console.log(balance[0].balance);
+        
       } catch (error) {
         alert(error.message);
       }
     };
     getAccountsData();
   }, [token]);
+  
+  useEffect(()=> {
+    if(balance) {
+      const calculatingBalanceTotal = balance.reduce((acc, curr) => acc + parseFloat(curr.balance), 0)
+      console.log(calculatingBalanceTotal);
+      setSuma(calculatingBalanceTotal);
+      setAccountBalance(balance)
+    }    
 
-  const handleAccountBalance = async(idAccount) => {    
-    setError("")
-    try {
-      console.log("total suma de la cuenta " , idAccount);      
-    } catch (err) {
-      setError(err.message)
-    }
-  } 
+  }, [balance])
+  
+  
 
   return (
     <section className="accounts-container">
@@ -51,9 +55,9 @@ export const Accounts = ({balance}) => {
       <section className="accounts-content">
         <details className="accounts-summary" open>
           <summary>
-            <span>Mis</span>cuentas [{balance.length > 0 ? balance.reduce((beforeValue, currentValue) => {return beforeValue + currentValue}) : "0"} €]
+            <span>Mis</span>cuentas [{suma.toFixed(2)} €]
           </summary>
-          {myAccounts.map((account) => {            
+          {myAccounts.map((account, index) => {            
             return (
               <Link to={`/account/${account.id}`} key={account.id}>
                 <section className="account-content">
@@ -61,7 +65,7 @@ export const Accounts = ({balance}) => {
                     <h3>{account.alias} (<span>{account.bankName}</span>)</h3>
                     <p>{account.accountNumber}</p>
                   </div>
-                  <p className="money">{balance[account.id]}</p>
+                  <p className="money">[{balance[index].balance.toFixed(2)} €] </p>
                 </section>
               </Link>
             );

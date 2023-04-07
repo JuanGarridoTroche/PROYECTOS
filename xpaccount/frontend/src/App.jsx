@@ -16,12 +16,54 @@ import { ValidateUSer } from "./pages/ValidateUser";
 import { ReadCategories } from "./pages/ReadCategories";
 import { ReadSubcategories } from "./pages/ReadSubcategories";
 import { BarChart } from "./components/BarChart";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "./context/AuthContext";
+import { getAccountsUserService, readEntriesByAccountService } from "./services";
 
 
 function App() {
   const [balance, setBalance] = useState([]);
-  console.log(balance);
+  const {token} = useContext(AuthContext);
+  const [myAccounts, setMyAccounts] = useState([]);
+  
+  
+  useEffect(()=> {
+    const myAccountBalance = [];
+    const getBalanceData = async () => {   
+         
+      try {
+        // Si el usuario no está logueado no puede eacceder a esta página
+        if(!token) {
+          navigate("/")
+        };
+        
+        // Obtenemos todas las cuentas bancarias creadas por el usuario logueado
+        const getAccounts = await getAccountsUserService(token);
+        // console.log("Conseguir cuentas: ", getAccounts);
+        if (getAccounts.length > 0) {         
+          setMyAccounts(getAccounts);                   
+          // Obtener todos los asientos bancarios de cada cuenta creada        
+          for(let i=0;i < getAccounts.length;i++) {
+            // console.log("bucle for: ", getAccounts[i].id);
+            const idAccount = getAccounts[i].id;
+            const readingEntries = await readEntriesByAccountService({idAccount, token })
+            // console.log(readingEntries); 
+            const calculatingBalance = readingEntries.reduce((accumulator, current) => accumulator + parseFloat(current.amount), 0)       
+            console.log(calculatingBalance);
+            myAccountBalance.push({id: getAccounts[i].id, balance: calculatingBalance})
+            console.log(myAccountBalance);
+          }
+          setBalance(myAccountBalance);
+        }
+        
+
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    getBalanceData();
+  },[])
+
   return (
     <>
       <Header />
@@ -61,7 +103,7 @@ function App() {
           <Route path="/account/:idAccount/category/:idCategory" element={<ReadSubcategories/>}/>
 
           {/* Acceder a los asientos bancarios de una cuenta */}
-          <Route path="/account/:idAccount" element={<ReadEntries balance={balance} setBalance={setBalance}/>} />
+          <Route path="/account/:idAccount" element={<ReadEntries/>} />
 
           {/* Mostrar los gráficos de los asientos bancarios de una cuenta */}
           <Route path="/account/:idAccount/graphs" element={<BarChart/>} />

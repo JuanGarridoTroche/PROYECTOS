@@ -55,8 +55,8 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className={parseFloat(entry.amount) > 0 ? "numbers" : "numbers negative"}>
           {parseFloat(entry.amount).toFixed(2)} EUR
         </td>
-        <td className={parseFloat(entry.total) > 0 ? "numbers" : "numbers negative"}>
-            {parseFloat(entry.total).toFixed(2)} EUR
+        <td className={parseFloat(entry.balance) > 0 ? "numbers" : "numbers negative"}>
+            {parseFloat(entry.balance).toFixed(2)} EUR
         </td>
         
         <td className="concept">{entry.concept}</td>
@@ -77,8 +77,8 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className="updt-cat"><input type="text" name="category" id="category" value={category} onChange={(e)=>{setCategory(e.target.value)}} /></td>
         <td className="updt-subcat"><input type="text" name="subcategory" id="subcategory" value={subcategory} onChange={(e)=>{setSubcategory(e.target.value)}} /></td>
         <td className="updt-amount"><input type="number" name="amount" id="amount" value={amount} onChange={(e)=>{setAmount(e.target.value)}}/></td>        
-        <td className={parseFloat(entry.total) > 0 ? "numbers" : "numbers negative"}>
-            {parseFloat(entry.total).toFixed(2)} EUR
+        <td className={parseFloat(entry.balance) > 0 ? "numbers" : "numbers negative"}>
+            {parseFloat(entry.balance).toFixed(2)} EUR
         </td> 
 
         <td className="concept"><input type="text" name="concept" id="concept" value={concept} onChange={(e)=>{setConcept(e.target.value)}} /></td>

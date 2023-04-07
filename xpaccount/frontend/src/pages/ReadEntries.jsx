@@ -11,7 +11,7 @@ import { TableHead } from "../components/TableHead";
 import { AccountData } from "../components/AccountData";
 import { Entries } from "../components/Entries";
 
-export const ReadEntries = ({balance, setBalance}) => {
+export const ReadEntries = () => {
   const { idAccount } = useParams();
   const { token} = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
@@ -40,7 +40,7 @@ export const ReadEntries = ({balance, setBalance}) => {
           idAccount,
           token,
         });
-        
+        console.log(readingEntries.length);
         if (readingEntries.length > 0) {
           let balance = 0;
 
@@ -65,10 +65,9 @@ export const ReadEntries = ({balance, setBalance}) => {
             };
             return myDataAccountWithBalance;
           });
-          console.log(myDataAccountWithBalance);
+          console.log(myBalanceAccount);
           setEntries(myBalanceAccount);
-          setSuma(myBalanceAccount[myBalanceAccount.length - 1].balance);
-          balance.push(suma);
+          setSuma(myBalanceAccount[myBalanceAccount.length - 1].balance);          
           console.log("Valor de los saldos: ", balance);
         }
         
