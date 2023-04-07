@@ -1,3 +1,4 @@
+import "../css/Graphs.css"
 import React, { useContext, useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title,  Tooltip, Legend } from "chart.js";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);               
@@ -11,6 +12,7 @@ export const Graphs = ()=> {
   const {token} = useContext(AuthContext);
   const [myAccount, setMyAccount] = useState({})
   const [entries, setEntries] = useState([]);
+  const [year, setYear] = useState(null);
   let myDatasets = [];
 
   useEffect(()=>{
@@ -33,8 +35,16 @@ export const Graphs = ()=> {
       // Y ahora pasamos el objeto a un array
       const categories = [...ObjCategories];
       
-      // Agrupamos todos los asientos bancarios por categoría y por mes y los sumamos
+      // Agrupamos todos los asientos bancarios por categoría
+      const entriesByCategories = categories.map((catName) => {
+        return readingEntries.filter(item => item.category === catName);
+      })
+      console.log(entriesByCategories);
+
+      // Agrupamos cada categoría por meses
       
+      // Sumamos el amount de cada mes
+
 
       for(let i = 0; i < categories.length ; i++) {
         const myObject =          
@@ -45,7 +55,7 @@ export const Graphs = ()=> {
           }
         myDatasets.push(myObject);         
       }
-      console.log(myDatasets);
+      console.log("datasets: ", myDatasets);
 
       } 
     if(token) {loadAccountData()};
@@ -98,5 +108,17 @@ export const Graphs = ()=> {
   }
 
 
-  return <Bar options={options} data={data} />
+  return (
+    <section className='graphs'>
+      <h2>GRÁFICOS DE LA CUENTA {myAccount.alias}</h2>
+      <select name="year" id="year" onClick={(e)=>{e.target.value}}>
+        <option defalutvalue="">2023</option>
+        <option value="">2022</option>
+        <option value="">2021</option>
+        <option value="">2020</option>
+      </select>
+
+      <Bar options={options} data={data} />
+    </section>
+  )
 }

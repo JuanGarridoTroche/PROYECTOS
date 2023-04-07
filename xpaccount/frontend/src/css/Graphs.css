@@ -1,0 +1,10 @@
+
+.graphs {
+  width: 90vw;
+}
+
+@media(min-width: 700px) {
+  .graphs {
+    max-width: 60%;
+  }  
+}
