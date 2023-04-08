@@ -68,22 +68,22 @@ export const Graphs = () => {
       for (let i = 0; i < entriesByCategories.length; i++) {
         let suma = 0;
         // console.log(entriesByCategories[i]);
-        const fromDate = new Date(('01/01/' + year).split("/", 3).reverse().join("/")).getTime();
-        const toDate = new Date(('31/01/' + year).split("/", 3).reverse().join("/")).getTime();
+        const fromDate = new Date(('01/03/' + year).split("/", 3).reverse().join("/")).getTime();
+        const toDate = new Date(('31/03/' + year).split("/", 3).reverse().join("/")).getTime();
         for (let j = 0; j < entriesByCategories[i].length; j++) {
           // console.log(entriesByCategories[i][j].amount);
           const fecha = Date.parse(entriesByCategories[i][j].dateEntry.split("/", 3).reverse().join("/"));
           if(fecha >= fromDate && fecha <= toDate) {
             console.log(entriesByCategories[i][j].dateEntry);
+            suma = suma + parseFloat(entriesByCategories[i][j].amount);
           }
           // console.log(fecha);
 
           // console.log(thisDate);
           // const newDate = new Date().getTime();
           // console.log(newDate);
-          suma = suma + parseFloat(entriesByCategories[i][j].amount);
         }
-        balanceByCategory.push(suma);
+        balanceByCategory.push({month: 'Enero',category: categories[i], suma});
       }
       console.log(balanceByCategory);
 
@@ -100,7 +100,7 @@ export const Graphs = () => {
         const myObject = {
           id: i,
           label: categories[i],
-          data: [balanceByCategory[i]],
+          data: [balanceByCategory[i].suma],
           backgroundColor: backgroundColors[i],
         };
         myDatasets.push(myObject);
