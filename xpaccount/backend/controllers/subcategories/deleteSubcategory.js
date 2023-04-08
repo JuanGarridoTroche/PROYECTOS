@@ -1,4 +1,5 @@
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
+const selectEntriesBySubcatNameQuery = require("../../bbdd/queries/entries/selectEntriesBySubcatNameQuery");
 const deleteSubcategoryByIdQuery = require("../../bbdd/queries/subcategories/deleteSubcategoryByIdQuery");
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const { generateError } = require("../../helpers");
@@ -24,6 +25,14 @@ const deleteCategory = async (req, res, next) => {
     if (!checkingSubcat) {
       throw generateError("La subcategoría no existe", 404);
     }
+
+    // Comprobamos que la subcategoría no está en ningún asiento bancario.
+    const checkingEntriesWithSubcat = await selectEntriesBySubcatNameQuery(checkingSubcat.name);
+
+    if(checkingEntriesWithSubcat.length > 0) {
+      throw generateError("Debes modificar los asientos bancarios que tengan esta subcategoría antes de poder eliminarla", 403)
+    }
+
 
     //Eliminamos la subcategoría
     await deleteSubcategoryByIdQuery(idCategory, idSub);
