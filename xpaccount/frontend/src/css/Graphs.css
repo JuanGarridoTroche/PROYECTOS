@@ -3,8 +3,40 @@
   width: 90vw;
 }
 
+.graphs > button {
+  display: block;
+  position: absolute;
+  left: 5px;
+  top: 70px;
+ }
+
+ .graphs > h2 {
+  font-size: 1.6rem;
+  padding-top: 30px;
+  text-align: center;
+ }
+
+ .graphs > select#year {
+  padding: 2px;
+  font-family: var(--font-text);
+  font-weight: 600;
+ }
+
+ .graphs > select#year option {
+  font-weight: 600;
+ }
+
 @media(min-width: 700px) {
   .graphs {
     max-width: 60%;
-  }  
+  } 
+
+  .graphs > button {
+    top: 10px;
+   }
+
+   .graphs > h2 {
+    font-size: 2.4rem;
+    padding-top: 30px;
+   }
 }

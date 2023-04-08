@@ -18,16 +18,18 @@ ChartJS.register(
   Legend
 );
 import { Bar } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   readingAccountService,
   readEntriesByAccountService,
 } from "../services";
 import { AuthContext } from "../context/AuthContext";
 
+
 export const Graphs = () => {
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [myAccount, setMyAccount] = useState({});
   const [entries, setEntries] = useState([]);
   const [datasets, setDatasets] = useState([]);
@@ -62,12 +64,23 @@ export const Graphs = () => {
       const entriesByCategories = categories.map((catName) => {
         return readingEntries.filter((item) => item.category === catName);
       });
-      console.log(entriesByCategories);
+      // console.log(entriesByCategories);
       for (let i = 0; i < entriesByCategories.length; i++) {
         let suma = 0;
-        console.log(entriesByCategories[i]);
+        // console.log(entriesByCategories[i]);
+        const fromDate = new Date(('01/01/' + year).split("/", 3).reverse().join("/")).getTime();
+        const toDate = new Date(('31/01/' + year).split("/", 3).reverse().join("/")).getTime();
         for (let j = 0; j < entriesByCategories[i].length; j++) {
           // console.log(entriesByCategories[i][j].amount);
+          const fecha = Date.parse(entriesByCategories[i][j].dateEntry.split("/", 3).reverse().join("/"));
+          if(fecha >= fromDate && fecha <= toDate) {
+            console.log(entriesByCategories[i][j].dateEntry);
+          }
+          // console.log(fecha);
+
+          // console.log(thisDate);
+          // const newDate = new Date().getTime();
+          // console.log(newDate);
           suma = suma + parseFloat(entriesByCategories[i][j].amount);
         }
         balanceByCategory.push(suma);
@@ -151,7 +164,14 @@ export const Graphs = () => {
 
   return (
     <section className="graphs">
-      <h2>GRÁFICOS DE LA CUENTA {myAccount.alias}</h2>
+      <h2>GRÁFICOS DE LA CUENTA <span>{myAccount.alias}</span></h2>
+      <button
+        onClick={() => {
+          navigate(`/account/${idAccount}`);
+        }}
+        >
+        Volver
+      </button>
       <select
         name="year"
         id="year"
@@ -159,7 +179,7 @@ export const Graphs = () => {
           setYear(e.target.value);
         }}
       >
-        <option defalutvalue="2023">2023</option>
+        <option defaultValue="2023">2023</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>
         <option value="2020">2020</option>
