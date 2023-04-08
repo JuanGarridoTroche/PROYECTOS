@@ -384,6 +384,23 @@ export const updateSubcategoryService = async ({
   return json.data;
 };
 
+//Eliminar subcategoría
+export const deleteSubcategoryService = async({idCategory, idSubcat, token})=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/category/${idCategory}/sub/${idSubcat}`,
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },    
+  })
+  const json = response.json();
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+
+  return json.data;
+}
+
 // Crear asiento bancario
 export const AddEntryService = async (token, idAccount, data) => {
   const response = await fetch(

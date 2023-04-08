@@ -25,7 +25,7 @@ export const Modal = ({ setShowModal, children }) => {
           <button
             onClick={(e) => {
               setShowModal(false);
-              navigate("/")
+              // navigate("/")
             }}
           >
             Ir a Inicio

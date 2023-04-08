@@ -2,7 +2,7 @@ import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { createSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService, updateSubcategoryService } from "../services";
+import { createSubcategoryService, deleteSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService, updateSubcategoryService } from "../services";
 import { Modal } from "../components/Modal";
 
 export const ReadSubcategories = () => {
@@ -90,6 +90,21 @@ export const ReadSubcategories = () => {
     }
   }
 
+  const handleDeleteSubcategory = async(e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      console.log(idSubcat);
+      // alert("Subcategoría eliminada")
+      await deleteSubcategoryService({idCategory, idSubcat, token});
+      setIdSubcat(0);
+      setReload(!reload);
+      setShowModal(true);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <section className="categories-container">
       <h2>Categoría <span>{category.name}</span></h2>
@@ -141,8 +156,13 @@ export const ReadSubcategories = () => {
                     <input type="text" name="nameSubcat" value={updateNameSubcat} id={subcategory.id} onChange={(e) => {                      
                       setUpdateNameSubcat(e.target.value)
                       }}/>
-                    <button>Actualizar</button>
+                    <button className="updating">Actualizar</button>
+                    <button className="canceling" onClick={()=>{setIdSubcat}}>{'<<'}</button>
+                    <button className="deleting" onClick={handleDeleteSubcategory}>
+                      Eliminar
+                  </button>
                   </form>
+                  
                   }
                 </li>
               );
