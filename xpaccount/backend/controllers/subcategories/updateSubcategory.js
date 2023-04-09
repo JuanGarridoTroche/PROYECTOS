@@ -44,7 +44,7 @@ const updateSubcategory = async (req, res, next) => {
     if (!comment) {
       comment = checkingSubcat.comment;
     }
-
+    
     // Editamos los valores alias y/o bankName de la cuenta
     await updateSubcategoryQuery({
       idCategory,
@@ -52,9 +52,9 @@ const updateSubcategory = async (req, res, next) => {
       nameSubcat,
       comment,
     });
-
+    
     // Actualizamos todos los asientos bancarios con el nuevo nombre de subcategoría
-    await updateSubcategoryAllEntriesQuery(checkingSubcat.name, nameSubcat)
+    await updateSubcategoryAllEntriesQuery(nameSubcat, checkingSubcat.name)
 
     res.send({
       status: "ok",
