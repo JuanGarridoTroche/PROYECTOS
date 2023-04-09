@@ -1,7 +1,7 @@
 const getConnection = require("../../getConnection");
 
 const updateSubcategoryAllEntriesQuery = async (nameSubcat, oldSub) => {
-  console.log(nameSubcat, oldSub);
+  console.log(nameSubcat, oldSub.toUpperCase());
   let connection;
 
   try {
@@ -9,9 +9,9 @@ const updateSubcategoryAllEntriesQuery = async (nameSubcat, oldSub) => {
     const [entries] = await connection.query(
       `
       UPDATE entries SET subcategory= ?, modifiedAt = ? WHERE subcategory = ?`,
-      [nameSubcat, new Date(), oldSub]
+      [nameSubcat, new Date(), oldSub.toUpperCase()]
     );   
-      console.log("Asientos modificados: ", entries);
+      
       return entries;
   } finally {
     if (connection) connection.release();
