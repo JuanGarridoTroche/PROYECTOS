@@ -2,6 +2,7 @@ const { generateError } = require("../../helpers");
 
 const updateCategoryQuery = require("../../bbdd/queries/categories/updateCategoryQuery");
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
+const updateCategoryAllEntriesQuery = require("../../bbdd/queries/entries/updateCategoryAllEntriesQuery");
 
 const updateCategory = async (req, res, next) => {
   try {
@@ -13,7 +14,7 @@ const updateCategory = async (req, res, next) => {
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
     const checkingCat = await selectCategoryByIdQuery(idAccount, idCategory);
 
-    // Si enviamos un id incorrecto O el id del usuario que creó la cuenta es distinto al que está logueado
+    // Si enviamos un id incorrecto o el id del usuario que creó la cuenta es distinto al que está logueado
     if (!checkingCat) {
       throw generateError("Esta categoría no existe", 404);
     }
@@ -32,6 +33,9 @@ const updateCategory = async (req, res, next) => {
       category,
       comment,
     });
+
+    // Actualizamos todos los asientos bancarios con el nuevo nombre de categoría
+    await updateCategoryAllEntriesQuery(category, checkingCat.name)
 
     res.send({
       status: "ok",
