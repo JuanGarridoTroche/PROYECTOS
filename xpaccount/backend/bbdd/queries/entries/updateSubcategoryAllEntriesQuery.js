@@ -1,17 +1,18 @@
 const getConnection = require("../../getConnection");
 
-const updateSubcategoryAllEntriesQuery = async (nameSubcat) => {
+const updateSubcategoryAllEntriesQuery = async (nameSubcat, oldSub) => {
+  console.log(nameSubcat, oldSub);
   let connection;
 
   try {
     connection = await getConnection();
-    const [entry] = await connection.query(
+    const [entries] = await connection.query(
       `
-      UPDATE entries SET idAccount = ?, category = ?, subcategory= ?, amount = ?, concept = ?, comment = ?, modifiedAt = ? WHERE id = ?`,
-      [idAccount, category, subcategory, amount, concept, comment, new Date(), idEntry]
+      UPDATE entries SET subcategory= ?, modifiedAt = ? WHERE subcategory = ?`,
+      [nameSubcat, new Date(), oldSub]
     );   
-    console.log(entry[0]);
-      return entry[0];
+      console.log("Asientos modificados: ", entries);
+      return entries;
   } finally {
     if (connection) connection.release();
   }

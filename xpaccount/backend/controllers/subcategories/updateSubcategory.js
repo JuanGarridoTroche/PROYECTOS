@@ -4,6 +4,7 @@ const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCat
 const selectAccountByIdCatQuery = require("../../bbdd/queries/accounts/selectAccountByIdCatQuery")
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
 const updateSubcategoryQuery = require("../../bbdd/queries/subcategories/updateSubcategoryQuery");
+const updateSubcategoryAllEntriesQuery = require("../../bbdd/queries/entries/updateSubcategoryAllEntriesQuery");
 
 const updateSubcategory = async (req, res, next) => {
   try {
@@ -18,7 +19,7 @@ const updateSubcategory = async (req, res, next) => {
       throw generateError("Esta categoría no existe", 404);
     }
 
-    // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
+    // Comprobar que la categoría pertenece al usuario logueado
     const checkingCat = await selectCategoryByIdQuery(checkingAccount.idAccount, idCategory);
 
     // Si enviamos un id incorrecto O el id del usuario que creó la cuenta es distinto al que está logueado
@@ -31,7 +32,7 @@ const updateSubcategory = async (req, res, next) => {
       idCategory,
       idSub
     );
-
+       
     if (!checkingSubcat) {
       throw generateError("La subcategoría no existe", 404);
     }
@@ -52,7 +53,8 @@ const updateSubcategory = async (req, res, next) => {
       comment,
     });
 
-    
+    // Actualizamos todos los asientos bancarios con el nuevo nombre de subcategoría
+    await updateSubcategoryAllEntriesQuery(checkingSubcat.name, nameSubcat)
 
     res.send({
       status: "ok",
