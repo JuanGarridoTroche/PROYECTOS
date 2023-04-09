@@ -9,7 +9,7 @@ const updateCategory = async (req, res, next) => {
     let { category, comment } = req.body;
     const { idAccount, idCategory } = req.params;
 
-    console.log(category, comment, idAccount, idCategory);
+    // console.log(category, comment, idAccount, idCategory);
 
     // Comprobar que la categoría que se quiere modificar pertenece al usuario logueado
     const checkingCat = await selectCategoryByIdQuery(idAccount, idCategory);

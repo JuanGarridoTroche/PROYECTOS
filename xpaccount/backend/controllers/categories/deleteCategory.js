@@ -2,6 +2,7 @@ const deleteCategoryByIdQuery = require("../../bbdd/queries/categories/deleteCat
 const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");
 const { generateError } = require("../../helpers");
+const selectEntriesByCatNameQuery = require("../../bbdd/queries/entries/selectEntriesByCatNameQuery");
 
 const deleteCategory = async (req, res, next) => {
   const { idAccount, idCategory } = req.params;
@@ -20,6 +21,12 @@ const deleteCategory = async (req, res, next) => {
     // Si la variable no contiene ningún resultado => no existe
     if (!checkingCat) {
       throw generateError("La categoría no existe", 404);
+    }
+
+    // Comprobamos que la categoría no exista en ningún asiento bancario
+    const checkingCatName = await selectEntriesByCatNameQuery(checkingCat.name); 
+    if(checkingCatName.length > 0) {
+      throw generateError("Debes modificar los asientos bancarios que tengan esta categoría antes de eliminarla", 403)
     }
 
     //Eliminamos la categoría

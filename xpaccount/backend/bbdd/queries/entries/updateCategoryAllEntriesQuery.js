@@ -1,7 +1,7 @@
 const getConnection = require("../../getConnection");
 
 const updateCategoryAllEntriesQuery = async (nameSubcat, oldSub) => {
-  console.log("Nuevo nombre: ", nameSubcat, "Nombre antiguo", oldSub.toUpperCase());
+  // console.log("Nuevo nombre: ", nameSubcat.toUpperCase(), "Nombre antiguo", oldSub.toUpperCase());
   let connection;
 
   try {
