@@ -52,6 +52,8 @@ const updateSubcategory = async (req, res, next) => {
       comment,
     });
 
+    
+
     res.send({
       status: "ok",
       message: `Subcategoría actualizada a '${nameSubcat}' 🔵`,
