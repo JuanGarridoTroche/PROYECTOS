@@ -3,6 +3,7 @@ const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCat
 const selectAccountByIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdAccountQuery");
 const { generateError } = require("../../helpers");
 const selectEntriesByCatNameQuery = require("../../bbdd/queries/entries/selectEntriesByCatNameQuery");
+const deleteSubcategoriesByIdCatQuery = require("../../bbdd/queries/subcategories/deleteSubcategoriesByIdCatQuery");
 
 const deleteCategory = async (req, res, next) => {
   const { idAccount, idCategory } = req.params;
@@ -31,6 +32,9 @@ const deleteCategory = async (req, res, next) => {
 
     //Eliminamos la categoría
     await deleteCategoryByIdQuery(idCategory, idAccount);
+
+    //Eliminamos todas las subcategorías
+    await deleteSubcategoriesByIdCatQuery(idCategory);
 
     res.send({
       status: "ok",
