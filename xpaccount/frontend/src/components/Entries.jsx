@@ -17,8 +17,8 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
 
- const handleLoadCategories = async (e)=>{
-   e.preventDefault();
+ const handleLoadCategories = async ()=>{
+  //  e.preventDefault();
    setError("");
    console.log("Entré");
   try {
@@ -99,8 +99,9 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
         <td className="comment">{entry.comment}</td>
         <td>
         <button className="update" onClick={() => {
-          handleLoadCategories;
+          console.log("Entré en Editar al hacer click");
           setIdEntry(entry.id)
+          handleLoadCategories();
           setRecoverEntries(!recoverEntries)
           }}
         >
@@ -125,7 +126,20 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
                   return <option key={category.id}>{category.name}</option>;
                 })}
             </select></td>
-        <td className="updt-subcat"><input type="text" name="subcategory" id="subcategory" value={subcategory} onChange={(e)=>{setSubcategory(e.target.value)}} /></td>
+        <td className="updt-subcat"><select
+              name="subcategories"
+              onChange={(e) => {
+                setSubcategory(e.target.value);
+              }}
+            >
+              <option defaultValue>{entry.subcategory}</option>
+              {subcategories &&
+                subcategories.map((subcategory) => {
+                  return (
+                    <option key={subcategory.id}>{subcategory.name}</option>
+                  );
+                })}
+            </select></td>
         <td className="updt-amount"><input type="number" name="amount" id="amount" value={amount} onChange={(e)=>{setAmount(e.target.value)}}/></td>        
         <td className={parseFloat(entry.balance) > 0 ? "numbers" : "numbers negative"}>
             {parseFloat(entry.balance).toFixed(2)} EUR
