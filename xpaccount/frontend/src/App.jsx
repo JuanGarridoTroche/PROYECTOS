@@ -26,7 +26,6 @@ function App() {
   const [balance, setBalance] = useState([]);
   const {token} = useContext(AuthContext);
   const [myAccounts, setMyAccounts] = useState([]);
-  const navigate = useNavigate();
   
   // Carga los datos de todas las cuentas junto con sus asientos bancarios y calcula el saldo de cada cuenta
   useEffect(()=> {
@@ -35,10 +34,7 @@ function App() {
          
       try {
         // Si el usuario no está logueado no puede eacceder a esta página
-        if(token) {
-          
-        
-        
+        if(token) {        
         // Obtenemos todas las cuentas bancarias creadas por el usuario logueado
         const getAccounts = await getAccountsUserService(token);
         // console.log("Conseguir cuentas: ", getAccounts);
@@ -50,10 +46,9 @@ function App() {
             const idAccount = getAccounts[i].id;
             const readingEntries = await readEntriesByAccountService({idAccount, token })
             // console.log(readingEntries); 
-            const calculatingBalance = readingEntries.reduce((accumulator, current) => accumulator + parseFloat(current.amount), 0)       
+            const calculatingBalance = readingEntries.reduce((accumulator, current) => accumulator + parseFloat(current.amount), 0)      
             
-            myAccountBalance.push({id: getAccounts[i].id, balance: calculatingBalance})
-            
+            myAccountBalance.push({id: getAccounts[i].id, balance: calculatingBalance})          
           }
           setBalance(myAccountBalance);
         }
@@ -64,7 +59,7 @@ function App() {
       }
     };
     getBalanceData();
-  },[])
+  },[token])
 
   return (
     <>
