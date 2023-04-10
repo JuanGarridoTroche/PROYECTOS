@@ -151,6 +151,20 @@ app.put("/account/:idAccount/entry/:idEntry", isAuth, updateEntry);
 // Eliminar un asiento
 app.delete("/account/:idAccount/entry/:idEntry", isAuth, deleteEntry);
 
+
+/*
+* #####################################
+* ##  Middleware upload excel files  ##
+* #####################################
+*/
+
+const uploadEntriesExcelToJson = require("./controllers/entries/uploadEntriesExcelToJson");
+
+// Subir, leer y pasar un excel a JSON
+app.get("/account/:idAccount/upload", isAuth, uploadEntriesExcelToJson);
+
+
+
 /*
  * ##########################################
  * ## Middleware de Error y 404 NOT FOUND  ##
