@@ -48,8 +48,7 @@ export const ReadCategories = () => {
     } catch (err) {
       setError(err.message);
     }
-
-  }
+  }  
 
   return (
     <section className="categories-container">

@@ -2,7 +2,7 @@ import("../css/ReadCategories.css");
 import { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { createSubcategoryService, deleteSubcategoryService, getCategoryDataService, loadSubcategoriesService, updateCategoryService, updateSubcategoryService } from "../services";
+import { createSubcategoryService, deleteSubcategoryService, getCategoryDataService, loadSubcategoriesService, deleteCategoryService, updateCategoryService, updateSubcategoryService } from "../services";
 import { Modal } from "../components/Modal";
 
 export const ReadSubcategories = () => {
@@ -44,21 +44,7 @@ export const ReadSubcategories = () => {
       loadMySubcategories();
     }
   }, [reload]);
-
-  const handleCreateSubcategory = async (e)=> {
-    e.preventDefault();
-    setError("")
-    try {
-      const data = {nameSubcat: newSubcat, comment};
-      await createSubcategoryService(token, idCategory, data); 
-      setNewSubcat("");
-      setComment("");    
-      setReload(!reload);
-    } catch (err) {
-      setError(err.message);
-    }
-
-  }
+  
 
   // Manejador de actualización de la categoría
   const handleUpdateCategory = async(e)=> {
@@ -72,6 +58,34 @@ export const ReadSubcategories = () => {
       setShowModal(true);
     } catch (err) {
       setError(err.message)
+    }
+  }
+
+  const handleDeleteCategory = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {   
+      await deleteCategoryService(idAccount, idCategory, token);
+      setReload(!reload);
+      navigate(`/account/${idAccount}/categories`);
+      setShowModal(true);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  // Crear subcategoría
+  const handleCreateSubcategory = async (e)=> {
+    e.preventDefault();
+    setError("")
+    try {
+      const data = {nameSubcat: newSubcat, comment};
+      await createSubcategoryService(token, idCategory, data); 
+      setNewSubcat("");
+      setComment("");    
+      setReload(!reload);
+    } catch (err) {      
+      setError(err.message);
     }
   }
 
@@ -97,8 +111,7 @@ export const ReadSubcategories = () => {
       await deleteSubcategoryService({idCategory, idSubcat, token});
       setIdSubcat(0);
       setReload(!reload);
-      setShowModal(true);
-    } catch (err) {
+    } catch (err) {      
       setError(err.message);
     }
   }
@@ -115,16 +128,17 @@ export const ReadSubcategories = () => {
             Volver
       </button>
       <section className="create-category update">
-            <form className="create-category-form" onSubmit={handleUpdateCategory}>
-              <label htmlFor="cat"> Modificar categoría</label>
-              <fieldset>
-                <input type="text" name="category" id="category" placeholder="nombre categoría" value={updateCat} onChange={(e) => {
-                  setUpdateCat(e.target.value);
-                }}/>
-                <input type="text" name="commentCat" id="commentCat" placeholder="comentario" value={updateCommentCat} onChange={(e)=>{setUpdateCommentCat(e.target.value)}}/>
-                <button>Actualizar</button>
-              </fieldset>
-            </form>
+        <form className="create-category-form" onSubmit={handleUpdateCategory}>
+          <label htmlFor="cat"> Actualizar categoría</label>
+          <fieldset>
+            <input type="text" name="category" id="category" placeholder="nombre categoría" value={updateCat} onChange={(e) => {
+              setUpdateCat(e.target.value);
+            }}/>
+            <input type="text" name="commentCat" id="commentCat" placeholder="comentario" value={updateCommentCat} onChange={(e)=>{setUpdateCommentCat(e.target.value)}}/>
+            <button>Actualizar</button>
+            <button onClick={handleDeleteCategory}>Eliminar</button>
+          </fieldset>
+        </form>
       </section>
       <section className="create-category subcategory">
         <form className="create-category-form" onSubmit={handleCreateSubcategory}>

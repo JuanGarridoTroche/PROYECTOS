@@ -305,6 +305,25 @@ export const updateCategoryService = async ({
   return json.data;
 };
 
+// Eliminar una categoría
+export const deleteCategoryService = async(idAccount, idCategory, token)=> {
+  const response = await fetch(`
+  ${import.meta.env.VITE_BACKEND_BASE_URL}:${import.meta.env.VITE_BACKEND_PORT}/account/${idAccount}/category/${idCategory}`,
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+
+  return json.data;
+}
+
 // Cargamos todas las subcategorías de la categoría indicada
 export const loadSubcategoriesService = async (token, idCategory) => {
   const response = await fetch(
@@ -393,7 +412,8 @@ export const deleteSubcategoryService = async({idCategory, idSubcat, token})=> {
       Authorization: token,
     },    
   })
-  const json = response.json();
+  const json = await response.json();
+  
   if(!response.ok) {
     throw new Error(json.message)
   }

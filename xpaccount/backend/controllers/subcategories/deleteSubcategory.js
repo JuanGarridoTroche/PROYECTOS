@@ -23,7 +23,7 @@ const deleteCategory = async (req, res, next) => {
     if (!checkingCat) {
       throw generateError("La categoría no existe", 404);
     }
-    console.log(checkingCat);
+    
     // Comprobar que la categoría pertenece al usuario logueado
     const checkingAccount = await selectAccountByIdUserAndIdAccountQuery(idUser, recoverAccount.idAccount);
     if(!checkingAccount) {
@@ -45,7 +45,7 @@ const deleteCategory = async (req, res, next) => {
     const checkingEntriesWithSubcat = await selectEntriesBySubcatNameQuery(checkingSubcat.name);
 
     if(checkingEntriesWithSubcat.length > 0) {
-      throw generateError("Debes modificar los asientos bancarios que tengan esta subcategoría antes de poder eliminarla", 403)
+      throw generateError("Debes modificar los asientos bancarios que tenga esta subcategoría antes de poder eliminarla", 403)
     }
 
 

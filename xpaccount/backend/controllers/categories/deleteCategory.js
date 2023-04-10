@@ -25,17 +25,15 @@ const deleteCategory = async (req, res, next) => {
     }
 
     // Comprobamos que la categoría no exista en ningún asiento bancario
-    const checkingCatName = await selectEntriesByCatNameQuery(checkingCat.name); 
+    const checkingCatName = await selectEntriesByCatNameQuery(checkingCat.name, idAccount); 
     if(checkingCatName.length > 0) {
       throw generateError("Debes modificar los asientos bancarios que tengan esta categoría antes de eliminarla", 403)
     }
 
-    //Eliminamos la categoría
+    //Eliminamos la categoría y subcategorías
     await deleteCategoryByIdQuery(idCategory, idAccount);
 
-    //Eliminamos todas las subcategorías
-    await deleteSubcategoriesByIdCatQuery(idCategory);
-
+   
     res.send({
       status: "ok",
       message: `Categoría ${checkingCat.name} y subcategorías eliminadas 🔴`,
