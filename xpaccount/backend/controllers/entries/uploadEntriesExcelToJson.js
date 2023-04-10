@@ -20,9 +20,7 @@ const uploadEntriesExcelToJson = async (req, res, next) => {
     console.log(entry.IMPORTE_EUR);
     const req = {body:{dateEntry:entry.FECHA_VALOR, category: "", subcategory: "", amount: entry.IMPORTE_EUR, concept: entry.CONCEPTO, comment: ""}, user: {id: userId}}
     createEntry();
-  })
-
-  
+  })  
  
   try {
     

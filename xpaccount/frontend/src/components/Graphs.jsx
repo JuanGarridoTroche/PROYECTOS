@@ -65,30 +65,28 @@ export const Graphs = () => {
         return readingEntries.filter((item) => item.category === catName);
       });
       // console.log(entriesByCategories);
+
       for (let i = 0; i < entriesByCategories.length; i++) {
         let suma = 0;
         // console.log(entriesByCategories[i]);
         // const fromDate = new Date((`01/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
         // const toDate = new Date((`31/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
+        const fechaUTC = new Date(Date.UTC(year, month[3]))
+        console.log(fechaUTC);
         const date = new Date();
         console.log(date);
         for (let j = 0; j < entriesByCategories[i].length; j++) {
           // console.log(entriesByCategories[i][j].amount);
-          const fecha = Date(
-            entriesByCategories[i][j].dateEntry
-              .split("/", 3)
-              .reverse()
-              .join("-")
-          );
+          const fecha = Date(entriesByCategories[i][j].dateEntry.split("/", 3).reverse().join("/"));
           console.log(fecha);
           const primerDia = new Date(
-            fecha.getFullYear(fecha),
-            fecha.getMonth(fecha),
+            date.getFullYear(fecha),
+            date.getMonth(fecha),
             2
           );
           const ultimoDia = new Date(
-            fecha.getFullYear(),
-            fecha.getMonth() + 1,
+            date.getFullYear(),
+            date.getMonth() + 1,
             1
           );
           console.log(primerDia);
@@ -104,9 +102,7 @@ export const Graphs = () => {
           // console.log(newDate);
         }
 
-        balanceByCategory.push([
-          { year, month, category: categories[i], suma },
-        ]);
+        balanceByCategory.push({ year, month, category: categories[i], suma });
       }
       console.log(balanceByCategory);
 
