@@ -1,7 +1,7 @@
 import("./css/Main.css");
 import("./css/style.css");
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Accounts } from "./pages/Accounts";
 import { CreateAccount } from "./pages/CreateAccount";
@@ -26,6 +26,7 @@ function App() {
   const [balance, setBalance] = useState([]);
   const {token} = useContext(AuthContext);
   const [myAccounts, setMyAccounts] = useState([]);
+  const navigate = useNavigate();
   
   // Carga los datos de todas las cuentas junto con sus asientos bancarios y calcula el saldo de cada cuenta
   useEffect(()=> {
@@ -34,9 +35,9 @@ function App() {
          
       try {
         // Si el usuario no está logueado no puede eacceder a esta página
-        if(!token) {
-          navigate("/")
-        };
+        if(token) {
+          
+        
         
         // Obtenemos todas las cuentas bancarias creadas por el usuario logueado
         const getAccounts = await getAccountsUserService(token);
@@ -56,7 +57,7 @@ function App() {
           }
           setBalance(myAccountBalance);
         }
-        
+      };
 
       } catch (error) {
         alert(error.message);

@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"annwhogar@gmail.com\",\r\n    \"password\":\"123456789\"\r\n}",
+							"raw": "{\r\n    \"email\":\"j.garridotroche@gmail.com\",\r\n    \"password\":\"123456789\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -101,6 +101,93 @@
 								"register",
 								"validate",
 								"3a680404-ec8d-4ceb-95cd-25333da5deaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/user/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "leer datos usuario logueado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/user/loggedProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"loggedProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar perfil de usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"email\": \"juan@darthvader.es\",\r\n    \"birthday\": \"14/12/1975\",\r\n    \"firstName\": \"Juan\",\r\n    \"lastName\": \"\",\r\n    \"dni\": \"32828388M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/updateProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"updateProfile"
 							]
 						}
 					},
@@ -205,6 +292,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Leer los datos de una cuenta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/account/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"5"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -218,13 +331,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{token_annwhogar@gmail.com}}",
+								"value": "{{token_juan@darthvader.es}}",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category\": \"Retirada\",\r\n    \"comment\": \"Llevaremos un control de los gastos retirados en efectivo o con código (si has perdido la tarjeta)\"\r\n}",
+							"raw": "{\r\n    \"category\": \"Alimentación\",\r\n    \"comment\": \"Guardaremos todos los recibos correspondientes a gasto en supermercados, locales, restaurantes, bares, etc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -232,13 +345,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/category",
+							"raw": "http://localhost:4000/account/6/category",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
+								"account",
+								"6",
 								"category"
 							]
 						}
@@ -258,7 +373,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category\": \"\",\r\n    \"comment\": \"Control de gastos de mis vástagos\"\r\n}",
+							"raw": "{\r\n    \"category\": \"TRANSFERENCIA\",\r\n    \"comment\": \"control de entradas y salidas de transferencias\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,15 +381,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/category/1",
+							"raw": "http://localhost:4000/account/2/category/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
+								"account",
+								"2",
 								"category",
-								"1"
+								"10"
 							]
 						}
 					},
@@ -287,20 +404,77 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{token_annwhogar@gmail.com}}",
+								"value": "{{token_juan@darthvader.es}}",
 								"type": "default"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/category/10",
+							"raw": "http://localhost:4000/account/2/category/44",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
+								"account",
+								"2",
 								"category",
-								"10"
+								"44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/account/2/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"2",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Category data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/account/2/category/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"2",
+								"category",
+								"7"
 							]
 						}
 					},
@@ -318,13 +492,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " {{token_annwhogar@gmail.com}}",
+								"value": " {{token_juan@darthvader.es}}",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nameSubcat\": \"Mercadona\",\r\n    \"comment\": \"Supermercado de alimentación\"\r\n}",
+							"raw": "{\r\n    \"nameSubcat\": \"La consentida\",\r\n    \"comment\": \"Restaurante\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -332,7 +506,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/category/6/sub",
+							"raw": "http://localhost:4000/category/21/sub",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -340,7 +514,7 @@
 							"port": "4000",
 							"path": [
 								"category",
-								"6",
+								"21",
 								"sub"
 							]
 						}
@@ -354,13 +528,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " {{token_annwhogar@gmail.com}}",
+								"value": " {{token_juan@darthvader.es}}",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nameSubcat\": \"Froiz\",\r\n    \"comment\": \"\"\r\n}",
+							"raw": "{\r\n    \"nameSubcat\": \"Eugenio\",\r\n    \"comment\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -368,7 +542,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/category/6/sub/2",
+							"raw": "http://localhost:4000/category/11/sub/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -376,9 +550,9 @@
 							"port": "4000",
 							"path": [
 								"category",
-								"6",
+								"11",
 								"sub",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -391,12 +565,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " {{token_annwhogar@gmail.com}}",
+								"value": " {{token_juan@darthvader.es}}",
 								"type": "default"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/category/6/sub/4",
+							"raw": "http://localhost:4000/category/18/sub/192",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -404,9 +578,36 @@
 							"port": "4000",
 							"path": [
 								"category",
-								"6",
+								"18",
 								"sub",
-								"4"
+								"192"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subcategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_admin@admin.com}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/category/20/subs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category",
+								"20",
+								"subs"
 							]
 						}
 					},
@@ -424,13 +625,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{token_juan@darthvader.es}}",
+								"value": "{{token_admin@admin.com}}",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category\": \"Recibo\",\r\n    \"subcategory\": \"Gas/Energía\",\r\n    \"amount\": -58.49,\r\n    \"concept\": \"Recibo Comercializadora Regulada, Gas Power, Gas Power11554471360323 Nº Recibo 0049 7691 755 Bbfgdhv Ref. Mandato 1155447136, De\",\r\n    \"comment\": \"Recibo del mes de Marzo de Naturgy\"\r\n}",
+							"raw": "{\r\n    \"dateEntry\": \"19/03/2023\",\r\n    \"category\": \"JUEGO\",\r\n    \"subcategory\": \"masqueoca.com\",\r\n    \"amount\": -220.54,\r\n    \"concept\": \"2 juegos de mesa\",\r\n    \"comment\": \"El Hannibal y el Trajan\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -438,7 +639,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/account/1/entry",
+							"raw": "http://localhost:4000/account/5/entry",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -446,7 +647,7 @@
 							"port": "4000",
 							"path": [
 								"account",
-								"1",
+								"5",
 								"entry"
 							]
 						}
@@ -466,7 +667,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n}",
+							"raw": "{\r\n    \"category\": \"Transferencia\",\r\n    \"subcategory\": \"Eugenio\",\r\n    \"amount\": \"23.255\",\r\n    \"concept\": \"\",\r\n    \"comment\": \"Es el pago del mes de Febrero.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -474,7 +675,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/account/1/entry",
+							"raw": "http://localhost:4000/account/2/entry/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -482,8 +683,9 @@
 							"port": "4000",
 							"path": [
 								"account",
-								"1",
-								"entry"
+								"2",
+								"entry",
+								"2"
 							]
 						}
 					},
@@ -500,17 +702,8 @@
 								"type": "default"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:4000/account/1/entry",
+							"raw": "http://localhost:4000/account/2/entry/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -518,10 +711,51 @@
 							"port": "4000",
 							"path": [
 								"account",
-								"1",
-								"entry"
+								"2",
+								"entry",
+								"2"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer Entries/asientos de una cuenta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_admin@admin.com}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/account/5/entries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"5",
+								"entries"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "upload",
+			"item": [
+				{
+					"name": "Subir, leer y pasar un excel a JSON",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -556,6 +790,17 @@
 		},
 		{
 			"key": "token_annwhogar@gmail.com",
+			"value": "",
+			"type": "default",
+			"disabled": true
+		},
+		{
+			"key": "token_admin@admin.com",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token_j.garridotroche@gmail.com",
 			"value": "",
 			"type": "default"
 		}
