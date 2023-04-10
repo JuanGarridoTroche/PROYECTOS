@@ -25,7 +25,6 @@ import {
 } from "../services";
 import { AuthContext } from "../context/AuthContext";
 
-
 export const Graphs = () => {
   const { idAccount } = useParams();
   const { token } = useContext(AuthContext);
@@ -36,6 +35,7 @@ export const Graphs = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   let myDatasets = [];
   let balanceByCategory = [];
+  const month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   useEffect(() => {
     const loadAccountData = async () => {
@@ -68,12 +68,32 @@ export const Graphs = () => {
       for (let i = 0; i < entriesByCategories.length; i++) {
         let suma = 0;
         // console.log(entriesByCategories[i]);
-        const fromDate = new Date(('01/03/' + year).split("/", 3).reverse().join("/")).getTime();
-        const toDate = new Date(('31/03/' + year).split("/", 3).reverse().join("/")).getTime();
+        // const fromDate = new Date((`01/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
+        // const toDate = new Date((`31/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
+        const date = new Date();
+        console.log(date);
         for (let j = 0; j < entriesByCategories[i].length; j++) {
           // console.log(entriesByCategories[i][j].amount);
-          const fecha = Date.parse(entriesByCategories[i][j].dateEntry.split("/", 3).reverse().join("/"));
-          if(fecha >= fromDate && fecha <= toDate) {
+          const fecha = Date(
+            entriesByCategories[i][j].dateEntry
+              .split("/", 3)
+              .reverse()
+              .join("-")
+          );
+          console.log(fecha);
+          const primerDia = new Date(
+            fecha.getFullYear(fecha),
+            fecha.getMonth(fecha),
+            2
+          );
+          const ultimoDia = new Date(
+            fecha.getFullYear(),
+            fecha.getMonth() + 1,
+            1
+          );
+          console.log(primerDia);
+          console.log(ultimoDia);
+          if (fecha >= primerDia && fecha <= ultimoDia) {
             console.log(entriesByCategories[i][j].dateEntry);
             suma = suma + parseFloat(entriesByCategories[i][j].amount);
           }
@@ -83,7 +103,10 @@ export const Graphs = () => {
           // const newDate = new Date().getTime();
           // console.log(newDate);
         }
-        balanceByCategory.push({month: 'Enero',category: categories[i], suma});
+
+        balanceByCategory.push([
+          { year, month, category: categories[i], suma },
+        ]);
       }
       console.log(balanceByCategory);
 
@@ -164,12 +187,14 @@ export const Graphs = () => {
 
   return (
     <section className="graphs">
-      <h2>GRÁFICOS DE LA CUENTA <span>{myAccount.alias}</span></h2>
+      <h2>
+        GRÁFICOS DE LA CUENTA <span>{myAccount.alias}</span>
+      </h2>
       <button
         onClick={() => {
           navigate(`/account/${idAccount}`);
         }}
-        >
+      >
         Volver
       </button>
       <select
