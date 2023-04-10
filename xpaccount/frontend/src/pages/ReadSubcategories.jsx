@@ -93,9 +93,7 @@ export const ReadSubcategories = () => {
   const handleDeleteSubcategory = async(e) => {
     e.preventDefault();
     setError("");
-    try {
-      console.log(idSubcat);
-      // alert("Subcategoría eliminada")
+    try {     
       await deleteSubcategoryService({idCategory, idSubcat, token});
       setIdSubcat(0);
       setReload(!reload);
@@ -171,7 +169,7 @@ export const ReadSubcategories = () => {
       </section>
       {showModal && (
         <Modal setShowModal={setShowModal}>
-          Categoría actualizada!
+          subcategoría actualizada!
         </Modal>
       )}
 

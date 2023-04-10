@@ -10,7 +10,7 @@ const selectCategoryByIdAccountAndIdQuery = async (idAccount, idCategory) => {
     SELECT id, idAccount, name, comment, createdAt, modifiedAt FROM categories WHERE idAccount = ? AND id = ?`,
       [idAccount, idCategory]
     );   
-
+    
     return category[0];
   } finally {
     if (connection) connection.release();

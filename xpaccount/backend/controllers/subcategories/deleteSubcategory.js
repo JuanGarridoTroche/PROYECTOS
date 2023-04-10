@@ -1,4 +1,6 @@
-const selectCategoryByIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
+const selectAccountByIdCatQuery = require("../../bbdd/queries/accounts/selectAccountByIdCatQuery");
+const selectAccountByIdUserAndIdAccountQuery = require("../../bbdd/queries/accounts/selectAccountByIdUserAndIdAccountQuery");
+const selectCategoryByIdAccountAndIdQuery = require("../../bbdd/queries/categories/selectCategoryByIdAccountAndIdQuery");
 const selectEntriesBySubcatNameQuery = require("../../bbdd/queries/entries/selectEntriesBySubcatNameQuery");
 const deleteSubcategoryByIdQuery = require("../../bbdd/queries/subcategories/deleteSubcategoryByIdQuery");
 const selectSubcatByIdCatAndIdSubQuery = require("../../bbdd/queries/subcategories/selectSubcatByIdCatAndIdSubQuery");
@@ -7,14 +9,27 @@ const { generateError } = require("../../helpers");
 const deleteCategory = async (req, res, next) => {
   const { idCategory, idSub } = req.params;
   const idUser = req.user.id;
-  try {
-    // Comprobar que la categoría pertenece al usuario logueado
-    const checkingCat = await selectCategoryByIdQuery(idUser, idCategory);
 
+  try {
+    // Recuperar el idAccount propietario de la categoría
+    const recoverAccount = await selectAccountByIdCatQuery(idCategory);
+    if(!recoverAccount){
+      throw generateError("La categoría no existe", 404)
+    }
+
+    // Comprobar que la categoría existe dentro de la cuenta bancaria idAccount
+    const checkingCat = await selectCategoryByIdAccountAndIdQuery(recoverAccount.idAccount, idCategory);
     // Si la variable no contiene ningún resultado => no existe
     if (!checkingCat) {
       throw generateError("La categoría no existe", 404);
     }
+    console.log(checkingCat);
+    // Comprobar que la categoría pertenece al usuario logueado
+    const checkingAccount = await selectAccountByIdUserAndIdAccountQuery(idUser, recoverAccount.idAccount);
+    if(!checkingAccount) {
+      throw generateError("La cuenta no existe", 404);
+    }
+
 
     // Comprobamos que la subcategoría existe (ya sabemos que la categoría pertence al usuario logueado)
     const checkingSubcat = await selectSubcatByIdCatAndIdSubQuery(
