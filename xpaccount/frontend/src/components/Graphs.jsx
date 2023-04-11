@@ -49,6 +49,7 @@ export const Graphs = () => {
     "11",
     "12",
   ];
+  let totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]        
 
   useEffect(() => {
     const loadAccountData = async () => {
@@ -80,28 +81,21 @@ export const Graphs = () => {
       // console.log(entriesByCategories);
 
       for (let i = 0; i < entriesByCategories.length; i++) {
-        let suma = 0;
+        totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
         // console.log(entriesByCategories[i]);
-        // const fromDate = new Date((`01/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
-        // const toDate = new Date((`31/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
-        // const fechaUTC = new Date(Date.UTC(year, month[3]))
-        // console.log(fechaUTC);
-        // const date = new Date();
-        // console.log(date);
-        for (let j = 0; j < entriesByCategories[i].length; j++) {
+        for (let j = 0; j < entriesByCategories[i].length; j++) {          
           // console.log(entriesByCategories[i][j].amount);
-          const date = entriesByCategories[i][j].dateEntry.split("/");
-          console.log(date);  
-        const totalMes = [{january:0, february:0, march:0, april:0, may:0, june:0, july:0, august:0, september:0, october:0, november:0, december:0}]        
+          const dateEntries = entriesByCategories[i][j].dateEntry.split("/");
+          console.log(dateEntries);
           for (let k = 0; k < 12; k++) {
-            if (date[2] === year.toString() && date[1] === months[k]) {
-              console.log(date);
-              suma = suma + parseFloat(entriesByCategories[i][j].amount);
+            if (dateEntries[2] === year.toString() && dateEntries[1] === months[k] && entriesByCategories[i] === entriesByCategories[j]) {
+              console.log(entriesByCategories[i][j]);
+              console.log(dateEntries);
+              totalMes[k] = totalMes[k] + parseFloat(entriesByCategories[i][j].amount);
             }            
           }
-        }
-
-        balanceByCategory.push({ year, months, category: categories[i], suma });
+        }        
+        balanceByCategory.push({ year, category: categories[i], totalMes });
       }
       console.log(balanceByCategory);
 
@@ -109,7 +103,7 @@ export const Graphs = () => {
         const myObject = {
           id: i,
           label: categories[i],
-          data: [balanceByCategory[i].suma],
+          data: [balanceByCategory[i].totalMes[i]],
           backgroundColor: backgroundColors[i],
         };
         myDatasets.push(myObject);
