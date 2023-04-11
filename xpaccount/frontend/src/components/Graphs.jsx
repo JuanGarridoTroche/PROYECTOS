@@ -49,7 +49,7 @@ export const Graphs = () => {
     "11",
     "12",
   ];
-  let totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]        
+  let totalMes = [];       
 
   useEffect(() => {
     const loadAccountData = async () => {
@@ -73,41 +73,44 @@ export const Graphs = () => {
       const ObjCategories = new Set(allCategories);
       // Y ahora pasamos el objeto a un array
       const categories = [...ObjCategories];
+      // console.log(categories);
 
       // Agrupamos todos los asientos bancarios por categoría en arrays dentro del array
       const entriesByCategories = categories.map((catName) => {
         return readingEntries.filter((item) => item.category === catName);
       });
       // console.log(entriesByCategories);
-      for (let i = 0; i < entriesByCategories.length; i++) {
-        // totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
+      for (let i = 0; i < entriesByCategories.length; i++) {         
         // console.log(entriesByCategories[i]);
+        // totalMes[i] = [0,0,0,0,0];
+        totalMes[i] = Array.from({length: entriesByCategories.length}, (v, i) => 0)
+        // console.log(totalMes[i]);
+        
         for (let j = 0; j < entriesByCategories[i].length; j++) {          
-          // console.log(entriesByCategories[i][j].amount);
-          const dateEntries = entriesByCategories[i][j].dateEntry.split("/");
           // console.log(entriesByCategories[i][j]);
+          const dateEntries = entriesByCategories[i][j].dateEntry.split("/");          
           for (let k = 0; k < 12; k++) {
-            // console.log(months[k]); 
-            if (dateEntries[2] === year.toString() && dateEntries[1] === months[k]) {
+            if (dateEntries[2] === year.toString() && dateEntries[1] === months[k] && entriesByCategories[i][j].category === categories[i]) {
               // console.log(dateEntries);
               // console.log(entriesByCategories[i][j]);
-              // console.log(dateEntries);
-              totalMes[k] = totalMes[k] + parseFloat(entriesByCategories[i][j].amount);
+              totalMes[i][k] = totalMes[i][k] + parseFloat(entriesByCategories[i][j].amount);              
+              k = 12
             }            
           }
-        }        
-        balanceByCategory.push({ year, category: categories[i], totalMes });
+        }
+        balanceByCategory.push({ year, category: categories[i], totalMes });        
       }
       console.log(balanceByCategory);
+      console.log(balanceByCategory[0].totalMes[0][3])
 
-      for (let i = 0; i < categories.length; i++) {
-        const myObject = {
-          id: i,
-          label: categories[i],
-          data: [balanceByCategory[i].totalMes[i]],
-          backgroundColor: backgroundColors[i],
-        };
-        myDatasets.push(myObject);
+      for (let i = 0; i < categories.length; i++) {            
+          const myObject = {
+            id: i,
+            label: categories[i],
+            data: [balanceByCategory[i].totalMes[i][0]],
+            backgroundColor: backgroundColors[i],
+          };
+          myDatasets.push(myObject);        
       }
       // console.log("datasets: ", myDatasets);
       setDatasets(myDatasets);

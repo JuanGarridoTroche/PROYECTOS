@@ -40,8 +40,8 @@
   border-radius: 5px;
   display: block;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 10px;
+  top: 55px;
 }
 
 .error > p {
@@ -139,6 +139,11 @@
   .entries-table {
     font-size: 1.4rem;
     display: inline;
+  }
+
+  .title-content > button {    
+    left: 20px;
+    top: 20px;
   }
 
   .title-content > button:hover {
