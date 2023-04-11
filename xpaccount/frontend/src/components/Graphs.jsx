@@ -35,13 +35,25 @@ export const Graphs = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   let myDatasets = [];
   let balanceByCategory = [];
-  const month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
 
   useEffect(() => {
     const loadAccountData = async () => {
       // Leemos los datos de la cuenta
       const readingAccount = await readingAccountService({ idAccount, token });
-
       setMyAccount(readingAccount);
 
       // Leer todos los asientos de la cuenta idAccount
@@ -55,12 +67,13 @@ export const Graphs = () => {
       const allCategories = readingEntries.map((category) => {
         return category.category;
       });
+
       // Una vez tenemos todas las cateorías, guardamos las categorías únicas en un objeto
       const ObjCategories = new Set(allCategories);
       // Y ahora pasamos el objeto a un array
       const categories = [...ObjCategories];
 
-      // Agrupamos todos los asientos bancarios por categoría
+      // Agrupamos todos los asientos bancarios por categoría en arrays dentro del array
       const entriesByCategories = categories.map((catName) => {
         return readingEntries.filter((item) => item.category === catName);
       });
@@ -71,49 +84,26 @@ export const Graphs = () => {
         // console.log(entriesByCategories[i]);
         // const fromDate = new Date((`01/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
         // const toDate = new Date((`31/${i}/` + year).split("/", 3).reverse().join("/")).getTime();
-        const fechaUTC = new Date(Date.UTC(year, month[3]))
-        console.log(fechaUTC);
-        const date = new Date();
-        console.log(date);
+        // const fechaUTC = new Date(Date.UTC(year, month[3]))
+        // console.log(fechaUTC);
+        // const date = new Date();
+        // console.log(date);
         for (let j = 0; j < entriesByCategories[i].length; j++) {
           // console.log(entriesByCategories[i][j].amount);
-          const fecha = Date(entriesByCategories[i][j].dateEntry.split("/", 3).reverse().join("/"));
-          console.log(fecha);
-          const primerDia = new Date(
-            date.getFullYear(fecha),
-            date.getMonth(fecha),
-            2
-          );
-          const ultimoDia = new Date(
-            date.getFullYear(),
-            date.getMonth() + 1,
-            1
-          );
-          console.log(primerDia);
-          console.log(ultimoDia);
-          if (fecha >= primerDia && fecha <= ultimoDia) {
-            console.log(entriesByCategories[i][j].dateEntry);
-            suma = suma + parseFloat(entriesByCategories[i][j].amount);
+          const date = entriesByCategories[i][j].dateEntry.split("/");
+          console.log(date);  
+        const totalMes = [{january:0, february:0, march:0, april:0, may:0, june:0, july:0, august:0, september:0, october:0, november:0, december:0}]        
+          for (let k = 0; k < 12; k++) {
+            if (date[2] === year.toString() && date[1] === months[k]) {
+              console.log(date);
+              suma = suma + parseFloat(entriesByCategories[i][j].amount);
+            }            
           }
-          // console.log(fecha);
-
-          // console.log(thisDate);
-          // const newDate = new Date().getTime();
-          // console.log(newDate);
         }
 
-        balanceByCategory.push({ year, month, category: categories[i], suma });
+        balanceByCategory.push({ year, months, category: categories[i], suma });
       }
       console.log(balanceByCategory);
-
-      // Agrupamos cada categoría por año y meses
-      // console.log(year);
-
-      // Sumamos el amount de cada mes
-
-      const createData = () => {
-        return (Math.random() * 1300).toFixed(2);
-      };
 
       for (let i = 0; i < categories.length; i++) {
         const myObject = {
