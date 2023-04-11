@@ -79,18 +79,19 @@ export const Graphs = () => {
         return readingEntries.filter((item) => item.category === catName);
       });
       // console.log(entriesByCategories);
-
       for (let i = 0; i < entriesByCategories.length; i++) {
-        totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
+        // totalMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
         // console.log(entriesByCategories[i]);
         for (let j = 0; j < entriesByCategories[i].length; j++) {          
           // console.log(entriesByCategories[i][j].amount);
           const dateEntries = entriesByCategories[i][j].dateEntry.split("/");
-          console.log(dateEntries);
+          // console.log(entriesByCategories[i][j]);
           for (let k = 0; k < 12; k++) {
-            if (dateEntries[2] === year.toString() && dateEntries[1] === months[k] && entriesByCategories[i] === entriesByCategories[j]) {
-              console.log(entriesByCategories[i][j]);
-              console.log(dateEntries);
+            // console.log(months[k]); 
+            if (dateEntries[2] === year.toString() && dateEntries[1] === months[k]) {
+              // console.log(dateEntries);
+              // console.log(entriesByCategories[i][j]);
+              // console.log(dateEntries);
               totalMes[k] = totalMes[k] + parseFloat(entriesByCategories[i][j].amount);
             }            
           }
