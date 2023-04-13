@@ -100,8 +100,8 @@ export const Graphs = () => {
         }
         balanceByCategory.push({ year, category: categories[i], totalMes });        
       }
-      console.log(balanceByCategory);
-      console.log(balanceByCategory[0].totalMes[0][3])
+      // console.log(balanceByCategory);
+      // console.log(balanceByCategory[0].totalMes[0][3])
 
       for (let i = 0; i < categories.length; i++) {            
           const myObject = {
