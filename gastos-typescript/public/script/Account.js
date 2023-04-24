@@ -1,4 +1,4 @@
-import { getRandomId } from "./utils";
+import { getRandomId } from './utils.js';
 export var CategoryEnum;
 (function (CategoryEnum) {
     CategoryEnum["expense"] = "Expense";
@@ -8,7 +8,7 @@ var Account = /** @class */ (function () {
     function Account(account) {
         if (account === void 0) { account = {}; }
         this.id = account.id || getRandomId();
-        this.name = account.name || "Nueva cuenta";
+        this.name = account.name || 'Nueva Cuenta';
         this.entries = account.entries || [];
         this.balance = account.balance || 0;
     }

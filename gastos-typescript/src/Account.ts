@@ -1,6 +1,5 @@
-import { getRandomId } from "./utils";
+import { getRandomId } from './utils.js';
 
-// Entrada o asiento bancario
 export interface Entry {
   id: number;
   concept: string;
@@ -9,8 +8,8 @@ export interface Entry {
 }
 
 export enum CategoryEnum {
-  expense = "Expense",
-  income = "Income",
+  expense = 'Expense',
+  income = 'Income',
 }
 
 export interface Account {
@@ -29,7 +28,7 @@ export class Account implements Account {
 
   constructor(account: Account = {} as Account) {
     this.id = account.id || getRandomId();
-    this.name = account.name || "Nueva cuenta";
+    this.name = account.name || 'Nueva Cuenta';
     this.entries = account.entries || [];
     this.balance = account.balance || 0;
   }
@@ -39,18 +38,15 @@ export class Account implements Account {
     this.updateBalance();
     return true;
   }
-
   deleteEntryById(id: number): boolean {
     const entriesFiltered = this.entries.filter((entry) => entry.id !== id);
     this.entries = entriesFiltered;
     this.updateBalance();
     return true;
   }
-
   getBalance(): number {
     return this.balance;
   }
-
   getEntries(): Entry[] {
     return this.entries;
   }
