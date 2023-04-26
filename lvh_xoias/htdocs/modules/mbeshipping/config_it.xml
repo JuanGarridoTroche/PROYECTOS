@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>mbeshipping</name>
+    <displayName><![CDATA[MBE eShip Plugin]]></displayName>
+    <version><![CDATA[2.0.5]]></version>
+    <description><![CDATA[MBE eShip crea automaticamente le spedizioni dei prodotti venduti attraverso il tuo e-commerce. Offre inoltre la possibilit&agrave; di creare etichette di spedizione, evitando di utilizzare piattaforme diverse per scaricarle e stamparle. Tutti i dati delle spedizioni saranno accompagnati da un numero di tracking.]]></description>
+    <author><![CDATA[MBE Worldwide S.p.A.]]></author>
+    <tab><![CDATA[shipping_logistics]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
+</module>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>statsbestcategories</name>
+    <displayName><![CDATA[Mejores categor&iacute;as]]></displayName>
+    <version><![CDATA[2.0.1]]></version>
+    <description><![CDATA[Mejora tus estad&iacute;sticas, agrega un listado de las categor&iacute;as que mejor venden en tu cuadro de mando.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[analytics_stats]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+</module>

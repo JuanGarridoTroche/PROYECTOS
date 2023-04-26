@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_cashondelivery</name>
+    <displayName><![CDATA[Pago contra reembolso]]></displayName>
+    <version><![CDATA[2.0.1]]></version>
+    <description><![CDATA[Acepte pagos en efectivo contra reembolso para facilitar a los clientes la compra en su tienda.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[payments_gateways]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>1</need_instance>
+</module>

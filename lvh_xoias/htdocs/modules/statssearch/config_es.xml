@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>statssearch</name>
+    <displayName><![CDATA[B&uacute;squedas en la tienda]]></displayName>
+    <version><![CDATA[2.0.2]]></version>
+    <description><![CDATA[Mejora tus estad&iacute;sticas, agrega una pesta&ntilde;a que muestre qu&eacute; palabras claves han sido buscadas por tus visitantes.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[analytics_stats]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+</module>

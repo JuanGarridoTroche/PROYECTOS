@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_emailalerts</name>
+    <displayName><![CDATA[Alertas por correo electr&oacute;nico]]></displayName>
+    <version><![CDATA[2.4.1]]></version>
+    <description><![CDATA[Gestiona f&aacute;cilmente las alertas por correo electr&oacute;nico sobre stock y pedidos, ya sean dirigidas a ti o a tus clientes.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[administration]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

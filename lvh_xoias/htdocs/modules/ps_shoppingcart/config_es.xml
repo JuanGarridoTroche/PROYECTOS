@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_shoppingcart</name>
+    <displayName><![CDATA[Carrito de compra]]></displayName>
+    <version><![CDATA[2.0.7]]></version>
+    <description><![CDATA[Mostrar un icono de carrito de compra en tus p&aacute;ginas y la cantidad de art&iacute;culos que contiene. ]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>blockreassurance</name>
+    <displayName><![CDATA[Confianza y seguridad del cliente]]></displayName>
+    <version><![CDATA[5.1.2]]></version>
+    <description><![CDATA[Conecta con tus visitantes e informales sobre el pago seguro, el env&iacute;o gratis o las devoluciones.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+	<confirmUninstall><![CDATA[¿Estás seguro que quieres desinstalar este módulo?]]></confirmUninstall>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_customtext</name>
+    <displayName><![CDATA[Bloque de texto personalizado]]></displayName>
+    <version><![CDATA[4.2.1]]></version>
+    <description><![CDATA[Ofrece a tus visitantes informaci&oacute;n adicional, muestra un bloque de contenido personalizado en tu p&aacute;gina de inicio.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

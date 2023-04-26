@@ -1,0 +1,4 @@
+
+
+password para aplicaciones (como prestashop) de la cuenta de correo j.garrido...: fpbysykrqnxzlbzi
+La he tenido que generar ya que al tener el password por con seguridad de 2 pasos no me permite introducirla y tengo que generar una propia para aplicaciones como prestashop

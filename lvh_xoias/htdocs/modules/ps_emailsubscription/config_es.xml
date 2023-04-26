@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_emailsubscription</name>
+    <displayName><![CDATA[Suscripci&oacute;n a nuestro bolet&iacute;n de noticias]]></displayName>
+    <version><![CDATA[2.7.1]]></version>
+    <description><![CDATA[Estate en contacto con tus clientes, a&ntilde;ade un formulario de suscripci&oacute;n a la newsletter en tu tienda.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[pricing_promotion]]></tab>
+	<confirmUninstall><![CDATA[¿Estás seguro de que quieres eliminar todos tus contactos?]]></confirmUninstall>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

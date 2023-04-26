@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_checkout</name>
+    <displayName><![CDATA[PrestaShop Checkout]]></displayName>
+    <version><![CDATA[8.3.1.0]]></version>
+    <description><![CDATA[Ofrece a tus clientes los m&eacute;todos de pago m&aacute;s utilizados con este m&oacute;dulo todo en uno y administra todas tus ventas en una interfaz centralizada.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[payments_gateways]]></tab>
+	<confirmUninstall><![CDATA[¿Seguro que quieres desinstalar este módulo?]]></confirmUninstall>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
+</module>

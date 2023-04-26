@@ -1,0 +1,13 @@
+ 
+
+{shop_url}
+
+Hola,
+
+La cobertura de stock es ahora menor que el mínimo especificado de: {warning_coverage}
+
+Cobertura de stock actual: {current_coverage}
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

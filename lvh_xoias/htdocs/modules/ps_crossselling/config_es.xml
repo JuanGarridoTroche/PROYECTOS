@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_crossselling</name>
+    <displayName><![CDATA[Ventas cruzadas]]></displayName>
+    <version><![CDATA[2.0.2]]></version>
+    <description><![CDATA[Ofrece a tus clientes la posibilidad de comprar art&iacute;culos relacionados cuando est&eacute;n en la p&aacute;gina de un producto.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[pricing_promotion]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>
