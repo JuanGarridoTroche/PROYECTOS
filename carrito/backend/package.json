@@ -1,0 +1,18 @@
+{
+  "name": "carrito",
+  "version": "1.0.0",
+  "description": "Carrito de la compra",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Juan Garrido Troche",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
