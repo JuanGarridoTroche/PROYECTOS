@@ -2,12 +2,16 @@
 const express = require('express');
 require("dotenv").config();
 const {PORT} = process.env;
+const cors = require("cors");
 
 // MOCK
 const itemsMock = require('./mock/items.json');
 
 // Nos permite levantar un servidor http
 const app = express();
+
+//Nos permite conectar el front con el back
+app.use(cors());
 
 // MIDDLEWARES
 // app.use('/items', ()=> {
@@ -23,6 +27,12 @@ app.get('/', (req, res) => {
 //ITEMS
 app.get('/items', (req, res) => {
   res.send(itemsMock);
+})
+
+app.get('/img/:imgName', (req, res) => {
+  const image = req.params.imgName;
+  // console.log('imageName: ', image);
+  res.sendFile(`${__dirname}/img/${image}`)
 })
 
 app.listen(PORT, () => {

@@ -1,0 +1,1 @@
+Carpeta Mock(simulación, imitación) donde cargaremos datos falsos (items.json) mientras no hayamos montado nuestro backend
