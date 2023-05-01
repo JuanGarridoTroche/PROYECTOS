@@ -3,6 +3,7 @@ const express = require('express');
 require("dotenv").config();
 const {PORT} = process.env;
 const cors = require("cors");
+const getConnection = require("./BBDD/getConnection");
 
 // MOCK
 const itemsMock = require('./mock/items.json');
@@ -27,6 +28,9 @@ app.get('/', (req, res) => {
 //ITEMS
 app.get('/items', (req, res) => {
   res.send(itemsMock);
+  let connection;
+  connection = getConnection();
+  console.log('Conectado a BBDD');
 })
 
 app.get('/img/:imgName', (req, res) => {
