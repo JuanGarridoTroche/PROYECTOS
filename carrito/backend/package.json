@@ -4,6 +4,7 @@
   "description": "Carrito de la compra",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
   "author": "Juan Garrido Troche",
