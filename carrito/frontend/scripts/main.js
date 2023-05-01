@@ -28,7 +28,7 @@ function createDomElement(item) {
     <div class="col-12 col-md-6">
       <div class="item shadow mb-4">
         <h3 class="item-title">${item.title}</h3>
-        <img class="item-image" src=${imagesPath}${item.image}>
+        <img class="item-image" src=${serverURL}${imagesPath}${item.image}>
 
         <div class="item-details">
           <h4 class="item-price">${item.price}€</h4>
