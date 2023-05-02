@@ -8,3 +8,13 @@ GET http://localhost:4000/items
 
 GET http://localhost:4000/img/pokemon-azul.jpg
 
+###
+POST http://localhost:4000/items
+Content-Type: application/json
+
+{
+  "title": "Pokemon Azul",
+  "price": 9.99,
+  "image": "pokemon-azul.jpg"
+}
+

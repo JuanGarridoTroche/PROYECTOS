@@ -13,6 +13,8 @@ const app = express();
 //Nos permite conectar el front con el back
 app.use(cors());
 
+app.use(express.json());
+
 //IMPORT ROUTES
 const itemsRoutes = require('./routes/items');
 const imgRoutes = require('./routes/img');
