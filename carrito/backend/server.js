@@ -30,7 +30,7 @@ app.get('/items', (req, res) => {
   res.send(itemsMock);
   let connection;
   connection = getConnection();
-  console.log('Conectado a BBDD');
+  console.log('Conectado a BBDD MongoDB');
 })
 
 app.get('/img/:imgName', (req, res) => {

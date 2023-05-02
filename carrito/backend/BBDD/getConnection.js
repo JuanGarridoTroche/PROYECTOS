@@ -10,17 +10,19 @@ const { MONGODB_USER, MONGODB_PASS, MONGODB_NAME } = process.env;
 
 // Función que retorna una conexión libre con la base de datos.
 const getConnection = () => {
+    
     try {
-        // Si no hay un grupo de conexiones lo creamos.
-       
-            mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASS}@carrito.zqlc28l.mongodb.net/${MONGODB_NAME}?retryWrites=true&w=majority`);
-      
+        // Si no hay un grupo de conexiones lo creamos.       
+        mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASS}@carrito.zqlc28l.mongodb.net/${MONGODB_NAME}?retryWrites=true&w=majority`);
+        
+        const db = mongoose.connection;
+        return db.once('MongoDB open', () => console.log('conectado a una base de datos MongoDB'))
 
-        // Retornamos una conexión libre con la base de datos.
+        
         
     } catch (err) {
         console.error(err);
-        throw new Error('Error al conectar con MONGODB');
+        db.on('Error al conectar con MONGODB', (err) => console.error(err));
     }
 };
 
