@@ -5,11 +5,18 @@ const router = express.Router();
 const Item = require("../models/Item");
 
 // MOCK
-const itemsMock = require("../mock/items.json");
+// const itemsMock = require("../mock/items.json");
 
 // GET ITEMS
-router.get("/", (req, res) => {
-  res.send(itemsMock);
+router.get("/", async (req, res) => {
+  // res.send(itemsMock);
+  try {
+    const itemsFromDB = await Item.find();
+    console.log('🔥 itemsFromDB: ', itemsFromDB);
+    res.json(itemsFromDB);
+  } catch (err) {
+    res.json({ message: err.message });
+  }
 });
 
 router.get("/pokemon-rojo", async (req, res) => {
