@@ -5,8 +5,7 @@ const {PORT} = process.env;
 const cors = require("cors");
 const getConnection = require("./BBDD/getConnection");
 
-// MOCK
-const itemsMock = require('./mock/items.json');
+
 
 // Nos permite levantar un servidor http
 const app = express();
@@ -14,11 +13,14 @@ const app = express();
 //Nos permite conectar el front con el back
 app.use(cors());
 
+//IMPORT ROUTES
+const itemsRoutes = require('./routes/items');
+const imgRoutes = require('./routes/img');
+
 // MIDDLEWARES
-// app.use('/items', ()=> {
-//   console.log('MIDDLEWARES DE ITEMS');
-//   next();
-// })
+app.use('/items', itemsRoutes);
+
+app.use('/img', imgRoutes);
 
 
 app.get('/', (req, res) => {
@@ -33,11 +35,7 @@ app.get('/items', (req, res) => {
   console.log('Conectado a BBDD MongoDB');
 })
 
-app.get('/img/:imgName', (req, res) => {
-  const image = req.params.imgName;
-  // console.log('imageName: ', image);
-  res.sendFile(`${__dirname}/img/${image}`)
-})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);

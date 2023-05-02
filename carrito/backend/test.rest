@@ -1,0 +1,10 @@
+GET http://localhost:4000/
+
+###
+
+GET http://localhost:4000/items
+
+###
+
+GET http://localhost:4000/img/pokemon-azul.jpg
+
