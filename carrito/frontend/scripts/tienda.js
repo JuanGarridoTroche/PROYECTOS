@@ -1,5 +1,5 @@
 document.addEventListener("click", (event) => {
-  if (event.target && event.target.className.includes("addCart")) {
+  if (event.target && event.target.className.includes("addToCart")) {
     addToCartClicked(event);
   }
 });
