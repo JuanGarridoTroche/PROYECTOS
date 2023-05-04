@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   // res.send(itemsMock);
   try {
     const itemsFromDB = await Item.find();
-    console.log('🔥 itemsFromDB: ', itemsFromDB);
+    console.log("🔥 itemsFromDB: ", itemsFromDB);
     res.json(itemsFromDB);
   } catch (err) {
     res.json({ message: err.message });
@@ -39,5 +39,6 @@ router.post("/", async (req, res) => {
     res.json({ message: err.message });
   }
 });
+
 
 module.exports = router;
