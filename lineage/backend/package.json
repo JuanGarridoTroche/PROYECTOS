@@ -5,13 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [
     "lineage"
   ],
   "author": "Juan Garrido Troche",
   "license": "ISC",
+  "homepage": "https://github.com/JuanGarridoTroche/PROYECTOS/lineage#readme",
   "devDependencies": {
     "eslint": "^8.39.0",
     "eslint-plugin-react": "^7.32.2",
