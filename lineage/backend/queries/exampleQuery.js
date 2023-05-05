@@ -1,4 +1,4 @@
-const { generateError } = require("../../../helpers");
+const { generateError } = require("../helpers");
 const getConnection = require("../../getConnection");
 
 const selectUserByEmailQuery = async (email) => {

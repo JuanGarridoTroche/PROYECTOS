@@ -41,8 +41,8 @@ const {
   getNews,
   deactivateAccount,
 } = require("./controllers/users");
-// Login de usuario
 
+// Login de usuario
 app.post("/users/login", loginUser);
 
 // Nuevo usuario

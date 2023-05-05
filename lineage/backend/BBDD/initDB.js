@@ -1,10 +1,13 @@
 "use strict";
+// Consulta del fichero .env
 require("dotenv").config();
+
+// Encriptamos la contraseña antes de subirla a la BBDD
+const bcrypt = require("bcrypt");
 
 // Importamos la función que retorna una conexión libre con la BBDD.
 const getConnection = require("./getConnection");
 
-const bcrypt = require("bcrypt");
 
 const initDB = async () => {
   let connection;
@@ -82,7 +85,7 @@ const initDB = async () => {
     console.log("¡Tablas creadas!");
 
     // Encriptamos la contraseña del admin.
-    const adminPass = await bcrypt.hash(process.env.ADMIN_PASS, 10);
+    const adminPass = await bcrypt.hash(process.env.ADMIN_PASS, 10);    
 
     // Insertamos el usuario administrador.
     await connection.query(

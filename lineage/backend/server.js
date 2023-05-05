@@ -1,9 +1,16 @@
-const morgan = require("morgan");
-const express = require("express");
 require("dotenv").config();
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
 const { BACK_PORT, BACK_HOST } = process.env;
 
 const app = express();
+
+/*
+ * ##########################################
+ * ##   MIDDLEWARES DE CONEXIÓN Y ACCESO   ##
+ * ##########################################
+ */
 
 //MIDDLEWARE - Logger morgan: muestra cualquier petición al servidor a través de nuestro terminal de node
 app.use(morgan("dev"));
@@ -11,14 +18,20 @@ app.use(morgan("dev"));
 // Deserializa el body con formato JSON
 app.use(express.json());
 
+// Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
+// Middleware que permite conectar el backend (éste) con el frontend (React)
+app.use(cors());
+
+
 /*
 * ##########################
 * ##    RUTAS DE USERS    ##
 * ##########################
 */
-const loginUser = require("./controllers/users/loginUser");
+const {loginUser} = require("./controllers/users");
 
-app.get("/users/login", loginUser);
+// Login de usuario
+app.post("/users/login", loginUser);
 
 /*
  * ##########################################
@@ -31,7 +44,7 @@ app.use((err, req, res, next) => {
   console.error(err);
 
   res.status(err.statusCode || 500).send({
-    status: "Se ha producido un error: ",
+    status: "error",
     message: err.message,
   });
 });

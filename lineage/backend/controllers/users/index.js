@@ -1,3 +1,3 @@
-const loginUser = require("./loginUser")
+const loginUser = require('./loginUser');
 
-module.exports = {loginUser}
+module.exports = {loginUser};
