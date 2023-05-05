@@ -8,13 +8,17 @@ const app = express();
 //MIDDLEWARE - Logger morgan: muestra cualquier petición al servidor a través de nuestro terminal de node
 app.use(morgan("dev"));
 
-/*
- * ###########################
- * ## Middleware de /users  ##
- * ###########################
- */
+// Deserializa el body con formato JSON
+app.use(express.json());
 
-app.get("/users");
+/*
+* ##########################
+* ##    RUTAS DE USERS    ##
+* ##########################
+*/
+const loginUser = require("./controllers/users/loginUser");
+
+app.get("/users/login", loginUser);
 
 /*
  * ##########################################
