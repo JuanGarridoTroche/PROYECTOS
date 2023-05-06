@@ -46,7 +46,7 @@ const loginUser = async (req, res, next) => {
     }
 
     // Creamos el token
-    const tokenLng = jwt.sign(tokenInfo, process.env.SECRET, { algorithm: 'HS256', expiresIn: '7d'});
+    const tokenLng = jwt.sign(tokenInfo, process.env.SECRET, { algorithm: 'HS512', expiresIn: '7d'});
     
     res.send({
       status: "Ok",

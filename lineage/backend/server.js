@@ -28,10 +28,13 @@ app.use(cors());
 * ##    RUTAS DE USERS    ##
 * ##########################
 */
-const {loginUser} = require("./controllers/users");
+const {loginUser, registerUser} = require("./controllers/users");
 
 // Login de usuario
 app.post("/users/login", loginUser);
+
+// Registrar un nuevo usuario
+app.post("/users/register", registerUser)
 
 /*
  * ##########################################

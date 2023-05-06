@@ -52,6 +52,8 @@ const newUser = async (req, res, next) => {
     }
 
     // Comprobar que el nombre de usuario y la cuenta de correo no estén registrados ya en nuestra BBDD. Si no existe insertamos el usuario.
+
+    
     await insertUserQuery(username, email, password, bio);
 
     res.send({
