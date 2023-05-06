@@ -5,6 +5,8 @@ const updateActivationSolicitude = require('./updateActivationSolicitude');
 const updateUserProfile = require('./updateUserProfile');
 const editPassword = require('./editPassword')
 const checkPassword = require('./checkPassword')
+const sendRecoverPassword = require("./sendRecoverPassword")
+const recoverPassword = require('./recoverPassword')
 
 module.exports = {
   loginUser,
@@ -13,5 +15,7 @@ module.exports = {
   updateActivationSolicitude,
   updateUserProfile,
   editPassword,
-  checkPassword
+  checkPassword,
+  sendRecoverPassword,
+  recoverPassword,
 };

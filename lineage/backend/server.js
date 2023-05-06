@@ -35,6 +35,8 @@ const {
   updateActivationSolicitude,
   updateUserProfile,
   editPassword,
+  sendRecoverPassword,
+  recoverPassword,
 } = require('./controllers/users');
 
 
@@ -55,6 +57,12 @@ app.put("/users/editUser", isAuth, updateUserProfile);
 
 // Actualizar contraseña de usuario estando logueado
 app.put("/users/editPassword", isAuth, editPassword);
+
+// Envío de Código de recuperación de contraseña a través de email
+app.put("/users/password/solicitude", sendRecoverPassword);
+
+// Recuperación de contraseña
+app.put("/users/password/recover", recoverPassword);
 
 /*
  * ##########################################

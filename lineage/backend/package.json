@@ -30,6 +30,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.2.4",
     "nodemailer": "^6.9.1",
+    "randomstring": "^1.2.3",
     "uuid": "^9.0.0"
   }
 }
