@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const selectUserByEmailQuery = require('../../queries/users/selectUserByEmailQuery');
 const { generateError } = require("../../helpers");
+const updateInvalidLoginUserQuery = require("../../queries/users/updateInvalidLoginUserQuery");
+const updateDeactivateUserQuery = require("../../queries/users/updateDeactivateUserQuery");
 
 
 const loginUser = async (req, res, next) => {
@@ -19,7 +21,7 @@ const loginUser = async (req, res, next) => {
     
     const emailValidation = emailSchema.validate(email);
 
-    if(emailValidation.error || emailValidation === null) {
+    if(emailValidation.error || emailValidation === null) {      
       throw generateError("credenciales incorrectas", 400)
     }
 
@@ -32,10 +34,16 @@ const loginUser = async (req, res, next) => {
     }
 
     // Comprobamos que la contraseña es válida
-    await bcrypt.compare(password, user.password, (err, ok) => {
-      if(err) throw generateError(err.message, 401);
-      if(!ok) throw generateError("Credenciales incorrectas pwd")
-    })
+    const validPassword = await bcrypt.compare(password, user.password);
+    if(!validPassword && user.tries < 3) {      
+      updateInvalidLoginUserQuery(user.id, user.tries + 1);
+      const tryLogin = (3 - user.tries);
+      throw generateError(`Credenciales incorrectas. Te quedan ${tryLogin} intentos de login`)      
+    }
+    if(user.tries === 3 && user.active) {
+      updateDeactivateUserQuery(user.id);
+      throw generateError("Credenciales incorrectas. Se ha desactivado la cuenta.")
+    }
 
     // Creamos el objeto con los datos que queremos guardar dentro del token
     const tokenInfo = {

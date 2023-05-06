@@ -37,6 +37,7 @@ const initDB = async () => {
               registrationCode VARCHAR(100),
               recoverPassCode VARCHAR(20),
               active BOOLEAN DEFAULT false,
+              tries INT UNSIGNED DEFAULT 0,
               createdAt TIMESTAMP NOT NULL,
               modifiedAt TIMESTAMP
             )
