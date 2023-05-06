@@ -37,6 +37,8 @@ const {
   editPassword,
   sendRecoverPassword,
   recoverPassword,
+  readLoggedUserProfile,
+  readUserProfile,
 } = require('./controllers/users');
 
 
@@ -65,7 +67,10 @@ app.put("/users/password/solicitude", sendRecoverPassword);
 app.put("/users/password/recover", recoverPassword);
 
 // Mostrar los datos del usuario logueado
-app.get("/users", isAuth)
+app.get("/users", isAuth, readLoggedUserProfile);
+
+// Mostrar los datos de un usuario como invitado
+app.get("/users/:idUser", readUserProfile);
 
 /*
  * ##########################################
