@@ -57,8 +57,10 @@ const loginUser = async (req, res, next) => {
     // Creamos el token
     const tokenLng = jwt.sign(tokenInfo, process.env.SECRET, { algorithm: 'HS512', expiresIn: '7d'});
 
-    // Actualizamos los intentos de login a cero
-    await updateLoginUserTriesQuery(user.id);
+    // Si user.tries distinto de cero, actualizamos los intentos de login a cero
+    if(user.tries){
+      await updateLoginUserTriesQuery(user.id);
+    }
     
     res.send({
       status: "Ok",

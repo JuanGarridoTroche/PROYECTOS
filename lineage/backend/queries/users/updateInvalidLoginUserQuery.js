@@ -6,7 +6,7 @@ const updateInvalidLoginUserQuery = async (id, tries) => {
   try {
     connection = await getConnection();    
 
-    // Actualizamos el usuario
+    // Actualizamos el usuario con el número de intentos erróneos de login
     await connection.query(
       `UPDATE users SET active = true, tries = ?, modifiedAt = ? WHERE id = ?`,
       [tries, new Date(), id]

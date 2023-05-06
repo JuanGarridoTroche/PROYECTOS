@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const isAuth = require("./middlewares/isAuth");
 const { BACK_PORT, BACK_HOST } = process.env;
 
 const app = express();
@@ -32,6 +33,7 @@ const {
   registerUser,
   validateUser,
   updateActivationSolicitude,
+  updateUser,
 } = require('./controllers/users');
 
 
@@ -46,6 +48,9 @@ app.put('/users/register/validate/:registrationCode', validateUser);
 
 // Solicitar la activación de cuenta
 app.put("/users/login/solicitude", updateActivationSolicitude);
+
+// Actualizar datos del usuario
+app.put("/users/editUser", isAuth, updateUser);
 
 /*
  * ##########################################
