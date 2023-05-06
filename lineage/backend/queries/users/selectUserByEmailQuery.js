@@ -13,10 +13,9 @@ const selectUserByEmailQuery = async (email) => {
     );
 
     if (user.length < 1) {
-      throw generateError("Email y/o contraseña inválidos", 404);
+      throw generateError("credenciales inválidas", 403);
     }
-    console.log(user[0]);
-
+        
     return user[0];
   } finally {
     if (connection) connection.release();

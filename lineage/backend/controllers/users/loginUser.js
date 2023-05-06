@@ -5,6 +5,7 @@ const selectUserByEmailQuery = require('../../queries/users/selectUserByEmailQue
 const { generateError } = require("../../helpers");
 const updateInvalidLoginUserQuery = require("../../queries/users/updateInvalidLoginUserQuery");
 const updateDeactivateUserQuery = require("../../queries/users/updateDeactivateUserQuery");
+const updateLoginUserTriesQuery = require("../../queries/users/updateLoginUserTriesQuery");
 
 
 const loginUser = async (req, res, next) => {
@@ -37,8 +38,8 @@ const loginUser = async (req, res, next) => {
     const validPassword = await bcrypt.compare(password, user.password);
     if(!validPassword && user.tries < 3) {      
       updateInvalidLoginUserQuery(user.id, user.tries + 1);
-      const tryLogin = (3 - user.tries);
-      throw generateError(`Credenciales incorrectas. Te quedan ${tryLogin} intentos de login`)      
+      const tryLogin = (2 - user.tries);      
+      throw generateError(user.tries === 1 ? `Credenciales incorrectas. Te queda ${tryLogin} intento de login` : `Credenciales incorrectas. Te quedan ${tryLogin} intentos de login`)      
     }
     if(user.tries === 3 && user.active) {
       updateDeactivateUserQuery(user.id);
@@ -55,6 +56,9 @@ const loginUser = async (req, res, next) => {
 
     // Creamos el token
     const tokenLng = jwt.sign(tokenInfo, process.env.SECRET, { algorithm: 'HS512', expiresIn: '7d'});
+
+    // Actualizamos los intentos de login a cero
+    await updateLoginUserTriesQuery(user.id);
     
     res.send({
       status: "Ok",

@@ -22,7 +22,7 @@ const updateUserRegistrationCodeQuery = async (registrationCode) => {
 
     // Actualizamos el usuario
     await connection.query(
-      `UPDATE users SET active = true, registrationCode = null, modifiedAt = ? WHERE registrationCode = ?`,
+      `UPDATE users SET active = true, registrationCode = null, tries = 0, modifiedAt = ? WHERE registrationCode = ?`,
       [new Date(), registrationCode]
     )
 

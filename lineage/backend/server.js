@@ -31,7 +31,9 @@ const {
   loginUser,
   registerUser,
   validateUser,
+  updateActivationSolicitude,
 } = require('./controllers/users');
+
 
 // Login de usuario
 app.post('/users/login', loginUser);
@@ -41,6 +43,9 @@ app.post('/users/register', registerUser);
 
 // Validar el código de registro
 app.put('/users/register/validate/:registrationCode', validateUser);
+
+// Solicitar la activación de cuenta
+app.put("/users/login/solicitude", updateActivationSolicitude);
 
 /*
  * ##########################################
