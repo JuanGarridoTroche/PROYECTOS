@@ -33,7 +33,8 @@ const {
   registerUser,
   validateUser,
   updateActivationSolicitude,
-  updateUser,
+  updateUserProfile,
+  editPassword,
 } = require('./controllers/users');
 
 
@@ -50,7 +51,10 @@ app.put('/users/register/validate/:registrationCode', validateUser);
 app.put("/users/login/solicitude", updateActivationSolicitude);
 
 // Actualizar datos del usuario
-app.put("/users/editUser", isAuth, updateUser);
+app.put("/users/editUser", isAuth, updateUserProfile);
+
+// Actualizar contraseña de usuario estando logueado
+app.put("/users/editPassword", isAuth, editPassword);
 
 /*
  * ##########################################
