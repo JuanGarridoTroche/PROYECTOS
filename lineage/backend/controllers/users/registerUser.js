@@ -1,5 +1,6 @@
 const joi = require('@hapi/joi');
-const { generateError } = require('../../helpers');
+const { v4: uuid } = require('uuid');
+const { generateError, sendMail } = require('../../helpers');
 const insertUserQuery = require('../../queries/users/insertUserQuery')
 
 const registerUser = async (req, res, next) => {
@@ -54,8 +55,26 @@ const registerUser = async (req, res, next) => {
       );
     }
 
+     // Generamos un código de registro.
+     const registrationCode = uuid();
+
     // Comprobar que la cuenta de correo no esté registrada ya en nuestra BBDD. Si no existe insertamos el usuario.
-    await insertUserQuery({email, password, first_name, last_name1, last_name2})
+    await insertUserQuery({email, password, first_name, last_name1, last_name2, registrationCode})
+
+    // Enviamos un correo para que active la cuenta
+    // Creamos el asunto del email de verificación.
+    const subject = "Activa tu usuario en Expenses account";
+
+    // Creamos el contenido que queremos que tenga el email de verificación.
+    const emailContent = `
+    ¡Bienvenid@ ${first_name} ${last_name1} ${last_name2}!
+
+    Por favor, Activa tu cuenta de usuario a través del siguiente enlace: 
+    <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/register/validate/${registrationCode}">${registrationCode}</a>
+    `;
+
+    // Enviamos un email de verificación al usuario.
+    await sendMail(email, subject, emailContent);
 
     res.send({
       status: 'Ok',

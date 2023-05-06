@@ -1,7 +1,7 @@
-require("dotenv").config();
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
 const { BACK_PORT, BACK_HOST } = process.env;
 
 const app = express();
@@ -13,7 +13,7 @@ const app = express();
  */
 
 //MIDDLEWARE - Logger morgan: muestra cualquier petición al servidor a través de nuestro terminal de node
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // Deserializa el body con formato JSON
 app.use(express.json());
@@ -22,19 +22,25 @@ app.use(express.json());
 // Middleware que permite conectar el backend (éste) con el frontend (React)
 app.use(cors());
 
-
 /*
-* ##########################
-* ##    RUTAS DE USERS    ##
-* ##########################
-*/
-const {loginUser, registerUser} = require("./controllers/users");
+ * ##########################
+ * ##    RUTAS DE USERS    ##
+ * ##########################
+ */
+const {
+  loginUser,
+  registerUser,
+  validateUser,
+} = require('./controllers/users');
 
 // Login de usuario
-app.post("/users/login", loginUser);
+app.post('/users/login', loginUser);
 
 // Registrar un nuevo usuario
-app.post("/users/register", registerUser)
+app.post('/users/register', registerUser);
+
+// Validar el código de registro
+app.put('/users/register/validate/:registrationCode', validateUser);
 
 /*
  * ##########################################
@@ -47,7 +53,7 @@ app.use((err, req, res, next) => {
   console.error(err);
 
   res.status(err.statusCode || 500).send({
-    status: "error",
+    status: 'error',
     message: err.message,
   });
 });
@@ -55,10 +61,10 @@ app.use((err, req, res, next) => {
 // Middleware de 404 not found
 app.use((req, res) => {
   res.status(404).send({
-    status: "Error",
-    message: "Ruta no encontrada 🧟",
-  })
-})
+    status: 'Error',
+    message: 'Ruta no encontrada 🧟',
+  });
+});
 
 // SERVER LISTENING
 app.listen(BACK_PORT, () => {
