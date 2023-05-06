@@ -60,6 +60,12 @@ const registerUser = async (req, res, next) => {
     res.send({
       status: 'Ok',
       message: 'Usuario creado',
+      body: {
+        email,
+        first_name,
+        last_name1,
+        last_name2,
+      }
     });
   } catch (err) {
     next(err);
