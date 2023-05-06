@@ -64,6 +64,9 @@ app.put("/users/password/solicitude", sendRecoverPassword);
 // Recuperación de contraseña
 app.put("/users/password/recover", recoverPassword);
 
+// Mostrar los datos del usuario logueado
+app.get("/users", isAuth)
+
 /*
  * ##########################################
  * ## MIDDLEWARE DE ERROR Y 404 NOT FOUND  ##

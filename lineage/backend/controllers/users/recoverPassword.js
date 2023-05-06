@@ -23,14 +23,11 @@ const recoverPassword = async (req, res, next) => {
 
     // Comprobamos que la password es la correcta en nuestra BBDD
     const checkRecPassCode = await checkRecoverPasswordQuery(recoverPassCode);   
-    console.log(checkRecPassCode);
-    const idUser = checkRecPassCode.id;
-
-    console.log(idUser);
     
+    const idUser = checkRecPassCode.id;  
 
     //Actualizamos la contraseña del usuario
-    await updateUserPasswordQuery(newPassword, checkRecPassCode.id);
+    await updateUserPasswordQuery(newPassword, idUser);
 
     res.send({
       status: "Ok",
