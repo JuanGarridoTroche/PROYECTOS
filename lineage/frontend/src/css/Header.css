@@ -11,12 +11,14 @@
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+  height: 72px;
   padding: 5px;
   background-color: var(--color-black);
   color: var(--color-white);
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 

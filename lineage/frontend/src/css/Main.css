@@ -10,7 +10,9 @@
   place-content: center;
   min-height: 100vh;
   position: absolute;
+  top: 72px;
   padding: 80px 5px; 
+  z-index: 1;
 }
 
 /*! ################### !*/
