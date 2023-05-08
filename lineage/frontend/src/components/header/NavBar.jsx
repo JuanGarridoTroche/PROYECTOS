@@ -1,9 +1,10 @@
 import { Auth } from "./Auth"
 
-export const Brand = ()=> {
+export const NavBar = ()=> {
   return (
     <nav>
       <Auth/>
+         
     </nav>
   )
 }

@@ -1,4 +1,57 @@
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--color-black);
+  color: var(--color-white)
+}
 
-header {
+.menu-header .menu-header-figure {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-header .menu-header-figure .menu-header-figureLogo {
+  border-radius: 50%;
+  width: 62px;
+  cursor: pointer;
+}
+
+.menu-header .menu-header-figure .menu-header-figureName {
+  display: none;
+}
+
+.menu-header .menu-header-figure .menu-header-figureName span {
+  color: var(--color-green);
+}
+
+.menu-header .menu-header-figure .menu-header-figureName:hover {
+  color: var(--color-green);
+  .g {
+    color: var(--color-white);
+  }
+  cursor: pointer;
+}
+
+
+@media(min-width: 700px) {
+  .menu-header .menu-header-figure .menu-header-figureName {
+    font-size: 2.4rem;
+  }
   
+  .menu-header .menu-header-figure .menu-header-figureName span {
+    color: var(--color-green);
+  }
+  
+  .menu-header .menu-header-figure .menu-header-figureName:hover {
+    color: var(--color-green);
+    .g {
+      color: var(--color-white);
+    }
+    cursor: pointer;
+  }
 }

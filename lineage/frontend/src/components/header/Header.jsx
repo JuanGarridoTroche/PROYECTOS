@@ -1,6 +1,6 @@
 import { Brand } from "./Brand"
 import { NavBar } from "./NavBar"
-import ('../css/Header.css');
+import ('../../css/Header.css');
 
 export const Header = ()=> {
   return (
