@@ -1,0 +1,8 @@
+
+.main {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  position: absolute;
+  padding: 80px 5px; 
+}

@@ -2,9 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
   padding: 5px;
   background-color: var(--color-black);
-  color: var(--color-white)
+  color: var(--color-white);
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .menu-header .menu-header-figure {
@@ -24,17 +28,17 @@
   display: none;
 }
 
-.menu-header > .menu-header-navbarInfo {
+.menu-header>.menu-header-navbarInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.menu-header > .menu-header-navbarInfo > .menu-header-navbarAuth {
+.menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
   font-size: 1.2rem;
 }
 
-.menu-header  > .menu-header-navbarInfo > .menu-header-navbarLogin {
+.menu-header>.menu-header-navbarInfo>.menu-header-navbarLogin {
   border: none;
   background-color: var(--color-green);
   color: var(--color-white);
@@ -48,31 +52,34 @@
   .menu-header .menu-header-figure .menu-header-figureLogo {
     cursor: pointer;
   }
+
   .menu-header .menu-header-figure .menu-header-figureName {
     display: unset;
     font-size: 2.8rem;
   }
-  
+
   .menu-header .menu-header-figure .menu-header-figureName span {
     color: var(--color-green);
   }
-  
-  .menu-header .menu-header-figure .menu-header-figureName:hover {
-  color: var(--color-green);
-  .g {
-    color: var(--color-white);
-  }
-  cursor: pointer;
-}
 
-  .menu-header  > .menu-header-navbarInfo > .menu-header-navbarLogin {
+  .menu-header .menu-header-figure .menu-header-figureName:hover {
+    color: var(--color-green);
+
+    .g {
+      color: var(--color-white);
+    }
+
+    cursor: pointer;
+  }
+
+  .menu-header>.menu-header-navbarInfo>.menu-header-navbarLogin {
     cursor: pointer;
     font-weight: 600;
     font-size: 1.2rem;
   }
 
-  .menu-header  > .menu-header-navbarInfo > .menu-header-navbarLogin:hover {
-    background-color: var(--color-white);    
+  .menu-header>.menu-header-navbarInfo>.menu-header-navbarLogin:hover {
+    background-color: var(--color-white);
     color: var(--color-green);
     transition: .5s ease all;
   }
