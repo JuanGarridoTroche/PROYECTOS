@@ -1,8 +1,53 @@
+/** ############################## **/
+/** ## FIRST MOBILE - MAIN PAGE ## **/
+/** ############################## **/
 
-.main {
+/** ######################## **/
+/** ##   MAIN CONTAINER   ## **/
+/** ######################## **/
+.main-container {
   display: grid;
   place-content: center;
   min-height: 100vh;
   position: absolute;
   padding: 80px 5px; 
+}
+
+/*! ################### !*/
+/*! ##   MAIN - h1   ## !*/
+/*! ################### !*/
+h1 {
+  text-align: center;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/*! ################## !*/
+/*! ##   MAIN - P   ## !*/
+/*! ################## !*/
+.main-container > p {
+  text-align: justify;
+  padding: 10px;
+}
+
+@media(min-width: 700px) {
+  /** ############################# **/
+  /** ##   DESKTOP - MAIN PAGE   ## **/
+  /** ############################# **/
+
+  /*! ################### !*/
+  /*! ##   MAIN - h1   ## !*/
+  /*! ################### !*/
+  h1 {
+    font-size: 3.4rem;  
+  }
+
+  /*! ################## !*/
+  /*! ##   MAIN - P   ## !*/
+  /*! ################## !*/
+  .main-container > p {
+    text-align: justify;
+    padding: 50px;
+  }
+
 }

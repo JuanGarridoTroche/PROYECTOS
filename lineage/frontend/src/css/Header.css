@@ -1,3 +1,11 @@
+/** ################################ **/
+/** ## FIRST MOBILE - HEADER MENU ## **/
+/** ################################ **/
+
+/** ##################### **/
+/** ##   HEADER MENU   ## **/
+/** ##################### **/
+
 .menu-header {
   display: flex;
   justify-content: space-between;
@@ -11,6 +19,10 @@
   left: 0;
 }
 
+
+/*! ############################# !*/
+/*! ## Menú de cabecera - LOGO ## !*/
+/*! ############################# !*/
 .menu-header .menu-header-figure {
   display: flex;
   flex-direction: row;
@@ -24,20 +36,34 @@
   width: 62px;
 }
 
+
+/*! ############################# !*/
+/*! ## Menú de cabecera - NAME ## !*/
+/*! ############################# !*/
 .menu-header .menu-header-figure .menu-header-figureName {
   display: none;
 }
 
+/*! ############################### !*/
+/*! ## Menú de cabecera - Navbar ## !*/
+/*! ############################### !*/
 .menu-header>.menu-header-navbarInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
+
+/*? #################################################### ?*/
+/*? ## Menú de cabecera - Navbar - Authorization Name ## ?*/
+/*? #################################################### ?*/
 .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
   font-size: 1.2rem;
 }
 
+/*? ############################################## ?*/
+/*? ## Menú de cabecera - Navbar - Login/Logout ## ?*/
+/*? ############################################## ?*/
 .menu-header>.menu-header-navbarInfo>.menu-header-navbarLogin {
   border: none;
   background-color: var(--color-green);
@@ -48,11 +74,22 @@
 
 
 @media(min-width: 700px) {
+  /** ########################### **/
+  /** ## DESKTOP - HEADER MENU ## **/
+  /** ########################### **/
+
+  /*! ############################# !*/
+  /*! ## Menú de cabecera - LOGO ## !*/
+  /*! ############################# !*/
 
   .menu-header .menu-header-figure .menu-header-figureLogo {
     cursor: pointer;
   }
 
+
+  /*! ############################# !*/
+  /*! ## Menú de cabecera - NAME ## !*/
+  /*! ############################# !*/
   .menu-header .menu-header-figure .menu-header-figureName {
     display: unset;
     font-size: 2.8rem;
@@ -64,14 +101,27 @@
 
   .menu-header .menu-header-figure .menu-header-figureName:hover {
     color: var(--color-green);
-
     .g {
       color: var(--color-white);
     }
-
     cursor: pointer;
   }
 
+
+  /*! ############################### !*/
+  /*! ## Menú de cabecera - Navbar ## !*/
+  /*! ############################### !*/
+
+  /*? #################################################### ?*/
+  /*? ## Menú de cabecera - Navbar - Authorization Name ## ?*/
+  /*? #################################################### ?*/
+  .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
+    font-size: 1.6rem;
+  }
+
+  /*? ############################################## ?*/
+  /*? ## Menú de cabecera - Navbar - Login/Logout ## ?*/
+  /*? ############################################## ?*/
   .menu-header>.menu-header-navbarInfo>.menu-header-navbarLogin {
     cursor: pointer;
     font-weight: 600;

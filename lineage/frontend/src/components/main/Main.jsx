@@ -2,7 +2,7 @@ import ('../../css/Main.css')
 
 export const Main = ()=> {
   return (
-    <main className='main'>
+    <main className="main-container">
       <h1>Página principal</h1>
       <p>
         Una palabra del traductor a sus amigos
@@ -21,6 +21,7 @@ export const Main = ()=> {
 
         La literalidad encadena el espíritu divagador y lo doma, al mismo tiempo que detiene la infernal facilidad de la pluma. Yo me felicito de que así sea; porque ¿dónde encontrar un traductor de genio simple, anónimo, libre de la necia manía de su renombre?...
       </p>
+      
     </main>
   )
 }
