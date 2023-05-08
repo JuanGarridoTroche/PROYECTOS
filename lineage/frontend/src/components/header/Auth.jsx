@@ -3,7 +3,7 @@
 export const Auth =()=> {
   return (
     <>
-      <p>Juan Garrido Troche</p>
+      <p className="menu-header-navbarAuth">Juan Garrido Troche</p>
     </>
   )
 }
