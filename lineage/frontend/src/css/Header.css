@@ -68,6 +68,7 @@
   color: var(--color-white);
   padding: 7px;
   border-radius: 9999px;
+  padding: 2px 12px;
 }
 
 

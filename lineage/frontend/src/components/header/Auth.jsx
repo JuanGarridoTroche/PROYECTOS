@@ -2,8 +2,9 @@
 
 export const Auth =()=> {
   return (
-    <>
-      <p className="menu-header-navbarAuth">Juan Garrido Troche</p>
-    </>
+    <ul className="menu-header-navbarAuth">
+      <li>Regístrate</li>
+      <li>Login</li>
+    </ul>
   )
 }

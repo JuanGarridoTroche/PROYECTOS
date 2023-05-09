@@ -1,9 +1,10 @@
+import { Navigate } from "react-router-dom"
 
 export const Login = ()=> {
 
 
   const handleLogin = ()=> {
-    alert("Gestionando el login de usuario")
+    Navigate("/Login");
   }
 
   return (

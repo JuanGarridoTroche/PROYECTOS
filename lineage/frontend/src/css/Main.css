@@ -7,7 +7,6 @@
 /** ######################## **/
 .main-container {
   display: grid;
-  place-content: center;
   min-height: 100vh;
   position: absolute;
   top: 72px;

@@ -1,8 +1,8 @@
-import("../../css/Main.css");
+import("../css/Main.css");
 
-export const Main = () => {
+export const Home = () => {
   return (
-    <main className="main-container">
+    <section className="main-container">
       <h1>Página principal</h1>
       <p>
         Una palabra del traductor a sus amigos Yo ofrezco desnudas, vírgenes,
@@ -34,6 +34,6 @@ export const Main = () => {
         sea; porque ¿dónde encontrar un traductor de genio simple, anónimo,
         libre de la necia manía de su renombre?...
       </p>
-    </main>
+    </section>
   );
 };
