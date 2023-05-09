@@ -1,6 +1,7 @@
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
-import { Home } from "./pages/Home";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/LoginPage";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -10,7 +11,10 @@ function App() {
       <main>
         <Routes>
           {/* INICIO */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+
+          {/* LOGIN */}
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>
       <Footer />

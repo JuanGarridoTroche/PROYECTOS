@@ -1,11 +1,12 @@
-import { Auth } from "./Auth"
-import { Login } from "./Login"
+import { Link } from "react-router-dom"
 
 export const NavBar = ()=> {
   return (
     <nav className="menu-header-navbarInfo">
-      <Auth/>
-      <Login/> 
+      <ul className="menu-header-navbarAuth">
+        <li><Link to="/register">Regístrate</Link></li>
+        <li><Link to="/login">Login</Link></li>
+      </ul>
     </nav>
   )
 }

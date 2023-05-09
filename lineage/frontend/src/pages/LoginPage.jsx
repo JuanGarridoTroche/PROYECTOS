@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUserService } from "../services";
 
-export const Login = () => {
+import("../css/Page.css");
+
+export const LoginPage = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@ export const Login = () => {
   };
 
   return (
-    <section className="login-container">
+    <section className="container">
       <details className="login-summary">
         <summary>Login</summary>
         <p>
