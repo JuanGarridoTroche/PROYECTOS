@@ -13,6 +13,6 @@
   z-index: 9;
 }
 
-.foot-info > .foot-madeIn {
+.foot-info>.foot-madeIn {
   font-style: italic;
 }

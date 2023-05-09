@@ -2,10 +2,6 @@
 /** ## FIRST MOBILE - HEADER MENU ## **/
 /** ################################ **/
 
-/** ##################### **/
-/** ##   HEADER MENU   ## **/
-/** ##################### **/
-
 .menu-header {
   display: flex;
   justify-content: space-between;
@@ -80,6 +76,11 @@
   /** ## DESKTOP - HEADER MENU ## **/
   /** ########################### **/
 
+  .menu-header {
+    width: 99vw;
+    padding: 7px;
+  }
+
   /*! ############################# !*/
   /*! ## Menú de cabecera - LOGO ## !*/
   /*! ############################# !*/
@@ -103,9 +104,11 @@
 
   .menu-header .menu-header-figure .menu-header-figureName:hover {
     color: var(--color-green);
+
     .g {
       color: var(--color-white);
     }
+
     cursor: pointer;
   }
 
