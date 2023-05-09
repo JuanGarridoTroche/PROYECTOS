@@ -68,7 +68,7 @@
   color: var(--color-white);
   padding: 7px;
   border-radius: 9999px;
-  padding: 2px 12px;
+  padding: 7px 15px;
 }
 
 
@@ -76,20 +76,50 @@
   /** ########################### **/
   /** ## DESKTOP - HEADER MENU ## **/
   /** ########################### **/
-
+  
   .menu-header {
     width: 99vw;
     padding: 7px;
   }
-
+  
   /*! ############################# !*/
   /*! ## Menú de cabecera - LOGO ## !*/
   /*! ############################# !*/
-
+  
   .menu-header .menu-header-figure .menu-header-figureLogo {
     cursor: pointer;
+    opacity: .8;
   }
 
+  .menu-header .menu-header-figure .menu-header-figureLogo:hover {
+    animation-duration: .7s;
+    animation-name: logoHover;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    opacity: 1;
+  }
+  
+  @keyframes logoHover {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(10deg);
+    }
+
+    50% {
+      transform: rotate(-10deg);
+    }
+
+    75% {
+      transform: rotate(10deg);
+    }
+
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 
   /*! ############################# !*/
   /*! ## Menú de cabecera - NAME ## !*/
