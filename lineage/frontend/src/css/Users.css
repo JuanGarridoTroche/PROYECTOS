@@ -25,6 +25,21 @@
   border-radius: 15px;
 }
 
+.p--loading-users-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: var(--color-green);
+  /* padding-top: 400px; */
+}
+
+.p--error {
+  color: var(--color-red);
+  font-weight: 800;
+  font-size: 2rem;
+}
+
 @media(min-width: 550px) {
   
 }

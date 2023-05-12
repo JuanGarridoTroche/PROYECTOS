@@ -8,7 +8,8 @@ const checkPassword = require('./checkPassword')
 const sendRecoverPassword = require("./sendRecoverPassword")
 const recoverPassword = require('./recoverPassword')
 const readLoggedUserProfile = require("./readLoggedUserProfile")
-const readUserProfile = require("./readUserProfile")
+const readUserProfile = require("./readUserProfile");
+const readUsersList = require ('./readUsersList')
 
 module.exports = {
   loginUser,
@@ -22,4 +23,5 @@ module.exports = {
   recoverPassword,
   readLoggedUserProfile,
   readUserProfile,
+  readUsersList,
 };

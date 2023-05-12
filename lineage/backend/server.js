@@ -39,6 +39,7 @@ const {
   recoverPassword,
   readLoggedUserProfile,
   readUserProfile,
+  readUsersList,
 } = require('./controllers/users');
 
 
@@ -69,8 +70,12 @@ app.put("/users/password/recover", recoverPassword);
 // Mostrar los datos del usuario logueado
 app.get("/users", isAuth, readLoggedUserProfile);
 
+// Sacar un listado de todos los usuarios registrados en la BBDD
+app.get("/users/list", readUsersList);
+
 // Mostrar los datos de un usuario como invitado
 app.get("/users/:idUser", readUserProfile);
+
 
 /*
  * ##########################################

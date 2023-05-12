@@ -6,6 +6,7 @@
   --color-grey: rgba(57, 62, 70, 1);
   --color-green: rgba(0, 173, 181, 1);
   --color-white: rgba(238, 238, 238, 1);
+  --color-error: red;
 
   --typo-main: 'Noto Serif Display', serif;
 }
