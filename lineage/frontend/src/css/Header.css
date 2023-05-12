@@ -24,7 +24,7 @@
 .menu-header .menu-header-figure {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
 }
@@ -77,9 +77,9 @@
 
 
 
-/** ########################### **/
-/** ## DESKTOP - HEADER MENU ## **/
-/** ########################### **/
+/** ########################## **/
+/** ## TABLET - HEADER MENU ## **/
+/** ########################## **/
 @media(min-width: 550px) {
   .menu-header .menu-header-figure {
     justify-content: flex-start;
@@ -91,7 +91,8 @@
   /*! ############################# !*/
   .menu-header .menu-header-figure .menu-header-figureName {
     display: unset;
-    font-size: 2.8rem;
+    font-size: 3.2rem;
+    letter-spacing: 1.2rem;
   }
 
   .menu-header .menu-header-figure .menu-header-figureName span {
@@ -100,6 +101,10 @@
     
 }
 
+
+/** ########################### **/
+/** ## DESKTOP - HEADER MENU ## **/
+/** ########################### **/
 @media(min-width: 880px) {
 
   .menu-header {
@@ -171,7 +176,7 @@
   .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 
   .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth li a:hover {
