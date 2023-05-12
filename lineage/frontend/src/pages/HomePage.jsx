@@ -3,7 +3,7 @@ import("../css/Main.css");
 export const HomePage = () => {
   return (
     <section className="main-container">
-      <h1>Página principal</h1>
+      <h1>Bienvenido a Lineage</h1>      
       <p>
         Una palabra del traductor a sus amigos Yo ofrezco desnudas, vírgenes,
         intactas y sencillas, para mis delicias y el placer de mis amigos, estas

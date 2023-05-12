@@ -1,12 +1,12 @@
-import { Brand } from "./Brand"
-import { NavBar } from "./NavBar"
+import { Auth } from "../../context/Auth";
+import { Brand } from "./Brand";
 import ('../../css/Header.css');
 
 export const Header = ()=> {
   return (
     <header className="menu-header">
-      <Brand/>
-      <NavBar/>
+      <Brand/>  
+      <Auth />
     </header>
   )
 }

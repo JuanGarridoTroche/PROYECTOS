@@ -28,7 +28,7 @@ h1 {
 /*! ################## !*/
 .main-container > p {
   text-align: justify;
-  padding: 10px;
+  padding: 10px;  
 }
 
 @media(min-width: 700px) {

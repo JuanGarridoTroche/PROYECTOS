@@ -5,6 +5,8 @@
   --color-grey: rgba(57, 62, 70, 1);
   --color-green: rgba(0, 173, 181, 1);
   --color-white: rgba(238, 238, 238, 1);
+
+  --typo-main: 'Noto Serif Display', serif;
 }
 
 * {
@@ -13,15 +15,115 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-  min-height: 100vh;  
+
+
+/* Modo dark/light */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-white: rgba(34, 40, 49, 1);
+    --color-black: rgba(238, 238, 238, 1);
+    --color-grey: black;
+  }
 }
 
+/** OPCIONALES */
+
+/* Configuración para el usuario que activa el modo alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --color-white: black;
+    --color-black: white;
+  }
+}
+
+/* Desactivamos las animaciones de nuestra web en caso de que e usuario haya desactivado este punto*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Evitamos problemas de desbordamiento con el elemento contenedor para las imágenes y videos */
+img, picture, video, iframe, figure {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  /* opcional */ object-fit: cover;
+  /* opcional */ object-position: center center;;
+}
+
+/* Reseteamos los enlaces para que funcionen como cajas */
+a {
+  display: block;
+}
+
+/* Excepto aquellas que estén dentro de un párrafo */
+p a {
+  display: inline;
+}
+
+/* Quitamos los puntos y números de listas */
+li {
+  list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  min-height: 100vh; 
+}
 
 body {
   background-color: var(--color-bg);
-  font-family: 'Noto Serif Display', serif;
+  font-family: var(--typo-main);
   font-weight: 500;
   font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+/* Desactivamos estilos por defecto en las etiquetas de texto */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote::before, blockquote::after, q::before, q::after {
+  content: '';
+  content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::selection {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  hyphens: auto;
+  background-color: transparent;
+  display: block;
+  color: inherit;
+  /* opcional y no recomendado */ appearance: none;
+}
+
+/* Reseteamos las tablas */
+table, tr, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evitamos problemas con los svg */
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
 }

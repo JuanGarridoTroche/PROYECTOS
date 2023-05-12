@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Eliminamos problemas que puedan tener algunas imágenes entre textos de alineaciones entre ellos */
+  vertical-align: baseline; 
+}
+
+:root {
+  /* Colores web */
+  --color-text: rgba(34, 40, 49, 1);
+  --color-text2: rgba(57, 62, 70, 1);
+  --color-text3: rgba(0, 173, 181, 1);
+  --color-primary: rgba(238, 238, 238, 1);
+
+  /* Tipografías */
+  --typo-main: 'Noto Serif Display', serif;
+  --typo-secondary: Helvetica, Arial, serif;
+}
+
+  /* Modo dark/light */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: rgba(34, 40, 49, 1);
+      --color-text: rgba(238, 238, 238, 1);
+    }
+  }
+
+  /** OPCIONALES */
+
+  /* Configuración para el usuario que activa el modo alto contraste */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-primary: black;
+      --color-text: white;
+    }
+  }
+
+  /* Desactivamos las animaciones de nuestra web en caso de que e usuario haya desactivado este punto*/
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  /* Evitamos problemas de desbordamiento con el elemento contenedor para las imágenes y videos */
+  img, picture, video, iframe, figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    /* opcional */ object-fit: cover;
+    /* opcional */ object-position: center center;;
+  }
+
+  /* Reseteamos los enlaces para que funcionen como cajas */
+  a {
+    display: block;
+  }
+
+  /* Excepto aquellas que estén dentro de un párrafo */
+  p a {
+    display: inline;
+  }
+
+  /* Quitamos los puntos y números de listas */
+  li {
+    list-style-type: none;
+  }
+
+  /* Configuramos anclas suaves */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Desactivamos estilos por defecto en las etiquetas de texto */
+  h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+    font-size: 1em;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Evitamos problemas con los pseudoelementos de quotes */
+  blockquote::before, blockquote::after, q::before, q::after {
+    content: '';
+    content: none;
+  }
+
+  /* Configuramos el texto que seleccionamos */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+  }
+
+  /* Nivelamos problemas de tipografías y colocación de formularios */
+  form, input, textarea, select, button, label {
+    font-family: inherit;
+    font-size: inherit;
+    hyphens: auto;
+    background-color: transparent;
+    display: block;
+    color: inherit;
+    /* opcional y no recomendado */ appearance: none;
+  }
+
+  /* Reseteamos las tablas */
+  table, tr, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Evitamos problemas con los svg */
+  svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+  }
+  html {
+    font-size: 62.5%;
+  }
+
+  /* Configuramos la tipografía para toda la web */
+  body {
+    min-height: 100vh;
+    font-size: 1.6rem;
+    font-family: var(--typo-main);
+    background-color: var(--color-text);
+    /* opcional */ line-height: 1.4em;
+    /* opcional */ hyphens: auto;
+    /* opcional */ font-smooth: always;
+    /* opcional */ -webkit-font-smoothing: antialiased;
+    /* opcional */-moz-osx-font-smoothing: grayscale;
+  }
