@@ -1,8 +1,8 @@
-.container {
+.section-main {
   padding-top: 70px;
 }
 
-.login-summary {
+.section-main__details {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -12,8 +12,11 @@
   padding: 30px 12px;
   text-align: center;
 }
+.g {
+  color: var(--color-green);
+}
 
-.login-summary > p {
+.section-main__details > p {
   padding-top: 20px;
   margin: 0 auto;
 }
@@ -26,18 +29,18 @@
   content: "⬇️"
 } */
 
-section.login-content {
+section.section-main__section-content.section-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-section.login-content > .error {
+section.section-content > .error {
   color: red;
 }
 
-.login-content > form {
+.section-content > form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -45,7 +48,7 @@ section.login-content > .error {
   width: 50vw;
 }
 
-.login-content > form input {
+.section-content > form input {
   padding: 14px;
   border: 1px  solid rgb(155, 155, 155);
   border-radius: 4px;
@@ -54,7 +57,7 @@ section.login-content > .error {
   max-width: 220px;
 }
 
-.login-content > form > button {
+.section-content > form > button {
   border: none;
   background-color: var(--color-green);
   color: white;
@@ -65,11 +68,11 @@ section.login-content > .error {
   margin-bottom: 20px;
 }
 
-.dont-forget {
+.section-main__section-dont-forget.section-dont-forget {
   font-size: 1.4rem;
 }
 
-.dont-forget > p.link {
+.section-dont-forget > p.link {
   padding: 15px;
   background-color: transparent;
   color: var(--color-black);  
@@ -81,7 +84,7 @@ section.login-content > .error {
 
 }
 
-.dont-forget > p.link > button {
+.section-dont-forget > p.link > button {
   background-color: transparent;
   border: none;
   color: var(--color-logo);
@@ -89,7 +92,7 @@ section.login-content > .error {
   cursor: pointer;
 }
 
-.dont-forget > p.link > a {
+.section-dont-forget > p.link > a {
   text-decoration: none;
   color: var(--color-green);
   font-weight: 800;  
@@ -102,11 +105,11 @@ section.login-content > .error {
 }
 
 @media(min-width: 700px) {
-  .login-content > form > button:hover {
+  .section-content > form > button:hover {
     opacity: .7;
   }
 
-  .login-content > form > button {
+  .section-content > form > button {
     cursor: pointer;
   }
 }

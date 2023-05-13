@@ -7,7 +7,7 @@ export const UsersList = ({ users }) => {
       {users.map((user) => {
         return(        
         <li key={user.id}>
-          Lista de usuarios: <User user={user} />
+          <User user={user} />
         </li>
         )
       })}

@@ -6,7 +6,7 @@ export const User = ({ user }) => {
       <p>Correo electrónico: {email}</p>      
       <p>Rol: {role}</p>
       <p>Cuenta {active ? "activada" : "desactivada"}</p>
-      <p>Usuario creado desde {createdAt}</p>
+      <p>Usuario creado el {new Date(createdAt).toLocaleString()}</p>
     </article>
   );
 };

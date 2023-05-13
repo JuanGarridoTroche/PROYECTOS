@@ -5,6 +5,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Route, Routes } from "react-router-dom";
 import { Users } from "./components/main/Users";
+import { RegisterPage } from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* LOGIN */}
           <Route path="/users" element={<Users />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

@@ -1,9 +1,9 @@
+import("../css/Page.css");
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUserService } from "../services";
 import { Message } from "../components/main/Message";
 
-import("../css/Page.css");
 
 export const LoginPage = () => {
   const [error, setError] = useState("");
@@ -23,17 +23,17 @@ export const LoginPage = () => {
   };
 
   return (
-    <section className="container">
-      <details className="login-summary">
-        <summary>Login</summary>
-        <p>
-          Entra en nuestra aplicación con tu cuenta de correo como usuario y
-          contraseña para acceder a todos los servicios y utilidades de la web
+    <section className="section-main">
+      <details className="section-main__details details">
+        <summary className="details__summary">Login</summary>
+        <p className="details__p">
+          Entra en nuestra aplicación con tu cuenta de correo y
+          contraseña para acceder a todos los servicios de Linea<span className="g">g</span>e
         </p>
       </details>
-      <section className="login-content">
+      <section className="section-main__section-content section-content">
         {error ? <Message message={error} type="error"/> : null}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="section-content__form">
           <label htmlFor="userLogin">Usuario:</label>
           <input
             type="text"
@@ -58,7 +58,7 @@ export const LoginPage = () => {
           />
           <button>Login</button>
         </form>
-        <section className="dont-forget">
+        <section className="section-main__section-dont-forget section-dont-forget">
           <p className="link">
             ¿Has olvidado tu nombre de{" "}
             <Link to="/users/password/solicitude">usuario o contraseña</Link>?

@@ -3,7 +3,7 @@ import { loadUsersService } from "../services";
 
 const useUsers = () => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
