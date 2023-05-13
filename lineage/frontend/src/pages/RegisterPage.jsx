@@ -25,7 +25,21 @@ export const RegisterPage = () => {
             className="fieldset-first-name__input"
           />
         </fieldset>
-        <fieldset></fieldset>
+        <fieldset className="form__fieldset-last-name1 fieldset-last-name1">
+          <h3 className="fieldset-last-name1__h3">Nombre</h3>
+          <label htmlFor="first_name" className="fieldset-last-name1__label--summary">
+            Escribe tu nombre
+          </label>
+          <input
+            type="text"
+            name="first_name"
+            id="first_name"
+            autoComplete="on"
+            placeholder="Nombre"
+            required
+            className="fieldset-first-name__input"
+          />
+        </fieldset>
       </form>
     </section>
   );
