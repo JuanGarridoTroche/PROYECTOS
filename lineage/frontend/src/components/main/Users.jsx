@@ -7,7 +7,7 @@ export const Users = ()=> {
 
  
   if(loading) return <p className='p--loading-users-list'>Cargando listado de usuario ⌛...</p>
-  // if(error) return <p className='p--error'>{error}</p>
+  if(error) return <p className='p--error'>{error}</p>
 
   return (
     <section className="section--users-list">

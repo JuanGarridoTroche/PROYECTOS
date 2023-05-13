@@ -1,13 +1,15 @@
 import { User } from "./User";
 
 export const UsersList = ({ users }) => {
-  console.log(users);
+  
   return users.length ? (
     <ul>
       {users.map((user) => {
+        return(        
         <li key={user.id}>
           usuario: <User user={user} />
-        </li>;
+        </li>
+        )
       })}
     </ul>
   ) : (
