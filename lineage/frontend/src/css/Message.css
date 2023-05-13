@@ -1,0 +1,9 @@
+
+.p--error-message {
+  color: var(--color-error);
+  font-weight: 800;
+}
+
+.p--data-message {
+  color: var(--color-black);
+}

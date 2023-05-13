@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUserService } from "../services";
+import { Message } from "../components/main/Message";
 
 import("../css/Page.css");
 
@@ -31,7 +32,7 @@ export const LoginPage = () => {
         </p>
       </details>
       <section className="login-content">
-        {error ? <p className="error-message">{error}</p> : null}
+        {error ? <Message message={error} type="error"/> : null}
         <form onSubmit={handleSubmit}>
           <label htmlFor="userLogin">Usuario:</label>
           <input
