@@ -1,4 +1,4 @@
-import("../css/Page.css");
+import("../css/LoginPage.css");
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUserService } from "../services";
