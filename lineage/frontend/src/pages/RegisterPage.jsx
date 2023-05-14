@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from "../../../../xpaccount/frontend/src/components/Modal";
 import { Message } from "../components/main/Message";
+import { Link } from "react-router-dom";
 
 import("../css/RegisterPage.css");
 export const RegisterPage = () => {
@@ -79,6 +80,7 @@ export const RegisterPage = () => {
             />
           </fieldset>
           <button className="section-main__form__button section-main__button button">Registrar</button>
+          <p className="section-main__form__p--login p--login">¿Ya tienes una cuenta? <Link to={"/login"}>iniciar sesión</Link></p>
         </form>
       </section>
       {showModal && (

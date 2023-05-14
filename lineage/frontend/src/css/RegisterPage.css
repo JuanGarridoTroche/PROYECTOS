@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 50vw;
+  width: 60vw;
 }
 
 .form.section-main__form .form__fieldset {
@@ -42,13 +42,15 @@
 }
 
 .form.section-main__form .form__fieldset .h3 {  
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   border-bottom: 1px solid rgb(155, 155, 155);
+  text-transform: uppercase;
 }
 
 .form.section-main__form .form__fieldset .label {
   color: rgb(155, 155, 155);
   font-size: 1.2rem;
+  padding-top: 3px;
 }
 
 
@@ -56,7 +58,7 @@
   padding: 14px;
   border: 1px  solid rgb(155, 155, 155);
   border-radius: 4px;
-  margin: 5px;
+  margin: 5px 5px 5px 0;
   width: 100%;
   max-width: 300px;
 }
@@ -70,6 +72,44 @@
   max-width: 300px;
   border-radius: 5px;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.section--content .form .p--login {
+  font-size: 1.4rem;
+}
+
+.section--content .form .p--login a {
+  color: var(--color-green);
+  font-weight: 800;
+}
+
+.section--content .form .p--login a::after {
+  content: ' ▶️';
+}
+
+
+@media(min-width: 550px) {
+
+  .form.section-main__form .form__fieldset .h3 {  
+    font-size: 2.4rem;
+  }
+  .form.section-main__form .form__fieldset .label {
+    font-size: 1.6rem;
+  }
+
+  .form.section-main__form .form__fieldset .fieldset__input  {
+    font-size: 1.6rem;
+  }
+
+  .section--content .form .button {
+    padding: 15px;
+    max-width: 220px;
+  }
+
+  .section--content .form .p--login {
+    font-size: 1.6rem;
+  }
 }
 
 @media(min-width: 700px) {

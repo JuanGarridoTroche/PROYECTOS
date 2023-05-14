@@ -1,5 +1,5 @@
 @import url('./css/normalize.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
   --color-black: rgba(34, 40, 49, 1);
