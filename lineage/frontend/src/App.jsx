@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { Users } from "./components/main/Users";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ValidateUserPage } from "./pages/ValidateUserPage";
+import { UserProfilePage } from "./pages/UserProfilePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/users/profile" element={<UserProfilePage/>} />
           <Route
             path="/users/register/validate/:registrationCode"
             element={<ValidateUserPage />}

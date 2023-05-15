@@ -1,0 +1,15 @@
+
+
+.section--profile {
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section__h2--profile {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}

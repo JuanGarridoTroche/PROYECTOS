@@ -26,7 +26,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
+  gap: 8px;  
+  flex-basis: 20%;
 }
 
 .menu-header .menu-header-figure .menu-header-figureLogo {
@@ -47,8 +48,10 @@
 /*! ############################### !*/
 .menu-header>.menu-header-navbarInfo {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+  flex-basis: 80%;
 }
 
 
@@ -97,6 +100,10 @@
 
   .menu-header .menu-header-figure .menu-header-figureName span {
     color: var(--color-green);
+  }
+
+  .menu-header>.menu-header-navbarInfo {
+    flex-basis: 70%;
   }
     
 }
