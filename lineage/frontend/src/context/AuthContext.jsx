@@ -6,15 +6,18 @@ export const AuthContext = createContext();
 export const AuthProvidercomponent = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("tokenLng"));
   const [authorizedUser, setAuthorizedUser] = useState(null);
+  const [error, setError] = useState("");
 
   //useEffect que se ejecuta cuando se carga por primera vez y cada vez que se modifique el token
   useEffect(() => {
     const getUserData = async () => {
+      setError("");
       try {
         const data = await getLoggedUserDataService(token);
-        console.log(data);
         setAuthorizedUser(data);
-      } catch (err) {}
+      } catch (err) {
+          logout();
+      }
     };
     if (token) getUserData();
   }, [token]);
@@ -32,7 +35,7 @@ export const AuthProvidercomponent = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, authorizedUser, setAuthorizedUser, login, logout }}
+      value={{ token, setToken, authorizedUser, setAuthorizedUser, login, logout }}
     >
       {children}
     </AuthContext.Provider>

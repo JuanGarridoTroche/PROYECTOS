@@ -16,7 +16,7 @@ export const loadUsersService = async () => {
   return json.data;
 };
 
-// Servicio de login de usuario. Devuelve un objeto con {token: ''}
+// Servicio de login de usuario. Devuelve un objeto con {tokenLng: ''}
 export const loginUserService = async (email, password) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
@@ -86,11 +86,12 @@ export const getLoggedUserDataService = async (token) => {
     }/users/loggedProfile`,
     {
       headers: {
-        Authoization: token,
+        Authorization: token,
       },
     }
   );
   const json = await response.json();
+  
   if (!response.ok) {
     throw new Error(json.message);
   }

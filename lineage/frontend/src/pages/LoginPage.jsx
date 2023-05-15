@@ -10,8 +10,8 @@ export const LoginPage = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login} = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const {login, setToken} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +19,10 @@ export const LoginPage = () => {
 
     try {
       // Guardamos en data el token
-      const token = await loginUserService(email, password);
-      console.log(token.tokenLng);
-      login(token.tokenLng)
-      // navigate("/")
+      const data = await loginUserService(email, password);
+      // console.log(data.tokenLng);
+      login(data.tokenLng);
+      navigate("/")
     } catch (err) {
       setError(err.message);
     }

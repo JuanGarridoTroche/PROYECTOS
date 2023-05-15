@@ -47,6 +47,11 @@ const loginUser = async (req, res, next) => {
       throw generateError("Credenciales incorrectas. Se ha desactivado la cuenta.")
     }
 
+    // Si user.tries distinto de cero, actualizamos los intentos de login a cero
+    if(user.tries){
+      await updateLoginUserTriesQuery(user.id);
+    }
+    
     // Creamos el objeto con los datos que queremos guardar dentro del token
     const tokenInfo = {
       id: user.id,
@@ -58,10 +63,6 @@ const loginUser = async (req, res, next) => {
     // Creamos el token
     const tokenLng = jwt.sign(tokenInfo, process.env.SECRET, { algorithm: 'HS512', expiresIn: '7d'});
 
-    // Si user.tries distinto de cero, actualizamos los intentos de login a cero
-    if(user.tries){
-      await updateLoginUserTriesQuery(user.id);
-    }
     
     res.send({
       status: "Ok",

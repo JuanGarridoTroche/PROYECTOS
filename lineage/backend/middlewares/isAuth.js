@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const isAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
+    console.log(authorization);
 
     // Comprobamos que nos ha enviado una autorización
     if (!authorization) {
