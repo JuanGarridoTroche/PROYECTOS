@@ -5,9 +5,9 @@
 .section-main__details {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: var(--color-brand);
   padding: 30px 12px;
   text-align: center;
@@ -33,7 +33,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 60vw;
+  max-width: 550px;
+  width: 100%;
 }
 
 .form.section-main__form .form__fieldset {
@@ -42,9 +43,10 @@
 }
 
 .form.section-main__form .form__fieldset .h3 {  
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   border-bottom: 1px solid rgb(155, 155, 155);
   text-transform: uppercase;
+  font-weight: 800;
 }
 
 .form.section-main__form .form__fieldset .label {
@@ -55,7 +57,7 @@
 
 
 .form.section-main__form .form__fieldset .fieldset__input  {
-  padding: 14px;
+  padding: 12px;
   border: 1px  solid rgb(155, 155, 155);
   border-radius: 4px;
   margin: 5px 5px 5px 0;
@@ -68,8 +70,8 @@
   background-color: var(--color-green);
   color: white;
   padding: 10px;
-  width: 100%;
-  max-width: 300px;
+  width: 70%;
+  max-width: 220px;
   border-radius: 5px;
   margin-bottom: 20px;
   cursor: pointer;
@@ -77,6 +79,9 @@
 
 .section--content .form .p--login {
   font-size: 1.4rem;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
 }
 
 .section--content .form .p--login a {
@@ -92,17 +97,22 @@
 @media(min-width: 550px) {
 
   .form.section-main__form .form__fieldset .h3 {  
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
   .form.section-main__form .form__fieldset .label {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .form.section-main__form .form__fieldset .fieldset__input  {
     font-size: 1.6rem;
   }
 
+  .form.section-main__form .form__fieldset .surname {
+    display: flex;
+  }
+
   .section--content .form .button {
+    margin-top: 20px;
     padding: 15px;
     max-width: 220px;
   }
@@ -112,12 +122,26 @@
   }
 }
 
-@media(min-width: 700px) {
-  .section-content > form > button:hover {
+@media(min-width: 880px) {
+
+  .form.section-main__form .form__fieldset .h3 {  
+    font-size: 2rem;
+  }
+
+  .form.section-main__form .form__fieldset .fieldset__input.fieldset__input--last-name1, .form.section-main__form .form__fieldset .fieldset__input.fieldset__input--last-name2 {
+    max-width: 430px;
+  }
+
+  .section-content > .form > .button:hover {
     opacity: .7;
   }
 
-  .section-content > form > button {
+  .section-content > .form > .button {
     cursor: pointer;
+    font-size: 1.8rem;
+  }
+
+  .section--content .form .p--login {
+    padding-bottom: 90px;
   }
 }

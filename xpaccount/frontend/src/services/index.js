@@ -107,7 +107,7 @@ export const registerUserService = async (data) => {
     throw new Error(json.message);
   }
 
-  console.log(json.data);
+  // console.log(json.data);
   return json.data;
 };
 

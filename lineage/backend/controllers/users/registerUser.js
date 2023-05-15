@@ -6,6 +6,7 @@ const insertUserQuery = require('../../queries/users/insertUserQuery')
 const registerUser = async (req, res, next) => {
   try {
     const { email, password, first_name, last_name1, last_name2 } = req.body;
+    console.log(email, password, first_name, last_name1, last_name2);
     // Validamos el correo electrónico
     const emailSchema = joi.string().email().required();
     const emailValidation = emailSchema.validate(email);
@@ -51,7 +52,7 @@ const registerUser = async (req, res, next) => {
 
     if (pwdValidation.error || pwdValidation === null) {
       throw generateError(
-        'La contraseña debe tener al menos 8 caracteres y contener un número, una minúscula, una mayúscula y un caracter especial'
+        'La contraseña debe tener al menos 8 caracteres y contener un número, una minúscula, una mayúscula y un caracter especial', 400
       );
     }
 
@@ -63,7 +64,7 @@ const registerUser = async (req, res, next) => {
 
     // Enviamos un correo para que active la cuenta
     // Creamos el asunto del email de verificación.
-    const subject = "Activa tu usuario en Expenses account";
+    const subject = "Activa tu usuario en Lineage";
 
     // Creamos el contenido que queremos que tenga el email de verificación.
     const emailContent = `
