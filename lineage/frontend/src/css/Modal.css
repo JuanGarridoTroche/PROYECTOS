@@ -1,0 +1,33 @@
+.modalBg {
+  background-color: rgba(0, 0, 0, 60%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.modalContainer {
+  width: 40vw;
+  height: 30vh;
+  background-color: white;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.modalContainer > button {
+  background-color: var(--color-brand);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
