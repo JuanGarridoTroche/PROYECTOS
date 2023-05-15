@@ -19,8 +19,8 @@ function App() {
 
           {/* LOGIN */}
           <Route path="/users" element={<Users />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/users/register/validate/:registrationCode"
             element={<ValidateUserPage />}

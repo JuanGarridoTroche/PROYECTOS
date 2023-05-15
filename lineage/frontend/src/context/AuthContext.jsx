@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import { getLoggedUserDataService } from "../services";
 
-export const Authcontext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvidercomponent = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("tokenlng"));
+  const [token, setToken] = useState(localStorage.getItem("tokenLng"));
   const [authorizedUser, setAuthorizedUser] = useState(null);
 
   //useEffect que se ejecuta cuando se carga por primera vez y cada vez que se modifique el token
@@ -20,21 +20,21 @@ export const AuthProvidercomponent = ({ children }) => {
   }, [token]);
 
   const login = (token) => {
-    localStorage.setItem("tokenlng", token);
+    localStorage.setItem("tokenLng", token);
     setToken(token);
   };
 
   const logout = () => {
-    localStorage.removeItem("tokenlng");
+    localStorage.removeItem("tokenLng");
     setToken(null);
     setAuthorizedUser(null);
   };
 
   return (
-    <Authcontext.Provider
+    <AuthContext.Provider
       value={{ token, authorizedUser, setAuthorizedUser, login, logout }}
     >
       {children}
-    </Authcontext.Provider>
+    </AuthContext.Provider>
   );
 };

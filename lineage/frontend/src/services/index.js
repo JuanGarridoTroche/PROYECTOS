@@ -18,8 +18,6 @@ export const loadUsersService = async () => {
 
 // Servicio de login de usuario. Devuelve un objeto con {token: ''}
 export const loginUserService = async (email, password) => {
-  console.log(email);
-  console.log(password);
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -59,8 +57,7 @@ export const registerUserService = async (newUser) => {
   const json = await response.json();
   if (!response.ok) {
     throw new Error(json.message);
-  }
-  return json.data;
+  }  
 };
 
 // Validar cuenta de usuario con el registrationCode que te ha llegado a tu correo
