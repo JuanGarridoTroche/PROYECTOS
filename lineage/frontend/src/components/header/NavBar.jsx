@@ -4,13 +4,13 @@ import { AuthContext } from "../../context/AuthContext"
 
 export const NavBar = ()=> {
   const {token, authorizedUser, logout} = useContext(AuthContext);
-  console.log(authorizedUser?.first_name);
+  
   return (
     <nav className="menu-header-navbarInfo">
       <ul className="menu-header-navbarAuth">
-        {token ? (
+        {authorizedUser && token ? (
         <>
-          <li><Link to="/register">Juan Pérez</Link></li>
+          <li><Link to="/users/profile">{authorizedUser.first_name} {authorizedUser.last_name1} {authorizedUser.last_name2}</Link></li>
           <li><Link to="/login" onClick={()=>logout()}>Cerrar sesión</Link></li>
         </>
         ) : (

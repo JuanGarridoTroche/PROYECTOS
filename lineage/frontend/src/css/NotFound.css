@@ -13,7 +13,9 @@
   /* display: block; */
   font-size: 2.8rem;
   margin: 0 auto;
-  padding: 0 0 20px 0;
+  padding: 0 0 100px 0;
+  color: var(--color-error);
+  font-weight: 800;
 }
 
 .section__a--not-found {
