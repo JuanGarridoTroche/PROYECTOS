@@ -6,7 +6,7 @@ const readLoggedUserProfile = async (req, res, next) => {
   try {
     // Accedo a los datos del usuario:
     const user = await selectUserByEmailQuery(email);
-    console.log(user);
+    
     
     
     res.send({

@@ -11,7 +11,6 @@ const updateLoginUserTriesQuery = require("../../queries/users/updateLoginUserTr
 const loginUser = async (req, res, next) => {
   try {
     const {email, password} = req.body;
-    console.log(email, password);
 
     //Comprobar que han introducido email y contraseña
     if (!email || !password) {
@@ -51,7 +50,7 @@ const loginUser = async (req, res, next) => {
     if(user.tries){
       await updateLoginUserTriesQuery(user.id);
     }
-    
+
     // Creamos el objeto con los datos que queremos guardar dentro del token
     const tokenInfo = {
       id: user.id,
