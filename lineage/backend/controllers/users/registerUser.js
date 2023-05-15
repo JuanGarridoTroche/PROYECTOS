@@ -6,7 +6,7 @@ const insertUserQuery = require('../../queries/users/insertUserQuery')
 const registerUser = async (req, res, next) => {
   try {
     const { email, password, first_name, last_name1, last_name2 } = req.body;
-    console.log(email, password, first_name, last_name1, last_name2);
+    
     // Validamos el correo electrónico
     const emailSchema = joi.string().email().required();
     const emailValidation = emailSchema.validate(email);
@@ -68,10 +68,11 @@ const registerUser = async (req, res, next) => {
 
     // Creamos el contenido que queremos que tenga el email de verificación.
     const emailContent = `
-    ¡Bienvenid@ ${first_name} ${last_name1} ${last_name2}!
-
-    Por favor, Activa tu cuenta de usuario a través del siguiente enlace: 
-    <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/register/validate/${registrationCode}">${registrationCode}</a>
+    <h2>¡Bienvenid@ ${first_name} ${last_name1} ${last_name2}!</h2>
+    <div style="background-color:grey; border-radius:10px">
+      <p>Por favor, Activa tu cuenta de usuario a través del siguiente enlace:</p> 
+      <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/users/register/validate/${registrationCode}">${registrationCode}</a>
+    </div>
     `;
 
     // Enviamos un email de verificación al usuario.

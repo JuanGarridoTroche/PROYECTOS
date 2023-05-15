@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../../../../xpaccount/frontend/src/components/Modal";
+import { Modal } from "../components/main/Modal";
 import { Message } from "../components/main/Message";
 import { Link } from "react-router-dom";
 import { registerUserService } from "../services";

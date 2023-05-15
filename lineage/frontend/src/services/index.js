@@ -60,3 +60,18 @@ export const registerUserService = async (newUser) => {
   }
   return json.data;
 };
+
+
+// Validar cuenta de usuario con el registrationCode que te ha llegado a tu correo
+export const validateRegistrationCodeService = async(registrationCode)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/users/register/validate/${registrationCode}`, 
+  {
+    method: "PUT",
+  })
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+}
