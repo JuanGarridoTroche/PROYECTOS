@@ -52,7 +52,7 @@ const registerUser = async (req, res, next) => {
 
     if (pwdValidation.error || pwdValidation === null) {
       throw generateError(
-        'La contraseña debe tener al menos 8 caracteres y contener un número, una minúscula, una mayúscula y un caracter especial', 400
+        'La contraseña debe tener al menos 8 caracteres y contener un número, una minúscula, una mayúscula y un caracter especial(!@#$%&*)', 400
       );
     }
 

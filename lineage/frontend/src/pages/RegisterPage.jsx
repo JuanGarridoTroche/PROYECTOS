@@ -22,10 +22,10 @@ export const RegisterPage = () => {
     setError("");
     try {
       await registerUserService(newUser);
-      setShowModal(true);
       e.target.reset;
+      setShowModal(true);
     } catch (err) {
-      setError(error.message);
+      setError(err.message);
     }
   }
 
@@ -40,7 +40,6 @@ export const RegisterPage = () => {
       </details>
       <section className="section-main__section--content section--content">
       {error ? <Message message={error} type="error"/> : null}
-      {error ? <p>{error}</p> : null}
         <form className="section-main__form form" onSubmit={handleSubmit}>
           <fieldset className="form__fieldset form__fieldset--email fieldset--email">
             <h3 className="h3 fieldset__h3--email">Correo electrónico</h3>
@@ -141,9 +140,8 @@ export const RegisterPage = () => {
         </form>
       </section>
       {showModal && (
-        <Modal setShowModal={setShowModal}>
-          Usuario creado!
-          Revisa tu correo para activar la cuenta
+        <Modal setShowModal={setShowModal} title="Usuario creado!">
+          <Message message="Revisa tu correo para activar la cuenta en Lineage" type="data"/>
         </Modal>
       )}
     </section>

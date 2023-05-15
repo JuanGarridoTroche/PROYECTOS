@@ -20,14 +20,17 @@
   align-items: center;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-green);
+  padding: 20px;
+  text-align: center;
 }
 
 .modalContainer > button {
-  background-color: var(--color-brand);
+  background-color: var(--color-green);
   border: none;
   color: white;
   padding: 10px;
   border-radius: 5px;
   margin-top: 50px;
+  cursor: pointer;
 }

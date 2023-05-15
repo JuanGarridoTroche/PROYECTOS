@@ -3,7 +3,7 @@ export const Message = ({message, type}) => {
 // type =error / data
 
 return (
-  <p className={`p__${type}-message`}>{message}</p>
+  <p className={`p--${type}-message`}>{message}</p>
 )  
   
 }

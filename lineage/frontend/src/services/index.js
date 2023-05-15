@@ -49,12 +49,12 @@ export const registerUserService = async (newUser) => {
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify(newUser),
     }
   );
-  const json = response.json();
+  const json = await response.json();
   if(!response.ok) {
     throw new Error(json.message);
   }

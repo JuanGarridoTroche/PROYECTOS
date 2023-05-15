@@ -1,12 +1,12 @@
+import("../css/Modal.css");
 import { useNavigate } from "react-router-dom";
 
-import("../css/Modal.css");
-export const Modal = ({ setShowModal, children }) => {
+export const Modal = ({title, setShowModal, children }) => {
   const navigate = useNavigate();
 
   return (
     <section>
-      <h2>Esto es un modal</h2>
+      <h2>{title}</h2>
       <div
         className="modalBg"
         onClick={(e) => {
@@ -21,6 +21,7 @@ export const Modal = ({ setShowModal, children }) => {
             e.stopPropagation();
           }}
         >
+          {title}
           {children}
           <button
             onClick={(e) => {
@@ -28,7 +29,7 @@ export const Modal = ({ setShowModal, children }) => {
               // navigate("/")
             }}
           >
-            Ir a Inicio
+            Ok
           </button>
         </div>
       </div>
