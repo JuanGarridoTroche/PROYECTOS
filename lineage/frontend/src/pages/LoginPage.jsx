@@ -1,22 +1,27 @@
 import("../css/LoginPage.css");
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUserService } from "../services";
 import { Message } from "../components/main/Message";
+import {AuthContext} from "../context/AuthContext"; 
 
 
 export const LoginPage = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {login} = useContext(AuthContext) 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDeafult();
+    e.preventDefault();
     setError("");
 
     try {
+      console.log("correo: ", email, " pwd: ", password);
       const data = await loginUserService(email, password);
-      console.log(data);
+      login(data.token)
+      navigate("/")
     } catch (err) {
       setError(err.message);
     }
@@ -34,7 +39,7 @@ export const LoginPage = () => {
       <section className="section-main__section-content section-content">
         {error ? <Message message={error} type="error"/> : null}
         <form onSubmit={handleSubmit} className="section-content__form">
-          <label htmlFor="userLogin">Usuario:</label>
+          <label htmlFor="userLogin">Usuario</label>
           <input
             type="text"
             name="userLogin"
@@ -45,7 +50,7 @@ export const LoginPage = () => {
               setEmail(e.target.value);
             }}
           />
-          <label htmlFor="pwd">Contraseña:</label>
+          <label htmlFor="pwd">Contraseña</label>
           <input
             type="password"
             name="pwd"

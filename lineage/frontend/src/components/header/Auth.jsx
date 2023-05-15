@@ -1,10 +1,5 @@
-
-
+import ("../../css/Header.css")
+import {NavBar} from "./NavBar";
 export const Auth =()=> {
-  return (
-    <ul className="menu-header-navbarAuth">
-      <li>Regístrate</li>
-      <li>Login</li>
-    </ul>
-  )
+  return <NavBar/>
 }

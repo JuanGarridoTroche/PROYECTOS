@@ -68,10 +68,11 @@ const registerUser = async (req, res, next) => {
 
     // Creamos el contenido que queremos que tenga el email de verificación.
     const emailContent = `
-    <h2>¡Bienvenid@ ${first_name} ${last_name1} ${last_name2}!</h2>
-    <div style="background-color:grey; border-radius:10px">
-      <p>Por favor, Activa tu cuenta de usuario a través del siguiente enlace:</p> 
-      <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/users/register/validate/${registrationCode}">${registrationCode}</a>
+    <h2>¡Bienvenido/a ${first_name}!</h2>
+    <div style="background-color:rgb(155, 155, 155); color:white; border-radius:10px; display:flex; flex-direction:column;justify-content:center;align-items:center">
+      <img src="/assets/lineage-logo.png" style="border-radius:50%; width:50px; "/>
+      <p style="padding-left:30px">Por favor, Activa tu cuenta de usuario a través del siguiente enlace:</p> 
+      <a href="http://${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/users/register/validate/${registrationCode}" style="text-align:center; padding-bottom:30px">${registrationCode}</a>
     </div>
     `;
 

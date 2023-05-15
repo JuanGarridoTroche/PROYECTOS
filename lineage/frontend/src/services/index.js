@@ -18,6 +18,8 @@ export const loadUsersService = async () => {
 
 // Servicio de login de usuario. Devuelve un objeto con {token: ''}
 export const loginUserService = async (email, password) => {
+  console.log(email);
+  console.log(password);
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -27,12 +29,13 @@ export const loginUserService = async (email, password) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(email, password),
+      body: JSON.stringify({ email, password }),
     }
   );
   const json = await response.json();
 
   if (!response.ok) {
+    console.log(json.message);
     throw new Error(json.message);
   }
   // console.log(json.data);
@@ -41,7 +44,6 @@ export const loginUserService = async (email, password) => {
 
 // Registro de un nuevo usuario
 export const registerUserService = async (newUser) => {
-
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -55,23 +57,46 @@ export const registerUserService = async (newUser) => {
     }
   );
   const json = await response.json();
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
   return json.data;
 };
 
-
 // Validar cuenta de usuario con el registrationCode que te ha llegado a tu correo
-export const validateRegistrationCodeService = async(registrationCode)=> {
-  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/users/register/validate/${registrationCode}`, 
-  {
-    method: "PUT",
-  })
+export const validateRegistrationCodeService = async (registrationCode) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/users/register/validate/${registrationCode}`,
+    {
+      method: "PUT",
+    }
+  );
   const json = await response.json();
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(json.message);
   }
 
   return json.data;
-}
+};
+
+// Muestra los datos del usuario logueado/autorizado a partir de su token
+export const getLoggedUserDataService = async (token) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/users/loggedProfile`,
+    {
+      headers: {
+        Authoization: token,
+      },
+    }
+  );
+  const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};

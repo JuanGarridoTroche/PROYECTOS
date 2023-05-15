@@ -23,6 +23,9 @@ app.use(express.json());
 // Middleware que permite conectar el backend (éste) con el frontend (React)
 app.use(cors());
 
+// Permite tener acceso a la carpeta de assets de manera pública
+app.use('/assets', express.static('./assets'));
+
 /*
  * ##########################
  * ##    RUTAS DE USERS    ##
@@ -68,7 +71,7 @@ app.put("/users/password/solicitude", sendRecoverPassword);
 app.put("/users/password/recover", recoverPassword);
 
 // Mostrar los datos del usuario logueado
-app.get("/users", isAuth, readLoggedUserProfile);
+app.get("/users/loggedProfile", isAuth, readLoggedUserProfile);
 
 // Sacar un listado de todos los usuarios registrados en la BBDD
 app.get("/users/list", readUsersList);

@@ -11,6 +11,7 @@ const updateLoginUserTriesQuery = require("../../queries/users/updateLoginUserTr
 const loginUser = async (req, res, next) => {
   try {
     const {email, password} = req.body;
+    console.log(email, password);
 
     //Comprobar que han introducido email y contraseña
     if (!email || !password) {

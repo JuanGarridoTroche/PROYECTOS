@@ -1,12 +1,12 @@
-import { Auth } from "../../context/Auth";
+import("../../css/Header.css");
 import { Brand } from "./Brand";
-import ('../../css/Header.css');
+import { Auth } from "./Auth";
 
-export const Header = ()=> {
+export const Header = () => {
   return (
     <header className="menu-header">
-      <Brand/>  
+      <Brand />
       <Auth />
     </header>
-  )
-}
+  );
+};

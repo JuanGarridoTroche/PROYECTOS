@@ -48,6 +48,16 @@ section.section-content > .error {
   width: 50vw;
 }
 
+.section-content > form label {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.section-content > form label:last-of-type {
+  padding-top: 20px;
+} 
+
 .section-content > form input {
   padding: 14px;
   border: 1px  solid rgb(155, 155, 155);
