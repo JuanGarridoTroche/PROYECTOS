@@ -1,9 +1,10 @@
 import ('../../css/Modal.css');
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 export const Modal = ({title, children, setShowModal, page}) => {
   const navigate = useNavigate();
-  // console.log("Título: ", title);
-  // console.log("Children: ", children);
+  const {logout} = useContext(AuthContext);
   return (
     <section>
       <h2>{title}</h2>
@@ -26,7 +27,8 @@ export const Modal = ({title, children, setShowModal, page}) => {
           <button
             onClick={() => {
               setShowModal(false);
-              page === "RegisterPage" ? navigate("/login") : null;
+              if(page === "RegisterPage"){ navigate("/login")};
+              if(page === "updatePasswordPage"){logout(); navigate("/login")};
             }}
           >
             Informado

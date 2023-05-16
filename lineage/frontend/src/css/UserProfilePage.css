@@ -53,6 +53,32 @@
   max-width: 300px;
 }
 
+.profile__fieldset .profile__password__input{
+  padding: 5px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.section__password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.section__password .section__password--orig {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-basis: 50%;
+  align-self: flex-start;
+}
+
+.section__password .profile__password__input--newPassword {
+  flex-basis: 50%;
+}
+
 .profile__content .profile__form .profile__form__button {
   border: none;
   background-color: var(--color-green);

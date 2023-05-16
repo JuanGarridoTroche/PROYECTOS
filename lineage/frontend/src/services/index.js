@@ -118,3 +118,29 @@ export const updateLoggedUserDataService = async (token, data) => {
     throw new Error(json.message);
   }
 };
+
+// Actualizar la contraseña desde UserProfilePage
+export const updatePasswordService = async ({
+  token,
+  password,
+  newPassword,
+  newPasswordRepeated,
+}) => {
+  const response = await fetch(
+    ` ${import.meta.env.VITE_BACKEND_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/users/editPassword`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ password, newPassword, newPasswordRepeated }),
+    }
+  );
+  const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message);
+  }  
+};
