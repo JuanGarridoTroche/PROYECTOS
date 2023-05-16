@@ -84,6 +84,12 @@
 
 @media(min-width: 550px) {
 
+  .profile {
+    width: 60vw;
+    width: 100%;
+    min-height: 70vh;
+  }
+
   .profile__header {
     font-size: 3.4rem;
   }

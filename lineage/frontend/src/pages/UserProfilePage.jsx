@@ -52,6 +52,7 @@ export const UserProfilePage = () => {
               placeholder="correo@electronico.com"
               required
               className="profile__input profile__email__input"
+              disabled
               onChange={(e) => setEmail(e.target.value)}
             />
           </fieldset>
