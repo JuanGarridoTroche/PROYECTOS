@@ -54,7 +54,7 @@ export const UserProfilePage = () => {
       };
       console.log("handleSubmit :", data);
       await updateLoggedUserDataService(token, data);
-      setTitle("Usuario creado!");
+      setTitle("Usuario actualizado");
       setPage("UserProfilePAge");
       setMessage("Perfil de usuario actualizado!")
       setShowModal(true);
@@ -224,7 +224,7 @@ export const UserProfilePage = () => {
               </section>
             </section>
           </fieldset>
-          <button className="profile__form__button">Cambiar contraseña</button>
+          <button className="profile__form__button profile_button--password">Cambiar contraseña</button>
         </form>
       </section>
       {showModal && (

@@ -91,6 +91,11 @@
   cursor: pointer;
 }
 
+.profile__content .profile__form .profile_button--password {
+  width: 40%;
+  min-width: 150px;
+}
+
 .profile__content .profile__form .profile__login {
   font-size: 1.4rem;
   max-width: 550px;
@@ -144,6 +149,19 @@
   .profile__content .profile__form .profile__login {
     font-size: 1.6rem;
   }
+
+  .section__password {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .section__password .section__password--orig {
+    flex-basis: unset;
+  }
+  
+  .section__password .profile__password__input--newPassword {
+    flex-basis: 50%;
+  }
 }
 
 @media(min-width: 880px) {
@@ -159,6 +177,8 @@
   .profile__content > .profile__form > .profile__form__button {
     cursor: pointer;
     font-size: 1.8rem;
+    padding: 12px;
+    max-width: 180px;
   }
 
   .profile__content > .profile__form > .profile__form__button:hover {
