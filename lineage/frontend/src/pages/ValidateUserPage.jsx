@@ -9,6 +9,9 @@ export const ValidateUserPage = ()=> {
   const {registrationCode} = useParams();
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [title, setTitle] = useState("");
+  const [page, setPage] = useState("");
+  const [message, setMessage] = useState("");
   // console.log(registrationCode);
 
   const handleSubmit = async(e)=> {
@@ -16,6 +19,9 @@ export const ValidateUserPage = ()=> {
     setError("");
     try {
       await validateRegistrationCodeService(registrationCode);
+      setTitle("Validación de cuenta");
+      setPage("ValidateUserPage")
+      setMessage("Tu cuenta se ha activado con éxito")
       setShowModal(true);
     } catch (err) {
       setError(err.message);
@@ -31,8 +37,8 @@ export const ValidateUserPage = ()=> {
         <button className="form__button--val-reg-code">Activar cuenta</button>
       </form>
       {showModal && (
-        <Modal setShowModal={setShowModal} title="Cuenta activa">
-          <Message message="Tu cuenta ya ha sido activada" type="data"/>
+        <Modal setShowModal={setShowModal} title={title} page={page}>
+          <Message message={message} type="data"/>
         </Modal>
       )}
       
