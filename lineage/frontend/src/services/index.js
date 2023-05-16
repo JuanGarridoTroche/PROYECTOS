@@ -57,7 +57,7 @@ export const registerUserService = async (newUser) => {
   const json = await response.json();
   if (!response.ok) {
     throw new Error(json.message);
-  }  
+  }
 };
 
 // Validar cuenta de usuario con el registrationCode que te ha llegado a tu correo
@@ -91,11 +91,30 @@ export const getLoggedUserDataService = async (token) => {
     }
   );
   const json = await response.json();
-  
+
   if (!response.ok) {
     throw new Error(json.message);
   }
   return json.data;
 };
 
-
+// Actualizar los datos de perfil del usuario logueado
+export const updateLoggedUserDataService = async (token, data) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}:${
+      import.meta.env.VITE_BACKEND_PORT
+    }/users/updateUserProfile`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+};

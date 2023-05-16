@@ -10,7 +10,7 @@ const updateActivationSolicitude = async(req, res, next)=> {
     
     // Comprobar que el email enviado tiene la cuenta desactivada
     const user = await selectUserByEmailQuery(email);
-    console.log(user);
+    
     if(user.active) throw generateError("La cuenta está activa", 400)
     
     // Generamos registrationCode

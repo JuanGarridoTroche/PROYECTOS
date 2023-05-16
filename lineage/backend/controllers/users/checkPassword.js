@@ -3,16 +3,16 @@
 const getConnection = require("../../BBDD/getConnection");
 const bcrypt = require("bcrypt");
 const { generateError } = require("../../helpers");
-const selectUserByEmailQuery = require("../../queries/users/selectUserByEmailQuery");
+const selectUserByIdQuery = require("../../queries/users/selectUserByIdQuery");
 
 
-const checkPassword = async (password, email) => {
+const checkPassword = async (password, id) => {
   let connection;
   try {
     connection = await getConnection();
 
     //Vamos a comprobar que existe el email en nuestra base de datos
-    const user = await selectUserByEmailQuery(email);
+    const user = await selectUserByIdQuery(id)
 
     //Comprobamos que la contraseña es válida
     const validPassword = await bcrypt.compare(password, user.password);

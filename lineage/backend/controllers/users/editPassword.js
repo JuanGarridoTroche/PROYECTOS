@@ -23,7 +23,7 @@ const editPassword = async (req, res, next) => {
     }
 
     // Comprobamos que la password es la correcta en nuestra BBDD
-    await checkPassword(password, req.user.email);
+    await checkPassword(password, req.user.id);
 
     // Validamos la nueva contraseña
     const myPwd = newPassword.split('');

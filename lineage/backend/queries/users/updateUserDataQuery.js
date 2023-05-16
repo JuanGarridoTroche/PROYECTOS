@@ -1,6 +1,6 @@
 const getConnection = require("../../BBDD/getConnection");
 
-const updateUserDataQuery = async ({id, first_name, last_name1, last_name2}) => {
+const updateUserDataQuery = async ({id, newEmail, first_name, last_name1, last_name2}) => {
   let connection;
 
   try {
@@ -8,8 +8,8 @@ const updateUserDataQuery = async ({id, first_name, last_name1, last_name2}) => 
 
     // Actualizamos el usuario
     await connection.query(
-      `UPDATE users SET first_name = ?, last_name1 = ?, last_name2 = ?, modifiedAt = ? WHERE id = ?`,
-      [first_name, last_name1, last_name2, new Date(), id]
+      `UPDATE users SET email= ?, first_name = ?, last_name1 = ?, last_name2 = ?, modifiedAt = ? WHERE id = ?`,
+      [newEmail, first_name, last_name1, last_name2, new Date(), id]
     )
     
   } finally {

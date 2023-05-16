@@ -1,6 +1,6 @@
 import ('../../css/Modal.css');
 import { useNavigate } from "react-router-dom";
-export const Modal = ({title, children, setShowModal}) => {
+export const Modal = ({title, children, setShowModal, page}) => {
   const navigate = useNavigate();
   // console.log("Título: ", title);
   // console.log("Children: ", children);
@@ -26,7 +26,7 @@ export const Modal = ({title, children, setShowModal}) => {
           <button
             onClick={() => {
               setShowModal(false);
-              navigate("/login")
+              page === "RegisterPage" ? navigate("/login") : null;
             }}
           >
             Informado

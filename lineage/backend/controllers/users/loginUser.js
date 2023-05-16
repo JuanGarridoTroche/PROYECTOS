@@ -29,6 +29,10 @@ const loginUser = async (req, res, next) => {
     // Comprobamos que existe el usuario por medio del email en nuestra BBDD
     const user = await selectUserByEmailQuery(email);
 
+    if (user.length < 1) {
+      throw generateError("credenciales inválidas", 403);
+    }
+
     // Comprobamos que el usuario está activo
     if(!user.active) {
       throw generateError("El usuario no está activo", 401);
@@ -55,7 +59,6 @@ const loginUser = async (req, res, next) => {
     const tokenInfo = {
       id: user.id,
       role: user.role,
-      email: user.email,
       active: user.active,
     }
 

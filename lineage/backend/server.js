@@ -59,7 +59,7 @@ app.put('/users/register/validate/:registrationCode', validateUser);
 app.put("/users/login/solicitude", updateActivationSolicitude);
 
 // Actualizar datos del usuario
-app.put("/users/editUser", isAuth, updateUserProfile);
+app.put("/users/updateUserProfile", isAuth, updateUserProfile);
 
 // Actualizar contraseña de usuario estando logueado
 app.put("/users/editPassword", isAuth, editPassword);

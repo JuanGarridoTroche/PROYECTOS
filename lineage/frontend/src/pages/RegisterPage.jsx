@@ -140,7 +140,7 @@ export const RegisterPage = () => {
         </form>
       </section>
       {showModal && (
-        <Modal setShowModal={setShowModal} title="Usuario creado!">
+        <Modal setShowModal={setShowModal} title="Usuario creado!" page="RegisterPage">
           <Message message="Revisa tu correo para activar la cuenta en Lineage" type="data"/>
         </Modal>
       )}

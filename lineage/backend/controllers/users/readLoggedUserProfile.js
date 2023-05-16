@@ -1,11 +1,11 @@
-const selectUserByEmailQuery = require("../../queries/users/selectUserByEmailQuery");
+const selectUserByIdQuery = require("../../queries/users/selectUserByIdQuery");
 
 
 const readLoggedUserProfile = async (req, res, next) => {
-  const {email} = req.user;
+  const {id} = req.user;
   try {
     // Accedo a los datos del usuario:
-    const user = await selectUserByEmailQuery(email);
+    const user = await selectUserByIdQuery(id);
     
     
     

@@ -18,15 +18,23 @@ function App() {
           {/* INICIO */}
           <Route path="/" element={<HomePage />} />
 
-          {/* LOGIN */}
+          {/* LISTADO DE USUARIOS */}
           <Route path="/users" element={<Users />} />
+
+          {/* REGISTER */}
           <Route path="/register" element={<RegisterPage />} />
+
+          {/* LOGIN */}
           <Route path="/login" element={<LoginPage />} />
+
+          {/* ACTUALIZAR LOS DATOS DE TU PERFIL */}
           <Route path="/users/profile" element={<UserProfilePage/>} />
+          {/* VALIDAR TU USUARIO RECIÉN CREADO CON EL REGISTRATIONCODE QUE TE LLEGA A TU CORREO */}
           <Route
             path="/users/register/validate/:registrationCode"
             element={<ValidateUserPage />}
           />
+          {/* 404 NOT FOUND */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
