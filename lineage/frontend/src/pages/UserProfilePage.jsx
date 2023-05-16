@@ -34,13 +34,14 @@ export const UserProfilePage = () => {
   }
 
   return (
-    <section className="section--profile">      
-      <section className="section--profile__section--content">
+    <section className="profile"> 
+      <h2 className="profile__header">Perfil de usuario</h2>    
+      <section className="profile__content">
         {error ? <Message message={error} type="error"/> : null}
-        <form className="section-main__form form" onSubmit={handleSubmit}>
-          <fieldset className="form__fieldset form__fieldset--email fieldset--email">
-            <h3 className="h3 fieldset__h3--email">Correo electrónico</h3>
-            <label htmlFor="email" className="label fieldset__label--email">
+        <form className="profile__form" onSubmit={handleSubmit}>
+          <fieldset className="profile__fieldset profile__fieldset__email profile__email">
+            <h3 className="profile__title profile__email__title">Correo electrónico</h3>
+            <label htmlFor="email" className="profile__label profile__email__label">
               Escribe tu dirección de correo electrónico
             </label>
             <input
@@ -50,13 +51,13 @@ export const UserProfilePage = () => {
               autoComplete="on"
               placeholder="correo@electronico.com"
               required
-              className="input fieldset__input fieldset__input--email"
+              className="profile__input profile__email__input"
               onChange={(e) => setEmail(e.target.value)}
             />
           </fieldset>
-          <fieldset className="form__fieldset form__fieldset--password fieldset--password">
-            <h3 className="h3 fieldset__h3--password">Contraseña</h3>
-            <label htmlFor="password" className="label fieldset__label--password">
+          <fieldset className="profile__fieldset profile__fieldset__password profile__password">
+            <h3 className="profile__title profile__password__title">Contraseña</h3>
+            <label htmlFor="password" className="profile__label profile__password__label">
               Debe tener como mínimo 8 caracteres y contener al menos un caracter en mayúsculas, minúsculas, un número y un caracter especial (!@#$%&*)
             </label>
             <input
@@ -65,13 +66,13 @@ export const UserProfilePage = () => {
               id="password"
               autoComplete="on"
               required
-              className="input fieldset__input fieldset__input--password"
+              className="profile__input profile__password__input"
               onChange={(e)=> setPassword(e.target.value)}
             />
           </fieldset>
-          <fieldset className="form__fieldset form__fieldset--first_name fieldset--first-name">
-            <h3 className="h3 fieldset__h3--first_name">Nombre</h3>
-            <label htmlFor="first_name" className="label fieldset__label--first-name">
+          <fieldset className="profile__fieldset profile__fieldset__name profile__name">
+            <h3 className="profile__title profile__name__title">Nombre</h3>
+            <label htmlFor="first_name" className="profile__label profile__name__label">
               Escribe tu nombre
             </label>
             <input
@@ -81,13 +82,13 @@ export const UserProfilePage = () => {
               autoComplete="on"
               placeholder="Nombre"
               required
-              className="input fieldset__input fieldset__input--first-name"
+              className="profile__input profile__name__input"
               onChange={(e)=> setFirstName(e.target.value)}
             />
           </fieldset>
-          <fieldset className="form__fieldset form__fieldset--last_name1 fieldset--last-name1">
-            <h3 className="h3 fieldset__h3--last_name1">Apellidos</h3>
-            <label htmlFor="last_name1" className="label fieldset__label--last-name1">
+          <fieldset className="profile__fieldset profile__fieldset__surname profile__surname">
+            <h3 className="profile__title profile__last-name1__title">Apellidos</h3>
+            <label htmlFor="last_name1" className="profile__label profile__last-name1__label">
               Escribe tus apellidos
             </label>
             <div className="surname">
@@ -98,10 +99,10 @@ export const UserProfilePage = () => {
                 autoComplete="on"
                 placeholder="Primer apellido"
                 required
-                className="input fieldset__input fieldset__input--last-name1"
+                className="profile__input profile__last-name1__input"
                 onChange={(e) => setLastName1(e.target.value)}
               />
-            <label htmlFor="last_name2" className="label fieldset__label--last-name2" hidden>
+            <label htmlFor="last_name2" className="profile__label profile__last-name2__label" hidden>
               Escribe tu segundo apellido
             </label>                
               <input
@@ -110,14 +111,14 @@ export const UserProfilePage = () => {
                 id="last_name2"
                 autoComplete="on"
                 placeholder="Segundo apellido"
-                className="input fieldset__input fieldset__input--last-name2"
+                className="profile__input profile__last-name2__input"
                 required
                 onChange={(e) => setLastName2(e.target.value)}
               />
             </div>
           </fieldset>
-          <button className="section-main__form__button section-main__button button">Registrar</button>
-          <p className="section-main__form__p--login p--login">¿Ya tienes una cuenta? <Link to={"/login"}>iniciar sesión</Link></p>
+          <button className="profile__form__button">Registrar</button>
+          <p className="profile__form__p__login profile__login">¿Ya tienes una cuenta? <Link to={"/login"} className="profile__p__link profile__link">iniciar sesión</Link></p>
         </form>
     </section>
       {showModal && (
