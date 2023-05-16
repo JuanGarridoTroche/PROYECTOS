@@ -20,7 +20,6 @@ export const LoginPage = () => {
     try {
       // Guardamos en data el token
       const data = await loginUserService(email, password);
-      // console.log(data.tokenLng);
       login(data.tokenLng);
       navigate("/")
     } catch (err) {
