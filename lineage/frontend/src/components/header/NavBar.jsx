@@ -7,6 +7,11 @@ export const NavBar = ()=> {
   
   return (
     <nav className="menu-header-navbarInfo">
+      {authorizedUser?.role === "admin" && token ? (      
+        <menu className="menu__ul--admin">
+          <li className="menu__li--admin"><Link to="/admin/roles">usuarios</Link></li>
+        </menu>
+      ) : (null)}
       <ul className="menu-header-navbarAuth">
         {authorizedUser && token ? (
         <>

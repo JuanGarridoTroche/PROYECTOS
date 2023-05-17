@@ -54,6 +54,13 @@
   flex-basis: 80%;
 }
 
+.menu-header-navbarInfo .menu__ul--admin {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: .5rem;
+}
+
 
 /*? #################################################### ?*/
 /*? ## Menú de cabecera - Navbar - Authorization Name ## ?*/
