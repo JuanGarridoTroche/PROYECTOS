@@ -1,0 +1,36 @@
+{
+  "name": "template-users",
+  "version": "1.0.0",
+  "description": "plantilla para react con la parte de usuarios realizada",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "lineage"
+  ],
+  "author": "Juan Garrido Troche",
+  "license": "ISC",
+  "homepage": "https://github.com/JuanGarridoTroche/PROYECTOS/react-template-users#readme",
+  "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-plugin-react": "^7.32.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.2.4",
+    "nodemailer": "^6.9.1",
+    "randomstring": "^1.2.3",
+    "uuid": "^9.0.0"
+  }
+}

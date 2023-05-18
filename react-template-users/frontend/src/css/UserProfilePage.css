@@ -1,0 +1,187 @@
+
+
+.profile {
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__header {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding-bottom: 20px;
+  color: var(--color-green);
+}
+
+
+.profile__content > .profile__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 550px;
+  width: 100%;
+}
+
+.profile__form .profile__fieldset {
+  border: none;
+  width: 100vw;
+}
+
+.profile__form .profile__fieldset .profile__title {  
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgb(155, 155, 155);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.profile__form .profile__fieldset .profile__label {
+  color: rgb(155, 155, 155);
+  font-size: 1.2rem;
+  padding-top: 3px;
+}
+
+.profile__fieldset .profile__input  {
+  padding: 7px;
+  border: 1px  solid rgb(155, 155, 155);
+  border-radius: 4px;
+  margin: 5px 5px 5px 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.profile__fieldset .profile__password__input{
+  padding: 5px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.section__password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.section__password .section__password--orig {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-basis: 50%;
+  align-self: flex-start;
+}
+
+.section__password .profile__password__input--newPassword {
+  flex-basis: 50%;
+}
+
+.profile__content .profile__form .profile__form__button {
+  border: none;
+  background-color: var(--color-green);
+  color: white;
+  padding: 10px;
+  width: 70%;
+  max-width: 220px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.profile__content .profile__form .profile_button--password {
+  width: 40%;
+  min-width: 150px;
+}
+
+.profile__content .profile__form .profile__login {
+  font-size: 1.4rem;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+}
+
+.profile__content .profile__form .profile__login .profile__link {
+  color: var(--color-green);
+  font-weight: 800;
+}
+
+.profile__content .profile__form .profile__login .profile__link::after {
+  content: ' ▶️';
+}
+
+
+@media(min-width: 550px) {
+
+  .profile {
+    width: 60vw;
+    width: 100%;
+    min-height: 70vh;
+  }
+
+  .profile__header {
+    font-size: 3.4rem;
+  }
+
+  .profile__form .profile__fieldset .profile__title {  
+    font-size: 2rem;
+  }
+  .profile__form .profile__fieldset .profile__label {
+    font-size: 1.4rem;
+  }
+
+  .profile__form .profile__fieldset .profile__input  {
+    font-size: 1.6rem;
+  }
+
+  .profile__form .profile__fieldset .surname {
+    display: flex;
+  }
+
+  .profile__content .profile__form .profile__form__button {
+    margin-top: 20px;
+    padding: 15px;
+    max-width: 220px;
+  }
+
+  .profile__content .profile__form .profile__login {
+    font-size: 1.6rem;
+  }
+
+  .section__password {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .section__password .section__password--orig {
+    flex-basis: unset;
+  }
+  
+  .section__password .profile__password__input--newPassword {
+    flex-basis: 50%;
+  }
+}
+
+@media(min-width: 880px) {
+
+  .profile__form .profile__fieldset .profile__title {  
+    font-size: 2rem;
+  }
+
+  .profile__form .profile__fieldset .profile__input.profile__last-name1__input, .profile__form .profile__fieldset .profile__input.profile__last-name2__input {
+    max-width: 430px;
+  }
+
+  .profile__content > .profile__form > .profile__form__button {
+    cursor: pointer;
+    font-size: 1.8rem;
+    padding: 12px;
+    max-width: 180px;
+  }
+
+  .profile__content > .profile__form > .profile__form__button:hover {
+    opacity: .7;
+  }
+}
