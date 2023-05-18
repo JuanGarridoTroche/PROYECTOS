@@ -8,6 +8,7 @@ import { Users } from "./components/main/Users";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ValidateUserPage } from "./pages/ValidateUserPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
+import { RecoverPasswordPage } from "./pages/RecoverPasswordPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             path="/users/register/validate/:registrationCode"
             element={<ValidateUserPage />}
           />
+          <Route path="/users/password/solicitude" element={<RecoverPasswordPage/>} />
           {/* 404 NOT FOUND */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
