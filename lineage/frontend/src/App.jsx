@@ -8,7 +8,8 @@ import { Users } from "./components/main/Users";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ValidateUserPage } from "./pages/ValidateUserPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
-import { RecoverPasswordPage } from "./pages/RecoverPasswordPage";
+import { RecoverPasswordSolicitudePage } from "./pages/RecoverPasswordSolicitudePage";
+import { ChangePasswordWithPassCode } from "./pages/ChangePasswordWithPassCode";
 
 function App() {
   return (
@@ -35,7 +36,11 @@ function App() {
             path="/users/register/validate/:registrationCode"
             element={<ValidateUserPage />}
           />
-          <Route path="/users/password/solicitude" element={<RecoverPasswordPage/>} />
+          <Route path="/users/password/solicitude" element={<RecoverPasswordSolicitudePage/>} />
+
+          {/* Escribir nueva contraseña junto con el Recover password code */}
+          <Route path="/users/password/recover/:recoverPassCode" element={<ChangePasswordWithPassCode/>} />
+
           {/* 404 NOT FOUND */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

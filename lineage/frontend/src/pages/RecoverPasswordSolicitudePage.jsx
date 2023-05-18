@@ -5,7 +5,7 @@ import { Message } from "../components/main/Message";
 
 import("../css/RecoverPassword.css");
 
-export const RecoverPasswordPage = () => {
+export const RecoverPasswordSolicitudePage = () => {
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
@@ -35,7 +35,7 @@ export const RecoverPasswordPage = () => {
         <button className="recover-pwd__form__button">Enviar</button>
       </form>
       {showModal && (
-        <Modal setShowModal={setShowModal} title="Enviado correo de recuperación de contraseña" page="RecoverPasswordPage">
+        <Modal setShowModal={setShowModal} title="Enviado correo de recuperación de contraseña" page="RecoverPasswordSolicitudePage">
           <Message message="Revisa tu correo para modificar tu contraseña en Lineage" type="data"/>
         </Modal>
       )}
