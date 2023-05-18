@@ -30,6 +30,7 @@ export const Modal = ({title, children, setShowModal, page}) => {
               if(page === "RegisterPage"){ navigate("/login")};
               if(page === "updatePasswordPage"){logout(); navigate("/login")};
               if(page === "ValidateUserPage"){logout(); navigate("/login")};
+              if(page=== "RecoverPasswordPage") {logout(); navigate("/login")};
             }}
           >
             Informado

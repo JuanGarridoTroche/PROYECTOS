@@ -39,7 +39,7 @@ const sendRecoverPassword = async (req, res, next) => {
     
     <img src="https://picsum.photos/150/150" style="margin: 0 auto;"/>
 
-    Se ha solicitado la recuperación de la contraseña para este email en Lineage. Utiliza el siguiente código para crear una nueva contraseña: <a href="http://localhost:3000/users/password/recover" alt="recover">${recoverPassCode}</a>
+    Se ha solicitado la recuperación de la contraseña para este email en Lineage. Utiliza el siguiente código para crear una nueva contraseña: <a href="http://localhost:5173/users/password/recover" alt="recover">${recoverPassCode}</a>
 
     Si no lo has solicitado, ignora este correo.`;
 
