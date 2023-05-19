@@ -24,7 +24,7 @@ export const ChangePasswordWithPassCode = () => {
       });
       setShowModal(true);
     } catch (err) {
-      throw new Error(err.message);
+      setError(err.message);
     }
   };
 
