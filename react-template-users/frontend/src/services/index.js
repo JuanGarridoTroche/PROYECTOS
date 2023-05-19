@@ -144,3 +144,41 @@ export const updatePasswordService = async ({
     throw new Error(json.message);
   }  
 };
+
+// Solicitar reescribir contraseña enviando link al email con el que te registraste
+export const recoverPasswordSolicitudeService = async(email) => {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/users/password/solicitude`,
+  {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({email}),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+  return json.data;
+} 
+
+// Cambio de contraseña con el recoverPassCode
+export const changePasswordWithPassCodeService = async({recoverPassCode, newPassword, newPasswordRepeated}) => {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/users/password/recover`,
+  {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({recoverPassCode, newPassword, newPasswordRepeated}),
+  });
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
+  }  
+}
+

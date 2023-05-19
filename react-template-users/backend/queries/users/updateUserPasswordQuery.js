@@ -12,7 +12,7 @@ const updateUserPasswordQuery = async (password, id) => {
 
     // Actualizamos el usuario
     await connection.query(
-      `UPDATE users SET password = ?, recoverPassCode = null, active = 1,  modifiedAt = ? WHERE id = ?`,
+      `UPDATE users SET password = ?, recoverPassCode = null, active = 1, tries = 0,  modifiedAt = ? WHERE id = ?`,
       [hashPass, new Date(), id]
     )
     

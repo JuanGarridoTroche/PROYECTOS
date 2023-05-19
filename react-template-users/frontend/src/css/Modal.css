@@ -1,7 +1,7 @@
 .modalBg {
   background-color: rgba(0, 0, 0, 70%);
   position: fixed;
-  top: -200px;
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -10,7 +10,7 @@
 }
 
 .modalContainer {
-  width: 60vw;
+  width: 80vw;
   height: 30vh;
   background-color: white;
   color: black;
@@ -20,6 +20,7 @@
   justify-content: center;
   align-items: center;
   color: var(--color-brand);
+  text-align: center;
 }
 .modalContainer h2 {
   text-transform: uppercase;
@@ -44,4 +45,12 @@
   width: 120px;
   height: 20px;
   margin-top: 50px;
+}
+
+@media(min-width: 880px) {
+  .modalBg {
+    background-color: rgba(0, 0, 0, 80%);
+    top: 0;
+    cursor: pointer;
+  }
 }
