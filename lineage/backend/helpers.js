@@ -2,6 +2,7 @@ const fs = require("fs/promises");
 const path = require("path");
 const sharp = require("sharp");
 const nodemailer = require('nodemailer');
+const { v4: uuid } = require("uuid");
 const { SIB_SMTP_USER, SIB_SMTP_PASS, UPLOADS_DIR } = process.env;
 
 /*
@@ -48,26 +49,48 @@ const sendMail = async (to, subject, text) => {
   await transport.sendMail(mailOptions);
 };
 
-module.exports = { generateError , sendMail};
 
 
 
 
 /*
- * ################
- * ## Save photo ##
- * ################
- */
+* ################
+* ## Save photo ##
+* ################
+*/
 
 const savePhoto = async (img, imgType = 0) => {
   const uploadsPath = path.join(__dirname, UPLOADS_DIR)
-
+  
   try {
     await fs.access(uploadsPath);
   } catch {
     await fs.mkdir(uploadsPath);
   }
-
+  
   // Creamos un objeto sharp a partir de la imagen que quiere subir el usuario
   const sharpImg = sharp(img.data);
+  
+  // Comprobamos si es foto de perfil o de un escudo
+  if(!imgType) {
+    // Redimensionamos a 200px, foto de perfil
+    sharpImg.resize(200);
+  } else {
+    // Redimensionamos a 600px, foto de escudo
+    sharpImg.resize(600)
+  }
+
+  // Generamos un nuevo nombre a la imagen
+  const imgName = `${uuid()}.jpg`;
+  
+  // Sacamos la ruta completa de la imagen
+  const imgPath = path.join(uploadsPath, imgName);
+  
+  // Guardamos la imagen en la carpeta assets
+  await sharpImg.toFile(imgPath);
+  
+  // Devolvemos el nombre creado para la imagen
+  return imgName;
 }
+
+module.exports = { generateError , sendMail, savePhoto};

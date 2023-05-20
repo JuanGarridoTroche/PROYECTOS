@@ -90,7 +90,6 @@ app.get("/users/:idUser", readUserProfile);
 * #############################
 */
 const createLineage = require('./controllers/lineages');
-const fileUpload = require('express-fileupload');
 
 // Crear un nuevo Linaje 
 app.post("/lineages/create", createLineage)
