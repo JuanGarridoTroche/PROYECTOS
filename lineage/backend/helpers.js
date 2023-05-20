@@ -1,5 +1,8 @@
+const fs = require("fs/promises");
+const path = require("path");
+const sharp = require("sharp");
 const nodemailer = require('nodemailer');
-const { SIB_SMTP_USER, SIB_SMTP_PASS } = process.env;
+const { SIB_SMTP_USER, SIB_SMTP_PASS, UPLOADS_DIR } = process.env;
 
 /*
  * ###################
@@ -46,3 +49,25 @@ const sendMail = async (to, subject, text) => {
 };
 
 module.exports = { generateError , sendMail};
+
+
+
+
+/*
+ * ################
+ * ## Save photo ##
+ * ################
+ */
+
+const savePhoto = async (img, imgType = 0) => {
+  const uploadsPath = path.join(__dirname, UPLOADS_DIR)
+
+  try {
+    await fs.access(uploadsPath);
+  } catch {
+    await fs.mkdir(uploadsPath);
+  }
+
+  // Creamos un objeto sharp a partir de la imagen que quiere subir el usuario
+  const sharpImg = sharp(img.data);
+}

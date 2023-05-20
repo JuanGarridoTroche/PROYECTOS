@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const fileupload = require("express-fileupload")
 const isAuth = require("./middlewares/isAuth");
-const { BACK_PORT, BACK_HOST } = process.env;
+const { BACK_PORT, BACK_HOST, UPLOADS_DIR } = process.env;
 
 const app = express();
 
@@ -24,7 +25,10 @@ app.use(express.json());
 app.use(cors());
 
 // Permite tener acceso a la carpeta de assets de manera pública
-app.use('/assets', express.static('./assets'));
+app.use('/assets', express.static(UPLOADS_DIR));
+
+// Deserializa el body con form-data
+app.use(fileupload());
 
 /*
  * ##########################
@@ -78,6 +82,18 @@ app.get("/users/list", readUsersList);
 
 // Mostrar los datos de un usuario como invitado
 app.get("/users/:idUser", readUserProfile);
+
+
+/*
+* #############################
+* ##    RUTAS DE LINEAGES    ##
+* #############################
+*/
+const createLineage = require('./controllers/lineages');
+const fileUpload = require('express-fileupload');
+
+// Crear un nuevo Linaje 
+app.post("/lineages/create", createLineage)
 
 
 /*
