@@ -17,7 +17,8 @@ const createLineage = async (req, res, next) => {
         photos.push(photoName)
 
         // Guardamos el nombre de la foto en el registro de la BBDD
-        await insert
+        // ¿Hay que crear otra tabla solo para la imagen del escudo?
+        // await insertPhotoQuery(photoName, idNews)
       }
     }
     
