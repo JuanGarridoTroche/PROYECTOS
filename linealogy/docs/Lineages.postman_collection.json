@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "7d6ba91e-058e-49b2-8a21-92f4ca6bcdc9",
+		"name": "Lineages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "user login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"annwhogar@gmail.com\",\r\n    \"password\": \"Lineag3%\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"annwhogar@gmail.com\",\r\n    \"password\": \"Lineag3$\",\r\n    \"first_name\": \"Carlos\",\r\n    \"last_name1\": \"Álvarez\",\r\n    \"last_name2\": \"López\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activa tu cuenta de usuario con registrationcode que te ha llegado al correo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/users/register/validate/0ec32dfe-b014-44df-8845-e799657fe767",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"register",
+								"validate",
+								"0ec32dfe-b014-44df-8845-e799657fe767"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitud de validación de cuenta de usuario por email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"annwhogar@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/login/solicitude",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"login",
+								"solicitude"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user data",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{juan@darthvader.es}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"\",\r\n    \"last_name1\": \"\",\r\n    \"last_name2\": \"Piedra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/editUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"editUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{annwhogar@gmail.com}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Lineag3%\",\r\n    \"newPassword\": \"Lineag3$\",\r\n    \"newPasswordRepeated\": \"Lineag3$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/editPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"editPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperación de contraseña",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"recoverPassCode\": \"iZ3hErkAxOzuj3de\",\r\n    \"newPassword\": \"Lineag3$\",\r\n    \"newPasswordRepeated\": \"Lineag3$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitud de cambio de contraseña con envío al email de Pass Code",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"annwhogar@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/users/password/solicitude",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"password",
+								"solicitude"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Logged user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{annwhogar@gmail.com}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "juan@darthvader.es",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "annwhogar@gmail.com",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

@@ -1,0 +1,125 @@
+.section-main {
+  padding-top: 70px;
+}
+
+.section-main__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.8rem;
+  color: var(--color-brand);
+  padding: 30px 12px;
+  text-align: center;
+}
+.g {
+  color: var(--color-green);
+}
+
+.section-main__details > p {
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+/* .summary::marker {
+  content: "➡️";
+} */
+
+/* details[open] summary::marker {
+  content: "⬇️"
+} */
+
+section.section-main__section-content.section-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section.section-content > .error {
+  color: red;
+}
+
+.section-content > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50vw;
+}
+
+.section-content > form label {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.section-content > form label:last-of-type {
+  padding-top: 20px;
+} 
+
+.section-content > form input {
+  padding: 14px;
+  border: 1px  solid rgb(155, 155, 155);
+  border-radius: 4px;
+  margin: 5px;
+  width: 100%;
+  max-width: 220px;
+}
+
+.section-content > form > button {
+  border: none;
+  background-color: var(--color-green);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  max-width: 220px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.section-main__section-dont-forget.section-dont-forget {
+  font-size: 1.4rem;
+}
+
+.section-dont-forget > p.link {
+  padding: 15px;
+  background-color: transparent;
+  color: var(--color-black);  
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 13px 1px rgba(255, 255, 255, .9);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  width: 100%;
+
+}
+
+.section-dont-forget > p.link > button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-logo);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section-dont-forget > p.link > a {
+  text-decoration: none;
+  color: var(--color-green);
+  font-weight: 800;  
+}
+
+.error-message {
+  color: red;
+  font-size: 1.8rem;
+  font-family: var(--font-text);
+}
+
+@media(min-width: 700px) {
+  .section-content > form > button:hover {
+    opacity: .7;
+  }
+
+  .section-content > form > button {
+    cursor: pointer;
+  }
+}

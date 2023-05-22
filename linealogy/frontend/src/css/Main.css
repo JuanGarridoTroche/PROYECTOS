@@ -1,0 +1,62 @@
+/** ############################## **/
+/** ## FIRST MOBILE - MAIN PAGE ## **/
+/** ############################## **/
+
+/** ######################## **/
+/** ##   MAIN CONTAINER   ## **/
+/** ######################## **/
+.main-container {
+  /* display: grid; */
+  /* min-height: 100vh; */
+  /* position: absolute; */
+  /* top: 72px; */
+  /* z-index: 1; */
+  margin: 80px 30px;
+}
+
+/*! ################### !*/
+/*! ##   MAIN - h1   ## !*/
+/*! ################### !*/
+h1 {
+  text-align: center;
+  padding: 30px 0 10px 0;
+  text-transform: uppercase;
+  color: var(--color-green);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/*! ################## !*/
+/*! ##   MAIN - P   ## !*/
+/*! ################## !*/
+.main-container > p {
+  text-align: justify;
+  padding: 10px;  
+}
+
+@media(min-width: 550px) {
+  /** ############################# **/
+  /** ##   DESKTOP - MAIN PAGE   ## **/
+  /** ############################# **/
+  .main-container {
+    margin: 80px 20px 0 20px;
+  }
+
+  /*! ################### !*/
+  /*! ##   MAIN - h1   ## !*/
+  /*! ################### !*/
+  h1 {
+    font-size: 3.4rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  /*! ################## !*/
+  /*! ##   MAIN - P   ## !*/
+  /*! ################## !*/
+  .main-container > p {
+    text-align: justify;
+    padding: 50px;
+  }
+
+}

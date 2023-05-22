@@ -1,0 +1,201 @@
+/** ################################ **/
+/** ## FIRST MOBILE - HEADER MENU ## **/
+/** ################################ **/
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 72px;
+  padding: 5px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+
+/*! ############################# !*/
+/*! ## Menú de cabecera - LOGO ## !*/
+/*! ############################# !*/
+.menu-header .menu-header-figure {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;  
+  flex-basis: 20%;
+}
+
+.menu-header .menu-header-figure .menu-header-figureLogo {
+  border-radius: 50%;
+  width: 62px;
+}
+
+
+/*! ############################# !*/
+/*! ## Menú de cabecera - NAME ## !*/
+/*! ############################# !*/
+.menu-header .menu-header-figure .menu-header-figureName {
+  display: none;
+}
+
+/*! ############################### !*/
+/*! ## Menú de cabecera - Navbar ## !*/
+/*! ############################### !*/
+.menu-header>.menu-header-navbarInfo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  flex-basis: 80%;
+}
+
+.menu-header-navbarInfo .menu__ul--admin {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: .5rem;
+}
+
+
+/*? #################################################### ?*/
+/*? ## Menú de cabecera - Navbar - Authorization Name ## ?*/
+/*? #################################################### ?*/
+.menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
+  font-size: 1.2rem;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+/*? ############################################## ?*/
+/*? ## Menú de cabecera - Navbar - Login/Logout ## ?*/
+/*? ############################################## ?*/
+.menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth li a {
+  border: none;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  padding: 7px;
+  border-radius: 9999px;
+  padding: 7px 15px;
+  text-decoration: none;
+}
+
+
+
+/** ########################## **/
+/** ## TABLET - HEADER MENU ## **/
+/** ########################## **/
+@media(min-width: 550px) {
+  .menu-header .menu-header-figure {
+    justify-content: flex-start;
+    flex-basis: 30%;
+  }
+
+  /*! ############################# !*/
+  /*! ## Menú de cabecera - NAME ## !*/
+  /*! ############################# !*/
+  .menu-header .menu-header-figure .menu-header-figureName {
+    display: unset;
+    font-size: 3.2rem;
+    letter-spacing: 1.2rem;
+  }
+
+  .menu-header .menu-header-figure .menu-header-figureName span {
+    color: var(--color-green);
+  }
+
+  .menu-header>.menu-header-navbarInfo {
+    flex-basis: 70%;
+  }
+    
+}
+
+
+/** ########################### **/
+/** ## DESKTOP - HEADER MENU ## **/
+/** ########################### **/
+@media(min-width: 880px) {
+
+  .menu-header {
+    width: 100vw;
+    padding: 7px;
+  }
+
+  /*! ############################# !*/
+  /*! ## Menú de cabecera - LOGO ## !*/
+  /*! ############################# !*/
+
+  .menu-header .menu-header-figure .menu-header-figureLogo {
+    cursor: pointer;
+    opacity: .8;
+  }
+
+  .menu-header .menu-header-figure .menu-header-figureLogo:hover {
+    animation-duration: .7s;
+    animation-name: logoHover;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    opacity: 1;
+  }
+
+  @keyframes logoHover {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(10deg);
+    }
+
+    50% {
+      transform: rotate(-10deg);
+    }
+
+    75% {
+      transform: rotate(10deg);
+    }
+
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /*! ############################# !*/
+  /*! ## Menú de cabecera - NAME ## !*/
+  /*! ############################# !*/
+
+  .menu-header .menu-header-figure .menu-header-figureName:hover {
+    color: var(--color-green);
+    .g {
+      color: var(--color-white);
+    }
+
+    cursor: pointer;
+  }
+
+
+  /*! ############################### !*/
+  /*! ## Menú de cabecera - Navbar ## !*/
+  /*! ############################### !*/
+
+  /*? ####################################################### ?*/
+  /*? ## Menú de cabecera - Navbar - Authorization Log/Reg ## ?*/
+  /*? ####################################################### ?*/
+
+  .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+
+  .menu-header>.menu-header-navbarInfo>.menu-header-navbarAuth li a:hover {
+    background-color: var(--color-white);
+    color: var(--color-green);
+    transition: .5s ease all;
+  }
+}

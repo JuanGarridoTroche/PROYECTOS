@@ -1,0 +1,18 @@
+.foot-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+  width: 100vw;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 1.2rem;
+  z-index: 9;
+}
+
+.foot-info>.foot-madeIn {
+  font-style: italic;
+}
