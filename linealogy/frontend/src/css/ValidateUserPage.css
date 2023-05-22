@@ -1,0 +1,51 @@
+
+
+.section--val-reg-code {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h2--val-reg-code {
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 50px;
+}
+
+.form--val-reg-code {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 90vw;
+}
+
+ .form__input--val-reg-code {
+  padding: 7px 14px;
+  border: 1px solid rgb(155, 155, 155);
+  border-radius: 4px;
+  margin: 5px 5px 5px 0;
+  width: 100%;
+  max-width: 320px;
+}
+
+.form__button--val-reg-code {
+  border: none;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media(min-width: 550px) {
+  .h2--val-reg-code {
+    font-size: 2rem;
+  }
+    
+}
