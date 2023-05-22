@@ -17,6 +17,28 @@ const generateError = (msg, status) => {
   return err;
 };
 
+/* 
+Generamos una función de control de errores en el que no le vamos a dar más info al usuario que el tipo (title) y referencia (número)
+para que contacte con el administrador.
+Ejemplo: 
+{
+  title: "Error de validación"
+  ref: 234500912065
+  statusCode: 403
+  msg: "no es una cuenta de correo válida"
+}
+
+Así, cada referencia equivaldrá a un error concreto pero el usuario solo verá el title para no dar muchas pistas al user.
+*/
+const generateMyError = ({title, ref, msg, status}) => {
+  
+  const err = new Error(msg);
+  err.title = title;
+  err.ref = ref;
+  err.statusCode = status;
+  return err;
+};
+
 /* *
  * #################################################################
  * ##  Configuración de transporte de nuestro correo electrónico  ##
@@ -93,4 +115,4 @@ const savePhoto = async (img, imgType = 0) => {
   return imgName;
 }
 
-module.exports = { generateError , sendMail, savePhoto};
+module.exports = { generateError , sendMail, savePhoto, generateMyError};
