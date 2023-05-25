@@ -17,6 +17,7 @@ const generateError = (msg, status) => {
   return err;
 };
 
+
 /* *
  * #################################################################
  * ##  Configuración de transporte de nuestro correo electrónico  ##
