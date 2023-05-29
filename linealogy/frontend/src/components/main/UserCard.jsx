@@ -14,7 +14,7 @@ export const UserCard = ({ user }) => {
       </section>
       <section className="user-card__section user-card__role role">
         <label className="user-card__label role__label">Rol: </label>
-        <p className="user-card__p role__p">{role}</p>
+        <p className={role === "admin" ? "user-card__p role__p role__p--admin" : "user-card__p role__p" }>{role}</p>
       </section>
       <section className="user-card__section user-card__active active">
         <label className="user-card__label active__label">Cuenta: </label>

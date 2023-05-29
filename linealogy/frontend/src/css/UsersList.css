@@ -1,0 +1,11 @@
+.users-list__ul {
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+  justify-content: center; 
+}
+
+.users-list__li {
+  width: 100%;
+  max-width: 360px;
+}

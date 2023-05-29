@@ -1,6 +1,3 @@
-
-
-
 .user-card{
   background-color: white;
   margin: 10px;
@@ -8,6 +5,8 @@
   border-radius: 7px;
   padding: 10px;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);  
+  min-height: 100%;
+  height: 130px;
 }
 
 .user-card__section {
@@ -22,7 +21,11 @@
 }
 
 .user-card__p {
-  
+  font-size: 1.6rem;
+}
+
+.role__p--admin {
+  color: var(--color-green);
 }
 
 .user-card__p.name {
@@ -33,5 +36,21 @@
   font-style: italic;
   color: grey;
   font-size: 1.4rem;
+  padding-top: 7px;
 }
 
+
+/** ########################## **/
+/** ## TABLET - HEADER MENU ## **/
+/** ########################## **/
+@media(min-width: 550px) {
+  
+}
+
+
+/** ########################### **/
+/** ## DESKTOP - HEADER MENU ## **/
+/** ########################### **/
+@media(min-width: 880px) {
+    
+}
