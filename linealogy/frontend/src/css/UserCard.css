@@ -35,13 +35,3 @@
   font-size: 1.4rem;
 }
 
-.user-card__section .user-card__email .email{}
-.user-card__label .email__label{}
-.user-card__p .email__p{}
-.user-card__section .user-card__role .role{}
-.user-card__label .role__label{}
-.user-card__p .role__p{}
-.user-card__section .user-card__active .active{}
-.user-card__label .active__label{}
-.user-card__p .active__p{}
-.user-card__section .user-card__createdAt .createdAt{}
