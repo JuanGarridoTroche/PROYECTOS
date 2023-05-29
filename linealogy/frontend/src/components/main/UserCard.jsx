@@ -21,7 +21,7 @@ export const UserCard = ({ user }) => {
         <p className="user-card__p active__p">{active ? "activada" : "desactivada"}</p>
       </section>   
       <section className="user-card__section user-card__createdAt createdAt">
-        <p className="user-card__p createdAt__p"> user-cardUsuario creado el {new Date(createdAt).toLocaleString()}</p>
+        <p className="user-card__p createdAt__p"> Usuario creado el {new Date(createdAt).toLocaleString()}</p>
       </section> 
     </article>
   );
