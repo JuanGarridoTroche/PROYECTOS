@@ -1,0 +1,26 @@
+
+
+
+.user-card{
+  background-color: white;
+  margin: 10px;
+  border: 1px solid var(--color-black);
+  border-radius: 7px;
+  padding: 10px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);  
+}
+
+.user-card__section .user-card__name .name{}
+.user-card__label .name__label{}
+.user-card__p .name__p{}
+.user-card__section .user-card__email .email{}
+.user-card__label .email__label{}
+.user-card__p .email__p{}
+.user-card__section .user-card__role .role{}
+.user-card__label .role__label{}
+.user-card__p .role__p{}
+.user-card__section .user-card__active .active{}
+.user-card__label .active__label{}
+.user-card__p .active__p{}
+.user-card__section .user-card__createdAt .createdAt{}
+.user-card__p .createdAt__p{}

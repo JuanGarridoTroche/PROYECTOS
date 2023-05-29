@@ -1,4 +1,4 @@
-import { User } from "./User";
+import { UserCard } from "./UserCard";
 
 export const UsersList = ({ users }) => {
   
@@ -7,7 +7,7 @@ export const UsersList = ({ users }) => {
       {users.map((user) => {
         return(        
         <li key={user.id}>
-          <User user={user} />
+          <UserCard user={user} />
         </li>
         )
       })}

@@ -1,4 +1,6 @@
-export const User = ({ user }) => {
+import ("../../css/UserCard.css");
+
+export const UserCard = ({ user }) => {
   const {first_name, last_name1, last_name2, email, role, active, createdAt} = user;
   return (
     <article className="user-card">
