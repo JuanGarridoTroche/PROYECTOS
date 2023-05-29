@@ -1,39 +1,49 @@
-import("../css/Main.css");
+import('../css/Main.css')
 
 export const HomePage = () => {
   return (
-    <section className="main-container">
-      <h1>Bienvenido a Lineage</h1>      
+    <section className='main-container'>
+      <h1>Bienvenido a Lineage</h1>
       <p>
-        Una palabra del traductor a sus amigos Yo ofrezco desnudas, vírgenes,
-        intactas y sencillas, para mis delicias y el placer de mis amigos, estas
-        noches árabes vividas, soñadas y traducidas sobre su tierra natal y
-        sobre el agua Ellas me fueron dulces durante los ocios en remotos mares,
-        bajo un cielo ahora lejano. Por eso las doy. <br />
-        Sencillas, sonrientes y llenas de ingenuidad, como la musulmana
-        Schehrazada, su madre suculenta que las dió a luz en el misterio;
-        fermentando con emoción en los brazos de un príncipe sublime —lúbrico y
-        feroz—, bajo la mirada enternecida de Alah, clemente y misericordioso.{" "}
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laudantium
+        doloribus accusamus soluta deserunt ducimus rem eos perferendis
+        consequatur ad. Similique mollitia ad ea. Sint ab odit cum asperiores
+        modi?
         <br />
-        Al venir al mundo fueron delicadamente mecidas por las manos de la
-        lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de
-        oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de
-        sus pupilas hasta la adolescencia dura, para esparcirlas después,
-        voluptuosas y libres, sobre el mundo oriental, eternizado por su
-        sonrisa. <br />
-        Yo os las entrego tales como son, en su frescor de carne y de rosa. Sólo
-        existe un método honrado y lógico de traducción: la «literalidad», una
-        literalidad impersonal, apenas atenuada por un leve parpadeo y una
-        ligera sonrisa del traductor. Ella crea, sugestiva, la más grande
-        potencia literaria. Ella produce el placer de la evocación. Ella es la
-        garantía de la verdad. Ella es firme e inmutable, en su desnudez de
-        piedra. Ella cautiva el aroma primitivo y lo cristaliza. Ella separa y
-        desata... Ella fija. <br />
-        La literalidad encadena el espíritu divagador y lo doma, al mismo tiempo
-        que detiene la infernal facilidad de la pluma. Yo me felicito de que así
-        sea; porque ¿dónde encontrar un traductor de genio simple, anónimo,
-        libre de la necia manía de su renombre?...
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam nihil
+        perferendis excepturi amet mollitia laboriosam et ut consectetur illo,
+        velit provident animi! Sit quibusdam vel illum officia, itaque eaque
+        esse? Tempora ad saepe inventore veritatis ipsa. Veritatis maiores quam
+        veniam laboriosam voluptatem accusantium aliquam reprehenderit quos
+        beatae rerum adipisci illum, aspernatur ipsum illo voluptate odio amet
+        at sed voluptatibus delectus! Aspernatur sapiente veniam id consequatur!
+        Eligendi ad laudantium placeat deleniti? Possimus nam ratione animi non
+        vitae libero eveniet, voluptatem, maxime quia pariatur cumque tempore ab
+        impedit unde explicabo adipisci. Quos? Obcaecati voluptates dignissimos
+        deserunt voluptate fugit neque, asperiores commodi explicabo odio,
+        praesentium, consectetur rerum unde quos? Hic quam unde sunt aspernatur
+        nulla veritatis totam error iste, optio voluptate atque illo! Culpa,
+        debitis iusto vitae recusandae, nesciunt corporis dolorum obcaecati,
+        quod ipsa aliquid iure animi sint quisquam fugiat architecto! Facilis
+        harum ut sit pariatur cumque possimus ad, culpa natus alias atque.
+        Nostrum laborum voluptate deserunt numquam, rem et. Dicta vitae deleniti
+        harum nesciunt placeat iste unde mollitia, eius dolores, eum quia
+        accusantium iusto magnam veniam! Modi officia animi ratione distinctio
+        quibusdam? Eaque nesciunt corporis eligendi repellat libero
+        necessitatibus qui fuga, fugiat dolorum explicabo, alias beatae
+        doloribus eos officia nulla dolore? Eveniet quos eum est ab? Voluptates
+        libero id illo nobis! Et. Quaerat, magnam. Rerum magni similique quos
+        omnis dolorem earum soluta tempore optio dolorum sit officia
+        consequuntur a, odit voluptas cumque! Assumenda, accusantium sunt dicta
+        culpa beatae dignissimos nostrum magnam adipisci. Aperiam quod libero,
+        facilis molestiae ex laudantium ducimus cumque ipsa perspiciatis sit
+        doloribus natus! Fugit dolorem enim sunt, libero perferendis error
+        assumenda rerum, distinctio laborum dignissimos quidem id ea iure?
+        Voluptate, unde! Veniam possimus quidem aspernatur fugiat laboriosam.
+        Explicabo, ab deserunt! Velit qui earum repellendus excepturi nihil
+        laboriosam, ducimus consequatur dolorum cumque illum dolorem eveniet
+        voluptatum facilis aspernatur perspiciatis. Sapiente.
       </p>
     </section>
-  );
-};
+  )
+}
