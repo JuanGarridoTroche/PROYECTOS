@@ -2,6 +2,7 @@ const { generateError } = require("../../helpers");
 const getConnection = require("../../BBDD/getConnection");
 
 const selectUserByIdQuery = async (id) => {
+  console.log(id);
   let connection;
 
   try {
