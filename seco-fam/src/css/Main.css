@@ -1,0 +1,18 @@
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+
+}
+
+.main__pass--label {
+  padding-right: 10px;
+}
+
+.main__pass {
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 3px;
+  padding: 10px;
+}
