@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/normalize.css">
     <title>Seco</title>
 </head>
 <body>
-    <main class="main">
-        <label for="#" class="main__pass">Escribe la contraseña: </label>
-        <input type="text" class="main__pass">
-    </main>    
+  <main class="main">
+    <form action="#" method="get" class="main__form">
+      <label for="pass" class="main__pass">Escribe tu contraseña: </label>
+      <input type="password" id="pass" class="main__pass" placeholder="Introduzca contraseña" autocomplete="on" />
+      <button type="submit" class="main__button" hidden>Enviar</button>
+    </form>
+  </main>
+  <script src="./main.js"></script>  
 </body>
 </html>
