@@ -6,12 +6,14 @@ import data from "../assets/lineages.json";
 
 export const Main = ()=> {
   const [pwd, setPwd] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e)=> {
+  const handleSubmit = async(e)=> {
     e.preventDefault();
-    
+    setError("");    
     try {
-      const checkingPass = data.find(e => e.pass === pwd.toString())
+      const checkingPass = data.find(e => e.pass === pwd.toString());
+      
       if(!checkingPass){
         throw new Error("Contraseña incorrecta")
       }
@@ -25,8 +27,8 @@ export const Main = ()=> {
   return(
     <main className="main">      
       <form onSubmit={handleSubmit} action="#" method="get" className="main__form">
-        <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label>
-        <input type="password" id="pass" className="main__pass" placeholder="Introduzca contraseña" autoComplete="on" onChange={(e)=> {setPwd(e.target.value)}}/>
+        {/* <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label> */}
+        <input type="password" id="pass" className="main__pass" placeholder="Introduzca su contraseña" autoComplete="on" onChange={(e)=> {setPwd(e.target.value)}}/>
         <button className="main__button" hidden>Enviar</button>
       </form>
   </main>
