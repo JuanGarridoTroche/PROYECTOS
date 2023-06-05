@@ -1,0 +1,23 @@
+{
+  "name": "seco",
+  "version": "1.0.0",
+  "description": "descarga de ficheros pdf",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Garrido Troche",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2"
+  }
+}
