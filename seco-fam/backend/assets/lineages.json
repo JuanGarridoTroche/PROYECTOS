@@ -1,22 +1,32 @@
 [
     {
+        "id": "nD-uOe-J5S-TI",
         "lineage":"apellido 1",
-        "pass": "123456"
+        "pass": "123456",
+        "active": true
     },
     {
+        "id": "rj-6E8-SUC-4S",
         "lineage":"apellido 2",
-        "pass": "123457"
+        "pass": "123457",
+        "active": true
     },
     {
+        "id": "lt-Ghi-uSI-Th",
         "lineage":"apellido 3",
-        "pass": "123458"
+        "pass": "123458",
+        "active": true
     },
     {
+        "id": "Ec-Fyl-M07-qV",
         "lineage":"apellido 4",
-        "pass": "123459"
+        "pass": "123459",
+        "active": true
     },
     {
+        "id": "fs-VvW-X6l-hI",
         "lineage":"administrator",
-        "pass": "123450"
+        "pass": "123450",
+        "active": true
     }
 ]

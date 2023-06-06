@@ -13,6 +13,7 @@ export const Main = ()=> {
     setError("");    
     try {
       const checkingPass = data.find(e => e.pass === pwd.toString());
+      console.log("erre");
       
       if(!checkingPass){
               
@@ -31,7 +32,7 @@ export const Main = ()=> {
       <form onSubmit={handleSubmit} action="#" method="get" className="main__form">
         {/* <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label> */}
         <input type="password" id="pass" className="main__pass" placeholder="Introduzca su contraseña" autoComplete="on" onChange={(e)=> {setError(""); setPwd(e.target.value)}}/>
-        <button className="main__button" hidden>Enviar</button>
+        <button className="main__button">Enviar</button>
       </form>
   </main>
   )

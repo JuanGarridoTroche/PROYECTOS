@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1 className="main__title">Web de Seco</h1>
+      <h1 className="main__title">Familia Seco</h1>
       <Routes>
         <Route path='/' element={<Main />}/>
       </Routes>

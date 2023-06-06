@@ -10,6 +10,10 @@
   line-height: 1.1;
   text-align: center;
   text-transform: uppercase;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-weight: 600;
 }
+
 
 

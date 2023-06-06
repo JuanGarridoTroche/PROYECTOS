@@ -7,14 +7,20 @@
   min-height: 90vh;
 }
 
+.main__error {
+  color: rgb(165, 10, 10);
+  font-weight: 600;
+}
+
 .main__form {  
   width: 450px;
   height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
-
 
 .main__pass--label {
   padding-right: 10px;
@@ -34,7 +40,13 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.main__error {
-  color: rgb(165, 10, 10);
-  font-weight: 600;
+.main__button {
+  padding: 7px;
+  min-width: 70px;
+}
+
+@media (min-width: 880px) {
+  .main__button {
+    display: none;
+  }
 }
