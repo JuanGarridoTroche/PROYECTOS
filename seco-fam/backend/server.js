@@ -32,10 +32,10 @@ app.use(cors());
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, loginUser } = require("./controllers/users");
+const { showLineage, login } = require("./controllers/users");
 app.get("/", showLineage);
 
-app.post("/", loginUser);
+app.post("/", login);
 
 
 

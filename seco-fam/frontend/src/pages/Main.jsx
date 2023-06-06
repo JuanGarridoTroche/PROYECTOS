@@ -13,7 +13,7 @@ export const Main = ()=> {
     setError("");    
     try {
       const checkingPass = data.find(e => e.pass === pwd.toString());
-      console.log("erre");
+      
       
       if(!checkingPass){
               
