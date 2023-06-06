@@ -1,6 +1,8 @@
+const data = require("../../assets/lineages.json")
 
 const showLineage = async (req, res, next)=> {
     try {
+      // Mostrar los nobres de todas las familias
 
       res.send({
           status: "Ok",
