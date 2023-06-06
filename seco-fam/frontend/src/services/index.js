@@ -15,5 +15,5 @@ export const loginUserService = async(lineage, password)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-  return json.data.lineage;
+  return json.data;
 }

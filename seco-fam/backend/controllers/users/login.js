@@ -1,9 +1,12 @@
 const {generateError} = require("../../helpers");
 const bcrypt = require('bcrypt');
-const data = require("../../assets/lineages.json")
+const jwt = require("jsonwebtoken");
+const data = require("../../assets/lineages.json");
+const { check } = require("prettier");
 
 const login = async (req, res, next) => {
   const {lineage, password} = req.body;
+  let getData = [];
 
   try {
     // Comprobamos que la familia introducida existe
@@ -25,15 +28,23 @@ const login = async (req, res, next) => {
     if(!validPassword){              
       throw generateError("Datos incorrectos", 400);
     } 
-    let getData = [];
 
-    checkingLineage.lineage !== 'seco-admin' ? getData = checkingLineage.lineage : getData = [...data];
-   
-
+    
+    const tokenInfo = {
+      id: checkingLineage.id,
+      active: checkingLineage.active,
+      lineage: checkingLineage.lineage,
+    }
+    
+    const token = jwt.sign(tokenInfo, process.env.SECRET);
+    
+    checkingLineage.lineage !== 'seco-admin' ? loggedLineage = checkingLineage.lineage : loggedLineage = [...data];
+    
     res.send({
       status: "Ok",
       message: `login realizado con éxito por '${checkingLineage.lineage}'`,
-      data: getData,
+      data: {loggedLineage, token},
+      
     })
     
   } catch (err) {
