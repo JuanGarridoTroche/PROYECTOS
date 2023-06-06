@@ -19,7 +19,7 @@ export const Main = ()=> {
         throw new Error("Contraseña incorrecta");
       }
 
-      console.log("contraseña correcta para ",checkingPass);
+      console.log("Bienvenido a la familia " + checkingPass.loggedLineage);
       
     } catch (err) {
       setError(err.message);
