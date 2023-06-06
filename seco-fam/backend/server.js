@@ -28,16 +28,14 @@ app.use(cors());
 
 
 /*
- * ##########################################
- * ## RUTAS PARA  ##
- * ##########################################
+ * #####################
+ * ## RUTAS PARA USER ##
+ * #####################
  */
-app.get("/", (req, res)=> {
-    res.send({
-        status: "Ok",
-        message: "Acceso a la ruta raíz..."
-    })
-})
+const { showLineage, login } = require("./controllers/users");
+app.get("/", showLineage);
+
+app.post("/", login);
 
 
 
