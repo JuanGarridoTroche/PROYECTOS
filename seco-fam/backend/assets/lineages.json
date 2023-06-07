@@ -2,35 +2,35 @@
     {
         "id": "nD-uOe-J5S-TI",
         "lineage":"Bermúdez",
-        "pass": "l46BVZxM3yU8jRb",
+        "pdf": "l46BVZxM3yU8jRb.pdf",
         "password": "$2b$10$2q16ou.scLZBnv60aXKDAOad9oOa0b1EGkqiZwvu0It1n4D5bf4Fq",
         "active": true
     },
     {
         "id": "rj-6E8-SUC-4S",
         "lineage":"Troche",
-        "pass": "ftO9XbZ4E6FDpoe",
+        "pdf": "ftO9XbZ4E6FDpoe.pdf",
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true
     },
     {
         "id": "lt-Ghi-uSI-Th",
         "lineage":"Seco",
-        "pass": "ye1uWV5aaDwab1U",
+        "pdf": "ye1uWV5aaDwab1U.pdf",
         "password": "$2b$10$J1BRBz0tMuacYlog37OFkOxTiqUi6AKI3YF3/Bo/RnLANKOo2OsUu",
         "active": true
     },
     {
         "id": "Ec-Fyl-M07-qV",
         "lineage":"Durán",
-        "pass": "k9FURogQw0a75fJ",
+        "pdf": "k9FURogQw0a75fJ.pdf",
         "password": "$2b$10$7TPYsxzbGl0eFjI4q/asqOZPn0XuxKckK8MmyqKSsP0ejVM2RLg8e",
         "active": true
     },
     {
         "id": "fs-VvW-X6l-hI",
         "lineage":"seco-admin",
-        "pass": "k9FURogQw0a",
+        "pdf": null,
         "password": "$2b$10$EDnH.l30yXSTaQ35Y8h9ke.1zoIRi9HoJfuK3B8EeqRtd/Y.DQTcC",
         "active": true
     }
