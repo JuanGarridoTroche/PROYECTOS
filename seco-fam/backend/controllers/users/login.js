@@ -1,7 +1,5 @@
 const {generateError} = require("../../helpers");
-const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-const data = require("../../assets/lineages.json");
 const selectFamilyByPassword = require("../../assets/queries/selectFamiliyByPassword");
 const getAllFamilies = require("../../assets/queries/getAllFamilies");
 
@@ -14,22 +12,34 @@ const login = async (req, res, next) => {
 
     // Validamos la contraseña  enviada
     const user = await selectFamilyByPassword(password);
-    console.log("Usuario:", user.lineage);
+    // console.log("Usuario:", user.lineage);
 
-    if(user.length < 1) {
+    if(!user) {
       throw generateError("Contraseña incorrectísima", 403);
     }
 
     // Conseguimos todos los nombres de las familias.
     const families = await getAllFamilies();
 
-    console.log(families);
+    // console.log(families);
+
+    // Creamos el objeto con los datos que queremos guardar dentro del token
+    const tokenInfo = {
+      id: user.id,
+      active:user.active,
+      lineage: user.lineage,
+    };
+
+    // Creamos el token
+    const token = jwt.sign(tokenInfo, process.env.SECRET);
+    // console.log(token);
 
     
     res.send({
       status: "Ok",
       message: `login realizado con éxito por ${user.lineage}`, 
-      data: user,     
+      data: user,
+      token,    
     })
     
   } catch (err) {

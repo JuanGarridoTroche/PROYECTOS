@@ -15,15 +15,22 @@ export const Main = ()=> {
     e.preventDefault();
     setError("");    
     try {      
-      const checkingPass = await loginUserService(password);      
-      console.log("checking: ", checkingPass);
-      if(!checkingPass){              
+      const checkingPass = await loginUserService(password);   
+      
+      // Eliminar acentos del nombre de la familia
+      const removeAccents = (str) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      } 
+
+      // console.log("checking: ", checkingPass);
+      if(checkingPass.length < 1){              
         throw new Error("Contraseña incorrecta");
       }
       setLineage(checkingPass.lineage);
+      // console.log(removeAccents(lineage).toLowerCase()); 
 
-      console.log("Bienvenido a la familia " + checkingPass);
-      navigate(`/${lineage.toLowerCase()}`);
+      console.log("Bienvenido a la familia " + checkingPass.lineage);
+      navigate(`/${removeAccents(lineage).toLowerCase()}`);
       
     } catch (err) {
       setError(err.message);
