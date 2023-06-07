@@ -4,6 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
+const isAuth = require("./middlewares/isAuth");
 
 const {HOST, PORT, UPLOADS_DIR} = process.env;
 
@@ -33,8 +34,11 @@ app.use(cors());
  * #####################
  */
 const { showLineage, login } = require("./controllers/users");
+
+// 
 app.get("/", showLineage);
 
+// Login de usuario
 app.post("/", login);
 
 
