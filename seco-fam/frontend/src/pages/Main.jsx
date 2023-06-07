@@ -16,11 +16,11 @@ export const Main = ()=> {
     setError("");    
     try {      
       const checkingPass = await loginUserService(password);      
-      
+      console.log("checking: ", checkingPass);
       if(!checkingPass){              
         throw new Error("Contraseña incorrecta");
       }
-      setLineage(checkingPass);
+      setLineage(checkingPass.lineage);
 
       console.log("Bienvenido a la familia " + checkingPass);
       navigate(`/${lineage.toLowerCase()}`);

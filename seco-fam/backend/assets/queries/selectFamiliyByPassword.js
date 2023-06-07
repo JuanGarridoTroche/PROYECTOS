@@ -9,10 +9,10 @@ const selectFamilyByPassword = async (password) => {
   try {
     for(let family of data) {
       if(await bcrypt.compare(password, family.password)) {
-        user.push(family.lineage);
-
+        user.push({id: family.id, lineage: family.lineage, active: family.active});        
       }
     }
+    console.log(user[0]);
     return user[0];
   } catch (err) {
     console.error("Error");

@@ -14,7 +14,7 @@ const login = async (req, res, next) => {
 
     // Validamos la contraseña  enviada
     const user = await selectFamilyByPassword(password);
-    // console.log("Usuario:", user);
+    console.log("Usuario:", user.lineage);
 
     if(user.length < 1) {
       throw generateError("Contraseña incorrectísima", 403);
@@ -28,7 +28,7 @@ const login = async (req, res, next) => {
     
     res.send({
       status: "Ok",
-      message: `login realizado con éxito por ${user}`, 
+      message: `login realizado con éxito por ${user.lineage}`, 
       data: user,     
     })
     
