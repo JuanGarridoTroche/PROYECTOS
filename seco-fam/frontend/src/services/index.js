@@ -1,5 +1,5 @@
 
-export const loginUserService = async(lineage, password)=> {
+export const loginUserService = async(password)=> {
   const response = await fetch(`
   ${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/`,
   {
@@ -7,7 +7,7 @@ export const loginUserService = async(lineage, password)=> {
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify({lineage, password}),
+    body: JSON.stringify({password}),
   })
 
   const json = await response.json();
@@ -15,5 +15,6 @@ export const loginUserService = async(lineage, password)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
+  // console.log(json.data);
   return json.data;
 }
