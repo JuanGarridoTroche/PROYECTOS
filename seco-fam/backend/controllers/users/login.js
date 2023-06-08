@@ -14,8 +14,9 @@ const login = async (req, res, next) => {
     const user = await selectFamilyByPassword(password);
     // console.log("Usuario:", user.lineage);
 
+    // Si user no tiene datos => contraseña
     if(!user) {
-      throw generateError("Contraseña incorrectísima", 403);
+      throw generateError("Contraseña incorrecta", 403);
     }
 
     // Conseguimos todos los nombres de las familias.
@@ -39,7 +40,7 @@ const login = async (req, res, next) => {
       status: "Ok",
       message: `login realizado con éxito por ${user.lineage}`, 
       data: user,
-      token,    
+      token: token,    
     })
     
   } catch (err) {

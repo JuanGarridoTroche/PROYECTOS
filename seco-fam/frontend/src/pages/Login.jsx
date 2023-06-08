@@ -1,36 +1,40 @@
-import { useState } from "react";
 import ("../css/Main.css");
-import { loginUserService } from "../services";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUserService } from "../services";
+import { AuthContext } from "../context/AuthContext";
 
 
-export const Main = ()=> {
+export const Login = ()=> {
   const [password, setPassword] = useState("");
   const [lineage, setLineage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const {login} = useContext(AuthContext);
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
     setError("");    
     try {      
-      const checkingPass = await loginUserService(password);   
-      
+      const loggedUser = await loginUserService(password);   
+      // console.log(loggedUser.data);
+      // console.log(loggedUser.token);
+      login(loggedUser.token);
+
       // Eliminar acentos del nombre de la familia
       const removeAccents = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       } 
 
-      // console.log("checking: ", checkingPass);
-      if(checkingPass.length < 1){              
+     
+      if(loggedUser.data.length < 1){              
         throw new Error("Contraseña incorrecta");
       }
-      setLineage(checkingPass.lineage);
+      setLineage(loggedUser.data.lineage);
       // console.log(removeAccents(lineage).toLowerCase()); 
 
-      console.log("Bienvenido a la familia " + checkingPass.lineage);
-      navigate(`/${removeAccents(lineage).toLowerCase()}`);
+      console.log("Bienvenido a la familia " + loggedUser.data.lineage);
+      await navigate(`/${removeAccents(loggedUser.data.lineage).toLowerCase()}`);
       
     } catch (err) {
       setError(err.message);
