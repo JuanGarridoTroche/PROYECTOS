@@ -41,3 +41,20 @@ export const getLoggedUserDataService = async (token) => {
 
   return json.data;
 };
+
+export const getFamiliyNamesService = async(token)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/familyNames`,
+  {
+    method: "GET",
+    headers:{
+      Authorization: token,
+    }
+  });
+
+  const json = response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;    
+}

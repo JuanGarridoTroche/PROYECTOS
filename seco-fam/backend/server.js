@@ -33,7 +33,8 @@ app.use(cors());
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, login, readLoggedProfile } = require("./controllers/users");
+const { showLineage, login, readLoggedProfile, getFamilyNames } = require("./controllers/users");
+
 
 // 
 // app.get("/", showLineage);
@@ -42,6 +43,9 @@ const { showLineage, login, readLoggedProfile } = require("./controllers/users")
 app.post("/", login);
 
 app.get("/loggedProfile", isAuth, readLoggedProfile)
+
+// Obtener todas las familias
+app.get("/familyNames", isAuth, getFamilyNames)
 
 // Acceso al pdf
 app.get("/:familyName", isAuth, showLineage)

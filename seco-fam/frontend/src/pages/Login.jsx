@@ -1,7 +1,7 @@
 import ("../css/Main.css");
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUserService } from "../services";
+import { getLoggedUserDataService, loginUserService } from "../services";
 import { AuthContext } from "../context/AuthContext";
 
 
@@ -10,19 +10,30 @@ export const Login = ()=> {
   const [lineage, setLineage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const {token, login} = useContext(AuthContext);
+  const {token, login, logged} = useContext(AuthContext);
   
   useEffect(()=> {
-    try {
-      // Comprobamos que esté logueado
-      if(token) {
+    const checkingToken = async()=> {
+      try {
+        // Comprobamos que esté logueado
+        if(token) {
+          console.log(token);
+          // const loggedUser = await getLoggedUserDataService(token);
+          // console.log(loggedUser);
+
+        }
+  
+        // Eliminar acentos del nombre de la familia
+        const removeAccents = (str) => {
+          return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        } 
+  
         
+      } catch (error) {
+        alert(error.message);
       }
-      
-    } catch (error) {
-      alert(error.message);
     }
-  }, [token])
+  }, [token]);
 
   const handleSubmit = async(e)=> {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import { getLoggedUserDataService } from "../services";
+import { getFamiliyNamesService, getLoggedUserDataService } from "../services";
 import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProviderComponent = ({children}) => {
   const [token, setToken] = useState(localStorage.getItem("tokenSeco"));
   const [logged, setLogged] = useState(null);
+  const [families, setFamilies] = useState([]);
 
   useEffect(()=> {
     const getUserData = async() => {
@@ -33,8 +34,14 @@ export const AuthProviderComponent = ({children}) => {
     console.log("LOGOUT");
   }; 
 
+  const getFamilyNames = async ()=> {
+    const familyNames = await getFamiliyNamesService(token);
+    setFamilies(familyNames.pop());
+    console.log(families);
+  }
+
   return (
-    <AuthContext.Provider value={{token, logged, setLogged, login, logout}}>
+    <AuthContext.Provider value={{token, logged, setLogged, login, logout, families}}>
       {children}
     </AuthContext.Provider>
   )

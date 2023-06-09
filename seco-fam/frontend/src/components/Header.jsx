@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ("../css/Header.css")
 
 export const Header = ({lineage})=> {
   const [error, setError] = useState("");
-  const {logout} =useContext(AuthContext);
+  const {token, logout} =useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    const getFamilyNames = async() => {
+      try {
+        const families = await getFamiliyNamesService(token);
+        console.log(families);
+      } catch (err) {
+        
+      }
+    }
+    
+  },[token])
 
   
 
@@ -26,7 +38,8 @@ export const Header = ({lineage})=> {
   return(
     <header className='header'>
       <section className='header__brand'>
-        {lineage === 'admin' ? <p className='header__family'>Familia {lineage}</p> : null}
+        <img src="/logo.svg" alt="logo"/>
+        {lineage === 'admin' ? null : <p className='header__family'>Familia {lineage}</p>}
       </section>
       <nav className='header__nav navbar'>
         {lineage === 'admin' ? (

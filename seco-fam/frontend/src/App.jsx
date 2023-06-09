@@ -11,8 +11,8 @@ function App() {
     <>
       <Routes>      
         <Route path='/' element={<Login />}/>
-        <Route path='/Anca' element={<Family lineage="Anca"/>} />
-        <Route path='/Cabalar' element={<Family lineage="Cabalar"/>} />
+        <Route path='/anca' element={<Family lineage="Anca"/>} />
+        <Route path='/cabalar' element={<Family lineage="Cabalar"/>} />
         <Route path='/diaz' element={<Family lineage="Díaz"/>} />
         <Route path='/seco' element={<Family lineage="Seco"/>} />
         <Route path='/seco-admin' element={<Family lineage="admin"/>} />
