@@ -1,14 +1,14 @@
 [
     {
         "id": "nD-uOe-J5S-TI",
-        "lineage":"Bermúdez",
+        "lineage":"Anca",
         "pdf": "l46BVZxM3yU8jRb.pdf",
         "password": "$2b$10$2q16ou.scLZBnv60aXKDAOad9oOa0b1EGkqiZwvu0It1n4D5bf4Fq",
         "active": true
     },
     {
         "id": "rj-6E8-SUC-4S",
-        "lineage":"Troche",
+        "lineage":"Cabalar",
         "pdf": "ftO9XbZ4E6FDpoe.pdf",
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true
@@ -22,7 +22,7 @@
     },
     {
         "id": "Ec-Fyl-M07-qV",
-        "lineage":"Durán",
+        "lineage":"Díaz",
         "pdf": "k9FURogQw0a75fJ.pdf",
         "password": "$2b$10$7TPYsxzbGl0eFjI4q/asqOZPn0XuxKckK8MmyqKSsP0ejVM2RLg8e",
         "active": true

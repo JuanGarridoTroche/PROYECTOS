@@ -9,6 +9,8 @@ export const Header = ({lineage})=> {
   const {logout} =useContext(AuthContext);
   const navigate = useNavigate();
 
+  
+
   const handleLogout =(e) => {
     e.preventDefault();
     setError("");
@@ -24,14 +26,20 @@ export const Header = ({lineage})=> {
   return(
     <header className='header'>
       <section className='header__brand'>
-        <p className='header__family'>Familia {lineage}</p>
+        {lineage === 'admin' ? <p className='header__family'>Familia {lineage}</p> : null}
       </section>
       <nav className='header__nav navbar'>
+        {lineage === 'admin' ? (
         <ul className='navbar__list'>
           <li className='navbar__item'><a href="/">Inicio</a></li>
           <li className='navbar__item'><a href="#">{lineage}</a></li>
           <li className='navbar__item'><a href="#" onClick={handleLogout}>salir</a></li>
         </ul>
+        ) : (
+        <ul className='navbar__list'>
+          <li className='navbar__item'><a href="#" onClick={handleLogout}>salir</a></li>
+        </ul>
+        )}        
       </nav>
     </header>
   )

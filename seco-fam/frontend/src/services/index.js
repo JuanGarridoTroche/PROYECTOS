@@ -26,7 +26,7 @@ export const getLoggedUserDataService = async (token) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
       import.meta.env.VITE_BACKEND_PORT
-    }/user/loggedProfile`,
+    }/loggedProfile`,
     {
       headers: {
         Authorization: token,

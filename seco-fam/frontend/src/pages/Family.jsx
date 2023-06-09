@@ -7,7 +7,7 @@ export const Family = ({lineage})=> {
   return(
     <>
       <Header lineage={lineage}/>
-      <h2>Familia {lineage}</h2>
+      <h2 className="family__h2">Familia {lineage}</h2>
     </>
   )
 }

@@ -33,7 +33,7 @@ function App() {
     const myAccountBalance = [];
     const getBalanceData = async () => {
       try {
-        // Si el usuario no está logueado no puede eacceder a esta página
+        // Si el usuario no está logueado no puede acceder a esta página
         if (token) {
           // Obtenemos todas las cuentas bancarias creadas por el usuario logueado
           const getAccounts = await getAccountsUserService(token);
