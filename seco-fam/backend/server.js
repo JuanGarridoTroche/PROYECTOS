@@ -33,13 +33,18 @@ app.use(cors());
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, login } = require("./controllers/users");
+const { showLineage, login, readLoggedProfile } = require("./controllers/users");
 
 // 
-app.get("/", showLineage);
+// app.get("/", showLineage);
 
 // Login de usuario
 app.post("/", login);
+
+app.get("/loggedProfile", isAuth, readLoggedProfile)
+
+// Acceso al pdf
+app.get("/:familyName", isAuth, showLineage)
 
 
 

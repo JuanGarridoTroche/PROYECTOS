@@ -21,7 +21,7 @@ export const AuthProviderComponent = ({children}) => {
   }, [token]);
 
   const login = (token)=> {
-    console.log(token);
+    // console.log(token);
     localStorage.setItem("tokenSeco", token);
     setToken(token);
   }
@@ -30,6 +30,7 @@ export const AuthProviderComponent = ({children}) => {
     localStorage.removeItem("tokenSeco");
     setToken(null);
     setLogged(null);
+    console.log("LOGOUT");
   }; 
 
   return (

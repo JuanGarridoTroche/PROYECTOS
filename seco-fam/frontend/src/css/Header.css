@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  border-bottom: 1px solid rgb(206, 9, 9);
 }
 
 .header__brand .header__family {
@@ -19,6 +20,8 @@
 
 .navbar__list .navbar__item {
   list-style: none;
+  padding-right: 10px;
+  font-size: 1.8rem;
 }
 
 .navbar__item a {

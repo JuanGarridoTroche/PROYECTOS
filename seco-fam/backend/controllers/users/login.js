@@ -40,7 +40,8 @@ const login = async (req, res, next) => {
       status: "Ok",
       message: `login realizado con éxito por ${user.lineage}`, 
       data: user,
-      token: token,    
+      token: token,
+      families: families,   
     })
     
   } catch (err) {

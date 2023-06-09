@@ -11,9 +11,7 @@ const getAllFamilies = () => {
     
   } catch (err) {
     console.error("Error");
-  }
-
-  // console.log("Familias: ", lineage);
+  }  
 
 }
 

@@ -1,5 +1,5 @@
 import ("../css/Main.css");
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUserService } from "../services";
 import { AuthContext } from "../context/AuthContext";
@@ -10,7 +10,19 @@ export const Login = ()=> {
   const [lineage, setLineage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const {login} = useContext(AuthContext);
+  const {token, login} = useContext(AuthContext);
+  
+  useEffect(()=> {
+    try {
+      // Comprobamos que esté logueado
+      if(token) {
+        
+      }
+      
+    } catch (error) {
+      alert(error.message);
+    }
+  }, [token])
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
