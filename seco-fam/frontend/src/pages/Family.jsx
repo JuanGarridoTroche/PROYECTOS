@@ -16,7 +16,7 @@ export const Family = ({lineage})=> {
     const checkingToken = async () => {
       try {       
         // console.log(logged?.url);
-        console.log(url);
+        // console.log(url);
         if(logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
@@ -27,8 +27,8 @@ export const Family = ({lineage})=> {
       }
     }
     if(!token) navigate("/"); 
-    checkingToken();
-  }, [token, url, logged?.url, navigate])
+    if (logged?.url)checkingToken();
+  }, [logged?.url, token, navigate, url])
 
 
   return(
