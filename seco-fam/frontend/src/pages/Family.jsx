@@ -35,7 +35,7 @@ export const Family = ({lineage})=> {
     <>
       <Header lineage={lineage}/>
       <h2 className="family__h2">Familia {lineage}</h2>
-      <object data="pdf" type="object">Aquí va el PDF</object>
+      <object data={import ("../assets/data/Cabalar.pdf")} type="application/pdf" width="80%" height="80%"></object>
       <p>Logueado como familia {logged?.lineage}</p>
     </>
   )
