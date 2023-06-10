@@ -6,7 +6,7 @@ import { getFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
 import ("../css/Family.css")
 
-export const Family = ({lineage})=> {
+export const Family = ()=> {
   const {token, logged} = useContext(AuthContext);
   const navigate = useNavigate();
   const {url} = useParams();
@@ -20,7 +20,7 @@ export const Family = ({lineage})=> {
         if(logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
-        const getFamilyName = await getFamiliyNamesService(token, url);
+        const getFamilyName = await getFamiliyNamesService(token, url);        
         
       } catch (error) {
         setError(error.message);
@@ -33,9 +33,9 @@ export const Family = ({lineage})=> {
 
   return(
     <>
-      <Header lineage={lineage}/>
-      <h2 className="family__h2">Familia {lineage}</h2>
-      <object data={import ("../assets/data/Cabalar.pdf")} type="application/pdf" width="80%" height="80%"></object>
+      <Header lineage={logged?.lineage}/>
+      <h2 className="family__h2">Familia {logged?.lineage}</h2>
+      {/* <object data={import ("../assets/data/Cabalar.pdf")} type="application/pdf" width="80%" height="80%"></object> */}
       <p>Logueado como familia {logged?.lineage}</p>
     </>
   )

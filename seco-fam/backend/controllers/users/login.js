@@ -26,12 +26,8 @@ const login = async (req, res, next) => {
       lineage: user.lineage,
     };
 
-    console.log(tokenInfo);
-
     // Creamos el token
     const token = jwt.sign(tokenInfo, process.env.SECRET);
-    console.log(token);
-
     
     res.send({
       status: "Ok",

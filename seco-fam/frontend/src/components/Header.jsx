@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Form } from '../pages/Form';
 import ("../css/Header.css")
 
 export const Header = ({lineage})=> {
@@ -32,14 +33,13 @@ export const Header = ({lineage})=> {
     } catch (err) {
       setError(err.message);
     }
-
-  }
+  }  
   
   return(
     <header className='header'>
       <section className='header__brand'>
         <img src="/logo.svg" alt="logo"/>
-        {lineage === 'admin' ? null : <p className='header__family'>Familia {lineage}</p>}
+        {lineage === 'seco-admin' ? null : <p className='header__family'>{lineage}</p>}
       </section>
       <nav className='header__nav navbar'>
         {lineage === 'admin' ? (
@@ -50,6 +50,7 @@ export const Header = ({lineage})=> {
         </ul>
         ) : (
         <ul className='navbar__list'>
+          <li className='navbar__item'><Link to={"/form"}>contacto</Link></li>
           <li className='navbar__item'><a href="#" onClick={handleLogout}>salir</a></li>
         </ul>
         )}        
