@@ -8,7 +8,7 @@ const selectFamilyById = async (id) => {
     // Comprobamos que la password coincide con alguna de las familias
     for(let family of data) {
       if(family.id === id) {
-        user.push({id: family.id, lineage: family.lineage, active: family.active, pdf: family.pdf});        
+        user.push({id: family.id, lineage: family.lineage, active: family.active, pdf: family.pdf, url: family.url});        
       }
     }
     // console.log(user[0]);

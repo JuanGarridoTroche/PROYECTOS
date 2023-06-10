@@ -6,20 +6,20 @@ import ("../css/Header.css")
 
 export const Header = ({lineage})=> {
   const [error, setError] = useState("");
-  const {token, logout} =useContext(AuthContext);
+  const {logged, token, logout} =useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(()=> {
     const getFamilyNames = async() => {
       try {
-        const families = await getFamiliyNamesService(token);
+        const families = await getFamiliyNamesService(token, logged?.url);
         console.log(families);
       } catch (err) {
         
       }
     }
     
-  },[token])
+  },[token, logged?.url])
 
   
 

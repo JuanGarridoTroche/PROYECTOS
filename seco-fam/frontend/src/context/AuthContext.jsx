@@ -31,11 +31,11 @@ export const AuthProviderComponent = ({children}) => {
     localStorage.removeItem("tokenSeco");
     setToken(null);
     setLogged(null);
-    console.log("LOGOUT");
+    // console.log("LOGOUT");
   }; 
 
   const getFamilyNames = async ()=> {
-    const familyNames = await getFamiliyNamesService(token);
+    const familyNames = await getFamiliyNamesService(token, logged?.url);
     setFamilies(familyNames.pop());
     console.log(families);
   }

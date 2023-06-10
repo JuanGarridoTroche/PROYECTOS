@@ -47,8 +47,8 @@ app.get("/loggedProfile", isAuth, readLoggedProfile)
 // Obtener todas las familias
 app.get("/familyNames", isAuth, getFamilyNames)
 
-// Acceso al pdf
-app.get("/:familyName", isAuth, showLineage)
+// Acceso al pdf de la familia
+app.get("/:url", isAuth, showLineage)
 
 
 

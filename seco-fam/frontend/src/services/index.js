@@ -15,13 +15,14 @@ export const loginUserService = async(password)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-  // console.log(json.data);
+  console.log(json.data);
   return json;
 }
 
 
 
-// Muestra los datos del usuario logueado a partir de su token
+// Muestra los datos del usuario logueado (id, lineage, active y pdf) 
+// a partir del token guardado en el almacenamiento local de su navegador
 export const getLoggedUserDataService = async (token) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
@@ -42,8 +43,11 @@ export const getLoggedUserDataService = async (token) => {
   return json.data;
 };
 
-export const getFamiliyNamesService = async(token)=> {
-  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/familyNames`,
+
+// Servicio que devuelve el nombre de la familia a partir de la url y estando logueado
+export const getFamiliyNamesService = async (token, url)=> {
+  console.log(url);
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${url}`,
   {
     method: "GET",
     headers:{
@@ -51,10 +55,10 @@ export const getFamiliyNamesService = async(token)=> {
     }
   });
 
-  const json = response.json();
+  const json = await response.json();
   if(!response.ok) {
     throw new Error(json.message);
   }
-
+  // console.log(json);
   return json.data;    
 }

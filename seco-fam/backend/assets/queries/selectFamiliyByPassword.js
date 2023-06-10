@@ -8,7 +8,7 @@ const selectFamilyByPassword = async (password) => {
     // Comprobamos que la password coincide con alguna de las familias
     for(let family of data) {
       if(await bcrypt.compare(password, family.password)) {
-        user.push({id: family.id, lineage: family.lineage, active: family.active});        
+        user.push({id: family.id, lineage: family.lineage, active: family.active, url: family.url, pdf: family.pdf});        
       }
     }
     // console.log(user[0]);

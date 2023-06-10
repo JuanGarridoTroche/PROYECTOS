@@ -10,30 +10,26 @@ export const Login = ()=> {
   const [lineage, setLineage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const {token, login, logged} = useContext(AuthContext);
+  const {token, login, logged} = useContext(AuthContext);  
   
+  // console.log(token);
+
   useEffect(()=> {
-    const checkingToken = async()=> {
+    const checkingToken = async ()=> {
       try {
         // Comprobamos que esté logueado
-        if(token) {
-          console.log(token);
-          // const loggedUser = await getLoggedUserDataService(token);
-          // console.log(loggedUser);
-
-        }
-  
-        // Eliminar acentos del nombre de la familia
-        const removeAccents = (str) => {
-          return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        } 
-  
+        if(token) {    
+          console.log(logged?.url);       
+          navigate(`/familia/${logged?.url}`);          
+        }  
         
       } catch (error) {
         alert(error.message);
       }
-    }
-  }, [token]);
+    }    
+    checkingToken();
+  }, [token, navigate, logged?.lineage, logged?.url]);
+
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
@@ -42,6 +38,10 @@ export const Login = ()=> {
       const loggedUser = await loginUserService(password);   
       // console.log(loggedUser.data);
       // console.log(loggedUser.token);
+      if(loggedUser.data.length < 1){              
+        throw new Error("Contraseña incorrecta");
+      }
+
       login(loggedUser.token);
 
       // Eliminar acentos del nombre de la familia
@@ -50,15 +50,11 @@ export const Login = ()=> {
       } 
 
      
-      if(loggedUser.data.length < 1){              
-        throw new Error("Contraseña incorrecta");
-      }
       setLineage(loggedUser.data.lineage);
       // console.log(removeAccents(lineage).toLowerCase()); 
 
-      console.log("Bienvenido a la familia " + loggedUser.data.lineage);
-      await navigate(`/${removeAccents(loggedUser.data.lineage).toLowerCase()}`);
-      
+      // console.log("Bienvenido a la familia " + loggedUser.data.lineage + " /" + loggedUser.data.url);
+      navigate(`/familia/${loggedUser.data.url}`);      
     } catch (err) {
       setError(err.message);
     }
@@ -68,7 +64,7 @@ export const Login = ()=> {
       <h1 className="main__title">Familia Seco</h1>
       <main className="main">      
         {error ? <p className="main__error">{error}</p> : null}
-        <form onSubmit={handleSubmit} action="#" method="get" className="main__form">
+        <form onSubmit={handleSubmit} action="#" method="get" className="main__form">          
           {/* <label htmlFor="lineage" className="main__lineage--label"></label> */}
           {/* <input type="text" name="lineage" id="lineage" className="main__lineage main__input" placeholder="Escribe el nombre de tu familia..." onChange={(e)=> {setError(""); setLineage(e.target.value)}}/> */}
           {/* <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label> */}
