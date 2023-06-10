@@ -13,7 +13,6 @@ const  isAuth = async(req, res, next) => {
     let tokenInfo;
     try {
       tokenInfo = jwt.verify(authorization, process.env.SECRET);
-      console.log("TokenInfo: ", tokenInfo );
       
       if(!tokenInfo.active) {
         throw generateError("Usuario deshabilitado. Hable con el admnistrador para más información")

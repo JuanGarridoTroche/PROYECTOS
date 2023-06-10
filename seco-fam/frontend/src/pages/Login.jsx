@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLoggedUserDataService, loginUserService } from "../services";
 import { AuthContext } from "../context/AuthContext";
+import { Family } from "./Family";
 
 
 export const Login = ()=> {
@@ -53,8 +54,9 @@ export const Login = ()=> {
       setLineage(loggedUser.data.lineage);
       // console.log(removeAccents(lineage).toLowerCase()); 
 
-      // console.log("Bienvenido a la familia " + loggedUser.data.lineage + " /" + loggedUser.data.url);
-      navigate(`/familia/${loggedUser.data.url}`);      
+      console.log("Bienvenido a la familia " + loggedUser.data.lineage + " /" + loggedUser.data.url);
+      // navigate(`/familia/${loggedUser.data.url}`);
+      navigate(<Family/>);   
     } catch (err) {
       setError(err.message);
     }
