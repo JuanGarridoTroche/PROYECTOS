@@ -4,7 +4,6 @@ const { generateError } = require("../helpers");
 const  isAuth = async(req, res, next) => {
   try {
     const {authorization} = req.headers;
-    console.log("Authorization: ", authorization);
 
     if(!authorization) {
       throw generateError("Falta la cabecera de autenticación", 400);
@@ -24,8 +23,7 @@ const  isAuth = async(req, res, next) => {
     }
 
     // Creamos la propiedad "user" con los datos del token
-    req.user = tokenInfo;
-    console.log("req.user: ", req.user);  
+    req.user = tokenInfo;  
     next();
     
   } catch (err) {
