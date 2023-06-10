@@ -16,7 +16,7 @@ export const Family = ({lineage})=> {
     const checkingToken = async () => {
       try {       
         // console.log(logged?.url);
-        console.log(url);
+        // console.log(url);
         if(logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
@@ -27,15 +27,15 @@ export const Family = ({lineage})=> {
       }
     }
     if(!token) navigate("/"); 
-    checkingToken();
-  }, [token, url, logged?.url, navigate])
+    if (logged?.url)checkingToken();
+  }, [logged?.url, token, navigate, url])
 
 
   return(
     <>
       <Header lineage={lineage}/>
       <h2 className="family__h2">Familia {lineage}</h2>
-      <object data="pdf" type="object">Aquí va el PDF</object>
+      <object data={import ("../assets/data/Cabalar.pdf")} type="application/pdf" width="80%" height="80%"></object>
       <p>Logueado como familia {logged?.lineage}</p>
     </>
   )
