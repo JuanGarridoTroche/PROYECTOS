@@ -1,3 +1,4 @@
+const path = require("path");
 const nodemailer = require("nodemailer");
 const {SIB_SMTP_PASS, SIB_SMTP_USER} = process.env;
 
@@ -44,6 +45,13 @@ const sendMail = async (to, subject, text) => {
 
   await transport.sendMail(mailOptions);
 };
+
+
+const uploadFile = async (pdf) => {
+  const uploadsPath = path.access(uploadsPath);
+};
+
+
 
 
 module.exports = {generateError, sendMail};

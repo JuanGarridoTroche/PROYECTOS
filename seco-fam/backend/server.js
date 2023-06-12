@@ -53,7 +53,7 @@ app.post("/form/sendForm", isAuth, sendForm);
 // Acceso al pdf de la familia
 app.get("/:url", isAuth, showLineage);
 
-
+app.put("/admin/upload", isAuth);
 
 
 
