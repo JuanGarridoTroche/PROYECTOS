@@ -48,7 +48,7 @@ app.get("/loggedProfile", isAuth, readLoggedProfile);
 app.get("/familyNames", isAuth, getFamilyNames);
 
 // Enviar formulario
-app.get("/form/sendForm", isAuth, sendForm);
+app.post("/form/sendForm", isAuth, sendForm);
 
 // Acceso al pdf de la familia
 app.get("/:url", isAuth, showLineage);

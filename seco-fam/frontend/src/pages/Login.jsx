@@ -1,7 +1,7 @@
 import ("../css/Main.css");
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLoggedUserDataService, loginUserService } from "../services";
+import { loginUserService } from "../services";
 import { AuthContext } from "../context/AuthContext";
 import { Family } from "./Family";
 
@@ -18,18 +18,17 @@ export const Login = ()=> {
   useEffect(()=> {
     const checkingToken = async ()=> {
       try {
-        // Comprobamos que esté logueado
-        if(token) {    
-          console.log(logged?.url);       
-          navigate(`/familia/${logged?.url}`);          
-        }  
-        
+        // Comprobamos que esté logueado            
+        if(!token) {
+          navigate("/")          
+        }
+        navigate(`/familia/${logged?.url}`);       
       } catch (error) {
         alert(error.message);
       }
     }    
-    checkingToken();
-  }, [token, navigate, logged?.lineage, logged?.url]);
+    if (token) checkingToken();
+  }, [token, navigate, logged?.url]);
 
 
   const handleSubmit = async(e)=> {
@@ -46,9 +45,9 @@ export const Login = ()=> {
       login(loggedUser.token);
 
       // Eliminar acentos del nombre de la familia
-      const removeAccents = (str) => {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      } 
+      // const removeAccents = (str) => {
+      //   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      // } 
 
      
       setLineage(loggedUser.data.lineage);

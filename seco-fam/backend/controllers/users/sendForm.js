@@ -2,6 +2,7 @@ const joi = require("@hapi/joi");
 const { generateError, sendMail } = require("../../helpers");
 const sendForm = async (req, res, next) => {
   const {lineage} = req.user;
+  console.log(lineage);
   const {name, text, subject} = req.body;
   const {HOST, PORT, SIB_SMTP_USER} = process.env;
   try { 
