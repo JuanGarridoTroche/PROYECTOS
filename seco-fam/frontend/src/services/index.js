@@ -62,3 +62,23 @@ export const getFamiliyNamesService = async (token, url)=> {
   // console.log(json);
   return json.data;    
 }
+
+// Enviar correo al administrador desde el formulario de la web
+export const sendMailService = async({token, name, text, subject})=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/form/sendForm`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({name, text, subject}),
+  });
+
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  console.log(json.data);
+}
