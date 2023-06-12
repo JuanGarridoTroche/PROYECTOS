@@ -12,7 +12,7 @@ const {HOST, PORT, UPLOADS_DIR} = process.env;
 const app = express();
 
 // Acceso a la carpeta de "UPLOADS_DIR"
-app.use(express.static(UPLOADS_DIR));
+app.use('/static', express.static(UPLOADS_DIR));
 
 // Monitorización de datos en tiempo real
 app.use(morgan("dev"));
