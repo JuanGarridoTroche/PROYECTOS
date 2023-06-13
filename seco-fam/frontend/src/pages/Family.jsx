@@ -34,7 +34,18 @@ export const Family = ()=> {
     }
     if(!token) navigate("/"); 
     if (logged?.url)checkingToken();
-  }, [logged?.url, token, navigate, url])
+  }, [logged?.url, token, navigate, url]);
+
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
 
   return(
@@ -44,7 +55,7 @@ export const Family = ()=> {
       {logged?.role === 'admin' ? (
         <>
           <h3 className="admin--pdf">PDFs de las familias</h3>
-          <form className="admin__form">
+          <form className="admin__form" onSubmit={handleSubmit}>
             <select name="families" id="families" className="admin__select">
               <option value="">Elige familia...</option>
               {familyNames.map((family)=> {
@@ -54,7 +65,7 @@ export const Family = ()=> {
               })}
             </select>
             <label htmlFor="uploadPDF"> Subir pdf</label>
-            <input name="uploadPDF" id="uploadPDF" type="file" formEncType="multipart/form-data" multiple="false" accept="application/pdf,application/vnd.ms-excel"/>
+            <input name="uploadPDF" id="uploadPDF" type="file" formEncType="multipart/form-data" multiple={false} accept="application/pdf,application/vnd.ms-excel"/>
             <button>Enviar</button>
           </form>
         </>

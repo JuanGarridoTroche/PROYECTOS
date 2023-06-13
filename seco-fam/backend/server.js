@@ -3,8 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const fileupload = require("express-fileupload");
-const cors = require("cors");
 const multer = require("multer");
+const cors = require("cors");
 const isAuth = require("./middlewares/isAuth");
 
 const {HOST, PORT, UPLOADS_DIR} = process.env;
@@ -24,8 +24,16 @@ app.use(express.json());
 // Deserializa el body con formato form-data
 app.use(fileupload());
 
+// Info sacada de https://github.com/expressjs/multer/blob/master/doc/README-es.md
+// const storage = multer.diskStorage({
+//   destination:'/static/data/',
+//   filename: function(req, res, cb) {
+//     cb("","manolo.pdf")
+//   }
+// })
+
 // Middleware que maneja la subida de ficheros con enctype=multipart/form-data
-const upload = multer({ dest: '/static/data' })
+const upload = multer({ storage: "/static/data/" })
 
 // Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
 // Middleware que permite conectar el backend (éste) con el frontend (React)
@@ -58,7 +66,7 @@ app.post("/form/sendForm", isAuth, sendForm);
 app.get("/:url", isAuth, showLineage);
 
 // Subir fichero pdf de una de las familias por parte de admin
-app.put("/sendPDF", isAuth, sendPDF)
+app.put("/sendPDF", isAuth, upload.single('uploadPDF'), sendPDF)
 
 
 
