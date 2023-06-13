@@ -54,7 +54,7 @@ const sendMail = async (to, subject, text) => {
  * ##  Save pdf  ##
  * ################
  */
-const savePDF = async(pdfFileName) => {
+const savePDF = async(pdfMetadata, pdfFileName) => {
   const uploadsPath = path.join(__dirname, UPLOADS_DIR, "\\data");
   console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
   console.log(`${uploadsPath}`);
@@ -69,7 +69,7 @@ const savePDF = async(pdfFileName) => {
   const storage = multer.diskStorage({
     destination: uploadsPath,
     filename: function(req, file, cb) {
-      cb("", pdfFileName)
+      cb("", pdfMetadata.data)
     }
   })
 

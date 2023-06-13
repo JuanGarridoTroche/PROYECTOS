@@ -55,7 +55,7 @@ export const Family = ()=> {
       {logged?.role === 'admin' ? (
         <>
           <h3 className="admin--pdf">PDFs de las familias</h3>
-          <form className="admin__form" onSubmit={handleSubmit}>
+          <form className="admin__form">
             <select name="families" id="families" className="admin__select">
               <option value="">Elige familia...</option>
               {familyNames.map((family)=> {

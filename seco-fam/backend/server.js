@@ -25,15 +25,15 @@ app.use(express.json());
 app.use(fileupload());
 
 // Info sacada de https://github.com/expressjs/multer/blob/master/doc/README-es.md
-// const storage = multer.diskStorage({
-//   destination:'/static/data/',
-//   filename: function(req, res, cb) {
-//     cb("","manolo.pdf")
-//   }
-// })
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: function(req, file, cb) {
+    cb(null,"manolo.pdf")
+  }
+})
 
 // Middleware que maneja la subida de ficheros con enctype=multipart/form-data
-const upload = multer({ storage: "/static/data/" })
+const upload = multer({ storage: storage })
 
 // Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
 // Middleware que permite conectar el backend (éste) con el frontend (React)
@@ -66,7 +66,7 @@ app.post("/form/sendForm", isAuth, sendForm);
 app.get("/:url", isAuth, showLineage);
 
 // Subir fichero pdf de una de las familias por parte de admin
-app.put("/sendPDF", isAuth, upload.single('uploadPDF'), sendPDF)
+app.post("/sendPDF", isAuth, upload.single('uploadPDF'), sendPDF)
 
 
 

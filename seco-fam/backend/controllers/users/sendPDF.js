@@ -4,11 +4,14 @@ const { generateError, savePDF } = require("../../helpers");
 
 const sendPDF = async (req, res, next) => {
   const {lineage} = req.body;
+
+  console.log(req.body);
   try {   
     // Comprobamos que existe el nombre de la familia donde vamosa subir el pdf
     if(!lineage) {
       throw generateError("Debes indicar a que familia quieres subir el pdf", 400);
     }
+    console.log(req.files);
 
     // Comprobamos que existe un fichero para subir
     if(!req.files) {
@@ -17,7 +20,7 @@ const sendPDF = async (req, res, next) => {
 
     // console.log(req.files.pdf);
     // Comprobamos que es un fichero pdf
-    if(req.files.pdf.mimetype !== 'application/pdf') {
+    if(req.files.uploadPDF.mimetype !== 'application/pdf') {
       throw generateError("El fichero adjunto no es un fichero pdf válido", 403)
     }
 
@@ -35,8 +38,8 @@ const sendPDF = async (req, res, next) => {
     // Al comprobar que existe pdf, lo guardamos
     for (const pdfMetadata of Object.values(req.files).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
-      
-      const pdfName = await savePDF(lineageToChangePdf.pdf);
+      console.log("pdfMetadata: ", pdfMetadata);
+      const pdfName = await savePDF(pdfMetadata, lineageToChangePdf.pdf);
 
       console.log(pdfName);
     }
@@ -45,7 +48,7 @@ const sendPDF = async (req, res, next) => {
     
     res.send({
       status: "Ok",
-      message: `subir PDF: ${req.files.pdf.name}`,   
+      message: `PDF subido: ${req.files.pdf.name}`,   
     })
     
   } catch (err) {
