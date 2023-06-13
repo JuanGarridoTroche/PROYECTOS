@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 const data = require("../lineages.json");
 
-const selectFamilyById = async (id) => { 
+const selectFamilyByLineage = async (lineage) => { 
   
   let user = [];
   try {
     // Comprobamos que la password coincide con alguna de las familias
     for(let family of data) {
-      if(family.id === id) {
+      if(family.lineage === lineage) {
         user.push({id: family.id, lineage: family.lineage, active: family.active, pdf: family.pdf, url: family.url, role: family.role});        
       }
     }
@@ -18,4 +18,4 @@ const selectFamilyById = async (id) => {
   }
 }
 
-module.exports = selectFamilyById;
+module.exports = selectFamilyByLineage;

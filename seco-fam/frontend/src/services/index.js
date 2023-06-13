@@ -82,3 +82,36 @@ export const sendMailService = async({token, name, text, subject})=> {
 
   console.log(json.data);
 }
+
+
+
+// Devuelve todos los nombres de las familias
+export const getAllFamiliyNamesService = async (token)=> {
+  // console.log(url);
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/familyNames`,
+  {
+    method: "GET",
+    headers:{
+      Authorization: token,
+    }
+  });
+
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+  // console.log(json);
+  return json.data;    
+}
+
+// Subir un pdf desde la cuenta de administrador
+export const uploadPdfService = async(token)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/sendPDF`,
+  {
+    method: "PUT",
+    headers: {
+      Authorization:token,
+      "content-type": "application/json"
+    }
+  })
+}

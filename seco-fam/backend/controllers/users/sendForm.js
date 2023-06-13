@@ -31,7 +31,7 @@ const sendForm = async (req, res, next) => {
   // Al ser un formulario, vamos a enviar el correo siempre al mismo destinatario (administrator):
   const email = SIB_SMTP_USER;
 
-  // Creamos el contenido del correo
+  // Creamos el contenido del correo  
   const emailContent=`
     <h2>Correo desde la web de la familia Seco:</h2>
     <h5>Tienes un correo nuevo de ${name}, logueado desde la familia ${lineage}</h5>

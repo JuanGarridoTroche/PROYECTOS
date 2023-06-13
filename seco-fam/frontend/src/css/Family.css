@@ -1,3 +1,21 @@
 .family__h2 {
   padding-top: 20px;
 }
+iframe {
+  max-width: 320px;
+  width: 100%;
+  height: 80vh;
+}
+
+@media (min-width: 550px) {
+  iframe {
+    max-width: 540px;
+  }
+}
+
+
+@media (min-width: 880px) {
+  iframe {
+    max-width:870px;
+  }
+}

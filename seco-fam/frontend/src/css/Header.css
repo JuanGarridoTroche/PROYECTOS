@@ -14,8 +14,9 @@
 }
 
 .header__brand .header__family {
-  font-size: 2rem;
-  font-weight: 600;
+  /* font-size: 2rem;
+  font-weight: 600; */
+  display: none;
 }
 
 .navbar .navbar__list {
@@ -38,6 +39,7 @@
 
 @media (min-width: 550px) {
   .header__brand .header__family {
+    display: unset;
     font-size: 3.2rem;
     font-weight: 600;
   }

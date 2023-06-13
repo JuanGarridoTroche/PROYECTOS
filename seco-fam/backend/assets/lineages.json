@@ -2,34 +2,38 @@
     {
         "id": "nD-uOe-J5S-TI",
         "lineage":"Anca",
-        "pdf": "l46BVZxM3yU8jRb.pdf",
+        "pdf": "anca.pdf",
         "password": "$2b$10$2q16ou.scLZBnv60aXKDAOad9oOa0b1EGkqiZwvu0It1n4D5bf4Fq",
         "active": true,
-        "url": "anca"
+        "url": "anca",
+        "role": "user"
     },
     {
         "id": "rj-6E8-SUC-4S",
         "lineage":"Cabalar",
-        "pdf": "ftO9XbZ4E6FDpoe.pdf",
+        "pdf": "cabalar.pdf",
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true,
-        "url": "cabalar"
+        "url": "cabalar",
+        "role": "user"
     },
     {
         "id": "lt-Ghi-uSI-Th",
         "lineage":"Seco",
-        "pdf": "ye1uWV5aaDwab1U.pdf",
+        "pdf": "seco.pdf",
         "password": "$2b$10$J1BRBz0tMuacYlog37OFkOxTiqUi6AKI3YF3/Bo/RnLANKOo2OsUu",
         "active": true,
-        "url": "seco"
+        "url": "seco",
+        "role": "user"
     },
     {
         "id": "Ec-Fyl-M07-qV",
         "lineage":"Díaz",
-        "pdf": "k9FURogQw0a75fJ.pdf",
+        "pdf": "diaz.pdf",
         "password": "$2b$10$7TPYsxzbGl0eFjI4q/asqOZPn0XuxKckK8MmyqKSsP0ejVM2RLg8e",
         "active": true,
-        "url": "diaz"
+        "url": "diaz",
+        "role": "user"
     },
     {
         "id": "fs-VvW-X6l-hI",
@@ -37,6 +41,7 @@
         "pdf": null,
         "password": "$2b$10$EDnH.l30yXSTaQ35Y8h9ke.1zoIRi9HoJfuK3B8EeqRtd/Y.DQTcC",
         "active": true,
-        "url": "administrator"
+        "url": "administrator",
+        "role": "admin"
     }
 ]

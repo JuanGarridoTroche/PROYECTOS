@@ -1,8 +1,13 @@
 const getAllFamilies = require("../../assets/queries/getAllFamilies");
+const { generateError } = require("../../helpers");
 
-const getFamilyNames = async (req, res, next) => {  
+const getFamilyNames = async (req, res, next) => {
+  const {id} = req.user;
+  try {
+    if(id !== 'fs-VvW-X6l-hI') {
+      throw generateError("No tienes permiso para ver esta información", 403)
+    }
 
-  try {    
      // Conseguimos todos los nombres de las familias.
      const families = await  getAllFamilies();
 
