@@ -35,7 +35,13 @@ export const Family = ()=> {
     <>
       <Header lineage={logged?.lineage}/>
       <h2 className="family__h2">Familia {logged?.lineage}</h2>
-      {/* <object data={import ("../assets/data/Cabalar.pdf")} type="application/pdf" width="80%" height="80%"></object> */}
+      <a href="../assets/data/Cabalar.pdf" target="_blank" rel="noopener noreferrer">Familia Cabalar</a>
+      <iframe
+          width="800"
+          height="600"
+          src="../assets/data/Cabalar.pdf"
+          >Tu navegador no soporta iframe
+      </iframe>
       <p>Logueado como familia {logged?.lineage}</p>
     </>
   )

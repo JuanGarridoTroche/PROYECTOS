@@ -82,3 +82,7 @@ export const sendMailService = async({token, name, text, subject})=> {
 
   console.log(json.data);
 }
+
+
+
+// 
