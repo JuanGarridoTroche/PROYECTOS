@@ -1,3 +1,4 @@
+const path = require("path");
 const nodemailer = require("nodemailer");
 const fs = require("fs/promises");
 const path = require("path");
@@ -96,6 +97,5 @@ const savePDF = async(pdfMetadata, pdfFileName) => {
  */
 
 
+module.exports = {generateError, sendMail};
 
-
-module.exports = {generateError, sendMail, savePDF};
