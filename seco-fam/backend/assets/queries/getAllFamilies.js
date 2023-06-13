@@ -4,9 +4,9 @@ const getAllFamilies = () => {
   let lineage = [];
   try {
     for(let family of data) {
-      lineage.push(family.lineage);
+      lineage.push({id: family.id, lineage: family.lineage});      
     }
-
+    lineage.pop();
     return lineage;
     
   } catch (err) {

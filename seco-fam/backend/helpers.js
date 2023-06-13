@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
-const {SIB_SMTP_PASS, SIB_SMTP_USER} = process.env;
+const path = require("path");
+const {SIB_SMTP_PASS, SIB_SMTP_USER, UPLOADS_DIR, HOST, PORT} = process.env;
 
 /* *
  * ######################
@@ -46,4 +47,24 @@ const sendMail = async (to, subject, text) => {
 };
 
 
-module.exports = {generateError, sendMail};
+/* *
+ * ################
+ * ##  Save pdf  ##
+ * ################
+ */
+const savePDF = async(pdf) => {
+  const uploadsPath = path.join(__dirname, UPLOADS_DIR, "\\data");
+  console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
+  console.log(`${uploadsPath}`);
+  console.log(`${HOST}:${PORT}/static/data`);
+  return uploadsPath;
+  try {
+    
+  } catch (err) {
+    
+  }
+
+}
+
+
+module.exports = {generateError, sendMail, savePDF};

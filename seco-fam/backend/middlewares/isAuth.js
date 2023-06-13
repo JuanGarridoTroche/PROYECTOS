@@ -22,7 +22,7 @@ const  isAuth = async(req, res, next) => {
     }
 
     // Creamos la propiedad "user" con los datos del token
-    req.user = tokenInfo;  
+    req.user = tokenInfo;
     next();
     
   } catch (err) {

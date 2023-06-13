@@ -46,6 +46,6 @@
 
 @media (min-width: 880px) {
   .main__button {
-    display: none;
+    /* display: none; */
   }
 }

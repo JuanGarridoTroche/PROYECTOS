@@ -68,7 +68,7 @@ export const Login = ()=> {
         <form onSubmit={handleSubmit} action="#" method="get" className="main__form">          
           {/* <label htmlFor="lineage" className="main__lineage--label"></label> */}
           {/* <input type="text" name="lineage" id="lineage" className="main__lineage main__input" placeholder="Escribe el nombre de tu familia..." onChange={(e)=> {setError(""); setLineage(e.target.value)}}/> */}
-          {/* <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label> */}
+          <label htmlFor="pass" className="main__pass--label">Escribe tu contraseña </label>
           <input type="password" id="pass" className="main__pass main__input" placeholder="Introduzca su contraseña" autoComplete="on" onChange={(e)=> {setError(""); setPassword(e.target.value)}}/>
           <button className="main__button">Enviar</button>
         </form>
