@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const data = require("../lineages.json");
+const { generateError } = require('../../helpers');
 
 const selectFamilyByLineage = async (lineage) => { 
   
@@ -11,10 +12,11 @@ const selectFamilyByLineage = async (lineage) => {
         user.push({id: family.id, lineage: family.lineage, active: family.active, pdf: family.pdf, url: family.url, role: family.role, logo: family.logo});        
       }
     }
-    console.log("Select Family By Lineage; ", user[0]);
+    // console.log("Select Family By Lineage; ", user[0]);
     return user[0];
   } catch (err) {
-    console.error("Error");
+    // console.error("Error");
+    throw generateError("No existe la familia indicada", 404)
   }
 }
 

@@ -53,22 +53,26 @@ const sendMail = async (to, subject, text) => {
  * ##  Save pdf  ##
  * ################
  */
-const savePDF = async(pdfMetadata, pdfFileName) => {
+const savePDF = async(pdfMetadata, familyData, uploadPDF) => {
+  console.log(pdfMetadata);
 
-  let uploadPath = path.join(__dirname, UPLOADS_DIR, "\\data");
-  console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
+  let uploadPath = path.join(__dirname, UPLOADS_DIR, "\\data\\", familyData.url);
+  // console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
   console.log(`${uploadPath}`);
-  // console.log(`${HOST}:${PORT}/static/data`);
-  
+  // console.log(`${HOST}:${PORT}/static/data`);  
   try {
     await fs.access(uploadPath);    
   } catch (err) {
     await fs.mkdir(uploadPath);
   }
-
-  uploadPath = uploadPath + pdfFileName;
+  
+  uploadPath = uploadPath + "\\" + pdfMetadata;
   console.log("uploadPath: ", uploadPath);
 
+
+  uploadPDF.mv(uploadPath, function(err) {
+    if(err) throw generateError("No se ha cargado ningún fichero", 400);
+  })  
   
 }
 

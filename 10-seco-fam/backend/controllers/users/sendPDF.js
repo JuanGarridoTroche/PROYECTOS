@@ -8,11 +8,13 @@ const sendPDF = async (req, res, next) => {
   const {id} = req.user;
 
   try {   
-    // Comprobamos que existe el nombre de la familia donde vamos a subir el pdf
+    // Comprobamos que existe un nombre de familia en el select, donde vamos a subir el pdf
     if(!lineage) {
       throw generateError("Debes indicar a que familia quieres subir el pdf", 400);
     }
-       
+
+    
+    
     // Comprobamos que existe un fichero para subir
     if(!req.files) {
       throw generateError("Debes adjuntar un fichero en formato pdf para subir", 404);
@@ -22,32 +24,32 @@ const sendPDF = async (req, res, next) => {
     if(uploadPDF.mimetype !== 'application/pdf') {
       throw generateError("El fichero adjunto no es un fichero pdf válido", 403)
     }
-
+    
     // Sacamos los datos del usuario logueado:
     const user = await selectFamilyById(id);
-
+    
     // Comprobamos que el usuario es administrador:
     if(user.role !== 'admin') {
       throw generateError("El usuario no tiene permisos para realizar esta acción", 403);
     }
-
+    
     // Sacamos los datos de la familia donde se va a sustituir el pdf:
     const lineageToChangePdf = await selectFamilyByLineage(lineage);
+    
+    // Comprobamos que existe el lineage en nuestro json
+    if(!lineageToChangePdf) throw generateError("No existe ese nombre de familia", 403)
 
     // Al comprobar que existe pdf, lo guardamos
-    for (const pdfMetadata of Object.values(uploadPDF).slice(0,1)) {
+    for (const newPDF of Object.values(uploadPDF).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
-      console.log("pdfMetadata: ", pdfMetadata);
-      const pdfName = await savePDF(pdfMetadata, lineageToChangePdf.pdf);
-
-      console.log(pdfName);
-    }
-    
+      console.log("newPDF: ", newPDF);
+      const pdfName = await savePDF(newPDF, lineageToChangePdf, uploadPDF);
+    }    
 
     
     res.send({
       status: "Ok",
-      message: `PDF subido: ${req.files.pdf.name}`,   
+      message: `PDF subido`,   
     })
     
   } catch (err) {
