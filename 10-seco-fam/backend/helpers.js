@@ -54,16 +54,20 @@ const sendMail = async (to, subject, text) => {
  * ################
  */
 const savePDF = async(pdfMetadata, pdfFileName) => {
-  const uploadsPath = path.join(__dirname, UPLOADS_DIR, "\\data");
+
+  let uploadPath = path.join(__dirname, UPLOADS_DIR, "\\data");
   console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
-  console.log(`${uploadsPath}`);
+  console.log(`${uploadPath}`);
   // console.log(`${HOST}:${PORT}/static/data`);
   
   try {
-    await fs.access(uploadsPath);    
+    await fs.access(uploadPath);    
   } catch (err) {
-    await fs.mkdir(uploadsPath);
+    await fs.mkdir(uploadPath);
   }
+
+  uploadPath = uploadPath + pdfFileName;
+  console.log("uploadPath: ", uploadPath);
 
   
 }

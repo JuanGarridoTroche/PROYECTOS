@@ -36,9 +36,6 @@ app.use(cors());
 const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm, sendPDF } = require("./controllers/users");
 
 
-// 
-// app.get("/", showLineage);
-
 // Login de usuario
 app.post("/", login);
 
