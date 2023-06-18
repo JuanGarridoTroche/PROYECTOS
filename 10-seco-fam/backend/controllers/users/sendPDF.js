@@ -35,7 +35,7 @@ const sendPDF = async (req, res, next) => {
     const lineageToChangePdf = await selectFamilyByLineage(lineage);
 
     // Al comprobar que existe pdf, lo guardamos
-    for (const pdfMetadata of Object.values(req.files).slice(0,1)) {
+    for (const pdfMetadata of Object.values(uploadPDF).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
       console.log("pdfMetadata: ", pdfMetadata);
       const pdfName = await savePDF(pdfMetadata, lineageToChangePdf.pdf);

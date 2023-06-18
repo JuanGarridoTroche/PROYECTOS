@@ -11,7 +11,7 @@ const selectFamilyByLineage = async (lineage) => {
         user.push({id: family.id, lineage: family.lineage, active: family.active, pdf: family.pdf, url: family.url, role: family.role});        
       }
     }
-    // console.log(user[0]);
+    console.log("Select Family By Lineage; ", user[0]);
     return user[0];
   } catch (err) {
     console.error("Error");

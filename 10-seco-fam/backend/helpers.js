@@ -65,7 +65,7 @@ const savePDF = async(pdfMetadata, pdfFileName) => {
     await fs.mkdir(uploadsPath);
   }
 
-  return upload;
+  
 }
 
 
