@@ -6,7 +6,8 @@
         "password": "$2b$10$2q16ou.scLZBnv60aXKDAOad9oOa0b1EGkqiZwvu0It1n4D5bf4Fq",
         "active": true,
         "url": "anca",
-        "role": "user"
+        "role": "user",
+        "logo":"oak"
     },
     {
         "id": "rj-6E8-SUC-4S",
@@ -15,7 +16,8 @@
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true,
         "url": "cabalar",
-        "role": "user"
+        "role": "user",
+        "logo":"oak"
     },
     {
         "id": "lt-Ghi-uSI-Th",
@@ -24,7 +26,8 @@
         "password": "$2b$10$J1BRBz0tMuacYlog37OFkOxTiqUi6AKI3YF3/Bo/RnLANKOo2OsUu",
         "active": true,
         "url": "seco",
-        "role": "user"
+        "role": "user",
+        "logo":"oak"
     },
     {
         "id": "Ec-Fyl-M07-qV",
@@ -33,7 +36,8 @@
         "password": "$2b$10$7TPYsxzbGl0eFjI4q/asqOZPn0XuxKckK8MmyqKSsP0ejVM2RLg8e",
         "active": true,
         "url": "diaz",
-        "role": "user"
+        "role": "user",
+        "logo":"oak"
     },
     {
         "id": "fs-VvW-X6l-hI",
@@ -42,6 +46,7 @@
         "password": "$2b$10$EDnH.l30yXSTaQ35Y8h9ke.1zoIRi9HoJfuK3B8EeqRtd/Y.DQTcC",
         "active": true,
         "url": "administrator",
-        "role": "admin"
+        "role": "admin",
+        "logo":"oak"
     }
 ]

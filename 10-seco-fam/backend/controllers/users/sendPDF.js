@@ -3,29 +3,28 @@ const selectFamilyByLineage = require("../../assets/queries/selectFamiliyByLinea
 const { generateError, savePDF } = require("../../helpers");
 
 const sendPDF = async (req, res, next) => {
+  const {uploadPDF} = req.files;
   const {lineage} = req.body;
+  const {id} = req.user;
 
-  console.log(req.body);
   try {   
-    // Comprobamos que existe el nombre de la familia donde vamosa subir el pdf
+    // Comprobamos que existe el nombre de la familia donde vamos a subir el pdf
     if(!lineage) {
       throw generateError("Debes indicar a que familia quieres subir el pdf", 400);
     }
-    console.log(req.files);
-
+       
     // Comprobamos que existe un fichero para subir
     if(!req.files) {
       throw generateError("Debes adjuntar un fichero en formato pdf para subir", 404);
     } 
-
-    // console.log(req.files.pdf);
+    
     // Comprobamos que es un fichero pdf
-    if(req.files.uploadPDF.mimetype !== 'application/pdf') {
+    if(uploadPDF.mimetype !== 'application/pdf') {
       throw generateError("El fichero adjunto no es un fichero pdf válido", 403)
     }
 
     // Sacamos los datos del usuario logueado:
-    const user = await selectFamilyById(req.user.id);
+    const user = await selectFamilyById(id);
 
     // Comprobamos que el usuario es administrador:
     if(user.role !== 'admin') {
@@ -36,7 +35,7 @@ const sendPDF = async (req, res, next) => {
     const lineageToChangePdf = await selectFamilyByLineage(lineage);
 
     // Al comprobar que existe pdf, lo guardamos
-    for (const pdfMetadata of Object.values(req.files).slice(0,1)) {
+    for (const pdfMetadata of Object.values(uploadPDF).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
       console.log("pdfMetadata: ", pdfMetadata);
       const pdfName = await savePDF(pdfMetadata, lineageToChangePdf.pdf);
