@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../components/Header";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { AuthContext } from "../context/AuthContext";
 import { getAllFamiliyNamesService, getFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
+import { Aside } from "../components/Aside";
+import { AddPDF } from "../components/AddPDF";
 import ("../css/Family.css")
 
 export const Family = ()=> {
@@ -51,41 +53,16 @@ export const Family = ()=> {
   return(
     <>
       <Header lineage={logged?.lineage}/>
-      <h2 className="family__h2">Familia {logged?.lineage}</h2>
-      {logged?.role === 'admin' ? (
-        <>
-          <h3 className="admin--pdf">PDFs de las familias</h3>
-          <form className="admin__form">
-            <select name="families" id="families" className="admin__select">
-              <option value="">Elige familia...</option>
-              {familyNames.map((family)=> {
-                return (<option value={family.lineage} key={family.id}>
-                  {family.lineage}
-                </option>)
-              })}
-            </select>
-            <label htmlFor="uploadPDF"> Subir pdf</label>
-            <input name="uploadPDF" id="uploadPDF" type="file" formEncType="multipart/form-data" multiple={false} accept="application/pdf,application/vnd.ms-excel"/>
-            <button>Enviar</button>
-          </form>
-        </>
-      ) : 
-        (
-          <>
-            {/* <a href={`http://localhost:4000/static/data/${logged?.pdf}`} target="_blank" rel="noopener noreferrer">Familia {logged?.lineage}</a>
-            <a href={`http://localhost:4000/static/data/${logged?.pdf}`} target="_blank" rel="noopener noreferrer"><img src="/logo.svg" alt=" descargar" /></a> */}
-            {/* <p>Logueado como familia {logged?.lineage}</p> */}
-            <iframe                
-                src={`http://localhost:4000/static/data/${logged?.pdf}`}
-                >Tu navegador no soporta iframe
-            </iframe>
-          </>
-        )
-      }
+      <section className="family-page">
+        {logged?.role === "admin" ? <Aside/>: null}
+        <h2 className="family__h2">Familia {logged?.lineage}</h2>
+        <AddPDF familyNames={familyNames}/>
+      </section>
     </>
   )
 }
 
-Family.propTypes = {
-  lineage: PropTypes.string,
-}
+// Family.propTypes = {
+//   lineage: PropTypes.string,
+//   familyNames: PropTypes.arrayOf(PropTypes.string)
+// }

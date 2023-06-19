@@ -10,6 +10,7 @@
 :root {
   --color-bg: #242424;
   --color-text: rgba(255, 255, 255, 0.87);
+  --color-secondary: rgb(206, 9, 9);
   --font-text: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-title: 'Bodoni Moda', serif;
   line-height: 1.5;
