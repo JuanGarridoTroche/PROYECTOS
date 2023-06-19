@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../components/Header";
-// import PropTypes from 'prop-types';
 import { AuthContext } from "../context/AuthContext";
-import { getAllFamiliyNamesService, getFamiliyNamesService } from "../services";
+import { getAllFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
 import { Aside } from "../components/Aside";
 import { AddPDF } from "../components/AddPDF";
@@ -23,46 +22,37 @@ export const Family = ()=> {
         if(logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
-        const getFamilyName = await getFamiliyNamesService(token, url);   
-        
+                
         if(logged?.role === 'admin') {
           const families = await getAllFamiliyNamesService(token);
-          setFamilyNames(families);         
-        }
+          setFamilyNames(families);
+          // console.log(familyNames);      
+        }        
         
       } catch (error) {
         setError(error.message);
       }
     }
     if(!token) navigate("/"); 
-    if (logged?.url)checkingToken();
-  }, [logged?.url, token, navigate, url]);
-
-
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      
-    } catch (err) {
-      setError(err.message);
-    }
-  }
-
+    if (logged?.url) checkingToken();
+  }, [logged?.url, logged?.role, token, navigate, url]);
 
   return(
     <>
       <Header lineage={logged?.lineage}/>
-      <section className="family-page">
-        {logged?.role === "admin" ? <Aside/>: null}
-        <h2 className="family__h2">Familia {logged?.lineage}</h2>
-        <AddPDF familyNames={familyNames}/>
-      </section>
+      {logged?.role === 'admin' ? (
+        <section className="family-page">
+          {logged?.role === "admin" ? <Aside/>: null}
+          <h2 className="family__h2">Familia {logged?.lineage}</h2>
+          <AddPDF familyNames={familyNames}/>
+        </section>
+      ) : (
+        <>
+          <h2 className="family__h2">Familia {logged?.lineage}</h2>
+          <AddPDF familyNames={familyNames}/>
+        </>
+      )}
     </>
   )
 }
 
-// Family.propTypes = {
-//   lineage: PropTypes.string,
-//   familyNames: PropTypes.arrayOf(PropTypes.string)
-// }
