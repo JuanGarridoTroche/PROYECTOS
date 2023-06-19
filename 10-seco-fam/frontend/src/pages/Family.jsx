@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../components/Header";
-import PropTypes from 'prop-types';
 import { AuthContext } from "../context/AuthContext";
-import { getAllFamiliyNamesService, getFamiliyNamesService } from "../services";
+import { getAllFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
+import { Aside } from "../components/Aside";
+import { AddPDF } from "../components/AddPDF";
 import ("../css/Family.css")
 
 export const Family = ()=> {
@@ -13,6 +14,7 @@ export const Family = ()=> {
   const [error, setError] = useState("");
   const [familyNames, setFamilyNames] = useState([]);
 
+
   useEffect(()=> {   
     const checkingToken = async () => {
       try {       
@@ -21,71 +23,37 @@ export const Family = ()=> {
         if(logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
-        const getFamilyName = await getFamiliyNamesService(token, url);   
-        
+                
         if(logged?.role === 'admin') {
           const families = await getAllFamiliyNamesService(token);
-          setFamilyNames(families);         
-        }
+          setFamilyNames(families);
+          // console.log(familyNames);      
+        }        
         
       } catch (error) {
         setError(error.message);
       }
     }
     if(!token) navigate("/"); 
-    if (logged?.url)checkingToken();
-  }, [logged?.url, token, navigate, url]);
-
-
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      
-    } catch (err) {
-      setError(err.message);
-    }
-  }
-
+    if (token && logged?.url) checkingToken();
+  }, [logged?.url, logged?.role, token, navigate, url]);
 
   return(
     <>
       <Header lineage={logged?.lineage}/>
-      <h2 className="family__h2">Familia {logged?.lineage}</h2>
-      {logged?.role === 'admin' ? (
+      {token && logged && logged?.role === 'admin' ? (
+        <section className="family-page">
+          {logged?.role === "admin" ? <Aside/>: null}
+          <h2 className="family__h2">Familia {logged?.lineage}</h2>
+          <AddPDF familyNames={familyNames}/>
+        </section>
+      ) : (
         <>
-          <h3 className="admin--pdf">PDFs de las familias</h3>
-          <form className="admin__form">
-            <select name="families" id="families" className="admin__select">
-              <option value="">Elige familia...</option>
-              {familyNames.map((family)=> {
-                return (<option value={family.lineage} key={family.id}>
-                  {family.lineage}
-                </option>)
-              })}
-            </select>
-            <label htmlFor="uploadPDF"> Subir pdf</label>
-            <input name="uploadPDF" id="uploadPDF" type="file" formEncType="multipart/form-data" multiple={false} accept="application/pdf,application/vnd.ms-excel"/>
-            <button>Enviar</button>
-          </form>
+          <h2 className="family__h2">Familia {logged?.lineage}</h2>
+          <AddPDF familyNames={familyNames}/>
         </>
-      ) : 
-        (
-          <>
-            {/* <a href={`http://localhost:4000/static/data/${logged?.pdf}`} target="_blank" rel="noopener noreferrer">Familia {logged?.lineage}</a>
-            <a href={`http://localhost:4000/static/data/${logged?.pdf}`} target="_blank" rel="noopener noreferrer"><img src="/logo.svg" alt=" descargar" /></a> */}
-            {/* <p>Logueado como familia {logged?.lineage}</p> */}
-            <iframe                
-                src={`http://localhost:4000/static/data/${logged?.pdf}`}
-                >Tu navegador no soporta iframe
-            </iframe>
-          </>
-        )
-      }
+      )}
     </>
   )
 }
 
-Family.propTypes = {
-  lineage: PropTypes.string,
-}
