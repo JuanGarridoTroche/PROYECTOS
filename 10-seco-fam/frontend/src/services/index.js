@@ -111,6 +111,7 @@ export const uploadPdfService = async(token)=> {
     headers: {
       Authorization:token,
       "content-type": "application/json"
-    }
+    },
+    body: JSON.stringify() 
   })
 }

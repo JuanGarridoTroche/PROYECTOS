@@ -14,6 +14,7 @@ export const Family = ()=> {
   const [error, setError] = useState("");
   const [familyNames, setFamilyNames] = useState([]);
 
+
   useEffect(()=> {   
     const checkingToken = async () => {
       try {       
@@ -34,13 +35,13 @@ export const Family = ()=> {
       }
     }
     if(!token) navigate("/"); 
-    if (logged?.url) checkingToken();
+    if (token && logged?.url) checkingToken();
   }, [logged?.url, logged?.role, token, navigate, url]);
 
   return(
     <>
       <Header lineage={logged?.lineage}/>
-      {logged?.role === 'admin' ? (
+      {token && logged && logged?.role === 'admin' ? (
         <section className="family-page">
           {logged?.role === "admin" ? <Aside/>: null}
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
