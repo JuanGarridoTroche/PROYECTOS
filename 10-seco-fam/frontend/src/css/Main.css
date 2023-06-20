@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 85vh;
+  margin: 0 auto;
 }
 
 .main__error {
@@ -12,7 +12,9 @@
   font-weight: 600;
 }
 
-.main__form {  
+
+.main__form { 
+  padding-top: 50px;
   width: 450px;
   height: 200px;
   display: flex;
@@ -44,3 +46,23 @@
   min-width: 70px;
 }
 
+
+@media (min-width: 550px) {
+  .main {
+    max-width: 530px;
+  }
+
+  .main__form { 
+    padding-top: 70px;
+  } 
+}
+
+@media (min-width: 880px) {
+  .main {
+    max-width: 860px;
+  }
+
+  .main__form { 
+    padding-top: 100px;
+  } 
+}

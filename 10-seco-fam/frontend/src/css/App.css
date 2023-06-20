@@ -1,7 +1,7 @@
 #root {
+  min-width: 300px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -13,6 +13,7 @@
   font-family: var(--font-title);
   font-style: italic;
   font-weight: 600;
+  padding-top: 50px;
 }
 
 

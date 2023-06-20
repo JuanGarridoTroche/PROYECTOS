@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
+// import ("../css/ShowPDF.css");
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-export const AddPDF =({familyNames})=> {
+export const ShowPDF =({familyNames})=> {
   const [error, setError] = useState("");
   const {logged} = useContext(AuthContext);
   const [pdf, setPdf] = useState();
   let uploadPDF= [logged?.pdf];
-  console.log(familyNames);
 
   const handleUploadPDF = async(e)=> {
     e.preventDefault();
@@ -23,7 +23,7 @@ export const AddPDF =({familyNames})=> {
 
   return (
     <>
-      {logged?.role && logged?.role === 'admin' ? (
+      {logged?.role === 'admin' ? (
         <form className="admin__form" onSubmit={handleUploadPDF}>
           <select name="families" id="families" className="admin__select">
             <option value="">Elige familia...</option>
@@ -40,7 +40,8 @@ export const AddPDF =({familyNames})=> {
       
         ) : (
         <iframe                
-          src={`http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}`}
+          src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
+          className="selected-pdf"
           >Tu navegador no soporta iframe
         </iframe>
       )

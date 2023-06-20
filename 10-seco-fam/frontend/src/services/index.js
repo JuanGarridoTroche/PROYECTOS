@@ -99,7 +99,7 @@ export const getAllFamiliyNamesService = async (token)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  // console.log(json.data);
   return json.data;    
 }
 

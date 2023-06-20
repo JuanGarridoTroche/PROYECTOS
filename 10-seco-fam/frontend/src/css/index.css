@@ -29,11 +29,14 @@ html {
 }
 
 body {
-  font-size: 1.6rem;  
-  min-width: 320px;
+  font-size: 1.6rem;
+  width: 100%;
   min-height: 100vh;
+  height: 100%;
   font-family: var(--font-text); 
   color: white;
   background-color: var(--color-bg);
 }
+
+
 
