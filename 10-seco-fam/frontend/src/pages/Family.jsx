@@ -40,10 +40,8 @@ export const Family = ()=> {
 
   return(
     <>
-      <Header lineage={logged?.lineage}/>
       {token && logged && logged?.role === 'admin' ? (
-        <section className="family-page">
-          {logged?.role === "admin" ? <Aside/>: null}
+        <section className="family-page">          
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
           <AddPDF familyNames={familyNames}/>
         </section>

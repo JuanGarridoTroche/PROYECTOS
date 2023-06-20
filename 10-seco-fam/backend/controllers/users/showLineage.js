@@ -3,13 +3,15 @@ const { generateError } = require("../../helpers");
 
 const showLineage = async (req, res, next)=> {    
     try {
-      // Mostrar los nombres de todas las familias
+      // Recogemos el nombre de la familia a través del token del usuario logueado
       const {lineage} = req.user;
+
+      // Recogemos la url a través de sus params
       const {url} = req.params;
       let familyName ="";
-      let familyPdf = "";
+      let familyPdf = [];
       
-      // Buscamos en lineage.json (data) la url para quedartnos con el lineage
+      // Buscamos en lineage.json (data) la urlextraida de params para quedarnos con el lineage
       for(let family of data) {
         if(family.url === url) {
           familyName = family.lineage;
@@ -17,10 +19,10 @@ const showLineage = async (req, res, next)=> {
         }
       }
 
+      // Validamos que el lineage extraido de su token es igual al nombre de la familia sacado a partir de la url
       if(lineage !== familyName) {
         throw generateError("No tienes acceso a esta página", 403);
       }
-
       
 
       res.send({
