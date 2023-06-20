@@ -7,6 +7,7 @@ export const AddPDF =({familyNames})=> {
   const {logged} = useContext(AuthContext);
   const [pdf, setPdf] = useState();
   let uploadPDF= [logged?.pdf];
+  console.log(familyNames);
 
   const handleUploadPDF = async(e)=> {
     e.preventDefault();
@@ -22,7 +23,7 @@ export const AddPDF =({familyNames})=> {
 
   return (
     <>
-      {logged?.role === 'admin' ? (
+      {logged?.role && logged?.role === 'admin' ? (
         <form className="admin__form" onSubmit={handleUploadPDF}>
           <select name="families" id="families" className="admin__select">
             <option value="">Elige familia...</option>

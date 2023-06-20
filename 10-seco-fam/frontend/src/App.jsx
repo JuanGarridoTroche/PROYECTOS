@@ -7,7 +7,7 @@ import { NotFound } from './pages/NotFound';
 import { Form } from './pages/Form';
 import { Aside } from './components/Aside';
 import { Header } from './components/Header';
-import { useContext} from 'react';
+import { useContext, useEffect} from 'react';
 import { AuthContext } from './context/AuthContext';
 import { Anca } from './components/Anca';
 
@@ -15,6 +15,10 @@ import { Anca } from './components/Anca';
 
 function App() {
   const {token, logged} = useContext(AuthContext);
+
+  useEffect(()=>{
+    
+  })
   
   return (    
     <main>
@@ -25,8 +29,7 @@ function App() {
             {logged?.role === "admin" ? <Aside/>: null}
           </>
         ) : ( null )
-      }
-      
+      }      
       <Routes> 
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />

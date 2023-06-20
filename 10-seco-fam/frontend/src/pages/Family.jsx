@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { getAllFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,14 +19,14 @@ export const Family = ()=> {
       try {       
         // console.log(logged?.url);
         // console.log(url);
-        if(logged?.url !== url) {
+        if(logged?.url && logged?.url !== url) {
           navigate(`/familia/${logged?.url}`);
         }
-                
-        if(logged?.role === 'admin') {
+
+        if(logged?.role && logged?.role === 'admin') {
           const families = await getAllFamiliyNamesService(token);
           setFamilyNames(families);
-          // console.log(familyNames);      
+          console.log(families);      
         }        
         
       } catch (error) {
@@ -35,12 +34,12 @@ export const Family = ()=> {
       }
     }
     if(!token) navigate("/"); 
-    if (token && logged?.url) checkingToken();
-  }, [logged?.url, logged?.role, token, navigate, url]);
+    token && logged?.url && checkingToken();
+  }, [logged?.url, logged?.role, token, navigate, url, familyNames]);
 
   return(
     <>
-      {token && logged && logged?.role === 'admin' ? (
+      {token && familyNames && logged?.role === 'admin' ? (
         <section className="family-page">          
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
           <AddPDF familyNames={familyNames}/>

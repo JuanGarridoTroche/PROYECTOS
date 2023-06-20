@@ -22,7 +22,8 @@ export const Login = ()=> {
         if(!token) {
           navigate("/")          
         }
-        navigate(`/familia/${logged?.url}`);       
+        
+        if(logged?.url) navigate(`/familia/${logged?.url}`);       
       } catch (error) {
         alert(error.message);
       }
@@ -42,7 +43,7 @@ export const Login = ()=> {
         throw new Error("Contraseña incorrecta");
       }
 
-      login(loggedUser.token);
+      login(loggedUser?.token);
 
       // Eliminar acentos del nombre de la familia
       // const removeAccents = (str) => {
@@ -53,9 +54,9 @@ export const Login = ()=> {
       setLineage(loggedUser.data.lineage);
       // console.log(removeAccents(lineage).toLowerCase()); 
 
-      console.log("Bienvenido a la familia " + loggedUser.data.lineage + " /" + loggedUser.data.url);
-      // navigate(`/familia/${loggedUser.data.url}`);
-      navigate(<Family/>);   
+      console.log("Bienvenido a la familia " + loggedUser?.data?.lineage + " /" + loggedUser?.data?.url);
+      navigate(`/familia/${loggedUser?.data?.url}`);
+      // navigate(<Family/>);   
     } catch (err) {
       setError(err.message);
     }
