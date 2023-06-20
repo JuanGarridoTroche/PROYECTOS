@@ -7,7 +7,7 @@ import { NotFound } from './pages/NotFound';
 import { Form } from './pages/Form';
 import { Aside } from './components/Aside';
 import { Header } from './components/Header';
-import { useContext, useEffect} from 'react';
+import { useContext} from 'react';
 import { AuthContext } from './context/AuthContext';
 import { Anca } from './components/Anca';
 
@@ -16,20 +16,19 @@ import { Anca } from './components/Anca';
 function App() {
   const {token, logged} = useContext(AuthContext);
 
-  useEffect(()=>{
-    
-  })
+
   
-  return (    
-    <main>
+  return ( 
+    <>
       {
         token ? (
           <>
-            <Header lineage={logged?.lineage}/>
-            {logged?.role === "admin" ? <Aside/>: null}
+            <Header lineage={logged?.lineage}/>            
           </>
         ) : ( null )
-      }      
+      }     
+    <main className={logged?.role === "admin" ? "main-admin" : "main"}>
+    {logged?.role === "admin" ? <Aside/>: null}
       <Routes> 
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
@@ -43,6 +42,7 @@ function App() {
           <Route path="*" element={<NotFound />} />        
       </Routes>
     </main>     
+    </>   
       
   )
 }
