@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const Anca = ()=> {
+export const Cabalar = ()=> {
   const {logged} = useContext(AuthContext);
   const [selectedIcon, setSelectedIcon] = useState(false);
   const navigate = useNavigate();
@@ -18,11 +18,11 @@ export const Anca = ()=> {
     <section>
       <h3>Documentos pdf</h3>
       <article>
-        <figure>          
-          <img src={selectedIcon ? "/file-pdf-regular-white.svg" : "/file-pdf-regular.svg"} alt="pdf" onClick={handleToggle}/>
+        <figure>
+        <img src={selectedIcon ? "/file-pdf-regular-white.svg" : "/file-pdf-regular.svg"} alt="pdf" onClick={handleToggle}/>
         </figure>
         <section>
-          Familia Anca
+          Familia Cabalar
         </section>
       </article>
     </section>
