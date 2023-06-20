@@ -32,6 +32,10 @@
 .aside {
   max-width: 120px;
   width: 100%;
+  min-height: 90vh;
+  height: 100%;
+  box-shadow: 1px 1px 13px grey;
+  padding-left: 7px;
 }
 
 .aside--add-pdf {

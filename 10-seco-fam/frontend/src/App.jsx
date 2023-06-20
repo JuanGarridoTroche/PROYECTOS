@@ -10,6 +10,9 @@ import { Header } from './components/Header';
 import { useContext} from 'react';
 import { AuthContext } from './context/AuthContext';
 import { Anca } from './components/Anca';
+import { Cabalar } from './components/Cabalar';
+import { Diaz } from './components/Diaz';
+import { Seco } from './components/Seco';
 
 
 
@@ -33,10 +36,9 @@ function App() {
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
           <Route path='/familia/administrator/anca' element={<Anca/>} />
-          {/*<Route path='/cabalar' element={<Family lineage="Cabalar"/>} />
-          <Route path='/diaz' element={<Family lineage="Díaz"/>} />
-          <Route path='/seco' element={<Family lineage="Seco"/>} />
-          <Route path='/administrator' element={<Family lineage="admin"/>} /> */}
+          <Route path='/familia/administrator/cabalar' element={<Cabalar/>} />
+          <Route path='/familia/administrator/diaz' element={<Diaz/>} />
+          <Route path='/familia/administrator/seco' element={<Seco/>} />
           <Route path='/form' element={<Form/>}/>
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />        
