@@ -37,7 +37,6 @@ export const Form = ()=> {
 
   return (
     <>
-      <Header lineage={logged?.lineage}/>
       <h2 className="title-form">Ayúdanos a mejorar</h2>
       {error ? <p className="error">{error}</p> : null}
       <form className="form" onSubmit={handleSubmit}>

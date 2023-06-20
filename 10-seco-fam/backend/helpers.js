@@ -59,7 +59,7 @@ const savePDF = async(pdfMetadata, familyData, uploadPDF) => {
   let uploadPath = path.join(__dirname, UPLOADS_DIR, "\\data\\", familyData.url);
   // console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);
   console.log(`${uploadPath}`);
-  // console.log(`${HOST}:${PORT}/static/data`);  
+  // console.log(`${HOST}:${PORT}/static/data`);
   try {
     await fs.access(uploadPath);    
   } catch (err) {

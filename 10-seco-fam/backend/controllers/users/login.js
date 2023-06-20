@@ -10,14 +10,10 @@ const login = async (req, res, next) => {
     const user = await selectFamilyByPassword(password);
     // console.log("Usuario:", user.lineage);
 
-    // Si user no tiene datos => contraseña
+    // Si user no tiene datos => contraseña incorrecta
     if(!user) {
       throw generateError("Contraseña incorrecta", 403);
     }
-
-    // Conseguimos todos los nombres de las familias.
-    // const families = await getAllFamilies();
-    // console.log(families);
 
     // Creamos el objeto con los datos que queremos guardar dentro del token
     const tokenInfo = {
@@ -31,10 +27,9 @@ const login = async (req, res, next) => {
     
     res.send({
       status: "Ok",
-      message: `login realizado con éxito por ${user.lineage}`, 
+      message: `login realizado con éxito por la familia ${user.lineage}`, 
       data: user,
-      token: token,
-      // families: families,   
+      token: token,  
     })
     
   } catch (err) {
