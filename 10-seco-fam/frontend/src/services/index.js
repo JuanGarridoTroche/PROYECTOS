@@ -46,7 +46,6 @@ export const getLoggedUserDataService = async (token) => {
 
 // Servicio que devuelve el nombre de la familia a partir de la url y estando logueado
 export const getFamiliyNamesService = async (token, url)=> {
-  // console.log(url);
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${url}`,
   {
     method: "GET",

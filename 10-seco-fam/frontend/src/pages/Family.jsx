@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getAllFamiliyNamesService } from "../services";
 import { useNavigate, useParams } from "react-router-dom";
-import { ShowPDF } from "../components/ShowPDF";
+import { PDF } from "../components/PDF";
 import ("../css/Family.css")
 
 export const Family = ()=> {
@@ -39,13 +39,14 @@ export const Family = ()=> {
     <>
       {token && familyNames && logged?.role === 'admin' ? (
         <section className="family-page">          
-          <h2 className="family__h2">Familia {logged?.lineage}</h2>
-          <ShowPDF familyNames={familyNames}/>
+          <h2 className="family__h2">Administrador</h2>
+          {/* Sube un fichero PDF */}
+          {/* <PDF familyNames={familyNames}/> */}
         </section>
       ) : (
         <section className="family-page">
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
-          <ShowPDF familyNames={familyNames}/>
+          <PDF familyNames={familyNames}/>
         </section>
       )}
     </>
