@@ -8,6 +8,7 @@ const showLineage = async (req, res, next)=> {
 
       // Recogemos la url a través de sus params
       const {url} = req.params;
+
       let familyName ="";
       let familyPdf = [];
       
@@ -19,15 +20,22 @@ const showLineage = async (req, res, next)=> {
         }
       }
 
-      // Validamos que el lineage extraido de su token es igual al nombre de la familia sacado a partir de la url
-      if(lineage !== familyName) {
+      // Buscamos en lineage.json (data) la familia del usuario logueado para quedarnos con el role
+      for(let family of data) {
+        if(family.lineage === lineage) {
+          familyRole = family.role;
+        }
+      }
+
+      // Validamos que el lineage extraido de su token es igual al nombre de la familia sacado a partir de la url y que no sea admin
+      if(lineage !== familyName && familyRole !== 'admin') {
         throw generateError("No tienes acceso a esta página", 403);
       }
       
 
       res.send({
           status: "Ok",
-          message: `Muestra el pdf de la familia ${familyName}`, 
+          message: `Muestra los pdf de la familia ${familyName} siendo ${familyRole}`, 
           data: {
             lineage: familyName,
             pdf: familyPdf

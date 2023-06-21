@@ -36,6 +36,7 @@
   height: 100%;
   box-shadow: 1px 1px 13px grey;
   padding-left: 7px;
+  background-color: rgb(77, 76, 76);
 }
 
 .aside--add-pdf {

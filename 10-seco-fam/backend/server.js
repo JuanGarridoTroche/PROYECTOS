@@ -47,7 +47,7 @@ app.get("/familyNames", isAuth, getFamilyNames);
 // Enviar formulario
 app.post("/form/sendForm", isAuth, sendForm);
 
-// Acceso al pdf de la familia
+// Acceso a los pdf de la familia
 app.get("/:url", isAuth, showLineage);
 
 // Subir fichero pdf de una de las familias por parte de admin
