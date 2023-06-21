@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getFamiliyNamesService } from "../services";
 
 export const Anca = ()=> {
-  const {logged} = useContext(AuthContext);
+  const {logged, token} = useContext(AuthContext);
   const [selectedIcon, setSelectedIcon] = useState(false);
   const navigate = useNavigate();
   const [pdfs, setPdfs] = useState([]);
@@ -16,21 +16,28 @@ export const Anca = ()=> {
   }
 
   useEffect(()=> {
-    const checkPdfs = async(e)=> {
-      e.preventDefault();
+    const checkPdfs = async()=> {
+      console.log("useEffect");
       setError("");
       try {
+        // Comprobamos que esté logueado            
+        if(!token) {
+          navigate("/")          
+        }
         const ancaPdfs = await getFamiliyNamesService(token, url);
-        setPdfs(ancaPdfs?.data?.pdf)
+        
+        setPdfs(ancaPdfs?.pdf)
       } catch (err) {
         setError(err.message)
       }
     }
-    if(logged?.role === 'admin') checkPdfs;
-  }, [pdfs, logged?.role])
+    
+    if(logged?.role === 'admin') checkPdfs();
+  }, [token, logged?.role, navigate])
 
-  const handleToggle = ()=> {    
-    setSelectedIcon(!selectedIcon);
+  const handleToggle = (index)=> {
+    console.log(index);
+    if(pdfs[index]) setSelectedIcon(!selectedIcon);
   }
   
   return (
@@ -41,7 +48,7 @@ export const Anca = ()=> {
           return (
           <li key={index}>
             <figure>                     
-                <img src={selectedIcon ? "/file-pdf-regular-white.svg" : "/file-pdf-regular.svg"} alt="pdf" onClick={handleToggle}/>
+                <img src={selectedIcon ? "/file-pdf-regular-white.svg" : "/file-pdf-regular.svg"} alt="pdf" onClick={()=> handleToggle(index)}/>
               <p>
                 {pdf}
               </p>
