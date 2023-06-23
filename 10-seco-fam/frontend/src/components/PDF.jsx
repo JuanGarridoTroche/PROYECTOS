@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { UploadPDF } from "./UpoladPDF";
+import { UploadPDF } from "./UploadPDF";
 
 export const PDF =({familyNames})=> {
   const [error, setError] = useState("");

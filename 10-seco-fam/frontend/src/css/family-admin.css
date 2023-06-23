@@ -1,5 +1,28 @@
 
 .selected {
-  color: green;
-  font-weight: 800;
+  content:url("/file-pdf-regular-white.svg");
+}
+
+.show-pdf {
+  content:url("/file-pdf-regular.svg");
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.show-pdf:hover {
+  content:url("/file-pdf-regular-white.svg");
+}
+
+.add-pdf {
+  content:url("/plus-solid.svg");
+}
+
+.selected-add-pdf {
+  content:url("/plus-solid-white.svg");
+}
+
+.selected-add-pdf:hover {
+  content:url("/plus-solid-white.svg");
 }
