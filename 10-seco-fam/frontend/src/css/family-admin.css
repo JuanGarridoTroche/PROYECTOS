@@ -17,12 +17,17 @@ img:hover {
 
 .add-pdf {
   content:url("/plus-solid.svg");
+  border: 1px solid rgb(165,10,10);
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #303030;
 }
 
 .selected-add-pdf {
   content:url("/plus-solid-white.svg");
 }
 
-.selected-add-pdf:hover {
+.add-pdf:hover {
   content:url("/plus-solid-white.svg");
+  background-color: #404040;
 }
