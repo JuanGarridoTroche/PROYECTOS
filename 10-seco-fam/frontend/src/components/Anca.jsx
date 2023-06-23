@@ -20,7 +20,6 @@ export const Anca = ()=> {
 
   useEffect(()=> {
     const checkPdfs = async()=> {
-      console.log("useEffect");
       setError("");
       try {
         // Comprobamos que esté logueado            
@@ -37,19 +36,6 @@ export const Anca = ()=> {
     
     if(logged?.role === 'admin') checkPdfs();
   }, [token, logged?.role, navigate])
-
-  // const handleToggle = (pdf)=> {
-  //   console.log(icon);
-  //   const result = pdfs.map((doc) => {
-  //     if(doc === pdf) {
-  //       return setIcon(!icon)
-  //     }
-  //   })
-  //   icon ? setSelectedIcon("/file-pdf-regular-white.svg") : setSelectedIcon("/file-pdf-regular.svg");
-
-  //   return selectedIcon;
-    
-  // }
   
   return (
       <section>

@@ -26,12 +26,13 @@ export const PDF =({familyNames})=> {
       {logged?.role === 'admin' ? (
           <UploadPDF familyNames={familyNames}/>      
         ) : (
-          <iframe                
-            src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
-            className="selected-pdf"
-            draggable="true"
-            >Tu navegador no soporta iframe
-          </iframe>
+          // <iframe                
+          //   src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
+          //   className="selected-pdf"                        
+          //   >Tu navegador no soporta iframe
+          // </iframe>
+          <embed src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
+            type="application/pdf" className="selected-pdf"/>
         )
 
       }

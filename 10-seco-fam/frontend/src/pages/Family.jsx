@@ -14,7 +14,6 @@ export const Family = ()=> {
 
 
   useEffect(()=> {   
-    console.log("useEffect");
     const checkingToken = async () => {
       try {       
         // console.log(logged?.url);
@@ -40,7 +39,7 @@ export const Family = ()=> {
     <>
       {token && familyNames && logged?.role === 'admin' ? (
         <section className="family-page">          
-          <h2 className="family__h2">Administrador</h2>
+          <h2 className="family__h2">Bienvenido a la sección del administrador</h2>
           {/* Sube un fichero PDF */}
           {/* <PDF familyNames={familyNames}/> */}
         </section>
