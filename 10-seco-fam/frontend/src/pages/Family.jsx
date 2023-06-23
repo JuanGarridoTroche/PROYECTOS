@@ -14,6 +14,7 @@ export const Family = ()=> {
 
 
   useEffect(()=> {   
+    console.log("useEffect");
     const checkingToken = async () => {
       try {       
         // console.log(logged?.url);
@@ -45,6 +46,7 @@ export const Family = ()=> {
         </section>
       ) : (
         <section className="family-page">
+          {familyNames}
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
           <PDF familyNames={familyNames}/>
         </section>

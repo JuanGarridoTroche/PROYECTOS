@@ -29,6 +29,7 @@ export const PDF =({familyNames})=> {
           <iframe                
             src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
             className="selected-pdf"
+            draggable="true"
             >Tu navegador no soporta iframe
           </iframe>
         )

@@ -52,29 +52,34 @@ export const Anca = ()=> {
   // }
   
   return (
-    <section>
-      <h3 className="pdfs-title">Documentos pdf</h3>
-      <ul className="pdfs__list">
-        {pdfs.map((pdf, index)=> {
-          return (
-          <li key={index} className="pdfs__item">
-            <figure className="pdfs__figure">
-              <Card id={index}/>              
-            </figure>
-              <p className="pdf__name">
-                {pdf}
-              </p>
-              <button className="pdf--update">Actualizar</button>
-              <button className="pdf--delete">Eliminar</button>
-          </li>
-          )
-        })}
-        <li>
-          <AddPDF/>
-        </li>
-      </ul>
-      {error ? <p>{error}</p> : null}
+      <section>
+        <section className="pdfs">
+          <h3 className="pdfs-title">Documentos pdf</h3>
+          <ul className="pdfs__list">
+            {pdfs.map((pdf, index)=> {
+              return (
+              <li key={index} className="pdfs__item">
+                <figure className="pdfs__figure">
+                  <Card id={index}/>              
+                </figure>
+                  <p className="pdf__name">
+                    {pdf}
+                  </p>
+                  <button className="pdf--update">Actualizar</button>
+                  <button className="pdf--delete">Eliminar</button>
+              </li>
+              )
+            })}
+            <li>
+              <AddPDF/>
+            </li>
+          </ul>
+          {error ? <p>{error}</p> : null}
+        </section>
+        <section>
+          <embed src="/static/data/anca/Anca.pdf" type="application/pdf" />
+        </section>
 
-    </section>
+      </section>    
   )
 }
