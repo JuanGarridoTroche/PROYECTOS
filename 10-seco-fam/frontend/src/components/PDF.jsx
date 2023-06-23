@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { UploadPDF } from "./UpoladPDF";
+import { UploadPDF } from "./UploadPDF";
 
 export const PDF =({familyNames})=> {
   const [error, setError] = useState("");
@@ -29,6 +29,7 @@ export const PDF =({familyNames})=> {
           <iframe                
             src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
             className="selected-pdf"
+            draggable="true"
             >Tu navegador no soporta iframe
           </iframe>
         )

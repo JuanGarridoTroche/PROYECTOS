@@ -1,5 +1,33 @@
 
 .selected {
-  color: green;
-  font-weight: 800;
+  content:url("/file-pdf-regular-white.svg");
+}
+
+.show-pdf {
+  content:url("/file-pdf-regular.svg");
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.show-pdf:hover {
+  content:url("/file-pdf-regular-white.svg");
+}
+
+.add-pdf {
+  content:url("/plus-solid.svg");
+  border: 1px solid rgb(165,10,10);
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #303030;
+}
+
+.selected-add-pdf {
+  content:url("/plus-solid-white.svg");
+}
+
+.add-pdf:hover {
+  content:url("/plus-solid-white.svg");
+  background-color: #404040;
 }

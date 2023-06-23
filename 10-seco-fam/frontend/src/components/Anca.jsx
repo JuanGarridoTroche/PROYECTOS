@@ -4,10 +4,10 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { getFamiliyNamesService } from "../services";
 import { Card } from "./Card";
+import { AddPDF } from "./AddPDF";
 
 export const Anca = ()=> {
   const {logged, token} = useContext(AuthContext);
-  const [selectedIcon, setSelectedIcon] = useState("/file-pdf-regular.svg");
   const navigate = useNavigate();
   const [pdfs, setPdfs] = useState([]);
   const [error, setError] = useState("");
@@ -52,28 +52,34 @@ export const Anca = ()=> {
   // }
   
   return (
-    <section>
-      <h3 className="pdfs-title">Documentos pdf</h3>
-      <ul className="pdfs__list">
-        {pdfs.map((pdf, index)=> {
-          return (
-          <li key={index} className="pdfs__item">
-            <figure className="pdfs__figure">
-              <Card pdf={pdf} selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} pdfs={pdfs} id={index}/>
-              {/* <img className={icon ? "selected" : null} src={selectedIcon} alt="pdf" onClick={()=> handleToggle(pdf)}/> */}
-            </figure>
-              <p>
-                {pdf}
-              </p>
-              <button>Actualizar</button>
-              <button>Eliminar</button>
-          </li>
+      <section>
+        <section className="pdfs">
+          <h3 className="pdfs-title">Documentos pdf</h3>
+          <ul className="pdfs__list">
+            {pdfs.map((pdf, index)=> {
+              return (
+              <li key={index} className="pdfs__item">
+                <figure className="pdfs__figure">
+                  <Card id={index}/>              
+                </figure>
+                  <p className="pdf__name">
+                    {pdf}
+                  </p>
+                  <button className="pdf--update">Actualizar</button>
+                  <button className="pdf--delete">Eliminar</button>
+              </li>
+              )
+            })}
+            <li>
+              <AddPDF/>
+            </li>
+          </ul>
+          {error ? <p>{error}</p> : null}
+        </section>
+        <section>
+          <embed src="/static/data/anca/Anca.pdf" type="application/pdf" />
+        </section>
 
-          )
-        })}
-      </ul>
-      {error ? <p>{error}</p> : null}
-
-    </section>
+      </section>    
   )
 }
