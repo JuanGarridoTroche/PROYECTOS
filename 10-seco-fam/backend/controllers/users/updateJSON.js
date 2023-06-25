@@ -32,7 +32,9 @@ const updateJSON = async (req, res, next) => {
 
    console.log(myData);
    const myNewData = JSON.stringify(myData);
-   await fs.writeFile("/assets/lineages.final.json", myNewData, "utf-8");
+   fs.writeFile("/assets/lineages2.json", myNewData, "utf-8", (err) => {
+    if (err) {throw generateError("Error a la hora de guardar el fichero JSON", 400)}
+   });
     
     res.send({
       status: "Ok",
