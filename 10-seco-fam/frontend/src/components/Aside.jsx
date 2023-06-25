@@ -30,6 +30,7 @@ export const Aside = ()=> {
         {familyNames.map((family) => {
           return <li className="aside__family-name aside__item" key={family.id}><a href={`/familia/administrator/${family.url}`}>{family.lineage}</a></li>
         })}
+        <li className="aside__family-name aside__item" key="añadido"><a href={`/familia/administrator/json`}>json</a></li>
       </ul>
     </aside>
   )
