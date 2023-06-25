@@ -1,10 +1,15 @@
 const {generateError} = require("../../helpers")
-const data = require("../../assets/lineages.final.json");
-const myData = structuredClone(data);  
+// const data = require("../../assets/lineages.final.json");
+const fs = require("fs/promises");
 
 const updateJSON = async (req, res, next) => {
+  const readingJson = await fs.readFile("/assets/lineages.final.json", "utf-8")
+  const data = JSON.parse(readingJson);
+  const myData = structuredClone(data);  
   const {lineage} = req.body;
   console.log("Familia: ", lineage);
+
+  console.log("Leyendo con fs: ", data);
   
   try {   
     if(!req.files) {
@@ -26,12 +31,16 @@ const updateJSON = async (req, res, next) => {
     })
 
    console.log(myData);
+   const myNewData = JSON.stringify(myData);
+   await fs.writeFile("/assets/lineages.final.json", myNewData, "utf-8");
     
     res.send({
       status: "Ok",
       message: `datos subidos al json`, 
       myData,  
     })
+
+
     
   } catch (err) {
     next(err);
