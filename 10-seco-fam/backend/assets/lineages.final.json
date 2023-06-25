@@ -2,7 +2,7 @@
     {
         "id": "nD-uOe-J5S-TI",
         "lineage":"Anca",
-        "pdf": ["anca.pdf"],
+        "pdf": ["anca.pdf", "anca_2.pdf", "anca_antiguo.pdf"],
         "password": "$2b$10$2q16ou.scLZBnv60aXKDAOad9oOa0b1EGkqiZwvu0It1n4D5bf4Fq",
         "active": true,
         "url": "anca",
@@ -11,7 +11,7 @@
     },
     {
         "id": "rj-6E8-SUC-4S",
-        "lineage":["cabalar"],
+        "lineage":"Cabalar",
         "pdf": "cabalar.pdf",
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true,
