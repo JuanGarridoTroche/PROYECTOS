@@ -114,3 +114,16 @@ export const uploadPdfService = async(token)=> {
     body: JSON.stringify() 
   })
 }
+
+export const updateJSONService = async(token, pdf, logo)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/new-entry`,
+  {
+    method:"POST",
+    headers: {
+      Authorization: token,
+      "content-type": "application/json"
+    },
+    body: JSON.stringify()
+  }
+  )
+}

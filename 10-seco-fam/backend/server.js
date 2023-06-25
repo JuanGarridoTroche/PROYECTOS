@@ -34,6 +34,7 @@ app.use(cors());
  * #####################
  */
 const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm, sendPDF } = require("./controllers/users");
+const updateJSON = require("./controllers/users/updateJSON");
 
 
 // Login de usuario
@@ -52,6 +53,9 @@ app.get("/:url", isAuth, showLineage);
 
 // Subir fichero pdf de una de las familias por parte de admin
 app.post("/sendPDF", isAuth, sendPDF)
+
+// Prueba de guardado de datos en JSON
+app.post("/new-entry", isAuth, updateJSON)
 
 
 

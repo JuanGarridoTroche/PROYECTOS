@@ -13,6 +13,7 @@ import { Anca } from './components/Anca';
 import { Cabalar } from './components/Cabalar';
 import { Diaz } from './components/Diaz';
 import { Seco } from './components/Seco';
+import { UpdateJSON } from './components/UpdateJSON';
 
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='/familia/administrator/cabalar' element={<Cabalar/>} />
           <Route path='/familia/administrator/diaz' element={<Diaz/>} />
           <Route path='/familia/administrator/seco' element={<Seco/>} />
+          <Route path='/familia/administrator/json' element={<UpdateJSON/>} />
           <Route path='/form' element={<Form/>}/>
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />        
