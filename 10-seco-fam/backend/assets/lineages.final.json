@@ -12,7 +12,7 @@
     {
         "id": "rj-6E8-SUC-4S",
         "lineage":"Cabalar",
-        "pdf": "cabalar.pdf",
+        "pdf": ["cabalar.pdf"],
         "password": "$2b$10$rbuyjIC.djFDHtiDJs3Oh.9gIZ3fOPSHz8J8bVyEc/SYcxzrWH6e2",
         "active": true,
         "url": "cabalar",
