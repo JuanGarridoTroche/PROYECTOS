@@ -38,9 +38,9 @@ export const Administrator = ()=> {
   }, [token, logged?.role, navigate, url])
   
   return (
-    <section>
+    <section className="admin-container">
       <section className="pdfs">
-        <h3 className="pdfs-title">Documentos pdf</h3>
+        <h3 className="pdfs__title">Documentos pdf</h3>
         <ul className="pdfs__list">
           {pdfs.map((pdf, index)=> {
             return (
@@ -51,19 +51,21 @@ export const Administrator = ()=> {
               <p className="pdf__name">
                 {pdf}
               </p>
-              <button className="pdf--update">Actualizar</button>
-              <button className="pdf--delete">Eliminar</button>
+              <div className="pdfs__buttons">
+                <button className="pdf--update">Actualizar</button>
+                <button className="pdf--delete">Eliminar</button>
+              </div>
             </li>
             )
           })}
-          <li>
+          <li className="pdfs__add-item">
             <AddPDF/>
           </li>
         </ul>
         {error ? <p>{error}</p> : null}
       </section>
-      <section>
-        <embed src={`/static/data/${url}/${pdfs[0]}`} type="application/pdf" />
+      <section className="pdf--selected">
+        <embed src={`/static/data/${url}/${pdfs[0]}`} type="application/pdf" className="pdf__embed"/>
       </section>
     </section>    
   )
