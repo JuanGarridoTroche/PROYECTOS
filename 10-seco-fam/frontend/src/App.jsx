@@ -14,6 +14,7 @@ import { Cabalar } from './components/Cabalar';
 import { Diaz } from './components/Diaz';
 import { Seco } from './components/Seco';
 import { UpdateJSON } from './components/UpdateJSON';
+import { Administrator } from './components/Administrator';
 
 
 
@@ -36,10 +37,11 @@ function App() {
       <Routes> 
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
-          <Route path='/familia/administrator/anca' element={<Anca/>} />
-          <Route path='/familia/administrator/cabalar' element={<Cabalar/>} />
-          <Route path='/familia/administrator/diaz' element={<Diaz/>} />
-          <Route path='/familia/administrator/seco' element={<Seco/>} />
+          <Route path='/familia/administrator/:url' element={<Administrator/>} />
+          {/* <Route path='/familia/administrator/anca' element={<Anca/>} /> */}
+          {/* <Route path='/familia/administrator/cabalar' element={<Cabalar/>} /> */}
+          {/* <Route path='/familia/administrator/diaz' element={<Diaz/>} /> */}
+          {/* <Route path='/familia/administrator/seco' element={<Seco/>} /> */}
           <Route path='/familia/administrator/json' element={<UpdateJSON/>} />
           <Route path='/form' element={<Form/>}/>
           {/* Página no encontrada */}

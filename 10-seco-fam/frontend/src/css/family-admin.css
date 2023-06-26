@@ -31,3 +31,105 @@ img:hover {
   content:url("/plus-solid-white.svg");
   background-color: #404040;
 }
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdfs__title {  
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.pdfs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  min-width: 85vw;
+  width: 100%;
+  border-bottom: 1px solid rgb(165,10,10);
+}
+
+
+.pdfs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pdfs__item {
+  list-style: none;
+  width: 180px;
+  background-color: white;
+  padding-top: 10px;
+  border-radius: 10px;
+  /* box-shadow: 1px 3px 10px 3px white; */
+}
+
+.pdf__name {
+  border-bottom: 1px solid rgb(165,10,10);
+  color: rgb(10, 10, 10);
+}
+
+.pdfs__buttons {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  border-radius: 0 0 10px 10px;
+}
+
+.pdf--update {
+  padding: 5px;
+  background-color: rgb(42, 188, 207);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pdf--delete {
+  padding: 5px;
+  background-color: rgb(165,10,10);
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.pdfs__add-item {
+  list-style: none;
+  width: 180px;
+  background-color: rgba(255, 255, 255, .7);
+  border-radius: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* .pdfs__figure img {
+  border-radius: 5px;
+  background-color: azure;
+} */
+
+.pdf--selected {
+  padding-top: 20px;
+}
+
+.pdf__embed {
+  min-width: 50vw;
+  width: 100%;
+  min-height: 70vh;
+}
+
+@media (min-width: 550px) {
+   
+}
+
+@media (min-width: 880px) {
+   
+}
