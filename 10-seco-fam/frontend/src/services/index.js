@@ -58,7 +58,7 @@ export const getFamiliyNamesService = async (token, url)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-  // console.log(json);
+  console.log(json);
   return json.data;    
 }
 
