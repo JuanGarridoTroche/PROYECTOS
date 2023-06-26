@@ -76,7 +76,6 @@ img:hover {
   color: rgb(10, 10, 10);
 }
 
-
 .pdfs__buttons {
   padding: 10px 0;
   display: flex;
@@ -103,7 +102,19 @@ img:hover {
 }
 
 .pdfs__add-item {
+  list-style: none;
+  width: 180px;
+  background-color: rgba(255, 255, 255, .7);
+  border-radius: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
 }
+
+/* .pdfs__figure img {
+  border-radius: 5px;
+  background-color: azure;
+} */
 
 .pdf--selected {
   padding-top: 20px;
@@ -113,4 +124,12 @@ img:hover {
   min-width: 50vw;
   width: 100%;
   min-height: 70vh;
+}
+
+@media (min-width: 550px) {
+   
+}
+
+@media (min-width: 880px) {
+   
 }
