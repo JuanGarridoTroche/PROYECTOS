@@ -80,7 +80,7 @@ img:hover {
   padding: 10px 0;
   display: flex;
   justify-content: space-around;
-  background-color: black;
+  background-color: #606060;
   border-radius: 0 0 10px 10px;
 }
 
@@ -110,11 +110,6 @@ img:hover {
   display: flex;
   justify-content: center;
 }
-
-/* .pdfs__figure img {
-  border-radius: 5px;
-  background-color: azure;
-} */
 
 .pdf--selected {
   padding-top: 20px;

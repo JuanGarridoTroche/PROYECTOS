@@ -6,7 +6,7 @@ import { UploadPDF } from "./UploadPDF";
 
 export const Aside = ()=> {
   const [error, setError] = useState("");
-  const {logged, token, logout} =useContext(AuthContext);
+  const {logged, token} =useContext(AuthContext);
   const [familyNames, setFamilyNames] = useState([]);
 
   useEffect(()=> {
@@ -30,7 +30,7 @@ export const Aside = ()=> {
         {familyNames.map((family) => {
           return <li className="aside__family-name aside__item" key={family.id}><a href={`/familia/administrator/${family.url}`}>{family.lineage}</a></li>
         })}
-        <li className="aside__family-name aside__item" key="añadido"><a href={`/familia/administrator/json`}>json</a></li>
+        <li className="aside__family-name aside__item" key="añadido"><a href={`/familia/administrator/addPDF`}>json</a></li>
       </ul>
     </aside>
   )

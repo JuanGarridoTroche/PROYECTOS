@@ -9,10 +9,6 @@ import { Aside } from './components/Aside';
 import { Header } from './components/Header';
 import { useContext} from 'react';
 import { AuthContext } from './context/AuthContext';
-import { Anca } from './components/Anca';
-import { Cabalar } from './components/Cabalar';
-import { Diaz } from './components/Diaz';
-import { Seco } from './components/Seco';
 import { UpdateJSON } from './components/UpdateJSON';
 import { Administrator } from './components/Administrator';
 
@@ -38,11 +34,7 @@ function App() {
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
           <Route path='/familia/administrator/:url' element={<Administrator/>} />
-          {/* <Route path='/familia/administrator/anca' element={<Anca/>} /> */}
-          {/* <Route path='/familia/administrator/cabalar' element={<Cabalar/>} /> */}
-          {/* <Route path='/familia/administrator/diaz' element={<Diaz/>} /> */}
-          {/* <Route path='/familia/administrator/seco' element={<Seco/>} /> */}
-          <Route path='/familia/administrator/json' element={<UpdateJSON/>} />
+          <Route path='/familia/administrator/addPDF' element={<UpdateJSON/>} />
           <Route path='/form' element={<Form/>}/>
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />        

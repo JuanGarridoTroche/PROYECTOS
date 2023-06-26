@@ -36,7 +36,17 @@ export const Administrator = ()=> {
     
     if(logged?.role === 'admin') checkPdfs();
   }, [token, logged?.role, navigate, url])
-  
+
+  const handleDelete= async(e)=> {
+    e.preventDefault();
+    setError("")
+    try {
+      console.log("Eliminar fichero físico y del json");
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+   
   return (
     <section className="admin-container">
       <section className="pdfs">
@@ -53,7 +63,7 @@ export const Administrator = ()=> {
               </p>
               <div className="pdfs__buttons">
                 <button className="pdf--update">Actualizar</button>
-                <button className="pdf--delete">Eliminar</button>
+                <button className="pdf--delete" onClick={handleDelete}>Eliminar</button>
               </div>
             </li>
             )
@@ -65,7 +75,7 @@ export const Administrator = ()=> {
         {error ? <p>{error}</p> : null}
       </section>
       <section className="pdf--selected">
-        <embed src={`/static/data/${url}/${pdfs[0]}`} type="application/pdf" className="pdf__embed"/>
+        <embed src={`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/static/data/${url}/${pdfs[0]}`} type="application/pdf" className="pdf__embed"/>
       </section>
     </section>    
   )
