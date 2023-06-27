@@ -82,7 +82,12 @@ const savePDF = async(pdfMetadata, familyData, uploadPDF) => {
  * ##  Delete pdf  ##
  * ####################
  */
+const removePDF = async( familyData, pdf) => {
+  let deletePath = path.join(__dirname, UPLOADS_DIR, "\\data\\", familyData.url, "\\", pdf);
+
+  await fs.unlink(deletePath);
+}
 
 
-module.exports = {generateError, sendMail, savePDF};
+module.exports = {generateError, sendMail, savePDF, removePDF};
 
