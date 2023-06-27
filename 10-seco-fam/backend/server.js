@@ -62,18 +62,18 @@ app.post("/new-entry", isAuth, updateJSON)
  * #################################
  */
 
-const { createPDF } = require("./controllers/pdfs");
+const { createPDF, updatePDF, deletePDF } = require("./controllers/pdfs");
 
 // Crear fichero pdf de una de las familias por parte del admin
 app.post("/createPDF", isAuth, createPDF)
 
 
-
 // Actualizar un fichero pdf por parte del administrador
+app.put("/pdf", isAuth, updatePDF);
 
 
 // Eliminar fichero pdf por parte del admin
-app.delete("/pdf", isAuth)
+app.delete("/pdf", isAuth, deletePDF)
 
 
 /*

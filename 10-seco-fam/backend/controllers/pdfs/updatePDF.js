@@ -36,14 +36,26 @@ const createPDF = async (req, res, next) => {
     
     // Comprobamos que existe el lineage en nuestro json
     if(!lineageToChangePdf) throw generateError("No existe ese nombre de familia", 403);
+
+    // Confirmamos que existe el pdf que vamos a sustituir
+    let existsPdf = false;
+    lineageToChangePdf.pdf.map((myPdf) => {
+      console.log(myPdf + " = " + uploadPDF.name);
+      if(myPdf === uploadPDF.name) {
+        existsPdf = true;
+      }
+    })
+
+    if(!existsPdf) {
+      throw generateError("El pdf que quieres actualizar no existe.", 403);
+    }
+
     
-    // Al comprobar que existe pdf, lo guardamos
+    // Al comprobar que no existe pdf, lo guardamos físicamente
     for (const newPDF of Object.values(uploadPDF).slice(0,1)) {
-      // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
-      console.log("newPDF: ", newPDF);
+      // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)     
       const pdfName = await savePDF(newPDF, lineageToChangePdf, uploadPDF);
     }    
-
     
     res.send({
       status: "Ok",
