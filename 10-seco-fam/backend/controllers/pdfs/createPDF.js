@@ -47,15 +47,33 @@ const createPDF = async (req, res, next) => {
     })
     
     // Modificamos el json para guardar el nuevo pdf
-    let jsonData = JSON.stringify(lineageToChangePdf);
-    fs.writeFile('path', jsonData, (error) => {
+    const json = fs.readFileSync('./assets/lineages.json', (error) => {
       if(error) {
-        throw generateError("Ha habido un problema a la hora de guardar el pdf. Inténtelo de nuevo.", 403)
+        throw generateError("No se han podido leer los datos. Inténtalo de nuevo", 409);
+      }
+    })
+
+    let jsonCopy = JSON.parse(json);
+
+    jsonCopy.map((family) => {
+      if(family.lineage === lineage) {
+        family.pdf.push(uploadPDF.name.toLowerCase());
+      }
+    })
+
+    uploadPDF.name = uploadPDF.name.toLowerCase();
+    
+    const jsonWithNewPdf = JSON.stringify(jsonCopy);
+    console.log("Nueva copia de lineages.json: ", jsonWithNewPdf);
+
+    fs.writeFile('./assets/lineages.json', jsonWithNewPdf, (error) => {
+      if(error) {
+        throw generateError("Ha habido un error al copiar el nuevo pdf. Inténtelo de nuevo", 409);
       }
     })
 
 
-    // Al comprobar que no existe pdf, lo guardamos
+    // Al comprobar que no existe pdf, lo guardamos físicamente
     for (const newPDF of Object.values(uploadPDF).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
       console.log("newPDF: ", newPDF);
