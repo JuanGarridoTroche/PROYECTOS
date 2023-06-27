@@ -24,6 +24,11 @@ const login = async (req, res, next) => {
 
     // Creamos el token
     const token = jwt.sign(tokenInfo, process.env.SECRET);
+
+    // Si queremos crear el token que expire en "X" s, m, h, d, w, y
+    // const token = jwt.sign(tokenInfo, process.env.SECRET, {
+    //   expiresIn: '72h',
+    // });
     
     res.send({
       status: "Ok",

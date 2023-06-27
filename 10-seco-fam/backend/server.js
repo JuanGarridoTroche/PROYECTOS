@@ -33,7 +33,7 @@ app.use(cors());
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm, sendPDF } = require("./controllers/users");
+const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm } = require("./controllers/users");
 const updateJSON = require("./controllers/users/updateJSON");
 
 
@@ -51,14 +51,29 @@ app.post("/form/sendForm", isAuth, sendForm);
 // Acceso a los pdf de la familia
 app.get("/:url", isAuth, showLineage);
 
-// Subir fichero pdf de una de las familias por parte de admin
-app.post("/sendPDF", isAuth, sendPDF)
-
 // Prueba de guardado de datos en JSON
 app.post("/new-entry", isAuth, updateJSON)
 
 
 
+/*
+ * #################################
+ * ## RUTAS PARA ADMIN SOBRE PDFs ##
+ * #################################
+ */
+
+const { createPDF } = require("./controllers/pdfs");
+
+// Crear fichero pdf de una de las familias por parte del admin
+app.post("/createPDF", isAuth, createPDF)
+
+
+
+// Actualizar un fichero pdf por parte del administrador
+
+
+// Eliminar fichero pdf por parte del admin
+app.delete("/pdf", isAuth)
 
 
 /*
