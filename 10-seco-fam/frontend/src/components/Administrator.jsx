@@ -62,7 +62,7 @@ export const Administrator = ()=> {
                 {pdf}
               </p>
               <div className="pdfs__buttons">
-                <button className="pdf--update">Actualizar</button>
+                <button className="pdf--update">Cambiar</button>
                 <button className="pdf--delete" onClick={handleDelete}>Eliminar</button>
               </div>
             </li>
