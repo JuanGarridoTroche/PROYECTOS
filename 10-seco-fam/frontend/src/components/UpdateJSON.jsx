@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { updateJSONService } from "../services";
 
 export const UpdateJSON = ()=> {
   const [error, setError] = useState("");
@@ -12,7 +11,7 @@ export const UpdateJSON = ()=> {
     try {
       console.log('probando modificación de JSON');
       let newEntry = {}
-      const updatingFiles = await updateJSONService(token, pdf, logo);
+      // const updatingFiles = await updateJSONService(token, pdf, logo);
     } catch (err) {
       setError(err.message);
     }

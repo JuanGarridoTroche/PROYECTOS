@@ -41,7 +41,7 @@ export const Administrator = ()=> {
     e.preventDefault();
     setError("")
     try {
-      console.log("Eliminar fichero físico y del json");
+      
     } catch (err) {
       setError(err.message);
     }
@@ -62,8 +62,8 @@ export const Administrator = ()=> {
                 {pdf}
               </p>
               <div className="pdfs__buttons">
-                <button className="pdf--update">Cambiar</button>
-                <button className="pdf--delete" onClick={handleDelete}>Eliminar</button>
+                <button className="pdf--update" id={index}>Cambiar</button>
+                <button className="pdf--delete" onClick={handleDelete} id={index}>Eliminar</button>
               </div>
             </li>
             )

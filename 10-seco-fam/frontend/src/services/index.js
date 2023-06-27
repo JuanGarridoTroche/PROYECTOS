@@ -1,3 +1,4 @@
+import { generatePath } from "react-router-dom";
 
 export const loginUserService = async(password)=> {
   const response = await fetch(`
@@ -103,7 +104,7 @@ export const getAllFamiliyNamesService = async (token)=> {
 
 // Subir un pdf desde la cuenta de administrador
 export const uploadPdfService = async(token)=> {
-  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/sendPDF`,
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/createPDF`,
   {
     method: "PUT",
     headers: {
@@ -112,17 +113,34 @@ export const uploadPdfService = async(token)=> {
     },
     body: JSON.stringify() 
   })
+
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
 }
 
-export const updateJSONService = async(token, pdf, logo)=> {
-  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/new-entry`,
+
+// Eliminar un pdf desde la cuenta de administrador
+export const deletePdfService = async(token)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/pdf`,
   {
-    method:"POST",
+    method: "DELETE",
     headers: {
       Authorization: token,
-      "content-type": "application/json"
+      "content-type": "application/json",
     },
-    body: JSON.stringify()
+    body: JSON.stringify(),
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message);
   }
-  )
+
+  return json.data;
 }
+
