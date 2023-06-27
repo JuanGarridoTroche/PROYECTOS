@@ -64,7 +64,6 @@ const createPDF = async (req, res, next) => {
     uploadPDF.name = uploadPDF.name.toLowerCase();
     
     const jsonWithNewPdf = JSON.stringify(jsonCopy);
-    console.log("Nueva copia de lineages.json: ", jsonWithNewPdf);
 
     fs.writeFile('./assets/lineages.json', jsonWithNewPdf, (error) => {
       if(error) {
