@@ -22,9 +22,9 @@ export const UserProfile = () => {
 
       try {
         const loggedUser = await getLoggedUserDataService(token);   
-        setBirthday(loggedUser.birthday); 
-        setFirstName(loggedUser.firstName);
-        setLastName(loggedUser.lastName);
+        setBirthday(loggedUser?.birthday); 
+        setFirstName(loggedUser?.firstName);
+        setLastName(loggedUser?.lastName);
         setDni(loggedUser.dni)    
 
       } catch (err) {
@@ -93,7 +93,7 @@ export const UserProfile = () => {
               setLastName(e.target.value);
             }}
           />
-          <label htmlFor="dni">Documento Nacional de Identidad</label>
+          <label htmlFor="dni">Doc. Nacional de Identidad</label>
           <input
             type="text"
             name="dni"

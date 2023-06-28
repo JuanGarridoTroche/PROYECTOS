@@ -1,0 +1,38 @@
+.modalBg {
+  background-color: rgba(0, 0, 0, 40%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.modalContainer {
+  width: 98vw;
+  height: 60vh;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+@media(min-width: 600px) {
+  .modalBg {
+    background-color: rgba(0, 0, 0, 40%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+
+  .modalContainer {
+    width: 60vw;
+    height: 60vh;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+}

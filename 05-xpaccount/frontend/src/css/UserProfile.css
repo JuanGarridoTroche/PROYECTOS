@@ -55,12 +55,12 @@
   margin-bottom: 20px;
 }
 
-@media(min-width: 700px) {
+@media(min-width: 880px) {
   .user-profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    width: 100%;
     margin-top: 70px;
     max-width: 350px;
   }

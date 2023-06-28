@@ -2,7 +2,7 @@ import ("../css/family-admin.css");
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { getFamiliyNamesService } from "../services";
+import { deletePdfService, getFamilyDataByUrlService, getFamilyNameAndPdfsService } from "../services";
 import { Card } from "./Card";
 import { AddPDF } from "./AddPDF";
 
@@ -12,6 +12,8 @@ export const Administrator = ()=> {
   const [pdfs, setPdfs] = useState([]);
   const [error, setError] = useState("");
   const {url} = useParams();
+  const [selectedPdf, setSelectedPdf] = useState(null);
+  const [pdfName, setPdfName] = useState("");
 
   if(logged?.role === 'user') {
     navigate("/page-not-found");
@@ -25,10 +27,10 @@ export const Administrator = ()=> {
         if(!token) {
           navigate("/")          
         }
+            
+        const urlPdfs = await getFamilyNameAndPdfsService(token, url);
         
-        const urlPdfs = await getFamiliyNamesService(token, url);
-        
-        setPdfs(urlPdfs?.pdf)        
+        setPdfs(urlPdfs.pdf)     
       } catch (err) {
         setError(err.message)
       }
@@ -37,11 +39,13 @@ export const Administrator = ()=> {
     if(logged?.role === 'admin') checkPdfs();
   }, [token, logged?.role, navigate, url])
 
-  const handleDelete= async(e)=> {
-    e.preventDefault();
+  const handleDeletePDF= async()=> {   
     setError("")
     try {
-      console.log("Eliminar fichero físico y del json");
+      console.log(url, pdfName);
+      const familyData = await getFamilyDataByUrlService(token, url);
+      console.log(familyData);
+      await deletePdfService(token, pdfName, familyData.lineage);
     } catch (err) {
       setError(err.message);
     }
@@ -56,14 +60,18 @@ export const Administrator = ()=> {
             return (
             <li key={index} className="pdfs__item">
               <figure className="pdfs__figure">
-                <Card id={index}/>              
+                <Card id={index} pdfs={pdfs} setSelectedPdf={setSelectedPdf}/>              
               </figure>
               <p className="pdf__name">
                 {pdf}
               </p>
               <div className="pdfs__buttons">
-                <button className="pdf--update">Actualizar</button>
-                <button className="pdf--delete" onClick={handleDelete}>Eliminar</button>
+                <button className="pdf--update" id={index}>Cambiar</button>
+                <button className="pdf--delete" onClick={(e) => {
+                  e.preventDefault();
+                  setPdfName(pdf);
+                  handleDeletePDF();
+                  }} id={index}>Eliminar</button>
               </div>
             </li>
             )
@@ -72,10 +80,11 @@ export const Administrator = ()=> {
             <AddPDF/>
           </li>
         </ul>
-        {error ? <p>{error}</p> : null}
+        {error ? <p className="error">{error}</p> : null}
       </section>
       <section className="pdf--selected">
-        <embed src={`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/static/data/${url}/${pdfs[0]}`} type="application/pdf" className="pdf__embed"/>
+        {
+         (pdfs.length > 0) ? <embed src={`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/static/data/${url}/${selectedPdf || pdfs[0]}`} type="application/pdf" className="pdf__embed"/> : null}
       </section>
     </section>    
   )

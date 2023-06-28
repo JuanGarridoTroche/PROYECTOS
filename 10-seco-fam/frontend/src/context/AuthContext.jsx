@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import { getFamiliyNamesService, getLoggedUserDataService } from "../services";
+import { getFamilyNameAndPdfsService, getLoggedUserDataService } from "../services";
 import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
@@ -35,7 +35,7 @@ export const AuthProviderComponent = ({children}) => {
   }; 
 
   const getFamilyNames = async ()=> {
-    const familyNames = await getFamiliyNamesService(token, logged?.url);
+    const familyNames = await getFamilyNameAndPdfsService(token, logged?.url);
     setFamilies(familyNames.pop());
     console.log(families);
   }

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getAllFamiliyNamesService} from "../services";
-import { UploadPDF } from "./UploadPDF";
 
 
 export const Aside = ()=> {
@@ -30,7 +29,7 @@ export const Aside = ()=> {
         {familyNames.map((family) => {
           return <li className="aside__family-name aside__item" key={family.id}><a href={`/familia/administrator/${family.url}`}>{family.lineage}</a></li>
         })}
-        <li className="aside__family-name aside__item" key="añadido"><a href={`/familia/administrator/addPDF`}>json</a></li>
+        <li className="aside__family-name aside__item" key="añadido"><a href={`/familia/administrator/addPDF`}>Añadir</a></li>
       </ul>
     </aside>
   )

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { deleteEntryService, loadCategories, loadSubcategoriesService, updateEntryService } from "../services";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -20,9 +20,9 @@ export const Entries = ({entry, setRecoverEntries, recoverEntries})=> {
  const handleLoadCategories = async ()=>{
   //  e.preventDefault();
    setError("");
-   console.log("Entré");
+  //  console.log("Entré");
   try {
-    console.log("Entré");
+    // console.log("Entré");
     //Conseguir todas las categorías de la cuenta idAccount
     const myCategories = await loadCategories(token, idAccount);
     setCategories(myCategories);

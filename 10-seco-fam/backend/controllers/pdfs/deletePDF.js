@@ -4,14 +4,18 @@ const { generateError, removePDF } = require("../../helpers");
 const fs = require("fs");
 
 const deletePDF = async(req, res, next) => {
-  const {pdf, lineage} = req.body;
+  const {name, lineage} = req.body;
   const {id} = req.user;
+
+  console.log("Nombre: ", name);
+  console.log("Familia: ", lineage);
+  console.log("Id del administrador: ", id);
 
   try {
 
     // Comprobamos que los 2 datos nos llegan
-    if(!pdf || !lineage) {
-      throw generateError("Faltan datos para poder eliminar el ficvhero", 403);
+    if(!name || !lineage) {
+      throw generateError("Faltan datos para poder eliminar el fichero", 403);
     }
 
     // Sacamos los datos del usuario logueado:
@@ -29,7 +33,7 @@ const deletePDF = async(req, res, next) => {
     if(!lineageToChangePdf) throw generateError("No existe ese nombre de familia", 403);
     
     // Comprobamos que existe un fichero que se llame igual al que nos piden eliminar
-    const existsPdf = lineageToChangePdf.pdf.find((file) => file.toLowerCase() === pdf.toLowerCase())
+    const existsPdf = lineageToChangePdf.pdf.find((file) => file.toLowerCase() === name.toLowerCase())
 
     if(!existsPdf) {
       throw generateError(`No existe un pdf con el nombre ${pdf} en la familia ${lineage}`, 403);
@@ -48,7 +52,7 @@ const deletePDF = async(req, res, next) => {
     jsonCopy.map((family) => {
       if(family.lineage === lineage) {
         family.pdf.map((item) => {
-          if(item !== pdf) {
+          if(item !== name) {
             newArrayPdfs.push(item);
           }
         });
@@ -64,7 +68,7 @@ const deletePDF = async(req, res, next) => {
    })
 
    // Eliminamos el fichero físicamente
-    await removePDF(lineageToChangePdf, pdf)
+    await removePDF(lineageToChangePdf, name)
 
     res.send({
       status: "Ok",

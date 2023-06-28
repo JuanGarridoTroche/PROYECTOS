@@ -97,7 +97,7 @@ header {
 /** ############################### **/
 /** ##  MODO ESCRITORIO - START  ## **/
 /** ############################### **/
-@media(min-width: 700px) {
+@media(min-width: 880px) {
   header {
     border-bottom: 1px solid #22927c;
     background-color: white;

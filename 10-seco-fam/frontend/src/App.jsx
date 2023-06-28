@@ -5,7 +5,6 @@ import { Login } from './pages/Login';
 import { Family } from './pages/Family';
 import { NotFound } from './pages/NotFound';
 import { Form } from './pages/Form';
-import { Aside } from './components/Aside';
 import { Header } from './components/Header';
 import { useContext} from 'react';
 import { AuthContext } from './context/AuthContext';
@@ -29,7 +28,7 @@ function App() {
         ) : ( null )
       }     
     <main className={logged?.role === "admin" ? "main-admin" : "main"}>
-    {logged?.role === "admin" ? <Aside/>: null}
+    {/* {logged?.role === "admin" ? <Aside/>: null} */}
       <Routes> 
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
