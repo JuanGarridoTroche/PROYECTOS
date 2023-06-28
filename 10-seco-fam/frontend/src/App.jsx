@@ -33,7 +33,7 @@ function App() {
           <Route path='/' element={<Login />}/>
           <Route path='/familia/:url' element= {<Family/>} />
           <Route path='/familia/administrator/:url' element={<Administrator/>} />
-          <Route path='/familia/administrator/addPDF' element={<UpdateJSON/>} />
+          <Route path='/familia/administrator/addPDF/:url' element={<UpdateJSON/>} />
           <Route path='/form' element={<Form/>}/>
           {/* Página no encontrada */}
           <Route path="*" element={<NotFound />} />        

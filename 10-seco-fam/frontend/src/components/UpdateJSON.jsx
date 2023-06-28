@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const UpdateJSON = ()=> {
   const [error, setError] = useState("");
-  const [pdf, setPdf] = useState([]);
-  const [logo, setLogo] = useState([]);
+  const {url} = useParams();
 
   const handleSubmit = async (e)=> {
     setError("")
@@ -19,16 +19,12 @@ export const UpdateJSON = ()=> {
 
   return (
     <section>
-      <h3>Actualizando JSON</h3>
+      <h3>Subir nuevo pdf para la familia {url}</h3>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label htmlFor="pdf">Nuevo pdf</label>
           <input type="file" name="pdf" id="pdf" className="form-control" placeholder="Introduce un nuevo pdf..." />
         </fieldset>
-        {/* <fieldset>
-          <label htmlFor="logo">Logo</label>
-          <input type="file"  name="logo" id="logo" className="form-control" placeholder="Introduce un nuevo logo..." />
-        </fieldset> */}
         <button>Enviar</button>
       </form>
     </section>

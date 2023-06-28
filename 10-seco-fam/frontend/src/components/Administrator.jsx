@@ -26,10 +26,8 @@ export const Administrator = ()=> {
         // Comprobamos que esté logueado            
         if(!token) {
           navigate("/")          
-        }
-            
-        const urlPdfs = await getFamilyNameAndPdfsService(token, url);
-        
+        }            
+        const urlPdfs = await getFamilyNameAndPdfsService(token, url);        
         setPdfs(urlPdfs.pdf)     
       } catch (err) {
         setError(err.message)
@@ -39,13 +37,26 @@ export const Administrator = ()=> {
     if(logged?.role === 'admin') checkPdfs();
   }, [token, logged?.role, navigate, url])
 
-  const handleDeletePDF= async()=> {   
+  const handleUpdatePDF = async(e)=> {
+    e.preventDefault();
+    console.log(e.target.name);
+    setError("");
+    try {
+      // alert("modificando el pdf")
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  const handleDeletePDF= async(e)=> {   
+    e.preventDefault();
     setError("")
     try {
       console.log(url, pdfName);
       const familyData = await getFamilyDataByUrlService(token, url);
-      console.log(familyData);
-      await deletePdfService(token, pdfName, familyData.lineage);
+
+      await deletePdfService(token,e.target.name, familyData.lineage);
+      navigate(`/familia/administrator/${url}`);
     } catch (err) {
       setError(err.message);
     }
@@ -60,18 +71,19 @@ export const Administrator = ()=> {
             return (
             <li key={index} className="pdfs__item">
               <figure className="pdfs__figure">
-                <Card id={index} pdfs={pdfs} setSelectedPdf={setSelectedPdf}/>              
+                <Card key={index} id={index} pdfs={pdfs} setSelectedPdf={setSelectedPdf}/>              
               </figure>
               <p className="pdf__name">
                 {pdf}
               </p>
               <div className="pdfs__buttons">
-                <button className="pdf--update" id={index}>Cambiar</button>
-                <button className="pdf--delete" onClick={(e) => {
-                  e.preventDefault();
+                <button name={pdf} className="pdf--update" onClick={(e)=> {
                   setPdfName(pdf);
-                  handleDeletePDF();
-                  }} id={index}>Eliminar</button>
+                  handleUpdatePDF(e);
+                }}>Cambiar</button>
+                <button name={pdf} className="pdf--delete" onClick={(e) => {                    
+                  handleDeletePDF(e);
+                  }}>Eliminar</button>
               </div>
             </li>
             )
