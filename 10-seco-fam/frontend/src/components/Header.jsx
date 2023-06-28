@@ -17,8 +17,7 @@ export const Header = ({lineage})=> {
     const getFamilyNames = async() => {
       try {
         if(!logged?.url) {
-          const myNameFamily = await getFamilyNameAndPdfsService(token, logged?.url);
-          // console.log(myNameFamily);          
+          const myNameFamily = await getFamilyNameAndPdfsService(token, logged?.url);        
           setFamilyName(myNameFamily);
         }
 

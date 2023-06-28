@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { UploadPDF } from "./UploadPDF";
+import { AddPDF } from "./AddPDF";
 
 export const PDF =({familyNames})=> {
   const [error, setError] = useState("");
@@ -10,7 +11,8 @@ export const PDF =({familyNames})=> {
   return (
     <>
       {logged?.role === 'admin' ? (
-          <UploadPDF familyNames={familyNames}/>      
+          // <AddPDF familyNames={familyNames}/> 
+          <h2>Subir pdf</h2>     
         ) : (
           <embed src={logged?.url && logged?.pdf ? `http://localhost:4000/static/data/${logged?.url}/${logged?.pdf}` : null}
             type="application/pdf" className="selected-pdf"/>
