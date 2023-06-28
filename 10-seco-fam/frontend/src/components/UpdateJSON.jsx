@@ -9,7 +9,7 @@ export const UpdateJSON = ()=> {
     setError("")
     e.preventDefault();
     try {
-      console.log('probando modificación de JSON');
+      console.log('Añadiendo nuevo pdf...');
       let newEntry = {}
       // const updatingFiles = await updateJSONService(token, pdf, logo);
     } catch (err) {
