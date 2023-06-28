@@ -1,4 +1,4 @@
-import { generatePath } from "react-router-dom";
+import { generatePath, isRouteErrorResponse } from "react-router-dom";
 
 export const loginUserService = async(password)=> {
   const response = await fetch(`
@@ -45,8 +45,8 @@ export const getLoggedUserDataService = async (token) => {
 };
 
 
-// Servicio que devuelve el nombre de la familia a partir de la url y estando logueado
-export const getFamiliyNamesService = async (token, url)=> {
+// Servicio que devuelve el nombre de la familia a partir de la url y estando logueado y los pdfs
+export const getFamilyNameAndPdfsService = async (token, url)=> {
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${url}`,
   {
     method: "GET",
@@ -59,6 +59,7 @@ export const getFamiliyNamesService = async (token, url)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
+  
   return json.data;    
 }
 
@@ -124,7 +125,7 @@ export const uploadPdfService = async(token)=> {
 
 
 // Eliminar un pdf desde la cuenta de administrador
-export const deletePdfService = async(token)=> {
+export const deletePdfService = async(token, name, lineage)=> {
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/pdf`,
   {
     method: "DELETE",
@@ -132,7 +133,7 @@ export const deletePdfService = async(token)=> {
       Authorization: token,
       "content-type": "application/json",
     },
-    body: JSON.stringify(),
+    body: JSON.stringify({name, lineage}),
   })
 
   const json = await response.json();
@@ -144,3 +145,22 @@ export const deletePdfService = async(token)=> {
   return json.data;
 }
 
+
+// Obtener los datos de una famillia a través de su url
+export const getFamilyDataByUrlService = async(token, url)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/data/${url}`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    }    
+  })
+
+  const json = await response.json();
+
+  if(!response.ok) {
+    throw new Error(json.message)
+  }
+
+  return json.data;
+}

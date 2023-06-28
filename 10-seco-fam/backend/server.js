@@ -33,7 +33,7 @@ app.use(cors());
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm } = require("./controllers/users");
+const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm, getFamilyDataByUrl } = require("./controllers/users");
 const updateJSON = require("./controllers/users/updateJSON");
 
 
@@ -52,7 +52,10 @@ app.post("/form/sendForm", isAuth, sendForm);
 app.get("/:url", isAuth, showLineage);
 
 // Prueba de guardado de datos en JSON
-app.post("/new-entry", isAuth, updateJSON)
+// app.post("/new-entry", isAuth, updateJSON)
+
+// Obtener los datos de la familia por la url
+app.get("/data/:url", isAuth, getFamilyDataByUrl)
 
 
 

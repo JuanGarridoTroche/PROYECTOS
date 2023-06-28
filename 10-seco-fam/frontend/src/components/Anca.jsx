@@ -2,7 +2,7 @@ import ("../css/family-admin.css");
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { getFamiliyNamesService } from "../services";
+import { getFamilyNameAndPdfsService } from "../services";
 import { Card } from "./Card";
 import { AddPDF } from "./AddPDF";
 
@@ -26,7 +26,7 @@ export const Anca = ()=> {
         if(!token) {
           navigate("/")          
         }
-        const ancaPdfs = await getFamiliyNamesService(token, url);
+        const ancaPdfs = await getFamilyNameAndPdfsService(token, url);
         
         setPdfs(ancaPdfs?.pdf)
       } catch (err) {

@@ -12,7 +12,7 @@ const showLineage = async (req, res, next)=> {
       let familyName ="";
       let familyPdf = [];
       
-      // Buscamos en lineage.json (data) la urlextraida de params para quedarnos con el lineage
+      // Buscamos en lineage.json (data) la url extraida de params para quedarnos con el lineage
       for(let family of data) {
         if(family.url === url) {
           familyName = family.lineage;

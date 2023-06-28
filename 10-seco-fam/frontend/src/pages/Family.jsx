@@ -15,13 +15,10 @@ export const Family = ()=> {
 
   useEffect(()=> {   
     const checkingToken = async () => {
-      try {       
-        // console.log(logged?.url);
-        // console.log(url);
-        
+      try {               
         if(logged?.role && logged?.role === 'admin') {
-          const families = await getAllFamiliyNamesService(token);
-          setFamilyNames(families);     
+          const families = await getAllFamiliyNamesService(token);          
+          // console.log(families);    
         }        
         
         if(logged?.url && logged?.url !== url) {
@@ -45,7 +42,6 @@ export const Family = ()=> {
         </section>
       ) : (
         <section className="family-page">
-          {familyNames}
           <h2 className="family__h2">Familia {logged?.lineage}</h2>
           <PDF familyNames={familyNames}/>
         </section>
