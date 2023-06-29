@@ -1,16 +1,18 @@
 const selectFamilyById = require("../../assets/queries/selectFamiliyById");
-const selectFamilyByLineage = require("../../assets/queries/selectFamiliyByLineage");
 const fs = require("fs");
 const { generateError, savePDF } = require("../../helpers");
+const selectFamilyByUrl = require("../../assets/queries/selectFamilyByUrl");
 
 const createPDF = async (req, res, next) => {
   const {uploadPDF} = req.files;
-  const {lineage} = req.body;
+  const {url} = req.params;
   const {id} = req.user;
+
+  console.log(uploadPDF, url, id);
 
   try {   
     // Comprobamos que existe un nombre de familia en el select, donde vamos a subir el pdf
-    if(!lineage) {
+    if(!url) {
       throw generateError("Debes indicar a que familia quieres subir el pdf", 400);
     }    
     
@@ -33,7 +35,7 @@ const createPDF = async (req, res, next) => {
     }
     
     // Sacamos los datos de la familia donde se va a sustituir el pdf:
-    const lineageToChangePdf = await selectFamilyByLineage(lineage);
+    const lineageToChangePdf = await selectFamilyByUrl(url);
     
     // Comprobamos que existe el lineage en nuestro json
     if(!lineageToChangePdf) throw generateError("No existe ese nombre de familia", 403);
@@ -42,7 +44,7 @@ const createPDF = async (req, res, next) => {
     lineageToChangePdf.pdf.map((file) => {
       // console.log(file + " = " + uploadPDF.name);
       if(file.toLowerCase() === uploadPDF.name.toLowerCase()) {
-        throw generateError(`Ya existe un pdf con el mismo nombre en la familia ${lineage}`, 403);
+        throw generateError(`Ya existe un pdf con el mismo nombre en la familia ${lineageToChangePdf.lineage}`, 403);
       }
     })
     
@@ -56,7 +58,7 @@ const createPDF = async (req, res, next) => {
     let jsonCopy = JSON.parse(json);
 
     jsonCopy.map((family) => {
-      if(family.lineage === lineage) {
+      if(family.url === url) {
         family.pdf.push(uploadPDF.name.toLowerCase());
       }
     })
