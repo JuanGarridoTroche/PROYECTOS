@@ -1,10 +1,11 @@
 import ("../css/family-admin.css");
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useSyncExternalStore } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deletePdfService, getFamilyDataByUrlService, getFamilyNameAndPdfsService } from "../services";
 import { Card } from "./Card";
 import { AddPDF } from "./AddPDF";
+import { PDF } from "./PDF";
 
 export const Administrator = ()=> {
   const {logged, token} = useContext(AuthContext);
@@ -14,6 +15,7 @@ export const Administrator = ()=> {
   const {url} = useParams();
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [pdfName, setPdfName] = useState("");
+  const [addPDF, setAddPDF] = useState(false);
 
   if(logged?.role === 'user') {
     navigate("/page-not-found");
@@ -89,13 +91,13 @@ export const Administrator = ()=> {
             )
           })}
           <li className="pdfs__add-item">
-            <AddPDF/>
+            <AddPDF addPDF={addPDF} setAddPDF={setAddPDF}/>
           </li>
         </ul>
         {error ? <p className="error">{error}</p> : null}
       </section>
       <section className="pdf--selected">
-        {
+        {addPDF ? <PDF/> :
          (pdfs.length > 0) ? <embed src={`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/static/data/${url}/${selectedPdf || pdfs[0]}`} type="application/pdf" className="pdf__embed"/> : null}
       </section>
     </section>    

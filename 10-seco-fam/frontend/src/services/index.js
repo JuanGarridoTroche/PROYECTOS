@@ -104,7 +104,7 @@ export const getAllFamiliyNamesService = async (token)=> {
 }
 
 // Subir un pdf desde la cuenta de administrador
-export const uploadPdfService = async(token)=> {
+export const uploadPdfService = async(token, name, lineage)=> {
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/createPDF`,
   {
     method: "PUT",
