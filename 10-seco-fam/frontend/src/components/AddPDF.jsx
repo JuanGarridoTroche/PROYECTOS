@@ -14,7 +14,8 @@ export const AddPDF = ()=> {
     setError("");
     try {
       // setSelectedIcon(!selectedIcon)
-      console.log(url);
+      // console.log(url);
+      // setAddPDF(!addPDF)
       navigate(`/familia/administrator/addPDF/${url}`)  
     } catch (err) {
       setError(err.message);

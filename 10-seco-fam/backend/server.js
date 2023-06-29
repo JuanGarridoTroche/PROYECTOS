@@ -65,10 +65,10 @@ app.get("/data/:url", isAuth, getFamilyDataByUrl)
  * #################################
  */
 
-const { createPDF, updatePDF, deletePDF } = require("./controllers/pdfs");
+const { createPDF, updatePDF, deletePDF, uploadPDF } = require("./controllers/pdfs");
 
 // Crear fichero pdf de una de las familias por parte del admin
-app.post("/createPDF", isAuth, createPDF)
+app.post("/createPDF/:url", isAuth, createPDF);
 
 
 // Actualizar un fichero pdf por parte del administrador
