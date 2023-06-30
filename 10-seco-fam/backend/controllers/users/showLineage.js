@@ -9,6 +9,8 @@ const showLineage = async (req, res, next)=> {
       // Recogemos la url a través de sus params
       const {url} = req.params;
 
+      console.log(url);
+
       let familyName ="";
       let familyPdf = [];
       
