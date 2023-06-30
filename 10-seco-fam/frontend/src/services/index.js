@@ -107,7 +107,7 @@ export const getAllFamiliyNamesService = async (token)=> {
 export const uploadPdfService = async(token, uploadPDF, url)=> {
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/createPDF/${url}`,
   {
-    method: "PUT",
+    method: "POST",
     headers: {
       Authorization:token,
       "content-type": "application/json"
@@ -119,7 +119,7 @@ export const uploadPdfService = async(token, uploadPDF, url)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-
+  console.log(json.data);
   return json.data;
 }
 

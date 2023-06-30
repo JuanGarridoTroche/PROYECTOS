@@ -5,7 +5,7 @@ import { uploadPdfService } from "../services";
 
 export const UpdateJSON = ()=> {
   const [error, setError] = useState("");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState([]);
   const {url} = useParams();
 
 
@@ -16,9 +16,9 @@ export const UpdateJSON = ()=> {
     e.preventDefault();
     try {
       console.log('Añadiendo nuevo pdf...');
-      let newEntry = {}
+      
       console.log(file);
-      await uploadPdfService(token, url)
+      await uploadPdfService(token, file, url)
     } catch (err) {
       setError(err.message);
     }
