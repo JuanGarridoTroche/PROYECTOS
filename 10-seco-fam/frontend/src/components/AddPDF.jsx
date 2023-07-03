@@ -1,7 +1,8 @@
 import ("../css/family-admin.css");
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {PDF} from "./PDF";
 import { useNavigate, useParams } from "react-router-dom";
+import { getAllFamiliyNamesService } from "../services";
 
 export const AddPDF = ()=> {
   const [selectedIcon, setSelectedIcon] = useState(false);
@@ -13,9 +14,6 @@ export const AddPDF = ()=> {
     e.preventDefault()
     setError("");
     try {
-      // setSelectedIcon(!selectedIcon)
-      // console.log(url);
-      // setAddPDF(!addPDF)
       navigate(`/familia/administrator/addPDF/${url}`)  
     } catch (err) {
       setError(err.message);
