@@ -105,14 +105,17 @@ export const getAllFamiliyNamesService = async (token)=> {
 
 // Subir un pdf desde la cuenta de administrador
 export const uploadPdfService = async(token, uploadPDF, url)=> {
+  console.log("Token: ", token);
+  console.log("Fichero PDF: ", uploadPDF);
+  console.log("URL: ", url);
   const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/createPDF/${url}`,
   {
     method: "POST",
     headers: {
       Authorization:token,
-      "content-type": "application/json"
+      "Content-type": "application/pdf",
     },
-    body: JSON.stringify({uploadPDF}) 
+    body: {uploadPDF}, 
   })
 
   const json = await response.json();

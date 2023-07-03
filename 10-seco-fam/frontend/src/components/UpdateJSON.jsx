@@ -1,11 +1,13 @@
 import ("../css/UpdateJSON.css");
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { uploadPdfService } from "../services";
+import { AuthContext } from "../context/AuthContext";
 
 export const UpdateJSON = ()=> {
   const [error, setError] = useState("");
   const [file, setFile] = useState([]);
+  const {token} = useContext(AuthContext);
   const {url} = useParams();
 
 
@@ -30,7 +32,7 @@ export const UpdateJSON = ()=> {
       <form onSubmit={handleSubmit} className="new-pdf__form">
         <fieldset className="new-pdf__fieldset">
           <label htmlFor="uploadPDF" className="new-pdf__label">Nuevo pdf</label>
-          <input type="file" name="uploadPDF" id="uploadPDF" className="new-pdf__file" placeholder="Introduce un nuevo pdf..." onChange={(e)=> {setFile(e.target.value)}}/>
+          <input type="file" name="uploadPDF" id="uploadPDF" className="new-pdf__file" placeholder="Introduce un nuevo pdf..." onChange={(e)=> {setFile(e.target.files[0])}}/>
         </fieldset>
         <button className="new-pdf__button">Enviar</button>
       </form>
