@@ -113,9 +113,9 @@ export const uploadPdfService = async(token, uploadPDF, url)=> {
     method: "POST",
     headers: {
       Authorization:token,
-      "Content-type": "application/pdf",
+      // "Content-type": "application/pdf",
     },
-    body: {uploadPDF}, 
+    uploadPDF, 
   })
 
   const json = await response.json();
