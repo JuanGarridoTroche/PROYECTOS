@@ -4,11 +4,11 @@ const { generateError, savePDF } = require("../../helpers");
 const selectFamilyByUrl = require("../../assets/queries/selectFamilyByUrl");
 
 const createPDF = async (req, res, next) => {
-  const {uploadPDF} = req.files;
+  // const {uploadPDF} = req.files;
   const {url} = req.params;
   const {id} = req.user;
 
-  console.log(uploadPDF, url, id);
+  console.log(req.files, url, id);
 
   try {   
     // Comprobamos que existe un nombre de familia en el select, donde vamos a subir el pdf
@@ -21,7 +21,7 @@ const createPDF = async (req, res, next) => {
       throw generateError("Debes adjuntar un fichero en formato pdf para subir", 404);
     } 
     
-    // Comprobamos que es un fichero pdf
+    // Comprobamos que es un fichero pdf    
     if(uploadPDF.mimetype !== 'application/pdf') {
       throw generateError("El fichero adjunto no es un fichero pdf válido", 403)
     }

@@ -58,7 +58,7 @@ export const Administrator = ()=> {
       const familyData = await getFamilyDataByUrlService(token, url);
 
       await deletePdfService(token,e.target.name, familyData.lineage);
-      navigate(`/familia/administrator/${url}`);
+      navigate(`/familia/administrator`);
     } catch (err) {
       setError(err.message);
     }
