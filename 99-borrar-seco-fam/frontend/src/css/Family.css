@@ -1,0 +1,104 @@
+.main-admin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.family-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 310px;
+  width: 100%;
+  height: 90vh;
+}
+
+.family__h2 {
+  padding-top: 40px;
+  text-align: center;
+}
+
+.main .family-page .selected-pdf {
+  flex-grow: 1;
+  max-width: 300px;
+  width: 100%;
+  height: 80vh;
+}
+
+
+/*?################*/
+/*?  Aside admin  ?*/
+/*?################*/
+
+/* .aside {
+  max-width: 125px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  border-right: 1px solid var(--color-secondary);
+}
+
+.aside--add-pdf {
+  padding-top: 20px;
+  font-weight: 700;
+}
+
+.aside__title{
+  border-bottom: 1px solid var(--color-secondary);
+  width: 100%;
+  padding: 10px 0 5px 0;
+  text-align: left;
+}
+
+.aside__list {
+  list-style: none;
+}
+
+.aside__item {  
+  text-align: left;
+  padding-left: 5px;
+  padding-top: 3px;
+}
+
+.aside__item a {  
+  text-decoration: none;
+  color: var(--color-text);
+} */
+
+@media (min-width: 550px) {
+  .main {
+    max-width: 549px;
+    width: 100%;
+  } 
+
+  .family-page {
+  max-width: 540px;
+  width: 100%;
+  height: 90vh;
+  }
+
+  .main .family-page .selected-pdf {
+    max-width: 540px;
+  }
+
+}
+
+@media (min-width: 880px) {
+  .main {
+    max-width: 879px;
+  } 
+
+  .family-page {
+  max-width: 870px;
+  width: 100%;
+  height: 90vh;
+}
+  .main .family-page .selected-pdf {
+    max-width:870px;
+    height: 85vh;
+  }
+  .hamburger-container {
+    display: none;
+  }
+}

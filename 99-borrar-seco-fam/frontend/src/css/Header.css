@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.header__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__brand .header__family {
+  display: none;
+}
+
+.navbar .navbar__list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar__list .navbar__item {
+  list-style: none;
+  padding-right: 10px;
+  font-size: 1.8rem;
+}
+
+.navbar__item a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* ####################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - Start  ## */
+/* ####################################################### */
+
+/* .nav-toggle {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.nav-toggle span {
+  width: 30px;
+  height: 4px;
+  background-color: var(--color-secondary);
+  margin-bottom: 5px;
+  border-radius: 2px;
+  transform-origin: 5px 0;
+  transition: all .2s linear;
+}
+
+.nav-toggle.open>span {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+.nav-toggle.open>span:nth-child(2) {
+  display: none;
+}
+
+.nav-toggle.open>span:nth-child(3) {
+  transform: rotate(-45deg) translate(-5px, 1px);
+} */
+
+
+/* ##################################################### */
+/* ##  Menú Cabecera: hamburguesa (nav-toggle) - End  ## */
+/* ##################################################### */
+
+@media (min-width: 550px) {
+  .header__brand .header__family {
+    display: unset;
+    font-size: 3.2rem;
+    font-weight: 600;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+}
