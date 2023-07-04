@@ -40,7 +40,6 @@ const updateJSON = require("./controllers/users/updateJSON");
 // Login de usuario
 app.post("/", login);
 
-// Recoger todos los datos de la familia del usuario logueado
 app.get("/loggedProfile", isAuth, readLoggedProfile);
 
 // Obtener el nombre de todas las familias
@@ -51,6 +50,9 @@ app.post("/form/sendForm", isAuth, sendForm);
 
 // Acceso a los pdf de la familia
 app.get("/:url", isAuth, showLineage);
+
+// Prueba de guardado de datos en JSON
+// app.post("/new-entry", isAuth, updateJSON)
 
 // Obtener los datos de la familia por la url
 app.get("/data/:url", isAuth, getFamilyDataByUrl)
