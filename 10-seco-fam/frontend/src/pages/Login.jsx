@@ -17,13 +17,15 @@ export const Login = ()=> {
         // Comprobamos que esté logueado            
         if(!token) {
           navigate("/")          
-        }
-        
+        }    
+        // Si está logueado lo redirige a la url de la familia    
         if(logged?.url) navigate(`/familia/${logged?.url}`);       
       } catch (error) {
         alert(error.message);
       }
-    }    
+    }  
+    
+    // Solo entra si está logueado
     if (token) checkingToken();
   }, [token, navigate, logged?.url]);
 
