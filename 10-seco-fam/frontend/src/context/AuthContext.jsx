@@ -37,7 +37,7 @@ export const AuthProviderComponent = ({children}) => {
   const getFamilyNames = async ()=> {
     const familyNames = await getFamilyNameAndPdfsService(token, logged?.url);
     setFamilies(familyNames.pop());
-    console.log(families);
+    // console.log(families);
   }
 
   return (

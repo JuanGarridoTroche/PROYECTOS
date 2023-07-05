@@ -16,8 +16,10 @@ export const Header = ({lineage})=> {
   useEffect(()=> {
     const getFamilyNames = async() => {
       try {
-        if(!logged?.url) {
-          const myNameFamily = await getFamilyNameAndPdfsService(token, logged?.url);        
+        if(logged?.url) {
+
+          // Devuelve lineage y los pdfs 
+          const myNameFamily = await getFamilyNameAndPdfsService(token, logged?.url);                  
           setFamilyName(myNameFamily);
         }
 
