@@ -1,0 +1,41 @@
+.not-found {
+  margin: 0 auto;
+  background-image: url("../assets/imgs/404.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  max-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__title {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+}
+
+span {
+  color: var(--color-red-200);
+}
+
+.not-found__error {
+  font-size: 3rem;
+  border: 3px solid var(--color-red-200);
+  padding: 5px;
+  border-radius: 20px 20px 20px 0;
+  background-color: var(--color-white-200);
+  color: var(--color-black-200);
+  font-weight: 700;
+  font-family: var(--font-secondary);
+  margin-top: 20px;
+  letter-spacing: .3rem;
+}
+
+
+
+
+
+

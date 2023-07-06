@@ -31,8 +31,9 @@
 .login__label {
   border-bottom: 1px solid var(--color-red-200);
   font-size: 2rem;
+  width: 100%;
+  text-align: left;
 }
-
 
 .login__input {
   border: 1px solid rgb(207, 207, 207);

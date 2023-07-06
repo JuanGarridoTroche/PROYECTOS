@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { getAllFamiliyNamesService, getLoggedUserDataService } from "../services";
+import { getLoggedUserDataService } from "../services";
 
 
 // Creamos el contexto
@@ -10,7 +10,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({children}) => {
   const [token, setToken] = useState(localStorage.getItem("token4Fam"));
   const [user, setUser] = useState(null);
-  const [familyNames, setFamilyNames] = useState([]);
+  // const [familyNames, setFamilyNames] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(()=>{
@@ -18,7 +18,7 @@ export const AuthContextProvider = ({children}) => {
       try {
         // Extraer datos del usuario logueado a través de su token
         const userData = await getLoggedUserDataService(token);
-        setUser(userData)
+        setUser(userData);
       } catch (err) {
         setError(err.message);
       }
@@ -37,19 +37,23 @@ export const AuthContextProvider = ({children}) => {
     setUser(null);
   }
 
-  const getFamilyNames = async()=> {
-    try {
-      // Devuelve los nombres de todas las familias si eres admin
-      const allFamilyNames = await getAllFamiliyNamesService(token);
-      setFamilyNames(allFamilyNames);      
-    } catch (err) {
-      setError(err.message);
-    }
-  }
+  // const getFamilyNames = async()=> {
+  //   try {
+  //     // Devuelve los nombres de todas las familias si eres admin
+  //     const allFamilyNames = await getAllFamiliyNamesService(token);
+  //     setFamilyNames(allFamilyNames);      
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // }
 
-  console.log(token);
+  
+  console.log(error);
+  // console.log("Token: ", token);
+  // console.log("Error: ", error);
+  // console.log("user: ", user);
   return (
-    <AuthContext.Provider value={{token, user, login, logout, getFamilyNames, familyNames}}>
+    <AuthContext.Provider value={{token, user, login, logout}}>
       {children}
     </AuthContext.Provider>
   )
