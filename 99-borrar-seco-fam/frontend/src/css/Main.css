@@ -57,12 +57,12 @@
   } 
 }
 
-@media (min-width: 880px) {
+@media (min-width: 550px) {
   .main {
-    max-width: 860px;
+    max-width: 530px;
   }
 
   .main__form { 
-    padding-top: 100px;
+    padding-top: 70px;
   } 
 }
