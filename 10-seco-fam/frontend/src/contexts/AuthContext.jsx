@@ -37,21 +37,10 @@ export const AuthContextProvider = ({children}) => {
     setUser(null);
   }
 
-  // const getFamilyNames = async()=> {
-  //   try {
-  //     // Devuelve los nombres de todas las familias si eres admin
-  //     const allFamilyNames = await getAllFamiliyNamesService(token);
-  //     setFamilyNames(allFamilyNames);      
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // }
+  // Esto es para que no me de la advertencia de eslint por no usarlo
+  if(error) return;
 
-  
-  console.log(error);
-  // console.log("Token: ", token);
-  // console.log("Error: ", error);
-  // console.log("user: ", user);
+
   return (
     <AuthContext.Provider value={{token, user, login, logout}}>
       {children}
