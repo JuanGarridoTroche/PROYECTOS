@@ -1,5 +1,5 @@
 import ("../css/family-admin.css");
-import { useContext, useEffect, useState, useSyncExternalStore } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deletePdfService, getFamilyDataByUrlService, getFamilyNameAndPdfsService } from "../services";
