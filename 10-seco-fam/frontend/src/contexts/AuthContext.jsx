@@ -47,7 +47,8 @@ export const AuthContextProvider = ({children}) => {
     }
   }
 
-  console.log(token);
+  console.log("Token: ", token);
+  console.log("Error: ", error);
   return (
     <AuthContext.Provider value={{token, user, login, logout, getFamilyNames, familyNames}}>
       {children}

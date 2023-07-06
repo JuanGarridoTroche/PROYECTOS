@@ -11,6 +11,7 @@ export const Login =()=> {
 
   useEffect(()=> {
     const checkingToken = async()=> {
+      console.log("--Login: checking token: " + token + "--");
       try {
         if(user.url) navigate(`/familia/${user.url}`);
       } catch (err) {
@@ -18,7 +19,7 @@ export const Login =()=> {
       }
     }
     // Si está logueado hace el useEffect
-    if(token) checkingToken();
+    if(!token) checkingToken();
   }, [token, navigate, user])
 
   return (
@@ -30,7 +31,6 @@ export const Login =()=> {
         <input type="password" id="pass" className="login__pass login__input" placeholder="Introduzca su contraseña" autoComplete="on"/>
         <button className="login__button">Enviar</button>
       </form>
-
     </section>
 
   )
