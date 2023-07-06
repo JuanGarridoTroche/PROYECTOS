@@ -1,6 +1,5 @@
 import ("../css/Form.css");
-import { useContext, useEffect, useState } from "react";
-import { Header } from "../components/Header";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { sendMailService } from "../services";
 import { useNavigate } from "react-router-dom";

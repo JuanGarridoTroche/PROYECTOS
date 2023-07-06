@@ -2,33 +2,49 @@ import ("../css/Login.css");
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { loginUserService } from "../services";
 
 
 export const Login =()=> {
-  const {token, user} = useContext(AuthContext);
+  const {token, user, login} = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(()=> {
     const checkingToken = async()=> {
-      console.log("--Login: checking token: " + token + "--");
+      // console.log("Login: checking token: " + token);
       try {
         if(user.url) navigate(`/familia/${user.url}`);
       } catch (err) {
         setError(err.message);
       }
     }
-    // Si está logueado hace el useEffect
-    if(!token) checkingToken();
+    // Si está logueado haz el useEffect
+    if(token) checkingToken();
   }, [token, navigate, user])
+
+  const handleSubmit = async(e)=> {
+    e.preventDefault();
+    setError("");
+    try {
+      const loggedUser = await loginUserService(password);
+      if(loggedUser.data.length < 1) {
+        throw new Error("Contraseña incorrecta");
+      }
+      login(loggedUser.token);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   return (
     <section className="login">
       <h1 className="login__title"><span>4</span> Fam</h1>
-      <form className="login__form"> 
+      <form className="login__form" onSubmit={handleSubmit}> 
         {error ? <p className="error">{error}</p> : null}
         <label htmlFor="pass" className="login__label">Escribe tu contraseña </label>
-        <input type="password" id="pass" className="login__pass login__input" placeholder="Introduzca su contraseña" autoComplete="on"/>
+        <input type="password" id="pass" className="login__pass login__input" placeholder="Introduzca su contraseña" autoComplete="on" onChange={(e)=> {setError(""); setPassword(e.target.value)}}/>
         <button className="login__button">Enviar</button>
       </form>
     </section>
