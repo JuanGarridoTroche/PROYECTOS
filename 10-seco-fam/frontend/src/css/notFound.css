@@ -24,13 +24,16 @@ span {
 .not-found__error {
   font-size: 3rem;
   border: 3px solid var(--color-red-200);
-  padding: 3px;
+  padding: 5px;
   border-radius: 20px 20px 20px 0;
   background-color: var(--color-white-200);
   color: var(--color-black-200);
   font-weight: 700;
   font-family: var(--font-secondary);
+  margin-top: 20px;
+  letter-spacing: .3rem;
 }
+
 
 
 
