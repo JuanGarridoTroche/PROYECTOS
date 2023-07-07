@@ -76,7 +76,7 @@ const {
 app.post('/createPDF/:url', isAuth, createPDF);
 
 // Actualizar un fichero pdf por parte del administrador
-app.put('/pdf', isAuth, updatePDF);
+app.put('/pdf/:url', isAuth, updatePDF);
 
 // Eliminar fichero pdf por parte del admin
 app.delete('/pdf', isAuth, deletePDF);

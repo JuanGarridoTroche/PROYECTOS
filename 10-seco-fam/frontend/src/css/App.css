@@ -11,6 +11,7 @@
   --color-black-200: #242424;
   --color-white-200: rgba(255, 255, 255, .87);
   --color-red-200: rgb(206, 9, 9);
+  --color-golden-200: #FFD700;
   --font-secondary: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-primary: 'Bodoni Moda', serif;
   font-synthesis: none;
