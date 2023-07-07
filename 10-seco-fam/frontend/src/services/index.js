@@ -82,3 +82,22 @@ export const sendMailService = async({token, name, text, subject})=> {
   }
   // console.log(json.data);
 }
+
+
+// Servicio que devuelve el nombre de la familia a partir de la url y estando logueado y los pdfs
+export const getFamilyNameAndPdfsService = async (token, url)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${url}`,
+  {
+    method: "GET",
+    headers:{
+      Authorization: token,
+    }
+  });
+
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+  
+  return json.data;    
+}

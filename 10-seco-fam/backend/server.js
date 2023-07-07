@@ -1,21 +1,21 @@
-"use strict";
-require("dotenv").config();
-const express = require("express");
-const morgan = require("morgan");
-const fileupload = require("express-fileupload");
-const cors = require("cors");
-const isAuth = require("./middlewares/isAuth");
+'use strict';
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const fileupload = require('express-fileupload');
+const cors = require('cors');
+const isAuth = require('./middlewares/isAuth');
 
-const {HOST, PORT, UPLOADS_DIR} = process.env;
+const { HOST, PORT, UPLOADS_DIR } = process.env;
 
-// Crea el servidor 
+// Crea el servidor
 const app = express();
 
 // Acceso a la carpeta de "UPLOADS_DIR"
 app.use('/static', express.static(UPLOADS_DIR));
 
 // Monitorización de datos en tiempo real
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // Deserializa el body con formato JSON
 app.use(express.json());
@@ -27,35 +27,38 @@ app.use(fileupload());
 // Middleware que permite conectar el backend (éste) con el frontend (React)
 app.use(cors());
 
-
 /*
  * #####################
  * ## RUTAS PARA USER ##
  * #####################
  */
-const { showLineage, login, readLoggedProfile, getFamilyNames, sendForm, getFamilyDataByUrl } = require("./controllers/users");
-const updateJSON = require("./controllers/users/updateJSON");
-
+const {
+  showLineage,
+  login,
+  readLoggedProfile,
+  getFamilyNames,
+  sendForm,
+  getFamilyDataByUrl,
+} = require('./controllers/users');
+const updateJSON = require('./controllers/users/updateJSON');
 
 // Login de usuario
-app.post("/", login);
+app.post('/', login);
 
 // Recoger todos los datos de la familia del usuario logueado
-app.get("/loggedProfile", isAuth, readLoggedProfile);
+app.get('/loggedProfile', isAuth, readLoggedProfile);
 
 // Obtener el nombre de todas las familias
-app.get("/familyNames", isAuth, getFamilyNames);
+app.get('/familyNames', isAuth, getFamilyNames);
 
 // Enviar formulario
-app.post("/form/sendForm", isAuth, sendForm);
+app.post('/form/sendForm', isAuth, sendForm);
 
 // Acceso a los pdf de la familia
-app.get("/:url", isAuth, showLineage);
+app.get('/:url', isAuth, showLineage);
 
 // Obtener los datos de la familia por la url
-app.get("/data/:url", isAuth, getFamilyDataByUrl)
-
-
+app.get('/data/:url', isAuth, getFamilyDataByUrl);
 
 /*
  * #################################
@@ -63,19 +66,20 @@ app.get("/data/:url", isAuth, getFamilyDataByUrl)
  * #################################
  */
 
-const { createPDF, updatePDF, deletePDF, uploadPDF } = require("./controllers/pdfs");
+const {
+  createPDF,
+  updatePDF,
+  deletePDF,
+} = require('./controllers/pdfs');
 
 // Crear fichero pdf de una de las familias por parte del admin
-app.post("/createPDF/:url", isAuth, createPDF);
-
+app.post('/createPDF/:url', isAuth, createPDF);
 
 // Actualizar un fichero pdf por parte del administrador
-app.put("/pdf", isAuth, updatePDF);
-
+app.put('/pdf', isAuth, updatePDF);
 
 // Eliminar fichero pdf por parte del admin
-app.delete("/pdf", isAuth, deletePDF)
-
+app.delete('/pdf', isAuth, deletePDF);
 
 /*
  * ##########################################
@@ -85,23 +89,23 @@ app.delete("/pdf", isAuth, deletePDF)
 
 // Middleware de Error:
 app.use((err, req, res, next) => {
-    console.error(err);
-  
-    res.status(err.statusCode || 500).send({
-      status: "error",
-      message: err.message,
-    });
+  console.error(err);
+
+  res.status(err.statusCode || 500).send({
+    status: 'error',
+    message: err.message,
   });
-  
-  // Middleware 404 NOT FOUND
-  app.use((req, res) => {
-    res.status(404).send({
-      status: "Error",
-      message: "Ruta no encontrada 😿",
-    });
+});
+
+// Middleware 404 NOT FOUND
+app.use((req, res) => {
+  res.status(404).send({
+    status: 'Error',
+    message: 'Ruta no encontrada 😿',
   });
+});
 
 // Servidor escuchando en el puerto "PORT"
-app.listen(PORT, ()=> {
-    console.log(`Server listening at ${HOST}:${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server listening at ${HOST}:${PORT}`);
+});

@@ -4,7 +4,7 @@ const { generateError, savePDF } = require("../../helpers");
 const selectFamilyByUrl = require("../../assets/queries/selectFamilyByUrl");
 
 const createPDF = async (req, res, next) => {
-  // const {uploadPDF} = req.files;
+  const {uploadPDF} = req.files;
   const {url} = req.params;
   const {id} = req.user;
 
