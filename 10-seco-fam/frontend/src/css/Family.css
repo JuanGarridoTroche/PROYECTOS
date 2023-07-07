@@ -42,7 +42,7 @@
   width: 100px;
   height: 100px;
   background-color: white;
-  padding-top: 10px;
+  padding-top: 6px;
   border-radius: 10px; 
   border: 1px solid var(--color-red-200); 
 }
@@ -58,11 +58,11 @@
   display: flex;
   justify-content: space-around;
   background-color: #6f6f6f;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 5px 5px;
 }
 
 .family__pdf-button {
-  padding: 5px;
+  padding: 2px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -72,11 +72,13 @@
 
 .family__pdf-update {  
   background-color: rgb(42, 188, 207);
+  width: 30px;
 }
 
 .family__pdf-delete {
   background-color: rgb(165,10,10);  
-  margin-left: 5px;
+  /* margin-left: 5px; */
+  width: 30px;
 }
 
 .family__icon-add-pdf {
@@ -91,9 +93,16 @@
   border: 1px solid var(--color-red-200);
   padding: 10px;
   border-radius: 50%;
-  content:url("/plus-solid-white.svg");
+  content: url("/plus-solid-white.svg");
 }
 
+.family__update {
+  content: url("/update-solid.svg");
+}
+
+.family__delete {
+  content: url("/trash-can-solid.svg");
+}
 
 .family__add-pdf {
   display: grid;
@@ -108,7 +117,8 @@
 .family__selected-pdf {
   width: 100%;
   height: 100%;
-  border: 1px solid yellow;
+  border: 1px solid var(--color-golden-200);
+  margin-top: 15px;
 }
 
 .pdf__embed {  
@@ -116,15 +126,29 @@
   justify-content: center;
   align-items: center;
   min-width: 100vw;
-  min-height: 70vh;
-  
+  min-height: 60vh;
+}
+
+@media (min-width: 576px) {
+  .family__pdf-item {
+    width: 110px;
+    height: 110px;
+    padding-top: 15px; 
+  }
+
+  .pdf__embed {  
+    min-width: 50vw;
+    min-height: 70vh;
+  }
+
+  .family__pdf-item.family__add-pdf {
+    padding-top: 0;
+  }
 }
 
 @media (min-width: 992px) {
   .family__pdf-item {
-    width: 110px;
-    height: 110px;
-    padding-top: 20px; 
+    padding-top: 16px; 
   }
   
   .family__pdf-item > img:hover {
@@ -144,15 +168,6 @@
   .family__pdf-item > .family__icon-selected-add-pdf:hover {
     background-color: var(--color-black-200);
     content:url("/plus-solid-white.svg");
-  }
-
-  .pdf__embed {  
-    min-width: 50vw;
-    min-height: 70vh;
-  }
-
-  .family__pdf-item.family__add-pdf {
-    padding-top: 0;
   }
   
 }

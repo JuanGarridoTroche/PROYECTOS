@@ -101,3 +101,22 @@ export const getFamilyNameAndPdfsService = async (token, url)=> {
   
   return json.data;    
 }
+
+// Sustituir un pdf por otro con el mismo nombre
+export const updatePDFService = async(token, url, uploadPDF)=> {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/pdf/${url}`,
+  {
+    method: "PUT",
+    headers: {
+      Authorization: token,
+    },
+    data: uploadPDF,
+  })
+
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json.message);
+  }
+  console.log(json.data);
+  return json.data;
+}
