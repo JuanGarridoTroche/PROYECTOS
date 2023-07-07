@@ -36,73 +36,80 @@ export const Family = () => {
 
   return (
     <section className="family">
-      <h2>Familia {user?.lineage}</h2>
+      <h2 className="family__title">Familia {user?.lineage}</h2>
       {error ? <p>{error}</p> : null}
-      {user?.role === 'admin' ? (
-        <ul className="family__pdf-list">
-          {pdfs.map((pdf, index) => {
-            return (
-              <li
-                key={index}
-                className="family__pdf-item"
-                onClick={() => setSelectedPdf(index)}
-              >
-                <img
-                  src=""
-                  alt=""
-                  className={
-                    selectedPdf === index
-                      ? 'family__icon-selected'
-                      : 'family__icon'
-                  }
-                />
-                <p className="family__pdf-name">{pdf}</p>
-                <section className="family__buttons">
-                  <button className="family__pdf-button family__pdf-update">
-                    Cambiar
-                  </button>
-                  <button className="family__pdf-button family__pdf-delete">
-                    Eliminar
-                  </button>
-                </section>
-              </li>
-            );
-          })}
-          <li className="family__pdf-item family__add-pdf">
-            <img
-              src=""
-              alt=""
-              className={
-                selectedAddPdf ? 'family__icon-selected-add-pdf' : 'family__icon-add-pdf'
-              }
-              onClick={()=> setSelectedAddPdf(!selectedAddPdf)}
-            />
-          </li>
-        </ul>
-      ) : (
-        <ul className="family__pdf-list">
-          {pdfs.map((pdf, index) => {
-            return (
-              <li
-                key={index}
-                className="family__pdf-item"
-                onClick={() => setSelectedPdf(index)}
-              >
-                <img
-                  src=""
-                  alt=""
-                  className={
-                    selectedPdf === index
-                      ? 'family__icon-selected'
-                      : 'family__icon'
-                  }
-                />
-                <p className="family__pdf-name">{pdf}</p>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <section className="family__pdfs">
+        {user?.role === 'admin' ? (
+          <ul className="family__pdf-list">
+            {pdfs.map((pdf, index) => {
+              return (
+                <li
+                  key={index}
+                  className="family__pdf-item"
+                  onClick={() => setSelectedPdf(index)}
+                >
+                  <img
+                    src=""
+                    alt=""
+                    className={
+                      selectedPdf === index
+                        ? 'family__icon-selected'
+                        : 'family__icon'
+                    }
+                  />
+                  <p className="family__pdf-name">{pdf}</p>
+                  <section className="family__buttons">
+                    <button className="family__pdf-button family__pdf-update">
+                      Cambiar
+                    </button>
+                    <button className="family__pdf-button family__pdf-delete">
+                      Eliminar
+                    </button>
+                  </section>
+                </li>
+              );
+            })}
+            <li className="family__pdf-item family__add-pdf">
+              <img
+                src=""
+                alt=""
+                className={
+                  selectedAddPdf
+                    ? 'family__icon-selected-add-pdf'
+                    : 'family__icon-add-pdf'
+                }
+                onClick={() => setSelectedAddPdf(!selectedAddPdf)}
+              />
+            </li>
+          </ul>
+        ) : (
+          <ul className="family__pdf-list">
+            {pdfs.map((pdf, index) => {
+              return (
+                <li
+                  key={index}
+                  className="family__pdf-item"
+                  onClick={() => setSelectedPdf(index)}
+                >
+                  <img
+                    src=""
+                    alt=""
+                    className={
+                      selectedPdf === index
+                        ? 'family__icon-selected'
+                        : 'family__icon'
+                    }
+                  />
+                  <p className="family__pdf-name">{pdf}</p>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </section>
+      <section className="family__selected-pdf">        
+        {pdfs.length > 0 ? <embed src={`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/static/data/${url}/${pdfs[selectedPdf]}`} type="application/pdf" className="pdf__embed" width="100%" height="100%"/> : null}
+      </section>
     </section>
   );
 };
