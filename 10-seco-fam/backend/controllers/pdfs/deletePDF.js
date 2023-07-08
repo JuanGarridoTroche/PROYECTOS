@@ -33,9 +33,10 @@ const deletePDF = async(req, res, next) => {
     if(!lineageToChangePdf) throw generateError("No existe ese nombre de familia", 403);
     
     // Comprobamos que existe un fichero que se llame igual al que nos piden eliminar
+   
     const existsPdf = lineageToChangePdf.pdf.find((file) => file.toLowerCase() === name.toLowerCase())
-
-    if(!existsPdf) {
+   
+    if(!existsPdf ) {
       throw generateError(`No existe un pdf con el nombre ${pdf} en la familia ${lineage}`, 403);
     }
 

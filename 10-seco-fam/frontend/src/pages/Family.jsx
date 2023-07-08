@@ -2,8 +2,12 @@ import('../css/Family.css');
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext';
-import { getFamilyNameAndPdfsService } from '../services';
-import UpdatePdfModal from "../components/UpdatePdfModal";
+import {
+  deletePdfService,
+  getFamilyDataByUrlService,
+  getFamilyNameAndPdfsService,
+} from '../services';
+import CreatePdfModal from '../components/CreatePdfModal';
 
 export const Family = () => {
   const { url } = useParams();
@@ -14,9 +18,11 @@ export const Family = () => {
   const [selectedPdf, setSelectedPdf] = useState(0);
   const [selectedAddPdf, setSelectedAddPdf] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [updatePdfList, setUpdatePdfList] = useState(false);
 
   useEffect(() => {
     const checkingUser = async () => {
+      console.log('entro en el useEffect de Family');
       try {
         if (user?.url !== url && user?.role === 'user') {
           navigate(`/familia/${user?.url}`);
@@ -27,26 +33,38 @@ export const Family = () => {
           const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
           setPdfs(getUserPdfs.pdf);
         }
-      } catch (err) {
-        setError(err.message);
+      } catch (error) {
+        setError(error.message);
       }
     };
 
     if (!token) navigate('/');
+    console.log(user?.url, updatePdfList);
     token && user?.url && checkingUser();
-  }, [navigate, token, url, user]);
+  }, [navigate, token, url, user, updatePdfList]);
 
-  // const handleUpdate = (e) => {
-  //   e.preventDefault();
+  const handleCreatePdf = () => {
+    try {
+      console.log('Creamos un nuevo pdf para la familia ' + url);
+      setShowModal(!showModal);
+    } catch (error) {
+      console.log(error.message);
+      setError(error.message);
+    }
+  };
 
-  //   try {
-  //     // console.log(`Sutituyendo el pdf ${pdfs[index]}`);
-  //     const formData = new FormData(e.currentTarget);
-  //     console.log(formData);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
+  const handleDeletePdf = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const familyData = await getFamilyDataByUrlService(token, url);
+      await deletePdfService(token, e.target.name, familyData.lineage);
+      setUpdatePdfList(!updatePdfList);
+      setPdfs([]);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <section className="family">
@@ -70,15 +88,24 @@ export const Family = () => {
                     }
                   />
                   <p className="family__pdf-name">{pdf}</p>
-                  <section className="family__buttons">                                     
-                    <button className="family__pdf-button family__pdf-update" onClick={(e)=> {
-                      e.preventDefault();
-                      setSelectedPdf(index);
-                      setShowModal(!showModal)}}>
-                      <img className='family__update' alt='imagen'/>
+                  <section className="family__buttons">
+                    <button
+                      className="family__pdf-button family__pdf-update"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedPdf(index);
+                        setShowModal(!showModal);
+                      }}
+                    >
+                      <img className="family__update" alt="imagen" />
                     </button>
                     <button className="family__pdf-button family__pdf-delete">
-                    <img className='family__delete' alt='imagen'/>
+                      <img
+                        name={pdf}
+                        className="family__delete"
+                        alt="imagen"
+                        onClick={(e) => handleDeletePdf(e)}
+                      />
                     </button>
                   </section>
                 </li>
@@ -93,7 +120,7 @@ export const Family = () => {
                     ? 'family__icon-selected-add-pdf'
                     : 'family__icon-add-pdf'
                 }
-                onClick={() => setSelectedAddPdf(!selectedAddPdf)}
+                onClick={handleCreatePdf}
               />
             </li>
           </ul>
@@ -136,10 +163,13 @@ export const Family = () => {
         ) : null}
       </section>
       {showModal && (
-      <UpdatePdfModal pdfToChange={pdfs[selectedPdf]} setShowModal={setShowModal}>
-        
-      </UpdatePdfModal>
-    )}
+        <CreatePdfModal
+          updatePdfList={updatePdfList}
+          setUpdatePdfList={setUpdatePdfList}
+          pdfToChange={pdfs[selectedPdf]}
+          setShowModal={setShowModal}
+        ></CreatePdfModal>
+      )}
     </section>
   );
 };
