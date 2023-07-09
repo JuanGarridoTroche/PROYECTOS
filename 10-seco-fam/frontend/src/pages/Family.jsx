@@ -41,7 +41,7 @@ export const Family = () => {
     if (!token) navigate('/');
     console.log(user?.url, updatePdfList);
     token && user?.url && checkingUser();
-  }, [navigate, token, url, user, updatePdfList]);
+  }, [token, url, user, updatePdfList]);
 
   const handleCreatePdf = () => {
     try {
@@ -60,7 +60,7 @@ export const Family = () => {
       const familyData = await getFamilyDataByUrlService(token, url);
       await deletePdfService(token, e.target.name, familyData.lineage);
       setUpdatePdfList(!updatePdfList);
-      setPdfs([]);
+      console.log(updatePdfList);
     } catch (error) {
       setError(error.message);
     }
