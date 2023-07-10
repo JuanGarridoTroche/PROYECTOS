@@ -31,6 +31,7 @@ export const Family = () => {
         // Si eres admin o usuario de la familia, devuelve los pdfs
         if (user?.role === 'admin' || user?.url === url) {
           const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
+          console.log(getUserPdfs.pdf);
           setPdfs(getUserPdfs.pdf);
         }
       } catch (error) {

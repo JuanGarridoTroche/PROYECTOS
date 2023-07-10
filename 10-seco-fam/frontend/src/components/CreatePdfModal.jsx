@@ -26,7 +26,6 @@ const UpdatePdfModal = ({
       await createPDFService(token, url, uploadPDF);
       setUpdatePdfList(!updatePdfList);
       setShowModal(false);
-      navigate(`/familia/${url}`);
     } catch (error) {
       setError(error.message);
     }
