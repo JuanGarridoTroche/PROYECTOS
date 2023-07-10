@@ -1,7 +1,7 @@
 import '../css/Modal.css';
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { createPDFService } from '../services';
 import { AuthContext } from '../contexts/AuthContext';
 
@@ -9,14 +9,12 @@ import { AuthContext } from '../contexts/AuthContext';
 const UpdatePdfModal = ({
   updatePdfList,
   setUpdatePdfList,
-  pdfToChange,
   setShowModal,
 }) => {
   const [newPDF, setNewPDF] = useState(null);
   const [error, setError] = useState('');
   const { url } = useParams();
   const { token } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handlePdf = async (e) => {
     e.preventDefault();
@@ -26,8 +24,9 @@ const UpdatePdfModal = ({
       await createPDFService(token, url, uploadPDF);
       setUpdatePdfList(!updatePdfList);
       setShowModal(false);
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      console.log(error);
+      setError(err.message);
     }
   };
 
@@ -55,7 +54,7 @@ const UpdatePdfModal = ({
         </h3>
         <form className="pdf-to-upload" onSubmit={handlePdf}>
           <label className="pdf-to-upload__label" htmlFor="uploadPDF">
-            {pdfToChange}
+            
           </label>
           <input
             className="pdf-to-upload__file"
@@ -84,7 +83,6 @@ const UpdatePdfModal = ({
 export default UpdatePdfModal;
 
 UpdatePdfModal.propTypes = {
-  pdfToChange: PropTypes.any,
   setShowModal: PropTypes.any,
   setUpdatePdfList: PropTypes.any,
   updatePdfList: PropTypes.bool,

@@ -7,10 +7,6 @@ const deletePDF = async(req, res, next) => {
   const {name, lineage} = req.body;
   const {id} = req.user;
 
-  console.log("Nombre: ", name);
-  console.log("Familia: ", lineage);
-  console.log("Id del administrador: ", id);
-
   try {
 
     // Comprobamos que los 2 datos nos llegan
