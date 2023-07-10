@@ -5,12 +5,9 @@ const selectFamilyByUrl = require("../../assets/queries/selectFamilyByUrl");
 
 const createPDF = async (req, res, next) => {
   const {id} = req.user;
-  console.log("ID: ", id);
   const {url} = req.params;
-  console.log("url: ", url);
   const {uploadPDF} = req.files;
 
-  console.log("uploadPDF: ", req.files);
   try {   
     // Comprobamos que existe un nombre de familia en el select, donde vamos a subir el pdf
     if(!url) {
@@ -78,14 +75,13 @@ const createPDF = async (req, res, next) => {
     // Al comprobar que no existe pdf, lo guardamos físicamente
     for (const newPDF of Object.values(uploadPDF).slice(0,1)) {
       // Sacamos los metadatos del fichero que vamos a subir (name, size, mimetype, etc)
-      console.log("newPDF: ", newPDF);
       const pdfName = await savePDF(newPDF, lineageToChangePdf, uploadPDF);
     }    
 
     
     res.send({
       status: "Ok",
-      message: `PDF subido`,   
+      message: `PDF ${newPDF} subido`,   
     })
     
   } catch (err) {

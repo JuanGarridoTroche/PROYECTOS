@@ -23,6 +23,8 @@ export const Family = () => {
   useEffect(() => {
     const checkingUser = async () => {
       console.log('entro en el useEffect de Family');
+      console.log('url: ', url);
+      console.log('update PDF List: ', updatePdfList);
       try {
         if (user?.url !== url && user?.role === 'user') {
           navigate(`/familia/${user?.url}`);
@@ -31,8 +33,8 @@ export const Family = () => {
         // Si eres admin o usuario de la familia, devuelve los pdfs
         if (user?.role === 'admin' || user?.url === url) {
           const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
-          console.log(getUserPdfs.pdf);
           setPdfs(getUserPdfs.pdf);
+          console.log(getUserPdfs.pdf);
         }
       } catch (error) {
         setError(error.message);
@@ -40,9 +42,8 @@ export const Family = () => {
     };
 
     if (!token) navigate('/');
-    console.log(user?.url, updatePdfList);
     token && user?.url && checkingUser();
-  }, [token, url, user, updatePdfList]);
+  }, [token, url, user, updatePdfList, navigate]);
 
   const handleCreatePdf = () => {
     try {
@@ -112,7 +113,8 @@ export const Family = () => {
                 </li>
               );
             })}
-            <li className="family__pdf-item family__add-pdf">
+            {url !== 'administrator' ?
+            (<li className="family__pdf-item family__add-pdf">
               <img
                 src=""
                 alt=""
@@ -123,7 +125,7 @@ export const Family = () => {
                 }
                 onClick={handleCreatePdf}
               />
-            </li>
+            </li>) : null}
           </ul>
         ) : (
           <ul className="family__pdf-list">
@@ -167,7 +169,6 @@ export const Family = () => {
         <CreatePdfModal
           updatePdfList={updatePdfList}
           setUpdatePdfList={setUpdatePdfList}
-          pdfToChange={pdfs[selectedPdf]}
           setShowModal={setShowModal}
         ></CreatePdfModal>
       )}

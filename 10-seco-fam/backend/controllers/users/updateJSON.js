@@ -7,9 +7,6 @@ const updateJSON = async (req, res, next) => {
   const data = JSON.parse(readingJson);
   const myData = structuredClone(data);  
   const {lineage} = req.body;
-  console.log("Familia: ", lineage);
-
-  console.log("Leyendo con fs: ", data);
   
   try {   
     if(!req.files) {
@@ -23,14 +20,12 @@ const updateJSON = async (req, res, next) => {
     }
 
     myData.map((item, index)=> {
-      console.log("Familia recorriendo el array: ", item.lineage);
       if(item.lineage === lineage) {
         // myData[index].pdf = [...item.pdf, pdf.name] 
         myData[index].pdf.push(pdf.name);
       }
     })
 
-   console.log(myData);
    const myNewData = JSON.stringify(myData);
    fs.writeFile("/assets/lineages2.json", myNewData, "utf-8", (err) => {
     if (err) {throw generateError("Error a la hora de guardar el fichero JSON", 400)}
