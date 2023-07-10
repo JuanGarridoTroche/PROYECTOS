@@ -98,7 +98,7 @@ export const getFamilyNameAndPdfsService = async (token, url)=> {
   if(!response.ok) {
     throw new Error(json.message);
   }
-  
+  console.log(json.data);
   return json.data;    
 }
 
