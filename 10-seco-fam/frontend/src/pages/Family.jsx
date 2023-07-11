@@ -22,19 +22,12 @@ export const Family = () => {
 
   useEffect(() => {
     const checkingUser = async () => {
-      console.log('entro en el useEffect de Family');
+      console.log('entro en el useEffect de Family para comprobar el usuario');
       console.log('url: ', url);
       console.log('update PDF List: ', updatePdfList);
       try {
         if (user?.url !== url && user?.role === 'user') {
           navigate(`/familia/${user?.url}`);
-        }
-
-        // Si eres admin o usuario de la familia, devuelve los pdfs
-        if (user?.role === 'admin' || user?.url === url) {
-          const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
-          setPdfs(getUserPdfs.pdf);
-          console.log(getUserPdfs.pdf);
         }
       } catch (error) {
         setError(error.message);
@@ -43,7 +36,27 @@ export const Family = () => {
 
     if (!token) navigate('/');
     token && user?.url && checkingUser();
-  }, [token, url, user, updatePdfList, navigate]);
+  }, [token, url, user, updatePdfList, navigate, pdfs]);
+
+  // Si eres admin o usuario de la familia, devuelve los pdfs
+  useEffect(() => {
+    const loadPdfList = async () => {
+      console.log("Entramos si el usuario es admin o el user correcto");
+      try {
+        const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
+        if (JSON.stringify(pdfs) !== JSON.stringify(getUserPdfs.pdf)) {
+          console.log('son distintos');
+          setPdfs(getUserPdfs.pdf);
+          console.log(getUserPdfs.pdf);
+          console.log(pdfs);
+        }
+        console.log(pdfs);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    if (user?.role === 'admin' || user?.url === url) loadPdfList();
+  }, [token, url, user, pdfs, updatePdfList]);
 
   const handleCreatePdf = () => {
     try {
@@ -71,7 +84,7 @@ export const Family = () => {
   return (
     <section className="family">
       <h2 className="family__title">Familia {user?.lineage}</h2>
-      {error ? <p>{error}</p> : null}
+      {error ? <p className='error'>{error}</p> : null}
       <section className="family__pdfs">
         {user?.role === 'admin' ? (
           <ul className="family__pdf-list">
@@ -113,19 +126,20 @@ export const Family = () => {
                 </li>
               );
             })}
-            {url !== 'administrator' ?
-            (<li className="family__pdf-item family__add-pdf">
-              <img
-                src=""
-                alt=""
-                className={
-                  selectedAddPdf
-                    ? 'family__icon-selected-add-pdf'
-                    : 'family__icon-add-pdf'
-                }
-                onClick={handleCreatePdf}
-              />
-            </li>) : null}
+            {url !== 'administrator' ? (
+              <li className="family__pdf-item family__add-pdf">
+                <img
+                  src=""
+                  alt=""
+                  className={
+                    selectedAddPdf
+                      ? 'family__icon-selected-add-pdf'
+                      : 'family__icon-add-pdf'
+                  }
+                  onClick={handleCreatePdf}
+                />
+              </li>
+            ) : null}
           </ul>
         ) : (
           <ul className="family__pdf-list">

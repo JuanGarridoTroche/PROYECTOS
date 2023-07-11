@@ -54,7 +54,7 @@ const sendMail = async (to, subject, text) => {
  * ################
  */
 const savePDF = async(pdfMetadata, familyData, uploadPDF) => {
-  console.log(pdfMetadata);
+  // console.log(pdfMetadata);
 
   let uploadPath = path.join(__dirname, UPLOADS_DIR, "\\data\\", familyData.url);
   // console.log("nombre del directorio: ", __dirname, "nombre del fichero: ", __filename);

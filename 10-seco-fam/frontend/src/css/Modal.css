@@ -34,6 +34,10 @@
   box-shadow: 1px 1px 24px 5px grey;  
 }
 
+.error {
+  color: var(--color-red-200);
+}
+
 @media(min-width: 576px) {
   .modalBg {
     background-color: rgba(0, 0, 0, 40%);

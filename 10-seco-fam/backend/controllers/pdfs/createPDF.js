@@ -81,7 +81,7 @@ const createPDF = async (req, res, next) => {
     
     res.send({
       status: "Ok",
-      message: `PDF ${newPDF} subido`,   
+      message: `PDF ${uploadPDF.name.toLowerCase()} subido`,   
     })
     
   } catch (err) {
