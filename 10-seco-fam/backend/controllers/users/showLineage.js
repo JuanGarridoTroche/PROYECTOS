@@ -19,6 +19,9 @@ const showLineage = async (req, res, next)=> {
           familyPdf = family.pdf;
         }
       }
+      if(!familyName) {
+        throw generateError("la url no existe", 404)
+      }
 
       // Buscamos en lineage.json (data) la familia del usuario logueado para quedarnos con el role
       for(let family of data) {

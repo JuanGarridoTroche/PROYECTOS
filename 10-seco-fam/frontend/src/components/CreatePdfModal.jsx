@@ -18,6 +18,7 @@ const UpdatePdfModal = ({
 
   const handlePdf = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const uploadPDF = new FormData();
       uploadPDF.append('uploadPDF', newPDF);
@@ -25,7 +26,6 @@ const UpdatePdfModal = ({
       setUpdatePdfList(!updatePdfList);
       setShowModal(false);
     } catch (err) {
-      console.log(error);
       setError(err.message);
     }
   };
@@ -53,6 +53,7 @@ const UpdatePdfModal = ({
           Subir un fichero para la familia {url}
         </h3>
         <form className="pdf-to-upload" onSubmit={handlePdf}>
+          {error ? <p className='error'>{error}</p> : null}
           <label className="pdf-to-upload__label" htmlFor="uploadPDF">
             
           </label>
