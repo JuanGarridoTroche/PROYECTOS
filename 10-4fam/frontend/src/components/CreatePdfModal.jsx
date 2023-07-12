@@ -60,24 +60,26 @@ const UpdatePdfModal = ({
           e.stopPropagation();
         }}
       >
-        <h3 className="pdf-to-upload__title">
-          Subir un fichero para la familia {url}
-        </h3>
-        <form className="pdf-to-upload" onSubmit={handlePdf}>
-          {error ? <p className='error'>{error}</p> : null}
-          <label className="pdf-to-upload__label" htmlFor="uploadPDF">
-            
-          </label>
-          <input
-            className="pdf-to-upload__file"
-            type="file"
-            name="uploadPDF"
-            id="uploadPDF"
-            required
-            onChange={(e) => setNewPDF(e.target.files[0])}
-          />
-          <button className="pdf-to-change__button">Cambiar</button>
-        </form>
+        <section className='pdf'>
+          <h3 className="pdf__title">
+            Subir PDF a la familia {url}
+          </h3>
+          <form className="pdf-to-upload" onSubmit={handlePdf}>
+            {error ? <p className='error'>{error}</p> : null}
+            <label className="pdf-to-upload__label" htmlFor="uploadPDF">
+              PDF
+            </label>
+            <input
+              className="pdf-to-upload__file"
+              type="file"
+              name="uploadPDF"
+              id="uploadPDF"
+              required
+              onChange={(e) => setNewPDF(e.target.files[0])}
+            />
+            <button className="pdf-to-upload__button">Añadir</button>
+          </form>
+        </section>
         <div
           className="close"
           onClick={(e) => {

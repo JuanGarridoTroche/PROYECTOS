@@ -92,16 +92,6 @@ export const Family = () => {
                   />
                   <p className="family__pdf-name">{pdf}</p>
                   <section className="family__buttons">
-                    {/* <button
-                      className="family__pdf-button family__pdf-update"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedPdf(index);
-                        setShowModal(!showModal);
-                      }}
-                    >
-                      <img className="family__update" alt="imagen" />
-                    </button> */}
                     <button className="family__pdf-button family__pdf-delete">
                       <img
                         name={pdf}
@@ -131,7 +121,11 @@ export const Family = () => {
               return (
                 <li
                   key={index}
-                  className="family__pdf-item"
+                  className={
+                    selectedPdf === index
+                      ? 'family__pdf-item-selected'
+                      : 'family__pdf-item'
+                  }
                   onClick={() => setSelectedPdf(index)}
                 >
                   <img
@@ -143,7 +137,7 @@ export const Family = () => {
                         : 'family__icon'
                     }
                   />
-                  <p className="family__pdf-name">{pdf}</p>
+                  <p className="family__pdf-name-user">{pdf}</p>
                 </li>
               );
             })}
