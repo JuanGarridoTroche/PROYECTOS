@@ -107,7 +107,7 @@ export const getFamilyNameAndPdfsService = async (token, url) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
-  console.log(json.data);
+  
   return json.data;
 };
 
@@ -130,6 +130,8 @@ export const createPDFService = async (token, url, uploadPDF) => {
   if (!response.ok) {
     throw new Error(json.message);
   }
+
+  return JSON.parse(json.data);
 };
 
 // Sustituir un pdf por otro con el mismo nombre

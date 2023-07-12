@@ -62,6 +62,7 @@ const createPDF = async (req, res, next) => {
     })
 
     uploadPDF.name = uploadPDF.name.toLowerCase();
+
     
     const jsonWithNewPdf = JSON.stringify(jsonCopy);
 
@@ -78,10 +79,13 @@ const createPDF = async (req, res, next) => {
       const pdfName = await savePDF(newPDF, lineageToChangePdf, uploadPDF);
     }    
 
+    console.log("Nuevos pdfs: ", lineageToChangePdf);
+
     
     res.send({
       status: "Ok",
-      message: `PDF ${uploadPDF.name.toLowerCase()} subido`,   
+      message: `PDF ${uploadPDF.name.toLowerCase()} subido`,  
+      data:jsonWithNewPdf,
     })
     
   } catch (err) {

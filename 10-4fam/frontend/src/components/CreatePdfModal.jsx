@@ -7,9 +7,9 @@ import { AuthContext } from '../contexts/AuthContext';
 
 // Pinta un modal blanco con un fondo oscuro. El contenido del modal es lo recibido en la prop children. También recibe setShowModal para poder cerrar el modal cuando hagamos click en el fondo oscuro
 const UpdatePdfModal = ({
-  updatePdfList,
-  setUpdatePdfList,
+  setPdfs,
   setShowModal,
+  setSelectedPdf,
 }) => {
   const [newPDF, setNewPDF] = useState(null);
   const [error, setError] = useState('');
@@ -19,12 +19,23 @@ const UpdatePdfModal = ({
   const handlePdf = async (e) => {
     e.preventDefault();
     setError("");
+    console.log(url);
     try {
       const uploadPDF = new FormData();
       uploadPDF.append('uploadPDF', newPDF);
-      await createPDFService(token, url, uploadPDF);
-      setUpdatePdfList(!updatePdfList);
-      setShowModal(false);
+      const newPdfList = await createPDFService(token, url, uploadPDF);
+      
+      const newData = {};
+      for(let family of newPdfList) {
+        if(family.url === url) {
+          newData.lineage = family.lineage;
+          newData.pdf = family.pdf;
+        }
+      }
+           
+      setPdfs(newData.pdf);
+      setSelectedPdf(newData.pdf.length - 1);
+      setShowModal(false);      
     } catch (err) {
       setError(err.message);
     }
@@ -85,6 +96,6 @@ export default UpdatePdfModal;
 
 UpdatePdfModal.propTypes = {
   setShowModal: PropTypes.any,
-  setUpdatePdfList: PropTypes.any,
-  updatePdfList: PropTypes.bool,
+  setPdfs: PropTypes.any,
+  setSelectedPdf: PropTypes.any,
 };
