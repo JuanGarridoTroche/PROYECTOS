@@ -11,7 +11,7 @@
 
 .modalContainer {
   width: 98vw;
-  height: 60vh;
+  height: 40vh;
   background-color: white;
   color: green;
   font-weight: 700;
@@ -38,6 +38,40 @@
   color: var(--color-red-200);
 }
 
+.pdf {
+  position: absolute;
+  top: 40px;
+  left: 25px;
+}
+
+.pdf__title {
+  font-size: 2rem;
+  padding-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.pdf-to-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-to-upload__label {
+  text-align: left;
+  border-bottom: 1px solid green;
+  width: 100%;
+}
+
+.pdf-to-upload__file {
+  padding: 10px 0;
+}
+
+.pdf-to-upload__button {
+  padding: 7px;
+  min-width: 70px;
+}
+
 @media(min-width: 576px) {
   .modalBg {
     background-color: rgba(0, 0, 0, 40%);
@@ -55,6 +89,15 @@
     height: 60vh;
     border-radius: 1rem;
     padding: 1rem;
+  }
+
+  .pdf {
+    top: 40px;
+    left: 75px;
+  }
+
+  .pdf-to-upload__button {
+    margin-top: 10px;
   }
 }
 

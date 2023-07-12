@@ -21,7 +21,7 @@ export const Header = ()=> {
         setError(err.message);
       }
     }
-    
+   
     if(user?.role === 'admin') getAllFamilyNames();
   }, [token, user?.role])
 
@@ -41,7 +41,7 @@ export const Header = ()=> {
     <header className="menu">
       {error ? <p>{error}</p> : null}
       <section className="menu__brand">
-        <Link to={`/familia/${user?.url}`}><img className="menu__logo" src="/logo-admin.svg" alt={user?.lineage}/></Link>
+        <Link to={`/familia/${user?.url}`}><img className="menu__logo" src={`/${user?.logo}`} alt={user?.lineage}/></Link>
         {user?.role === 'admin' ? null :  <p className="menu__family-name">{user?.lineage}</p>}
       </section>
 
