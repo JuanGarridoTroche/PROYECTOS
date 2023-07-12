@@ -70,6 +70,7 @@ const deletePDF = async(req, res, next) => {
     res.send({
       status: "Ok",
       message: "Fichero eliminado",
+      data: jsonCopy,
     })
   } catch (err) {
     next(err);

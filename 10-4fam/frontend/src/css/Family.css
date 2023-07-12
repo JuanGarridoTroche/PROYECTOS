@@ -89,12 +89,12 @@
   background-color: #303030;
 }
 
-.family__icon-selected-add-pdf {
+/* .family__icon-selected-add-pdf {
   border: 1px solid var(--color-red-200);
   padding: 10px;
   border-radius: 50%;
   content: url("/plus-solid-white.svg");
-}
+} */
 
 .family__update {
   content: url("/update-solid.svg");

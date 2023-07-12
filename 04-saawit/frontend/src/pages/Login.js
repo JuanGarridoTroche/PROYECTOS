@@ -51,6 +51,7 @@ export const Login = () => {
           type="password"
           placeholder="Contraseña"
           required
+          autoComplete="true"
           onChange={(e) => {
             setPassword(e.target.value);
           }}

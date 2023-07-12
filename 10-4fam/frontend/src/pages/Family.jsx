@@ -16,19 +16,21 @@ export const Family = () => {
   const [error, setError] = useState('');
   const [pdfs, setPdfs] = useState([]);
   const [selectedPdf, setSelectedPdf] = useState(0);
-  const [selectedAddPdf, setSelectedAddPdf] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [updatePdfList, setUpdatePdfList] = useState(false);
 
   useEffect(() => {
     const checkingUser = async () => {
-      console.log('entro en el useEffect de Family para comprobar el usuario');
-      console.log('url: ', url);
-      console.log('update PDF List: ', updatePdfList);
       try {
         if (user?.url !== url && user?.role === 'user') {
           navigate(`/familia/${user?.url}`);
         }
+
+        // Si eres admin o usuario de la familia, devuelve los pdfs
+        const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
+       
+        setPdfs(getUserPdfs.pdf);  
+
+
       } catch (error) {
         setError(error.message);
       }
@@ -36,34 +38,13 @@ export const Family = () => {
 
     if (!token) navigate('/');
     token && user?.url && checkingUser();
-  }, [token, url, user, updatePdfList, navigate, pdfs]);
+  }, [token, url, user, navigate]);
 
-  // Si eres admin o usuario de la familia, devuelve los pdfs
-  useEffect(() => {
-    const loadPdfList = async () => {
-      console.log("Entramos si el usuario es admin o el user correcto");
-      try {
-        const getUserPdfs = await getFamilyNameAndPdfsService(token, url);
-        if (JSON.stringify(pdfs) !== JSON.stringify(getUserPdfs.pdf)) {
-          console.log('son distintos');
-          setPdfs(getUserPdfs.pdf);
-          console.log(getUserPdfs.pdf);
-          console.log(pdfs);
-        }
-        console.log(pdfs);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    if (user?.role === 'admin' || user?.url === url) loadPdfList();
-  }, [token, url, user, pdfs, updatePdfList]);
-
+ 
   const handleCreatePdf = () => {
     try {
-      console.log('Creamos un nuevo pdf para la familia ' + url);
       setShowModal(!showModal);
     } catch (error) {
-      console.log(error.message);
       setError(error.message);
     }
   };
@@ -73,9 +54,16 @@ export const Family = () => {
     setError('');
     try {
       const familyData = await getFamilyDataByUrlService(token, url);
-      await deletePdfService(token, e.target.name, familyData.lineage);
-      setUpdatePdfList(!updatePdfList);
-      console.log(updatePdfList);
+      const deletePdf = await deletePdfService(token, e.target.name, familyData.lineage);      
+      const newData = {};
+      for(let family of deletePdf) {
+        if(family.url === url) {
+          newData.lineage = family.lineage;
+          newData.pdf = family.pdf;
+        }
+      }
+      setPdfs(newData.pdf); 
+      setSelectedPdf(0);      
     } catch (error) {
       setError(error.message);
     }
@@ -104,7 +92,7 @@ export const Family = () => {
                   />
                   <p className="family__pdf-name">{pdf}</p>
                   <section className="family__buttons">
-                    <button
+                    {/* <button
                       className="family__pdf-button family__pdf-update"
                       onClick={(e) => {
                         e.preventDefault();
@@ -113,7 +101,7 @@ export const Family = () => {
                       }}
                     >
                       <img className="family__update" alt="imagen" />
-                    </button>
+                    </button> */}
                     <button className="family__pdf-button family__pdf-delete">
                       <img
                         name={pdf}
@@ -131,11 +119,7 @@ export const Family = () => {
                 <img
                   src=""
                   alt=""
-                  className={
-                    selectedAddPdf
-                      ? 'family__icon-selected-add-pdf'
-                      : 'family__icon-add-pdf'
-                  }
+                  className='family__icon-add-pdf'
                   onClick={handleCreatePdf}
                 />
               </li>
@@ -181,9 +165,9 @@ export const Family = () => {
       </section>
       {showModal && (
         <CreatePdfModal
-          updatePdfList={updatePdfList}
-          setUpdatePdfList={setUpdatePdfList}
+          setPdfs={setPdfs}
           setShowModal={setShowModal}
+          setSelectedPdf={setSelectedPdf}
         ></CreatePdfModal>
       )}
     </section>
