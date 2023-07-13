@@ -21,7 +21,7 @@ const generateError = (msg, status) => {
  * #################################################################
  */
 const transport = nodemailer.createTransport({
-  host: 'smtp-relay.sendinblue.com',
+  host: 'smtp-relay.brevo.com',
   port: 587,
   auth: {
       user: SIB_SMTP_USER,

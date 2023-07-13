@@ -67,7 +67,7 @@ export const loginUserService = async (password) => {
 };
 
 // Enviar correo al administrador desde el formulario de la web
-export const sendMailService = async ({ token, name, text, subject }) => {
+export const sendMailService = async ({ token, name, emailContact, text, subject }) => {
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}:${
       import.meta.env.VITE_BACKEND_PORT
@@ -78,7 +78,7 @@ export const sendMailService = async ({ token, name, text, subject }) => {
         Authorization: token,
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ name, text, subject }),
+      body: JSON.stringify({ name, emailContact, text, subject }),
     }
   );
 

@@ -3,10 +3,10 @@ const { generateError, sendMail } = require("../../helpers");
 const sendForm = async (req, res, next) => {
   const {lineage} = req.user;
   
-  const {name, text, subject} = req.body;
+  const {name, emailContact, text, subject} = req.body;
   const {HOST, PORT, SIB_SMTP_USER} = process.env;
-  try { 
-
+  
+  try {
    // Validamos los datos insertados por el usuario
    const nameSchema = joi.string().required();
    const nameValidation = nameSchema.validate(name);
@@ -14,19 +14,26 @@ const sendForm = async (req, res, next) => {
     throw generateError("Introduzca un nombre para continuar con la solicitud", 400);
    }
 
-  //  Validamos el texto enviado
-  const textSchema = joi.string().min(10).required();
-  const textValidation = textSchema.validate(text);
-  if(textValidation.error || !textValidation) {
-    throw generateError("El texto debe contener al menos 10 caracteres", 400)
-  }
+    //  Validamos el texto enviado
+    const textSchema = joi.string().min(10).required();
+    const textValidation = textSchema.validate(text);
+    if(textValidation.error || !textValidation) {
+      throw generateError("El texto debe contener al menos 10 caracteres", 400)
+    }
 
-  // Validamos el asunto del correo
-  const subjectSchema = joi.string().min(3).required();  
-  const subjectValidation = subjectSchema.validate(subject);
-  if(subjectValidation.error || !subjectValidation) {
-    throw generateError("El asunto debe contener al menos una palabra", 400)
-  }
+    //  Validamos el email de contacto
+    const emailContactSchema = joi.string().email().required();
+    const emailContactValidation = emailContactSchema.validate(emailContact);
+    if(emailContactValidation.error || !emailContactValidation) {
+      throw generateError("El email enviado no es un correo válido", 400)
+    }
+
+    // Validamos el asunto del correo
+    const subjectSchema = joi.string().min(3).required();  
+    const subjectValidation = subjectSchema.validate(subject);
+    if(subjectValidation.error || !subjectValidation) {
+      throw generateError("El asunto debe contener al menos una palabra", 400)
+    }
 
   // Al ser un formulario, vamos a enviar el correo siempre al mismo destinatario (administrator):
   const email = SIB_SMTP_USER;
@@ -38,6 +45,9 @@ const sendForm = async (req, res, next) => {
     <div style="background-color:rgb(155, 155, 155); color:white; border-radius:10px; display:flex; flex-direction:column;justify-content:center;align-items:center">
       <img src="${HOST}:${PORT}/static/img/944.jpg" style="max-height:80px width:auto"/>
       <p style="padding-left:30px">${text}</p>      
+    </div>
+    <div>
+      <p style="padding-left:30px">Si quieres contestar a este usuario, envía un correo a la dirección <a href="mailto:${emailContact}?subject=${subject}">${emailContact}</a></p>
     </div>
   `;
 
