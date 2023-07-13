@@ -48,8 +48,8 @@
 
 .family__pdf-item-selected {
   list-style: none;
-  width: 105px;
-  height: 105px;
+  width: 102px;
+  height: 102px;
   background-color: white;
   padding-top: 6px;
   border-radius: 10px; 
@@ -102,13 +102,6 @@
   background-color: #303030;
 }
 
-/* .family__icon-selected-add-pdf {
-  border: 1px solid var(--color-red-200);
-  padding: 10px;
-  border-radius: 50%;
-  content: url("/plus-solid-white.svg");
-} */
-
 .family__update {
   content: url("/update-solid.svg");
 }
@@ -150,8 +143,8 @@
   }
 
   .family__pdf-item-selected {
-    width: 115px;
-    height: 115px;
+    width: 112px;
+    height: 112px;
   }
 
   .family__pdf-name-user {
