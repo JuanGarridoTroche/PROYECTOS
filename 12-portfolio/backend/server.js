@@ -17,5 +17,5 @@ app.use(cors());
 
 //Levantamos el servidor en el puerto
 app.listen(PORT, () => {
-  console.log(`Server listening at ${HOST}:${PORT}`);
+  console.log(`Server listening at http://${HOST}:${PORT}`);
 });

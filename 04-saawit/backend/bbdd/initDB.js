@@ -87,7 +87,7 @@ const initDB = async () => {
 
     // Encriptamos la contraseña del admin.
     const adminPass = await bcrypt.hash(process.env.ADMIN_PASS, 10);
-    console.log(adminPass);
+    // console.log(adminPass);
 
     // Insertamos el usuario administrador.
     await connection.query(

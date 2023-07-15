@@ -1,0 +1,116 @@
+CREATE DATABASE IF NOT EXISTS portfolio;
+USE portfolio;
+
+/* Se eliminan las tablas de forma inversa a como se han creado */
+
+DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS used_techs;
+DROP TABLE IF EXISTS technologies;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS educations;
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS crafts;
+DROP TABLE IF EXISTS curriculums;
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	firstName VARCHAR(100) NOT NULL,
+	lastName1 VARCHAR(100) NOT NULL,
+    lastName2 VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+	password VARCHAR(100) NOT NULL,    
+	image VARCHAR(100),
+	registrationCode VARCHAR(100),
+	recoverPassCode VARCHAR(20),
+    address VARCHAR(200),
+    postcode VARCHAR(5),
+    locality VARCHAR(100),
+    province VARCHAR(50),
+    country VARCHAR(50),
+	createdAt TIMESTAMP NOT NULL,
+	modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS curriculums (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idUser INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idUser) REFERENCES users(id),
+    profile VARCHAR(50) NOT NULL,
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+                
+CREATE TABLE IF NOT EXISTS crafts (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idUser INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idUSer) REFERENCES users(id),
+    idCurriculum INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
+	type ENUM('Trabajos', 'Habilidades', 'Educación'),
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS jobs (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idCraft INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idCraft) REFERENCES crafts(id),
+    start TIMESTAMP NOT NULL,
+    finish TIMESTAMP,
+    name VARCHAR(100) NOT NULL,
+    position VARCHAR(100),
+    description VARCHAR(250),
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS skills (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idCraft INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idCraft) REFERENCES crafts(id),
+    name VARCHAR(100) NOT NULL,
+    experience INT UNSIGNED DEFAULT 0,
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS educations (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idCraft INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idCraft) REFERENCES crafts(id),    
+    name VARCHAR(100) NOT NULL,
+    start TIMESTAMP NOT NULL,
+    finish TIMESTAMP,
+    description VARCHAR(250),
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS projects (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idUser INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idUser) REFERENCES users(id),    
+    name VARCHAR(100) NOT NULL,
+    video VARCHAR(150),
+    git VARCHAR(150),
+    url VARCHAR(150),
+    description VARCHAR(250),
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+    
+CREATE TABLE IF NOT EXISTS technologies (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,   
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(250),
+	createdAt TIMESTAMP NOT NULL,
+    modifiedAt TIMESTAMP);
+
+CREATE TABLE IF NOT EXISTS used_techs (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	idProject INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idProject) REFERENCES projects(id),
+    idTechnology INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idTechnology) REFERENCES technologies(id));
+    
+CREATE TABLE IF NOT EXISTS contacts (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  
+    idUser INT UNSIGNED NOT NULL,
+	FOREIGN KEY (idUser) REFERENCES users(id), 
+    type VARCHAR(100) NOT NULL,
+    content VARCHAR(250));

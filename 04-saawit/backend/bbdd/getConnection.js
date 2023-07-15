@@ -30,5 +30,5 @@ const getConnection = async () => {
     }
 };
 
-// Expotamos la función anterior.
+// Exportamos la función anterior.
 module.exports = getConnection;
