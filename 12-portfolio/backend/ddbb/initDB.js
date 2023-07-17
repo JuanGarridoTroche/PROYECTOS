@@ -28,10 +28,10 @@ const initDB = async()=> {
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	      firstName VARCHAR(100) NOT NULL,
 	      lastName1 VARCHAR(100) NOT NULL,
-        lastName2 VARCHAR(100) NOT NULL,
+        lastName2 VARCHAR(100),
         email VARCHAR(100) UNIQUE NOT NULL,
         password VARCHAR(100) NOT NULL,    
-        image VARCHAR(100),
+        image VARCHAR(50),
         registrationCode VARCHAR(100),
         recoverPassCode VARCHAR(20),
         address VARCHAR(200),
@@ -64,7 +64,7 @@ const initDB = async()=> {
         FOREIGN KEY (idUSer) REFERENCES users(id),
         idCurriculum INT UNSIGNED NOT NULL,
         FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
-        type ENUM('Trabajos', 'Habilidades', 'Educación'),
+        type ENUM('Trabajo', 'Habilidad', 'Educación') NOT NULL,
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
       )
@@ -93,7 +93,7 @@ const initDB = async()=> {
         idCraft INT UNSIGNED NOT NULL,
         FOREIGN KEY (idCraft) REFERENCES crafts(id),
         name VARCHAR(100) NOT NULL,
-        experience INT UNSIGNED DEFAULT 0,
+        experience TINYINT UNSIGNED DEFAULT 0,
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
       )
@@ -106,6 +106,7 @@ const initDB = async()=> {
         idCraft INT UNSIGNED NOT NULL,
         FOREIGN KEY (idCraft) REFERENCES crafts(id),    
         name VARCHAR(100) NOT NULL,
+        school VARCHAR(100),
         start TIMESTAMP NOT NULL,
         finish TIMESTAMP,
         description VARCHAR(250),
@@ -121,9 +122,9 @@ const initDB = async()=> {
         idUser INT UNSIGNED NOT NULL,
         FOREIGN KEY (idUser) REFERENCES users(id),    
         name VARCHAR(100) NOT NULL,
-        video VARCHAR(150),
-        git VARCHAR(150),
-        url VARCHAR(150),
+        video VARCHAR(100),
+        repo VARCHAR(100),
+        url VARCHAR(100),
         description VARCHAR(250),
         createdAt TIMESTAMP NOT NULL,
         modifiedAt TIMESTAMP
@@ -159,7 +160,7 @@ const initDB = async()=> {
         idUser INT UNSIGNED NOT NULL,
         FOREIGN KEY (idUser) REFERENCES users(id), 
         type VARCHAR(100) NOT NULL,
-        content VARCHAR(250)
+        content VARCHAR(100) NOT NULL
       )
     `);
     console.log("tabla contacts...");
@@ -170,12 +171,12 @@ const initDB = async()=> {
     // Insertamos el usuario administrador en nuestra Base de datos
     await connection.query(
       `
-        INSERT INTO users (firstName, lastName1, lastName2, email, password, createdAt)
-        VALUES ('Juan', 'Garrido', 'Troche', 'j.garridotroche@gmail.com', ?, ?)
+      INSERT INTO users (firstName, lastName1, lastName2, email, password, createdAt)
+      VALUES ('Juan', 'Garrido', 'Troche', 'j.garridotroche@gmail.com', ?, ?)
       `,
       [adminPass, new Date()]
-    );
-    
+      );
+    console.log("usuario 'administrador' creado");
   } catch (err) {
     console.error(err);
   } finally {
