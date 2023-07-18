@@ -1,9 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+const fileupload = require("express-fileupload");
 require('dotenv').config();
 
-const { PORT, HOST } = process.env;
+const { PORT, HOST, UPLOADS_DIR } = process.env;
 
 // Creamos el servidor express a través de su método
 const app = express();
@@ -36,12 +37,14 @@ app.use('/files', express.static(UPLOADS_DIR));
  * ##    RUTAS DE USERS    ##
  * ##########################
  */
+  const { login } = require('./controllers/users');
 
   // Login de usuario
-  app.post("/user/login")
+  app.post("/user/login", login);
 
 
   //Actualizar datos del usuario
+  app.put("/user/update")
 
 
   // Editar contraseña
