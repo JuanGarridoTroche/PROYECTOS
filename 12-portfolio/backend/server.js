@@ -37,6 +37,73 @@ app.use('/files', express.static(UPLOADS_DIR));
  * ##########################
  */
 
+  // Login de usuario
+  app.post("/user/login")
+
+
+  //Actualizar datos del usuario
+
+
+  // Editar contraseña
+
+
+  // Envío de código de recuperación de contraseña a través de email
+
+
+  // Recuperación de contraseña
+
+
+  // Mostrar los datos del usuario
+
+
+
+/*
+ * ##############################
+ * ##    RUTAS DE PROYECTOS    ##
+ * ##############################
+ */
+// Mostrar todos los proyectos
+
+
+// Crear un proyecto
+
+
+// Editar un proyecto
+
+
+// Eliminar un proyecto
+
+
+/*
+ * ###############################
+ * ##    RUTAS DE CURRICULUM    ##
+ * ###########################1###
+ */
+// Mostrar todos los perfiles de curriculum
+
+
+// Mostrar los datos necesarios del perfil del CV
+
+
+// Crear un perfil de CV
+
+
+
+/*
+ * ##############################
+ * ##    RUTAS DE CONTACTOS    ##
+ * #########################1####
+ */
+// Mostrar todos los contactos
+
+
+// Crear un contacto
+
+
+// Actualizar un contacto
+
+
+// Eliminar un contacto
 
 
 
