@@ -14,10 +14,12 @@ const initDB = async()=> {
     await connection.query("DROP TABLE IF EXISTS used_techs");
     await connection.query("DROP TABLE IF EXISTS technologies");
     await connection.query("DROP TABLE IF EXISTS projects");
+    await connection.query("DROP TABLE IF EXISTS curriculum_educations");
     await connection.query("DROP TABLE IF EXISTS educations");
+    await connection.query("DROP TABLE IF EXISTS curriculum_skills");
     await connection.query("DROP TABLE IF EXISTS skills");
+    await connection.query("DROP TABLE IF EXISTS curriculum_jobs");
     await connection.query("DROP TABLE IF EXISTS jobs");
-    await connection.query("DROP TABLE IF EXISTS crafts");
     await connection.query("DROP TABLE IF EXISTS curriculums");
     await connection.query("DROP TABLE IF EXISTS users");
 
@@ -56,26 +58,12 @@ const initDB = async()=> {
       )
     `);
     console.log("tabla curriculums...");
-
-    await connection.query(`
-      CREATE TABLE IF NOT EXISTS crafts (
-        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idUser INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idUSer) REFERENCES users(id),
-        idCurriculum INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
-        type ENUM('Trabajo', 'Habilidad', 'Educación') NOT NULL,
-        createdAt TIMESTAMP NOT NULL,
-        modifiedAt TIMESTAMP
-      )
-    `);
-    console.log("tabla crafts...");   
-
+    
     await connection.query(`
       CREATE TABLE IF NOT EXISTS jobs (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idCraft INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idCraft) REFERENCES crafts(id),
+        idUser INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idUser) REFERENCES users(id),
         start TIMESTAMP NOT NULL,
         finish TIMESTAMP,
         name VARCHAR(100) NOT NULL,
@@ -88,10 +76,21 @@ const initDB = async()=> {
     console.log("tabla jobs..."); 
 
     await connection.query(`
+      CREATE TABLE IF NOT EXISTS curriculum_jobs (
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,        
+        idCurriculum INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
+        idJob INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idJob) REFERENCES jobs(id)
+      )
+    `);
+    console.log("tabla curriculum_jobs...");     
+    
+    await connection.query(`
       CREATE TABLE IF NOT EXISTS skills (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idCraft INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idCraft) REFERENCES crafts(id),
+        idUser INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idUser) REFERENCES users(id),
         name VARCHAR(100) NOT NULL,
         experience TINYINT UNSIGNED DEFAULT 0,
         createdAt TIMESTAMP NOT NULL,
@@ -101,10 +100,21 @@ const initDB = async()=> {
     console.log("tabla skills..."); 
 
     await connection.query(`
+      CREATE TABLE IF NOT EXISTS curriculum_skills (
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,        
+        idCurriculum INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
+        idSkill INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idSkill) REFERENCES skills(id)
+      )
+    `);
+    console.log("tabla curriculum_skills...");
+    
+    await connection.query(`
       CREATE TABLE IF NOT EXISTS educations (
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        idCraft INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idCraft) REFERENCES crafts(id),    
+        idUser INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idUser) REFERENCES users(id),    
         name VARCHAR(100) NOT NULL,
         school VARCHAR(100),
         start TIMESTAMP NOT NULL,
@@ -115,6 +125,17 @@ const initDB = async()=> {
       )
     `);
     console.log("tabla educations...");
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS curriculum_educations (
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,        
+        idCurriculum INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idCurriculum) REFERENCES curriculums(id),
+        idEducation INT UNSIGNED NOT NULL,
+        FOREIGN KEY (idEducation) REFERENCES educations(id)
+      )
+    `);
+    console.log("tabla curriculum_educations...");   
 
     await connection.query(`
       CREATE TABLE IF NOT EXISTS projects (
