@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const fileupload = require("express-fileupload");
+const isAuth = require('./middlewares/isAuth');
 require('dotenv').config();
 
 const { PORT, HOST, UPLOADS_DIR } = process.env;
@@ -37,14 +38,14 @@ app.use('/files', express.static(UPLOADS_DIR));
  * ##    RUTAS DE USERS    ##
  * ##########################
  */
-  const { login } = require('./controllers/users');
+  const { login, updateProfile } = require('./controllers/users');
 
   // Login de usuario
   app.post("/user/login", login);
 
 
   //Actualizar datos del usuario
-  app.put("/user/update")
+  app.put("/user/updateProfile", isAuth, updateProfile)
 
 
   // Editar contraseña
