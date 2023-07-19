@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const fileupload = require("express-fileupload");
+const fileupload = require('express-fileupload');
 const isAuth = require('./middlewares/isAuth');
 require('dotenv').config();
 
@@ -9,7 +9,6 @@ const { PORT, HOST, UPLOADS_DIR } = process.env;
 
 // Creamos el servidor express a través de su método
 const app = express();
-
 
 /*
  * ##########################################
@@ -32,34 +31,27 @@ app.use(cors());
 // Permite tener acceso a la carpeta de assets de manera pública
 app.use('/files', express.static(UPLOADS_DIR));
 
-
 /*
  * ##########################
  * ##    RUTAS DE USERS    ##
  * ##########################
  */
-  const { login, updateProfile } = require('./controllers/users');
+const { login, updateProfile, readProfile } = require('./controllers/users');
 
-  // Login de usuario
-  app.post("/user/login", login);
+// Login de usuario
+app.post('/user/login', login);
 
+//Actualizar datos del usuario
+app.put('/user/updateProfile', isAuth, updateProfile);
 
-  //Actualizar datos del usuario
-  app.put("/user/updateProfile", isAuth, updateProfile)
+// Editar contraseña
 
+// Envío de código de recuperación de contraseña a través de email
 
-  // Editar contraseña
+// Recuperación de contraseña
 
-
-  // Envío de código de recuperación de contraseña a través de email
-
-
-  // Recuperación de contraseña
-
-
-  // Mostrar los datos del usuario
-
-
+// Mostrar los datos del usuario
+app.get('/user/profile/:id', readProfile);
 
 /*
  * ##############################
@@ -68,15 +60,11 @@ app.use('/files', express.static(UPLOADS_DIR));
  */
 // Mostrar todos los proyectos
 
-
 // Crear un proyecto
-
 
 // Editar un proyecto
 
-
 // Eliminar un proyecto
-
 
 /*
  * ###############################
@@ -85,13 +73,9 @@ app.use('/files', express.static(UPLOADS_DIR));
  */
 // Mostrar todos los perfiles de curriculum
 
-
 // Mostrar los datos necesarios del perfil del CV
 
-
 // Crear un perfil de CV
-
-
 
 /*
  * ##############################
@@ -100,17 +84,11 @@ app.use('/files', express.static(UPLOADS_DIR));
  */
 // Mostrar todos los contactos
 
-
 // Crear un contacto
-
 
 // Actualizar un contacto
 
-
 // Eliminar un contacto
-
-
-
 
 /*
  * ##########################################
