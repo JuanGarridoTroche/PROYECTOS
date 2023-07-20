@@ -1,12 +1,12 @@
 const selectUserByIdQuery = require("../../queries/users/selectUserByIdQuery");
 
 const readProfile = async(req, res, next) => {
-  const { id } = req.params;
+  const { idUser } = req.params;
   try {
-    const userProfile = await selectUserByIdQuery(id);
+    const userProfile = await selectUserByIdQuery(idUser);
        
     userProfile.createdAt = userProfile.createdAt.toLocaleDateString();
-    userProfile.modifiedAt = userProfile.modifiedAt.toLocaleDateString();
+    if(userProfile.modifiedAt) userProfile.modifiedAt = userProfile.modifiedAt.toLocaleDateString();
 
     res.send({
       status: 'Ok',

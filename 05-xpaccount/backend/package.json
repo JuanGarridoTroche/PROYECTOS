@@ -4,7 +4,8 @@
   "description": "API que permite gestionar los asientos bacarios de tu cuenta corriente",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "initDB": "node ./bbdd/initDB.js"
   },
   "author": "Juan Garrido Troche",
   "license": "ISC",

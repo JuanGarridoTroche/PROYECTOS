@@ -44,15 +44,15 @@ app.post('/user/login', login);
 //Actualizar datos del usuario
 app.put('/user/updateProfile', isAuth, updateProfile);
 
-// Editar contraseña
-app.put("/user/updateProfile/password", isAuth, updatePassword);
+// Actualizar contraseña
+app.patch("/user/password/:idUser", isAuth, updatePassword);
 
 // Envío de código de recuperación de contraseña a través de email
 
 // Recuperación de contraseña
 
 // Mostrar los datos del usuario
-app.get('/user/profile/:id', readProfile);
+app.get('/user/profile/:idUser', readProfile);
 
 /*
  * ##############################
