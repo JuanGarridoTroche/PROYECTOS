@@ -1,0 +1,21 @@
+
+# Utilizar la imagen oficial de node.js base. En mi caso es la 18.16.1 y la base es la 18
+FROM node:18
+
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /usr/src/xpaccount
+
+# Copiar el archivo package.json y package-lock.json para instalar las dependencias
+COPY package*.json .
+
+# Instalar las dependencias
+RUN npm install
+
+# Copiar el resto de los archivos de la aplicación
+COPY . .
+
+# Exponer el puerto en el que el servidor Node.js está escuchando
+EXPOSE 4000
+
+# Comando para ejecutar la aplicación: npm run dev
+CMD [ "npm", "run", "dev" ]
