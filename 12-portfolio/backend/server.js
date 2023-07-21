@@ -36,7 +36,7 @@ app.use('/files', express.static(UPLOADS_DIR));
  * ##    RUTAS DE USERS    ##
  * ##########################
  */
-const { login, updateProfile, readProfile, updatePassword } = require('./controllers/users');
+const { login, updateProfile, readProfile, updatePassword, sendRecoverPasswordEmail } = require('./controllers/users');
 
 // Login de usuario
 app.post('/user/login', login);
@@ -48,6 +48,7 @@ app.put('/user/updateProfile', isAuth, updateProfile);
 app.patch("/user/password/:idUser", isAuth, updatePassword);
 
 // Envío de código de recuperación de contraseña a través de email
+app.put("/user/password/solicitude", sendRecoverPasswordEmail)
 
 // Recuperación de contraseña
 
