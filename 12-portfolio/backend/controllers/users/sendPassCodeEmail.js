@@ -3,7 +3,7 @@ const randomstring = require('randomstring');
 const selectUserByEmailQuery = require('../../queries/users/selectUserByEmailQuery');
 const updateRecoverPassCodeQuery = require('../../queries/users/updateRecoverPassCodeQuery');
 
-const sendRecoverPasswordEmail = async (req, res, next) => {
+const sendPassCodeEmail = async (req, res, next) => {
   const { email } = req.body;
 
   try {
@@ -27,7 +27,7 @@ const sendRecoverPasswordEmail = async (req, res, next) => {
     const subject = 'Recuperación de contraseña para Portfolio';
     const emailContent = `Hola ${user.firstName} ${user.lastName1} ${user.lastName2},
     
-    Se ha solicitado la recuperación de la contraseña para este email en PORTFOLIO. Utiliza el siguiente código para crear una nueva contraseña: <a href="http://localhost:3000/user/password/recover" alt="recover">${recoverPassCode}</a>
+    Se ha solicitado la recuperación de la contraseña para este email en PORTFOLIO. Utiliza el siguiente código para crear una nueva contraseña: <a href="http://localhost:3000/user/password/update" alt="recover">${recoverPassCode}</a>
 
     Si no has sido tú, ignora este correo.`;   
 
@@ -43,4 +43,4 @@ const sendRecoverPasswordEmail = async (req, res, next) => {
   }
 };
 
-module.exports = sendRecoverPasswordEmail;
+module.exports = sendPassCodeEmail;
