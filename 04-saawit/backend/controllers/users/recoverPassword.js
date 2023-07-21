@@ -21,7 +21,7 @@ const recoverPassword = async (req, res, next) => {
       );
     }
 
-    // Comprobamos que la password es la correcta en nuestra BBDD
+    // Comprobamos que el passcode es el correcto en nuestra BBDD
     const checkRecPassCode = await checkRecoverPasswordQuery(recoverPassCode);   
     
     const idUser = checkRecPassCode.id;
