@@ -102,9 +102,9 @@
   background-color: #303030;
 }
 
-.family__update {
+/* .family__update {
   content: url("/update-solid.svg");
-}
+} */
 
 .family__delete {
   content: url("/trash-can-solid.svg");

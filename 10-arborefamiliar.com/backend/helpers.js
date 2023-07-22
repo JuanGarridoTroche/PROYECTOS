@@ -1,7 +1,7 @@
 const path = require("path");
 const nodemailer = require("nodemailer");
 const fs = require("fs/promises");
-const {SIB_SMTP_PASS, SIB_SMTP_USER, UPLOADS_DIR, HOST, PORT} = process.env;
+const {SIB_SMTP_PASS, SIB_SMTP_USER, UPLOADS_DIR} = process.env;
 
 /* *
  * ######################

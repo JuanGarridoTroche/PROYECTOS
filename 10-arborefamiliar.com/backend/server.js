@@ -107,5 +107,5 @@ app.use((req, res) => {
 
 // Servidor escuchando en el puerto "PORT"
 app.listen(PORT, () => {
-  console.log(`Server listening at ${HOST}:${PORT}`);
+  console.log(`Server listening at port ${PORT}`);
 });
