@@ -40,7 +40,7 @@ export const Login =()=> {
 
   return (
     <section className="login">
-      <h1 className="login__title"><span>4</span> Fam</h1>
+      <h1 className="login__title">Á<span>r</span>bore Fa<span>m</span>iliar</h1>
       <form className="login__form" onSubmit={handleSubmit}> 
         {error ? <p className="error">{error}</p> : null}
         <label htmlFor="pass" className="login__label">Escribe tu contraseña </label>
