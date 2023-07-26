@@ -47,7 +47,7 @@ export const getAllFamiliyNamesService = async (token) => {
 export const loginUserService = async (password) => {
   const response = await fetch(
     `
-  ${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/`,
+  ${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}`,
     {
       method: 'POST',
       headers: {
