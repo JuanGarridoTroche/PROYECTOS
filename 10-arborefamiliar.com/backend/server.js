@@ -25,7 +25,7 @@ app.use(fileupload());
 
 // Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
 // Middleware que permite conectar el backend (éste) con el frontend (React)
-app.use(cors({origin: 'http://localhost:5173'}));
+app.use(cors({origin: 'https://www.arborefamiliar.com'}));
 
 /*
  * #####################
