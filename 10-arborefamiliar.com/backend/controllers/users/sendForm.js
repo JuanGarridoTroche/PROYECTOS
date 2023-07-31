@@ -43,7 +43,7 @@ const sendForm = async (req, res, next) => {
     <h2>Correo desde la web de la familia Seco:</h2>
     <h5>Tienes un correo nuevo de ${name}, logueado desde la familia ${lineage}</h5>
     <div style="background-color:rgb(155, 155, 155); color:white; border-radius:10px; display:flex; flex-direction:column;justify-content:center;align-items:center">
-      <img src="http://${HOST}:${PORT}/static/img/944.jpg" style="max-height:80px width:auto"/>
+      <img src="https://${HOST}:${PORT}/static/img/944.jpg" style="max-height:80px width:auto"/>
       <p style="padding-left:30px">${text}</p>      
     </div>
     <div>
