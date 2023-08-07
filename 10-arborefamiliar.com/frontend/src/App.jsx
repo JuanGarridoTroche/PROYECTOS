@@ -6,6 +6,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import { NotFound } from "./pages/NotFound";
 import { Family } from "./pages/Family";
 import { Form } from "./pages/Form";
+import { Prueba } from "./components/Prueba";
 
 import ("./css/App.css");
 
@@ -20,6 +21,7 @@ function App() {
     <main>
       <Routes>
         <Route path="/" element={<Login/>}/>
+        <Route path="/prueba" element={<Prueba/>}/>
         <Route path="/familia/:url" element={<Family/>}/>
         <Route path='/form' element={<Form/>}/>
         <Route path="*" element={<NotFound/>}/>
