@@ -25,7 +25,7 @@ app.use(fileupload());
 
 // Cross-Origin of Resource Sharing: Dependencia que facilita que un user-agent obtenga permiso para acceder a recursos seleccionados desde este servidor
 // Middleware que permite conectar el backend (éste) con el frontend (React)
-app.use(cors({origin: 'https://www.arborefamiliar.com'}));
+app.use(cors());
 
 /*
  * #####################
@@ -66,11 +66,7 @@ app.get('/data/:url', isAuth, getFamilyDataByUrl);
  * #################################
  */
 
-const {
-  createPDF,
-  updatePDF,
-  deletePDF,
-} = require('./controllers/pdfs');
+const { createPDF, updatePDF, deletePDF } = require('./controllers/pdfs');
 
 // Crear fichero pdf de una de las familias por parte del admin
 app.post('/createPDF/:url', isAuth, createPDF);
