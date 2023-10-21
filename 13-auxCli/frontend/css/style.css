@@ -86,24 +86,25 @@ body {
 
 .section {
   min-height: 100vh;
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
  #home {
   padding-top: 17px;
+  text-align: center;
 }
-/*
+
 #whoiam {
-  background-color: var(--color-grass-green);
+  text-align: center;
 }
 
 #services {
-  background-color: var(--color-purple);
+  text-align: center;
 }
 
 #contact {
-  background-color: var(--color-light-purple);
-} */
+  text-align: center;
+}
 
 
 /** ****** **/
