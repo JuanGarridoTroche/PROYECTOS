@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+  --font-roboto: 'Roboto', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --color-background: #F7F7F8;
+  --color-light-purple: #C6D4FF;
+  --color-purple: #7A82AB;
+  --color-dark-green: #307473;
+  --color-grass-green: #12664F;
+  --color-aquamarine: #2DC2BD;
+  --color-text: #000000;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: var(--color-background);
+  font-family: var(--font-inter);
+  color: var(--color-text);
+  max-width: 1200px;
+  margin: 0 auto;
+  /* overflow: hidden; */
+}
+
+body {
+  font-size: 1.6rem; 
+  position: relative;
+}
+
+.brand__naming {
+  font-weight: 800;
+}
+
+.span-main {
+  color: var(--color-light-purple);
+}
+
+.span-sec {
+  color: var(--color-aquamarine);
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--color-purple);
+  background-color: var(--color-background);
+}
+
+/* .menu__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.menu__brand > .brand__naming {
+  display: none;
+}
+
+.menu__options > .nav > .nav__list {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  list-style: none;
+  gap: 7px;
+}
+
+.menu__options > .nav > .nav__list > .list__option a {
+  text-decoration: none;
+}
+
+.brand__logo {
+  width: 30px;
+}
+
+.section {
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+ #home {
+  padding-top: 17px;
+}
+/*
+#whoiam {
+  background-color: var(--color-grass-green);
+}
+
+#services {
+  background-color: var(--color-purple);
+}
+
+#contact {
+  background-color: var(--color-light-purple);
+} */
+
+
+/** ****** **/
+/** TABLET **/
+/** ****** **/
+@media (min-width: 550px) {
+  .menu {
+    padding: 10px;
+  }
+  .menu__brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+  }
+  .menu__brand > .brand__naming {
+    display: unset;
+    cursor: pointer;
+  }
+
+  .brand__logo {
+    width: 50px;
+    cursor: pointer;
+  }
+
+  .menu__options > .nav > .nav__list {
+    display: flex;
+    font-size: 1.6rem;
+  }
+
+  .menu__options > .nav > .nav__list > .list__option a:hover {
+    color: var(--color-aquamarine);
+    cursor: pointer;
+    border: 2px solid var(--color-aquamarine);
+    padding: 0 3px;
+  }
+}
+
+
+/** ******* **/
+/** DESKTOP **/
+/** ******* **/
+@media (min-width: 880px) {
+   
+}
