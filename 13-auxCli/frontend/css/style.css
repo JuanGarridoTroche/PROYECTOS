@@ -20,26 +20,29 @@
 
 html {
   font-size: 62.5%;
-  background-color: var(--color-aquamarine);
+  background-color: var(--color-background);
   font-family: var(--font-inter);
   color: var(--color-text);
   max-width: 1200px;
   margin: 0 auto;
+  /* overflow: hidden; */
 }
 
 body {
-  font-size: 1.6rem;
-  
-  
+  font-size: 1.6rem; 
+  position: relative;
 }
 
 .brand__naming {
   font-weight: 800;
 }
 
-span {
+.span-main {
   color: var(--color-light-purple);
-  font-weight: 800;
+}
+
+.span-sec {
+  color: var(--color-aquamarine);
 }
 
 .menu {
@@ -47,7 +50,12 @@ span {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 7px;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--color-purple);
+  background-color: var(--color-background);
 }
 
 /* .menu__brand {
@@ -62,25 +70,75 @@ span {
 
 .menu__options > .nav > .nav__list {
   display: flex;
-  font-size: 1rem;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  list-style: none;
+  gap: 7px;
+}
+
+.menu__options > .nav > .nav__list > .list__option a {
+  text-decoration: none;
 }
 
 .brand__logo {
   width: 30px;
 }
 
+.section {
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+ #home {
+  padding-top: 17px;
+}
+/*
+#whoiam {
+  background-color: var(--color-grass-green);
+}
+
+#services {
+  background-color: var(--color-purple);
+}
+
+#contact {
+  background-color: var(--color-light-purple);
+} */
+
+
 /** ****** **/
 /** TABLET **/
 /** ****** **/
 @media (min-width: 550px) {
+  .menu {
+    padding: 10px;
+  }
   .menu__brand {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 7px;
   }
   .menu__brand > .brand__naming {
     display: unset;
+    cursor: pointer;
+  }
+
+  .brand__logo {
+    width: 50px;
+    cursor: pointer;
+  }
+
+  .menu__options > .nav > .nav__list {
+    display: flex;
+    font-size: 1.6rem;
+  }
+
+  .menu__options > .nav > .nav__list > .list__option a:hover {
+    color: var(--color-aquamarine);
+    cursor: pointer;
+    border: 2px solid var(--color-aquamarine);
+    padding: 0 3px;
   }
 }
 
