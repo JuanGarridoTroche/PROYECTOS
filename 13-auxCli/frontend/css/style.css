@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+  --font-roboto: 'Roboto', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --color-background: #F7F7F8;
+  --color-light-purple: #C6D4FF;
+  --color-purple: #7A82AB;
+  --color-dark-green: #307473;
+  --color-grass-green: #12664F;
+  --color-aquamarine: #2DC2BD;
+  --color-text: #000000;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: var(--color-aquamarine);
+  font-family: var(--font-inter);
+  color: var(--color-text);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+body {
+  font-size: 1.6rem;
+  
+  
+}
+
+.brand__naming {
+  font-weight: 800;
+}
+
+span {
+  color: var(--color-light-purple);
+  font-weight: 800;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* .menu__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.menu__brand > .brand__naming {
+  display: none;
+}
+
+.menu__options > .nav > .nav__list {
+  display: flex;
+  font-size: 1rem;
+}
+
+.brand__logo {
+  width: 30px;
+}
+
+/** ****** **/
+/** TABLET **/
+/** ****** **/
+@media (min-width: 550px) {
+  .menu__brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .menu__brand > .brand__naming {
+    display: unset;
+  }
+}
+
+
+/** ******* **/
+/** DESKTOP **/
+/** ******* **/
+@media (min-width: 880px) {
+   
+}
