@@ -103,6 +103,31 @@ body {
   justify-content: space-between;
 }
 
+.whoiam > .whoiam__container {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.whoiam > .whoiam__container > .whoiam__content {
+  display: flex ;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+h3 {
+  color: var(--color-aquamarine);
+  text-align: left;
+}
+
+p {
+  text-align: left;
+}
+
 #services {
   text-align: center;
   min-width: 100%;
