@@ -98,8 +98,23 @@ body {
   text-align: center;
 }
 
+.whoiam {
+  display: flex;
+  justify-content: space-between;
+}
+
 #services {
   text-align: center;
+  min-width: 100%;
+}
+
+.services__content {
+  display: block;
+  flex-wrap: wrap;
+  box-shadow: 0 0 11px rgba(204, 204, 204, .88);
+  width: 200px;
+  height: 200px;
+  margin: 10px;
 }
 
 #contact {
